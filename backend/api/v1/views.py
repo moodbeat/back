@@ -11,7 +11,8 @@ from users.models import InviteCode, User
 
 from .serializers import (RegisterSerializer, SendInviteSerializer,
                           UserSerializer)
-from .utils import encode_data, send_code
+from .utils import decode_data, encode_data, send_code
+from django.contrib.auth.hashers import make_password
 
 
 class UserViewSet(ModelViewSet):
@@ -70,10 +71,9 @@ class SendInviteView(APIView):
                 status=status.HTTP_201_CREATED
             )
 
-# SOON
-
 
 class RegisterView(APIView):
+    '''Регистрация по ссылке-приглашению'''
 
     @swagger_auto_schema(
         request_body=RegisterSerializer,
@@ -87,7 +87,24 @@ class RegisterView(APIView):
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
             )
 
+        invite_code = serializer.validated_data.pop('invite_code')
+        try:
+            decode_uuid = decode_data(settings.INVITE_SECRET_KEY, invite_code)
+            invite_code = InviteCode.objects.get(code=decode_uuid)
+        except Exception:
+            return Response(
+                {'result': 'Недействительный ключ-приглашение'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        email = invite_code.email
+        password = make_password(serializer.validated_data.pop('password'))
+        User.objects.create(
+            email=email, password=password, **serializer.validated_data
+        )
+        invite_code.delete()
+
         return Response(
-            {'result': 'угу'},
+            {'result': 'Пользователь успешно добавлен'},
             status=status.HTTP_201_CREATED
         )
