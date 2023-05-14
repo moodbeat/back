@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.db.models import Count
 
-from .models import Department, Position, User, Hobby
+from .models import Department, Hobby, InviteCode, Position, User
 
 
 class EmployeesCountMixin:
@@ -76,3 +76,20 @@ class CustomUserAdmin(UserAdmin):
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
         return queryset.select_related('department', 'position')
+
+
+@admin.register(InviteCode)
+class InviteCodeAdmin(admin.ModelAdmin):
+    list_display = ('email', 'sender', 'created')
+    readonly_fields = ('email', 'sender', 'created')
+    exclude = ('code',)
+    ordering = ('created',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False

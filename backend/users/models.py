@@ -185,6 +185,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class InviteCode(models.Model):
 
+    sender = models.ForeignKey(
+        User,
+        verbose_name='Отправитель',
+        related_name='invitations',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
+    )
     email = models.EmailField(
         unique=True,
         max_length=255
@@ -194,5 +202,13 @@ class InviteCode(models.Model):
         default=uuid.uuid4
     )
     created = models.DateTimeField(
+        verbose_name='Дата отправки инвайта',
         auto_now_add=True
     )
+
+    class Meta:
+        verbose_name = 'Приглашение'
+        verbose_name_plural = 'Приглашения'
+
+    def __str__(self):
+        return f'invite_{self.pk} to {self.email}'

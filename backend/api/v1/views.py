@@ -26,6 +26,7 @@ class UserViewSet(ModelViewSet):
     def get_queryset(self):
         queryset = (
             User.objects
+            .filter(is_active=True, is_superuser=False)
             .select_related('department', 'position')
             .prefetch_related('hobbies')
         )
@@ -63,7 +64,7 @@ class SendInviteView(APIView):
             data = {'result': 'Ссылка для регистрации отправлена на email'}
             return Response(data, status=status.HTTP_200_OK)
 
-    def create_invite_code(self, email: str, retry: bool = False) -> object:
+    def create_invite_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
         encoded_uuid = encode_data(settings.INVITE_SECRET_KEY, str(uuid_code))
         if retry:
