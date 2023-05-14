@@ -8,11 +8,11 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from users.models import Department, InviteCode, Position, User
+from users.models import Department, Hobby, InviteCode, Position, User
 
-from .serializers import (DepartmentSerializer, PositionSerializer,
-                          RegisterSerializer, SendInviteSerializer,
-                          UserSerializer)
+from .serializers import (DepartmentSerializer, HobbySerializer,
+                          PositionSerializer, RegisterSerializer,
+                          SendInviteSerializer, UserSerializer)
 from .utils import decode_data, encode_data, send_code
 
 
@@ -120,4 +120,12 @@ class PositionViewSet(ModelViewSet):
     queryset = Position.objects.all()
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('name', 'description')
+    http_method_names = ('get', 'post', 'patch', 'delete')
+
+
+class HobbyViewSet(ModelViewSet):
+    serializer_class = HobbySerializer
+    queryset = Hobby.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('name',)
     http_method_names = ('get', 'post', 'patch', 'delete')

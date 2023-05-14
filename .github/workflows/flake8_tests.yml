@@ -3,10 +3,11 @@ name: flake8 tests
 on:
   push:
     branches:
-      - backend
+      - dev-backend
+      - aleksandrusolcev*
   pull_request:
     branches:
-      - backend
+      - dev-backend
 
 jobs:
   tests:
