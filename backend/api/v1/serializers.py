@@ -10,6 +10,8 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 
 class PositionSerializer(serializers.ModelSerializer):
+    department = DepartmentSerializer(read_only=True)
+
     class Meta:
         model = Position
         fields = '__all__'
@@ -22,7 +24,6 @@ class HobbySerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    department = DepartmentSerializer(read_only=True)
     position = PositionSerializer(read_only=True)
     hobbies = HobbySerializer(many=True, read_only=True)
 
@@ -30,7 +31,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id', 'email', 'first_name', 'last_name', 'patronymic', 'role',
-            'position', 'department', 'hobbies', 'avatar', 'about', 'phone',
+            'position', 'hobbies', 'avatar', 'about', 'phone',
             'date_joined'
         )
 

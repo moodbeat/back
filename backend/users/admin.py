@@ -31,9 +31,8 @@ class UserInline(admin.TabularInline):
 
 
 @admin.register(Department)
-class DepartmentAdmin(EmployeesCountMixin, admin.ModelAdmin):
-    list_display = ('name', 'employees_count')
-    inlines = [UserInline, ]
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 
 @admin.register(Position)
@@ -52,7 +51,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'first_name', 'last_name', 'password')}),
         (('Служебная информация'), {'fields': (
-            'department', 'position', 'role', 'phone'
+            'position', 'role', 'phone'
         )}),
         (('Прочее'), {'fields': ('avatar', 'hobbies')}),
         (('Роли и права'), {
@@ -69,13 +68,13 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
     list_display = ('email', 'first_name', 'last_name',
-                    'role', 'department', 'position')
+                    'role', 'position')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related('department', 'position')
+        return queryset.select_related('position')
 
 
 @admin.register(InviteCode)

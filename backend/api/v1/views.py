@@ -5,11 +5,15 @@ from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from users.models import Department, Hobby, InviteCode, Position, User
 
+from .permissions import (ChiefPostPermission, ChiefSafePermission,
+                          EmployeePostPermission, EmployeeSafePermission,
+                          HRAllPermission)
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PositionSerializer, RegisterSerializer,
                           SendInviteSerializer, UserSerializer)
@@ -19,15 +23,15 @@ from .utils import decode_data, encode_data, send_code
 class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('email', 'first_name', 'last_name',
-                        'role', 'department', 'position')
+    filterset_fields = ('email', 'first_name', 'last_name', 'role', 'position')
     http_method_names = ('get', 'patch')
+    permission_classes = (HRAllPermission, ChiefSafePermission,)
 
     def get_queryset(self):
         queryset = (
             User.objects
             .filter(is_active=True, is_superuser=False)
-            .select_related('department', 'position')
+            .select_related('position', 'position__department')
             .prefetch_related('hobbies')
         )
         return queryset
@@ -35,6 +39,7 @@ class UserViewSet(ModelViewSet):
 
 class SendInviteView(APIView):
     '''Отправка на почту ссылки для регистрации'''
+    permission_classes = (HRAllPermission,)
 
     @swagger_auto_schema(
         request_body=SendInviteSerializer,
@@ -76,6 +81,7 @@ class SendInviteView(APIView):
 
 class RegisterView(APIView):
     '''Регистрация по ссылке-приглашению'''
+    permission_classes = (AllowAny,)
 
     @swagger_auto_schema(
         request_body=RegisterSerializer,
@@ -114,6 +120,7 @@ class DepartmentViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('name', 'description')
     http_method_names = ('get', 'post', 'patch', 'delete')
+    permission_classes = (HRAllPermission,)
 
 
 class PositionViewSet(ModelViewSet):
@@ -122,6 +129,7 @@ class PositionViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('name', 'description')
     http_method_names = ('get', 'post', 'patch', 'delete')
+    permission_classes = (HRAllPermission,)
 
 
 class HobbyViewSet(ModelViewSet):
@@ -130,3 +138,7 @@ class HobbyViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
+    permission_classes = (
+        HRAllPermission, ChiefSafePermission, ChiefPostPermission,
+        EmployeeSafePermission, EmployeePostPermission
+    )

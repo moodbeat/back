@@ -44,6 +44,14 @@ class Position(models.Model):
         null=True,
         blank=True
     )
+    department = models.ForeignKey(
+        Department,
+        verbose_name='Отдел',
+        related_name='positions',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL
+    )
 
     class Meta:
         verbose_name = 'Должность'
@@ -98,15 +106,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=120,
         blank=True,
         null=True
-    )
-    department = models.ForeignKey(
-        Department,
-        verbose_name='Отдел',
-        related_name='employees',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        db_index=True
     )
     position = models.ForeignKey(
         Position,

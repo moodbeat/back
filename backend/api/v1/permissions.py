@@ -43,6 +43,15 @@ class ChiefSafePermission(permissions.BasePermission):
         )
 
 
+class ChiefPostPermission(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        return (
+            request.method == 'POST'
+            and request.user.is_authenticated and request.user.is_chief
+        )
+
+
 class AllowAuthorOrReadOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
