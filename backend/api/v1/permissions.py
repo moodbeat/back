@@ -10,43 +10,50 @@ class HRAllPermission(permissions.BasePermission):
 class HRSafePermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return request.user.is_authenticated and request.user.is_hr
+        return (
+            request.method in permissions.SAFE_METHODS
+            and request.user.is_authenticated and request.user.is_hr
+        )
 
 
 class EmployeeSafePermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return request.user.is_authenticated and request.user.is_employee
+        return (
+            request.method in permissions.SAFE_METHODS
+            and request.user.is_authenticated and request.user.is_employee
+        )
 
 
 class EmployeePostPermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        if request.method == 'POST':
-            return True
-        return request.user.is_authenticated and request.user.is_employee
+        return (
+            request.method == 'POST'
+            and request.user.is_authenticated and request.user.is_employee
+        )
 
 
 class ChiefSafePermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return request.user.is_authenticated and request.user.is_chief
+        return (
+            request.method in permissions.SAFE_METHODS
+            and request.user.is_authenticated and request.user.is_chief
+        )
 
 
 class AllowAuthorOrReadOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return request.user.is_authenticated
+        return (
+            request.method in permissions.SAFE_METHODS
+            and request.user.is_authenticated
+        )
 
     def has_object_permission(self, request, view, obj):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        return obj.author == request.user
+        return (
+            request.method in permissions.SAFE_METHODS
+            and request.user.is_authenticated
+            or request.user.is_authenticated and request.user == obj.author
+        )

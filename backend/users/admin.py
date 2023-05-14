@@ -33,13 +33,13 @@ class UserInline(admin.TabularInline):
 @admin.register(Department)
 class DepartmentAdmin(EmployeesCountMixin, admin.ModelAdmin):
     list_display = ('name', 'employees_count')
-    inlines = [UserInline,]
+    inlines = [UserInline, ]
 
 
 @admin.register(Position)
 class PositionAdmin(EmployeesCountMixin, admin.ModelAdmin):
     list_display = ('name', 'employees_count')
-    inlines = [UserInline,]
+    inlines = [UserInline, ]
 
 
 @admin.register(Hobby)
