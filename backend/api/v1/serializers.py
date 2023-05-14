@@ -49,7 +49,7 @@ class RegisterSerializer(serializers.Serializer):
     password = serializers.CharField(required=True)
 
     class Meta:
-        fields = ('first_name', 'last_name', 'password')
+        fields = ('invite_code', 'first_name', 'last_name', 'password')
 
     def validate_password(self, value):
         validate_password(value)

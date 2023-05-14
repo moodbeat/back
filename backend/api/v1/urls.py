@@ -10,6 +10,8 @@ app_name = 'api'
 
 v10 = DefaultRouter()
 v10.register('users', views.UserViewSet, basename='users')
+v10.register('departments', views.DepartmentViewSet, basename='departments')
+v10.register('positions', views.PositionViewSet, basename='positions')
 
 schema_view = get_schema_view(
     openapi.Info(
