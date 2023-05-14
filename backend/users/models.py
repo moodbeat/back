@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
@@ -212,3 +213,9 @@ class InviteCode(models.Model):
 
     def __str__(self):
         return f'invite_{self.pk} to {self.email}'
+
+    def expire_date(self):
+        return self.created + timezone.timedelta(
+            days=settings.INVITE_TIME_EXPIRES_DAYS)
+
+    expire_date.short_description = 'Дата окончания инвайта'

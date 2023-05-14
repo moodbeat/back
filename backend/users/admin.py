@@ -80,8 +80,8 @@ class CustomUserAdmin(UserAdmin):
 
 @admin.register(InviteCode)
 class InviteCodeAdmin(admin.ModelAdmin):
-    list_display = ('email', 'sender', 'created')
-    readonly_fields = ('email', 'sender', 'created')
+    list_display = ('email', 'sender', 'created', 'expire_date')
+    readonly_fields = ('email', 'sender', 'created', 'expire_date')
     exclude = ('code',)
     ordering = ('created',)
 
@@ -89,7 +89,4 @@ class InviteCodeAdmin(admin.ModelAdmin):
         return False
 
     def has_change_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
         return False
