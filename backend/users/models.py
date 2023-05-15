@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
@@ -8,6 +9,8 @@ from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .managers import UserManager
+from .validators import (validate_first_name, validate_last_name,
+                         validate_patronymic)
 
 
 class Department(models.Model):
@@ -43,6 +46,14 @@ class Position(models.Model):
         null=True,
         blank=True
     )
+    department = models.ForeignKey(
+        Department,
+        verbose_name='Отдел',
+        related_name='positions',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL
+    )
 
     class Meta:
         verbose_name = 'Должность'
@@ -55,13 +66,14 @@ class Position(models.Model):
 class Hobby(models.Model):
 
     name = models.CharField(
+        verbose_name='Наименование',
         max_length=255,
         unique=True
     )
 
     class Meta:
-        verbose_name = 'Список интересов'
-        verbose_name_plural = 'Списки интересов'
+        verbose_name = 'Интерес'
+        verbose_name_plural = 'Интересы'
 
     def __str__(self):
         return self.name
@@ -86,26 +98,20 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(
         verbose_name=_('first name'),
-        max_length=120
+        max_length=120,
+        validators=[validate_first_name]
     )
     last_name = models.CharField(
         verbose_name=_('last name'),
-        max_length=120
+        max_length=120,
+        validators=[validate_last_name]
     )
     patronymic = models.CharField(
         verbose_name='Отчество',
         max_length=120,
         blank=True,
-        null=True
-    )
-    department = models.ForeignKey(
-        Department,
-        verbose_name='Отдел',
-        related_name='employees',
         null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        db_index=True
+        validators=[validate_patronymic]
     )
     position = models.ForeignKey(
         Position,
@@ -178,6 +184,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+        ordering = ['-date_joined']
 
     def __str__(self):
         return self.email
@@ -185,6 +192,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class InviteCode(models.Model):
 
+    sender = models.ForeignKey(
+        User,
+        verbose_name='Отправитель',
+        related_name='invitations',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True
+    )
     email = models.EmailField(
         unique=True,
         max_length=255
@@ -194,8 +209,20 @@ class InviteCode(models.Model):
         default=uuid.uuid4
     )
     created = models.DateTimeField(
+        verbose_name='Дата отправки инвайта',
         auto_now_add=True
     )
 
+    class Meta:
+        verbose_name = 'Приглашение'
+        verbose_name_plural = 'Приглашения'
+        ordering = ['-created']
+
     def __str__(self):
-        return self.token
+        return f'invite_{self.pk} to {self.email}'
+
+    def expire_date(self):
+        return self.created + timezone.timedelta(
+            days=settings.INVITE_TIME_EXPIRES_DAYS)
+
+    expire_date.short_description = 'Дата окончания инвайта'

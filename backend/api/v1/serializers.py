@@ -10,6 +10,8 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
 
 class PositionSerializer(serializers.ModelSerializer):
+    department = DepartmentSerializer(read_only=True)
+
     class Meta:
         model = Position
         fields = '__all__'
@@ -22,7 +24,6 @@ class HobbySerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    department = DepartmentSerializer(read_only=True)
     position = PositionSerializer(read_only=True)
     hobbies = HobbySerializer(many=True, read_only=True)
 
@@ -30,26 +31,60 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id', 'email', 'first_name', 'last_name', 'patronymic', 'role',
-            'position', 'department', 'hobbies', 'avatar', 'about', 'phone',
+            'position', 'hobbies', 'avatar', 'about', 'phone',
             'date_joined'
         )
 
 
+class UserSelfUpdateSerializer(serializers.ModelSerializer):
+    '''Для редактирования своего профиля'''
+
+    hobbies = HobbySerializer
+
+    class Meta:
+        model = User
+        fields = ('about', 'avatar', 'hobbies')
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    '''Для редактирования профилей сотрудников HR'ом'''
+
+    position = PositionSerializer
+    role = serializers.ChoiceField(choices=[2, 3])
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'patronymic',
+                  'position', 'role', 'phone')
+
+
 class SendInviteSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
+    email = serializers.EmailField(required=True, max_length=255)
 
     class Meta:
         fields = ('email',)
 
 
 class RegisterSerializer(serializers.Serializer):
-    first_name = serializers.CharField(required=True)
-    last_name = serializers.CharField(required=True)
+    invite_code = serializers.CharField(required=True)
+    first_name = serializers.CharField(required=True, max_length=120)
+    last_name = serializers.CharField(required=True, max_length=120)
     password = serializers.CharField(required=True)
+    position = serializers.PrimaryKeyRelatedField(
+        queryset=Position.objects.all(), required=True
+    )
 
     class Meta:
-        fields = ('first_name', 'last_name', 'password')
+        fields = ('invite_code', 'first_name',
+                  'last_name', 'position', 'password')
 
     def validate_password(self, value):
         validate_password(value)
         return value
+
+
+class VerifyInviteSerializer(serializers.Serializer):
+    invite_code = serializers.CharField(required=True)
+
+    class Meta:
+        fields = ('invite_code',)

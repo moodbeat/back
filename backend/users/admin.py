@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.db.models import Count
 
-from .models import Department, Position, User, Hobby
+from .models import Department, Hobby, InviteCode, Position, User
 
 
 class EmployeesCountMixin:
@@ -31,15 +31,14 @@ class UserInline(admin.TabularInline):
 
 
 @admin.register(Department)
-class DepartmentAdmin(EmployeesCountMixin, admin.ModelAdmin):
-    list_display = ('name', 'employees_count')
-    inlines = [UserInline,]
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 
 @admin.register(Position)
 class PositionAdmin(EmployeesCountMixin, admin.ModelAdmin):
     list_display = ('name', 'employees_count')
-    inlines = [UserInline,]
+    inlines = [UserInline, ]
 
 
 @admin.register(Hobby)
@@ -52,7 +51,7 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'first_name', 'last_name', 'password')}),
         (('Служебная информация'), {'fields': (
-            'department', 'position', 'role', 'phone'
+            'position', 'role', 'phone'
         )}),
         (('Прочее'), {'fields': ('avatar', 'hobbies')}),
         (('Роли и права'), {
@@ -69,10 +68,24 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
     list_display = ('email', 'first_name', 'last_name',
-                    'role', 'department', 'position')
+                    'role', 'position')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related('department', 'position')
+        return queryset.select_related('position')
+
+
+@admin.register(InviteCode)
+class InviteCodeAdmin(admin.ModelAdmin):
+    list_display = ('email', 'sender', 'created', 'expire_date')
+    readonly_fields = ('email', 'sender', 'created', 'expire_date')
+    exclude = ('code',)
+    ordering = ('-created',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False

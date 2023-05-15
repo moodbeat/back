@@ -52,3 +52,24 @@ class NoSpacesValidator:
 
     def get_help_text(self):
         return self.message
+
+
+def validate_name(value, name: str, plural: str, plural2: str):
+    if len(value) < 2:
+        raise ValidationError(
+            f'{name} должн{plural} содержать минимум 2 символа'
+        )
+    if not re.match(r'^[a-zA-Zа-яА-Я]+(-[a-zA-Zа-яА-Я]+)?$', value):
+        raise ValidationError(f'Некорректн{plural2} {name.lower()}')
+
+
+def validate_first_name(value):
+    validate_name(value, 'Имя', 'о', 'ое')
+
+
+def validate_last_name(value):
+    validate_name(value, 'Фамилия', 'а', 'ая')
+
+
+def validate_patronymic(value):
+    validate_name(value, 'Отчество', 'о', 'ое')

@@ -10,6 +10,9 @@ app_name = 'api'
 
 v10 = DefaultRouter()
 v10.register('users', views.UserViewSet, basename='users')
+v10.register('hobbies', views.HobbyViewSet, basename='hobbies')
+v10.register('departments', views.DepartmentViewSet, basename='departments')
+v10.register('positions', views.PositionViewSet, basename='positions')
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -22,6 +25,11 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path(
+        'users/current_user/',
+        views.CurrentUserView.as_view(),
+        name='current_user'
+    ),
+    path(
         'users/send_invite/',
         views.SendInviteView.as_view(),
         name='send_invite'
@@ -30,6 +38,11 @@ urlpatterns = [
         'users/register/',
         views.RegisterView.as_view(),
         name='register'
+    ),
+    path(
+        'users/verify_invite/',
+        views.VerifyInviteView.as_view(),
+        name='verify_invite'
     ),
     path('', include(v10.urls)),
     path('auth/', include('djoser.urls.jwt')),
