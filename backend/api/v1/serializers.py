@@ -50,7 +50,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     '''Для редактирования профилей сотрудников HR'ом'''
 
     position = PositionSerializer
-    role = serializers.ChoiceField(choices=['employee', 'chief'])
+    role = serializers.ChoiceField(choices=[2, 3])
 
     class Meta:
         model = User
@@ -70,9 +70,13 @@ class RegisterSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=True, max_length=120)
     last_name = serializers.CharField(required=True, max_length=120)
     password = serializers.CharField(required=True)
+    position = serializers.PrimaryKeyRelatedField(
+        queryset=Position.objects.all(), required=True
+    )
 
     class Meta:
-        fields = ('invite_code', 'first_name', 'last_name', 'password')
+        fields = ('invite_code', 'first_name',
+                  'last_name', 'position', 'password')
 
     def validate_password(self, value):
         validate_password(value)

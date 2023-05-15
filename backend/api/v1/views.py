@@ -5,15 +5,16 @@ from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from users.models import Department, Hobby, InviteCode, Position, User
 
-from .permissions import (ChiefPostPermission, ChiefSafePermission,
-                          EmployeePostPermission, EmployeeSafePermission,
-                          HRAllPermission)
+from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
+                          ChiefSafePermission, EmployeePostPermission,
+                          EmployeeSafePermission, HRAllPermission)
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PositionSerializer, RegisterSerializer,
                           SendInviteSerializer, UserSelfUpdateSerializer,
@@ -24,7 +25,8 @@ from .utils import decode_data, encode_data, send_code
 
 class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ('email', 'first_name', 'last_name')
     filterset_fields = ('email', 'first_name', 'last_name', 'role', 'position')
     http_method_names = ('get', 'patch')
     permission_classes = [HRAllPermission | ChiefSafePermission]
@@ -97,12 +99,14 @@ class SendInviteView(APIView):
         elif InviteCode.objects.filter(email=email).exists():
             encoded_uuid = self.create_invite_code(email, retry=True)
             send_code(email=email, code=encoded_uuid, again=True)
-            data = {'result': 'Ссылка отправлена повторно'}
+            data = {'result': 'Ссылка отправлена повторно',
+                    'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
         else:
             encoded_uuid = self.create_invite_code(email)
             send_code(email=email, code=encoded_uuid)
-            data = {'result': 'Ссылка для регистрации отправлена на email'}
+            data = {'result': 'Ссылка для регистрации отправлена на email',
+                    'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
 
     def create_invite_code(self, email: str, retry: bool = False) -> str:
@@ -195,23 +199,27 @@ class DepartmentViewSet(ModelViewSet):
     pagination_class = None
     filterset_fields = ('id', 'name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
-    permission_classes = [HRAllPermission | EmployeeSafePermission]
+    permission_classes = [HRAllPermission | AllReadOnlyPermissions]
 
 
 class PositionViewSet(ModelViewSet):
     serializer_class = PositionSerializer
     queryset = Position.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('id', 'name',)
+    filterset_fields = ('id', 'name', 'department',)
     http_method_names = ('get', 'post', 'patch', 'delete')
-    permission_classes = [HRAllPermission | EmployeeSafePermission]
+    permission_classes = [
+        HRAllPermission | ChiefSafePermission | EmployeeSafePermission
+        | AllReadOnlyPermissions
+    ]
 
 
 class HobbyViewSet(ModelViewSet):
     serializer_class = HobbySerializer
     queryset = Hobby.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
     filterset_fields = ('id', 'name',)
+    search_fields = ('name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
         HRAllPermission | ChiefSafePermission | ChiefPostPermission

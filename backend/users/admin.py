@@ -82,7 +82,7 @@ class InviteCodeAdmin(admin.ModelAdmin):
     list_display = ('email', 'sender', 'created', 'expire_date')
     readonly_fields = ('email', 'sender', 'created', 'expire_date')
     exclude = ('code',)
-    ordering = ('created',)
+    ordering = ('-created',)
 
     def has_add_permission(self, request, obj=None):
         return False

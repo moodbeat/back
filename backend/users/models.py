@@ -184,6 +184,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+        ordering = ['-date_joined']
 
     def __str__(self):
         return self.email
@@ -215,6 +216,7 @@ class InviteCode(models.Model):
     class Meta:
         verbose_name = 'Приглашение'
         verbose_name_plural = 'Приглашения'
+        ordering = ['-created']
 
     def __str__(self):
         return f'invite_{self.pk} to {self.email}'
