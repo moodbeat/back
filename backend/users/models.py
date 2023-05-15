@@ -9,6 +9,8 @@ from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .managers import UserManager
+from .validators import (validate_first_name, validate_last_name,
+                         validate_patronymic)
 
 
 class Department(models.Model):
@@ -96,17 +98,20 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(
         verbose_name=_('first name'),
-        max_length=120
+        max_length=120,
+        validators=[validate_first_name]
     )
     last_name = models.CharField(
         verbose_name=_('last name'),
-        max_length=120
+        max_length=120,
+        validators=[validate_last_name]
     )
     patronymic = models.CharField(
         verbose_name='Отчество',
         max_length=120,
         blank=True,
-        null=True
+        null=True,
+        validators=[validate_patronymic]
     )
     position = models.ForeignKey(
         Position,
