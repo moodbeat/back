@@ -36,8 +36,28 @@ class UserSerializer(serializers.ModelSerializer):
         )
 
 
+class UserSelfUpdateSerializer(serializers.ModelSerializer):
+    '''Для редактирования своего профиля'''
+
+    hobbies = HobbySerializer
+
+    class Meta:
+        model = User
+        fields = ('about', 'avatar', 'hobbies')
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    '''Для редактирования профилей сотрудников HR'ом'''
+
+    position = PositionSerializer
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'patronymic', 'position', 'phone')
+
+
 class SendInviteSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True)
+    email = serializers.EmailField(required=True, max_length=255)
 
     class Meta:
         fields = ('email',)
@@ -45,8 +65,8 @@ class SendInviteSerializer(serializers.Serializer):
 
 class RegisterSerializer(serializers.Serializer):
     invite_code = serializers.CharField(required=True)
-    first_name = serializers.CharField(required=True)
-    last_name = serializers.CharField(required=True)
+    first_name = serializers.CharField(required=True, max_length=120)
+    last_name = serializers.CharField(required=True, max_length=120)
     password = serializers.CharField(required=True)
 
     class Meta:

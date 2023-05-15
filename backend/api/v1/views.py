@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -16,7 +16,8 @@ from .permissions import (ChiefPostPermission, ChiefSafePermission,
                           HRAllPermission)
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PositionSerializer, RegisterSerializer,
-                          SendInviteSerializer, UserSerializer)
+                          SendInviteSerializer, UserSelfUpdateSerializer,
+                          UserSerializer, UserUpdateSerializer)
 from .utils import decode_data, encode_data, send_code
 
 
@@ -25,7 +26,7 @@ class UserViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('email', 'first_name', 'last_name', 'role', 'position')
     http_method_names = ('get', 'patch')
-    permission_classes = (HRAllPermission, ChiefSafePermission,)
+    permission_classes = [HRAllPermission | ChiefSafePermission]
 
     def get_queryset(self):
         queryset = (
@@ -36,14 +37,48 @@ class UserViewSet(ModelViewSet):
         )
         return queryset
 
+    @swagger_auto_schema(request_body=UserUpdateSerializer)
+    def partial_update(self, request, *args, **kwargs):
+        self.serializer_class = UserUpdateSerializer
+        return super().partial_update(request, *args, **kwargs)
+
+
+class CurrentUserView(APIView):
+    ''' Данные текущего пользователя '''
+
+    permission_classes = (IsAuthenticated,)
+
+    @swagger_auto_schema(responses={status.HTTP_200_OK: UserSerializer})
+    def get(self, request):
+        serializer = self.serializer_class(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @swagger_auto_schema(request_body=UserSelfUpdateSerializer)
+    def patch(self, request):
+        serializer = UserSelfUpdateSerializer(
+            request.user,
+            data=request.data,
+            partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class SendInviteView(APIView):
     '''Отправка на почту ссылки для регистрации'''
+
     permission_classes = (HRAllPermission,)
 
     @swagger_auto_schema(
         request_body=SendInviteSerializer,
-        operation_id='users_send_invite'
+        operation_id='users_send_invite',
+        responses={
+            status.HTTP_200_OK: 'Ссылка для регистрации отправлена на email',
+            status.HTTP_400_BAD_REQUEST:
+                ('Некорректный запрос. Ошибка валидации данных '
+                 'или пользователь уже зарегистрирован')
+        }
     )
     def post(self, request):
         serializer = SendInviteSerializer(data=request.data)
@@ -81,11 +116,15 @@ class SendInviteView(APIView):
 
 class RegisterView(APIView):
     '''Регистрация по ссылке-приглашению'''
+
     permission_classes = (AllowAny,)
 
     @swagger_auto_schema(
         request_body=RegisterSerializer,
-        operation_id='users_register'
+        operation_id='users_register',
+        responses={
+            status.HTTP_200_OK: 'Пользователь успешно добавлен'
+        }
     )
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -118,27 +157,28 @@ class DepartmentViewSet(ModelViewSet):
     serializer_class = DepartmentSerializer
     queryset = Department.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('name', 'description')
+    pagination_class = None
+    filterset_fields = ('id', 'name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
-    permission_classes = (HRAllPermission,)
+    permission_classes = [HRAllPermission | EmployeeSafePermission]
 
 
 class PositionViewSet(ModelViewSet):
     serializer_class = PositionSerializer
     queryset = Position.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('name', 'description')
+    filterset_fields = ('id', 'name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
-    permission_classes = (HRAllPermission,)
+    permission_classes = [HRAllPermission | EmployeeSafePermission]
 
 
 class HobbyViewSet(ModelViewSet):
     serializer_class = HobbySerializer
     queryset = Hobby.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('name',)
+    filterset_fields = ('id', 'name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
-    permission_classes = (
-        HRAllPermission, ChiefSafePermission, ChiefPostPermission,
-        EmployeeSafePermission, EmployeePostPermission
-    )
+    permission_classes = [
+        HRAllPermission | ChiefSafePermission | ChiefPostPermission
+        | EmployeeSafePermission | EmployeePostPermission
+    ]

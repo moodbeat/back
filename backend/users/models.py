@@ -64,13 +64,14 @@ class Position(models.Model):
 class Hobby(models.Model):
 
     name = models.CharField(
+        verbose_name='Наименование',
         max_length=255,
         unique=True
     )
 
     class Meta:
-        verbose_name = 'Список интересов'
-        verbose_name_plural = 'Списки интересов'
+        verbose_name = 'Интерес'
+        verbose_name_plural = 'Интересы'
 
     def __str__(self):
         return self.name

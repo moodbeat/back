@@ -25,6 +25,11 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path(
+        'users/current_user/',
+        views.CurrentUserView.as_view(),
+        name='current_user'
+    ),
+    path(
         'users/send_invite/',
         views.SendInviteView.as_view(),
         name='send_invite'
