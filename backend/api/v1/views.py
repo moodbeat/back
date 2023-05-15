@@ -17,7 +17,8 @@ from .permissions import (ChiefPostPermission, ChiefSafePermission,
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PositionSerializer, RegisterSerializer,
                           SendInviteSerializer, UserSelfUpdateSerializer,
-                          UserSerializer, UserUpdateSerializer)
+                          UserSerializer, UserUpdateSerializer,
+                          VerifyInviteSerializer)
 from .utils import decode_data, encode_data, send_code
 
 
@@ -44,7 +45,7 @@ class UserViewSet(ModelViewSet):
 
 
 class CurrentUserView(APIView):
-    ''' Данные текущего пользователя '''
+    '''Данные текущего пользователя'''
 
     permission_classes = (IsAuthenticated,)
 
@@ -123,7 +124,8 @@ class RegisterView(APIView):
         request_body=RegisterSerializer,
         operation_id='users_register',
         responses={
-            status.HTTP_200_OK: 'Пользователь успешно добавлен'
+            status.HTTP_200_OK: 'Пользователь успешно добавлен',
+            status.HTTP_400_BAD_REQUEST: 'Недействительный ключ-приглашение'
         }
     )
     def post(self, request):
@@ -151,6 +153,39 @@ class RegisterView(APIView):
 
         data = {'result': 'Пользователь успешно добавлен'}
         return Response(data, status=status.HTTP_201_CREATED)
+
+
+class VerifyInviteView(APIView):
+    '''Проверка ключа-приглашения'''
+
+    permission_classes = (AllowAny,)
+
+    @swagger_auto_schema(
+        request_body=VerifyInviteSerializer,
+        operation_id='users_verify_invite',
+        responses={
+            status.HTTP_200_OK: 'Ключ-приглашение прошел проверку',
+            status.HTTP_400_BAD_REQUEST: 'Недействительный ключ-приглашение'
+        }
+    )
+    def post(self, request):
+        serializer = VerifyInviteSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        invite_code = serializer.validated_data.get('invite_code')
+
+        try:
+            decode_data(settings.INVITE_SECRET_KEY, invite_code)
+        except Exception:
+            data = {'result': 'Недействительный ключ-приглашение'}
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+        data = {'result': 'Ключ-приглашение прошел проверку'}
+        return Response(data, status=status.HTTP_200_OK)
 
 
 class DepartmentViewSet(ModelViewSet):

@@ -39,6 +39,11 @@ urlpatterns = [
         views.RegisterView.as_view(),
         name='register'
     ),
+    path(
+        'users/verify_invite/',
+        views.VerifyInviteView.as_view(),
+        name='verify_invite'
+    ),
     path('', include(v10.urls)),
     path('auth/', include('djoser.urls.jwt')),
     re_path(
