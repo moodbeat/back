@@ -49,7 +49,9 @@ class HobbyAdmin(admin.ModelAdmin):
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('email', 'first_name', 'last_name', 'password')}),
+        (None, {'fields': (
+            'email', 'first_name', 'last_name', 'patronymic', 'password'
+        )}),
         (('Служебная информация'), {'fields': (
             'position', 'role', 'phone'
         )}),

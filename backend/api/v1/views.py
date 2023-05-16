@@ -14,7 +14,8 @@ from users.models import Department, Hobby, InviteCode, Position, User
 
 from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                           ChiefSafePermission, EmployeePostPermission,
-                          EmployeeSafePermission, HRAllPermission)
+                          EmployeeSafePermission, HRAllPermission,
+                          IsNotAuthenticated)
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PositionSerializer, RegisterSerializer,
                           SendInviteSerializer, UserSelfUpdateSerializer,
@@ -122,7 +123,7 @@ class SendInviteView(APIView):
 class RegisterView(APIView):
     '''Регистрация по ссылке-приглашению'''
 
-    permission_classes = (AllowAny,)
+    permission_classes = (IsNotAuthenticated,)
 
     @swagger_auto_schema(
         request_body=RegisterSerializer,
@@ -204,7 +205,7 @@ class DepartmentViewSet(ModelViewSet):
 
 class PositionViewSet(ModelViewSet):
     serializer_class = PositionSerializer
-    queryset = Position.objects.all()
+    queryset = Position.objects.all().select_related('department')
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('id', 'name', 'department',)
     http_method_names = ('get', 'post', 'patch', 'delete')
