@@ -129,7 +129,7 @@ class RegisterView(APIView):
         request_body=RegisterSerializer,
         operation_id='users_register',
         responses={
-            status.HTTP_200_OK: 'Пользователь успешно добавлен',
+            status.HTTP_201_CREATED: 'Пользователь успешно добавлен',
             status.HTTP_400_BAD_REQUEST: 'Недействительный ключ-приглашение'
         }
     )

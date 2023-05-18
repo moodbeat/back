@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 INVITE_SECRET_KEY = os.getenv('DJANGO_INVITE_SECRET_KEY')
 
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS', default='*')]
 
@@ -89,9 +89,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
-    {'NAME': 'users.validators.UppercaseValidator', 'OPTIONS': {'min_count': 1}, },
-    {'NAME': 'users.validators.LowercaseValidator', 'OPTIONS': {'min_count': 1}, },
-    {'NAME': 'users.validators.NoSpacesValidator', },
+    {'NAME': 'users.validators.UppercasePasswordValidator', 'OPTIONS': {'min_count': 1}, },
+    {'NAME': 'users.validators.LowercasePasswordValidator', 'OPTIONS': {'min_count': 1}, },
+    {'NAME': 'users.validators.NoSpacesPasswordValidator', },
+    {'NAME': 'users.validators.MaximumLengthPasswordValidator', },
 ]
 
 REST_FRAMEWORK = {
@@ -146,7 +147,8 @@ INVITE_TIME_EXPIRES_DAYS = 7
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if DEBUG is False:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # CSRF_TRUSTED_ORIGINS = []
 
 # Setup support for proxy headers
