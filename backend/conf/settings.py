@@ -149,8 +149,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 if DEBUG is False:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# CSRF_TRUSTED_ORIGINS = []
+    # Setup support for proxy headers
+    USE_X_FORWARDED_HOST = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Setup support for proxy headers
-USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# CSRF_TRUSTED_ORIGINS = []

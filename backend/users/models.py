@@ -44,20 +44,11 @@ class Position(models.Model):
         max_length=128,
         validators=[MinLengthValidator(2)]
     )
-    description = models.TextField(
-        verbose_name='Описание',
-        max_length=254,
-        null=True,
-        blank=True,
-        validators=[MinLengthValidator(8)]
-    )
-    department = models.ForeignKey(
+    departments = models.ManyToManyField(
         Department,
-        verbose_name='Отдел',
+        verbose_name='Отделы',
         related_name='positions',
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL
+        blank=True
     )
 
     class Meta:
@@ -119,6 +110,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         null=True,
         validators=[validate_patronymic, MinLengthValidator(2)]
+    )
+    department = models.ForeignKey(
+        Department,
+        verbose_name='Отдел',
+        related_name='employees',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
     )
     position = models.ForeignKey(
         Position,

@@ -2,6 +2,8 @@ import base64
 import hashlib
 
 from django.core.mail import send_mail
+from drf_yasg import openapi
+from rest_framework.exceptions import ValidationError
 
 
 def encode_data(secret_key: str, data: str) -> str:
@@ -40,3 +42,22 @@ def send_code(email: str, code: str, again: bool = False):
         recipient_list,
         fail_silently=False,
     )
+
+
+def verify_code(secret_key: str, code: str) -> str:
+    try:
+        decode = decode_data(secret_key, code)
+        return decode
+    except Exception:
+        raise ValidationError({'detail': 'Недействительный ключ-приглашение'})
+
+
+invite_code_param = openapi.Parameter(
+    'invite_code',
+    openapi.IN_QUERY,
+    description=(
+        'Неавторизованным пользователям необходимо предоставить '
+        'действующий ключ-приглашение'
+    ),
+    type=openapi.TYPE_STRING
+)
