@@ -8,7 +8,7 @@ from . import views
 
 app_name = 'api'
 
-v10 = DefaultRouter()
+v10 = DefaultRouter(trailing_slash=False)
 v10.register('users', views.UserViewSet, basename='users')
 v10.register('hobbies', views.HobbyViewSet, basename='hobbies')
 v10.register('departments', views.DepartmentViewSet, basename='departments')
@@ -25,22 +25,22 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path(
-        'users/current_user/',
+        'users/current_user',
         views.CurrentUserView.as_view(),
         name='current_user'
     ),
     path(
-        'users/send_invite/',
+        'users/send_invite',
         views.SendInviteView.as_view(),
         name='send_invite'
     ),
     path(
-        'users/register/',
+        'users/register',
         views.RegisterView.as_view(),
         name='register'
     ),
     path(
-        'users/verify_invite/',
+        'users/verify_invite',
         views.VerifyInviteView.as_view(),
         name='verify_invite'
     ),

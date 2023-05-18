@@ -59,7 +59,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 
 class SendInviteSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=True, max_length=255)
+    email = serializers.EmailField(required=True)
 
     class Meta:
         fields = ('email',)
@@ -67,8 +67,8 @@ class SendInviteSerializer(serializers.Serializer):
 
 class RegisterSerializer(serializers.Serializer):
     invite_code = serializers.CharField(required=True)
-    first_name = serializers.CharField(required=True, max_length=120)
-    last_name = serializers.CharField(required=True, max_length=120)
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
     position = serializers.PrimaryKeyRelatedField(
         queryset=Position.objects.all(), required=True

@@ -19,12 +19,14 @@ class Department(models.Model):
     name = models.CharField(
         verbose_name='Наименование',
         max_length=128,
+        validators=[MinLengthValidator(2)]
     )
     description = models.TextField(
         verbose_name='Описание',
         max_length=254,
         null=True,
-        blank=True
+        blank=True,
+        validators=[MinLengthValidator(8)]
     )
 
     class Meta:
@@ -40,12 +42,14 @@ class Position(models.Model):
     name = models.CharField(
         verbose_name='Название должности',
         max_length=128,
+        validators=[MinLengthValidator(2)]
     )
     description = models.TextField(
         verbose_name='Описание',
         max_length=254,
         null=True,
-        blank=True
+        blank=True,
+        validators=[MinLengthValidator(8)]
     )
     department = models.ForeignKey(
         Department,
@@ -69,7 +73,8 @@ class Hobby(models.Model):
     name = models.CharField(
         verbose_name='Наименование',
         max_length=32,
-        unique=True
+        unique=True,
+        validators=[MinLengthValidator(2)]
     )
 
     class Meta:
