@@ -19,3 +19,9 @@ class InviteCodeFilter(BaseFilterBackend):
 
         verify_code(settings.INVITE_SECRET_KEY, invite_code)
         return queryset
+
+
+class PositionInviteCodeFilter(InviteCodeFilter):
+    def filter_queryset(self, request, queryset, view):
+        queryset = super().filter_queryset(request, queryset, view)
+        return queryset.exclude(chief_position=True)

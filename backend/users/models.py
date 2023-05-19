@@ -52,6 +52,10 @@ class Position(models.Model):
         related_name='positions',
         blank=True
     )
+    chief_position = models.BooleanField(
+        verbose_name='Руководящая должность',
+        default=False
+    )
 
     class Meta:
         verbose_name = 'Должность'

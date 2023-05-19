@@ -37,7 +37,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(Position)
 class PositionAdmin(EmployeesCountMixin, admin.ModelAdmin):
-    list_display = ('name', 'employees_count')
+    list_display = ('name', 'employees_count', 'chief_position')
     inlines = [UserInline, ]
 
 

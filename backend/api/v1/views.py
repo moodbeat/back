@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from users.models import Department, Hobby, InviteCode, Position, User
 
-from .filters import InviteCodeFilter
+from .filters import InviteCodeFilter, PositionInviteCodeFilter
 from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                           ChiefSafePermission, EmployeePostPermission,
                           EmployeeSafePermission, HRAllPermission)
@@ -207,8 +207,8 @@ class DepartmentViewSet(ModelViewSet):
 class PositionViewSet(ModelViewSet):
     serializer_class = PositionSerializer
     queryset = Position.objects.all()
-    filter_backends = (InviteCodeFilter, DjangoFilterBackend,)
-    filterset_fields = ('id', 'name', 'departments',)
+    filter_backends = (PositionInviteCodeFilter, DjangoFilterBackend,)
+    filterset_fields = ('id', 'name', 'departments', 'chief_position',)
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [HRAllPermission | AllReadOnlyPermissions]
 

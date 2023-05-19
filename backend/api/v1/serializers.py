@@ -16,7 +16,7 @@ class PositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Position
-        fields = ('id', 'name',)
+        fields = ('id', 'name', 'chief_position')
 
 
 class HobbySerializer(serializers.ModelSerializer):
@@ -96,10 +96,16 @@ class RegisterSerializer(serializers.Serializer):
 
     def validate_position(self, value):
         department = self.initial_data.get('department')
+
         if department:
             if not value.departments.filter(pk=department).exists():
                 raise serializers.ValidationError(
                     "Выбранная должность не принадлежит к указанному отделу.")
+
+            if value.chief_position is True:
+                raise serializers.ValidationError(
+                    "Нельзя выбирать при регистрации руководящую должность.")
+
         return value
 
 
