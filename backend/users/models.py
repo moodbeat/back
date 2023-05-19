@@ -240,3 +240,27 @@ class InviteCode(models.Model):
             days=settings.INVITE_TIME_EXPIRES_DAYS)
 
     expire_date.short_description = 'Дата окончания инвайта'
+
+
+class PasswordResetCode(models.Model):
+
+    email = models.EmailField(
+        unique=True,
+        max_length=254
+    )
+    code = models.UUIDField(
+        unique=True,
+        default=uuid.uuid4
+    )
+    created = models.DateTimeField(
+        verbose_name='Дата отправки кода',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Сброс пароля'
+        verbose_name_plural = 'Спросы паролей'
+        ordering = ['-created']
+
+    def __str__(self):
+        return f'reset_{self.pk} to {self.email}'

@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
-INVITE_SECRET_KEY = os.getenv('DJANGO_INVITE_SECRET_KEY')
+RESET_INVITE_SECRET_KEY = os.getenv('DJANGO_RESET_INVITE_SECRET_KEY')
 
 DEBUG = os.getenv('DJANGO_DEBUG', False) == 'True'
 

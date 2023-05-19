@@ -114,6 +114,36 @@ class SendInviteSerializer(serializers.Serializer):
         fields = ('email',)
 
 
+class PasswordResetSerializer(SendInviteSerializer):
+
+    def validate_email(self, value):
+        if not User.objects.filter(email=value).exists():
+            raise serializers.ValidationError(
+                'Пользователь с указанным email адресом отсутствует.'
+            )
+        return value
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+
+    reset_code = serializers.CharField(required=True)
+    password = serializers.CharField(required=True)
+    password_confirm = serializers.CharField(required=True)
+
+    class Meta:
+        fields = ('invite_code', 'first_name',
+                  'last_name', 'department', 'position', 'password')
+
+    def validate_password(self, value):
+        password_confirm = self.initial_data.get('password_confirm')
+
+        if password_confirm != value:
+            raise serializers.ValidationError('Пароли не совпадают.')
+
+        validate_password(value)
+        return value
+
+
 class RegisterSerializer(serializers.Serializer):
 
     invite_code = serializers.CharField(required=True)
