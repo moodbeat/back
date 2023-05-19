@@ -66,6 +66,10 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
     def validate_position(self, value):
         department = self.initial_data.get('department')
+        position = self.initial_data.get('position')
+
+        if position is None:
+            return value
 
         if department:
             if not value.departments.filter(pk=department).exists():
@@ -82,9 +86,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
                     'пользователя.'
                 )
         else:
-            raise serializers.ValidationError(
-                'У пользователя отсутствует отдел.'
-            )
+            self.initial_data.pop('position')
 
         return value
 
