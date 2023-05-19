@@ -18,6 +18,7 @@ class Department(models.Model):
 
     name = models.CharField(
         verbose_name='Наименование',
+        unique=True,
         max_length=128,
         validators=[MinLengthValidator(2)]
     )
@@ -41,6 +42,7 @@ class Position(models.Model):
 
     name = models.CharField(
         verbose_name='Название должности',
+        unique=True,
         max_length=128,
         validators=[MinLengthValidator(2)]
     )

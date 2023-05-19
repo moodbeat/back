@@ -36,7 +36,7 @@ class UserViewSet(ModelViewSet):
         queryset = (
             User.objects
             .filter(is_active=True, is_superuser=False)
-            .select_related('position', 'position__department')
+            .select_related('position', 'department')
             .prefetch_related('hobbies')
         )
         return queryset

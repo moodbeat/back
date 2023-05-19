@@ -57,7 +57,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
     department = DepartmentSerializer
     position = PositionSerializer
-    role = serializers.ChoiceField(choices=[2, 3])
+    role = serializers.ChoiceField(choices=['employee', 'chief'])
 
     class Meta:
         model = User

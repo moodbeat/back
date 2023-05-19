@@ -53,7 +53,7 @@ class CustomUserAdmin(UserAdmin):
             'email', 'first_name', 'last_name', 'patronymic', 'password'
         )}),
         (('Служебная информация'), {'fields': (
-            'position', 'role', 'phone'
+            'department', 'position', 'role', 'phone'
         )}),
         (('Прочее'), {'fields': ('avatar', 'hobbies')}),
         (('Роли и права'), {
@@ -76,7 +76,18 @@ class CustomUserAdmin(UserAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related('position')
+        return queryset.select_related('position', 'department')
+
+    def save_model(self, request, obj, form, change):
+        department = obj.department
+        position = obj.position
+
+        if department and position:
+            if not position.departments.filter(pk=department.pk).exists():
+                raise ValueError(
+                    "Выбранная должность не принадлежит к указанному отделу.")
+
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(InviteCode)
