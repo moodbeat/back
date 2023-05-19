@@ -22,7 +22,7 @@ def decode_data(secret_key: str, encoded_data: str) -> str:
     return decoded_data[:-len(secret_key_hash)].decode()
 
 
-def send_code(email: str, code: str, again: bool = False):
+def send_invite_code(email: str, code: str, again: bool = False):
     subject = 'Приглашение на сайт'
     url = f'https://url/register?invite={code}'
     welcome = 'Добро пожаловать на наш сайт.'
@@ -44,9 +44,32 @@ def send_code(email: str, code: str, again: bool = False):
     )
 
 
-def verify_code(secret_key: str, code: str) -> str:
+def send_reset_code(email: str, code: str, again: bool = False):
+    subject = 'Смена пароля'
+    url = f'https://url/register?password_reset={code}'
+    welcome = 'Ваша ссылка на смену пароля'
+
+    if again:
+        welcome = 'Вам отправлена повторная ссылка на смену пароля'
+
+    message = (f'{welcome} \n'
+               f'Для смены пароля пройдите по адресу: {url}')
+    from_email = 'noreply@example.com'
+    recipient_list = [email]
+
+    send_mail(
+        subject,
+        message,
+        from_email,
+        recipient_list,
+        fail_silently=False,
+    )
+
+
+def verify_code(secret_key: str, code: str, obj: object) -> str:
     try:
         decode = decode_data(secret_key, code)
+        obj.objects.get(code=decode)
         return decode
     except Exception:
         raise ValidationError({'detail': 'Недействительный ключ-приглашение'})

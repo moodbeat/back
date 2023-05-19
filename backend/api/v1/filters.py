@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
-from users.models import Department
+from users.models import Department, InviteCode
 
 from .utils import verify_code
 
@@ -18,7 +18,7 @@ class InviteCodeFilter(BaseFilterBackend):
                 'действующий ключ-приглашение'
             )
 
-        verify_code(settings.INVITE_SECRET_KEY, invite_code)
+        verify_code(settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode)
         return queryset
 
 

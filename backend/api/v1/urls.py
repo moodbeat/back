@@ -52,6 +52,21 @@ urlpatterns = [
         views.VerifyInviteView.as_view(),
         name='verify_invite'
     ),
+    re_path(
+        r'^users/password_reset/?$',
+        views.PasswordResetView.as_view(),
+        name='password_reset'
+    ),
+    re_path(
+        r'^users/password_reset_confirm/?$',
+        views.PasswordResetConfirmView.as_view(),
+        name='password_reset_confirm'
+    ),
+    re_path(
+        r'^users/password_change/?$',
+        views.PasswordChangeView.as_view(),
+        name='password_change'
+    ),
     path('', include(v10.urls)),
     path('auth/', include('djoser.urls.jwt')),
     re_path(

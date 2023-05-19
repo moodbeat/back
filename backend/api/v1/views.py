@@ -10,18 +10,22 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from users.models import Department, Hobby, InviteCode, Position, User
+from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
+                          Position, User)
 
 from .filters import DepartmentInviteCodeFilter, PositionInviteCodeFilter
 from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                           ChiefSafePermission, EmployeePostPermission,
                           EmployeeSafePermission, HRAllPermission)
 from .serializers import (DepartmentSerializer, HobbySerializer,
-                          PositionSerializer, RegisterSerializer,
-                          SendInviteSerializer, UserSelfUpdateSerializer,
-                          UserSerializer, UserUpdateSerializer,
-                          VerifyInviteSerializer)
-from .utils import encode_data, invite_code_param, send_code, verify_code
+                          PasswordChangeSerializer,
+                          PasswordResetConfirmSerializer,
+                          PasswordResetSerializer, PositionSerializer,
+                          RegisterSerializer, SendInviteSerializer,
+                          UserSelfUpdateSerializer, UserSerializer,
+                          UserUpdateSerializer, VerifyInviteSerializer)
+from .utils import (encode_data, invite_code_param, send_invite_code,
+                    send_reset_code, verify_code)
 
 
 class UserViewSet(ModelViewSet):
@@ -100,20 +104,21 @@ class SendInviteView(APIView):
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
         elif InviteCode.objects.filter(email=email).exists():
             encoded_uuid = self.create_invite_code(email, retry=True)
-            send_code(email=email, code=encoded_uuid, again=True)
+            send_invite_code(email=email, code=encoded_uuid, again=True)
             data = {'detail': 'Ссылка отправлена повторно',
                     'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
         else:
             encoded_uuid = self.create_invite_code(email)
-            send_code(email=email, code=encoded_uuid)
+            send_invite_code(email=email, code=encoded_uuid)
             data = {'detail': 'Ссылка для регистрации отправлена на email',
                     'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
 
     def create_invite_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
-        encoded_uuid = encode_data(settings.INVITE_SECRET_KEY, str(uuid_code))
+        encoded_uuid = encode_data(
+            settings.RESET_INVITE_SECRET_KEY, str(uuid_code))
         user = self.request.user
         if retry:
             InviteCode.objects.filter(
@@ -146,7 +151,8 @@ class RegisterView(APIView):
             )
 
         invite_code = serializer.validated_data.pop('invite_code')
-        decode_uuid = verify_code(settings.INVITE_SECRET_KEY, invite_code)
+        decode_uuid = verify_code(
+            settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode)
         invite_code = InviteCode.objects.get(code=decode_uuid)
 
         email = invite_code.email
@@ -182,8 +188,127 @@ class VerifyInviteView(APIView):
             )
 
         invite_code = serializer.validated_data.get('invite_code')
-        verify_code(settings.INVITE_SECRET_KEY, invite_code)
+        verify_code(settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode)
         data = {'detail': 'Ключ-приглашение прошел проверку'}
+        return Response(data, status=status.HTTP_200_OK)
+
+
+class PasswordResetView(APIView):
+    '''Отправка на почту ссылки на смену пароля'''
+
+    permission_classes = (AllowAny,)
+
+    @swagger_auto_schema(
+        request_body=PasswordResetSerializer,
+        operation_id='users_password_reset',
+        responses={
+            status.HTTP_200_OK: 'Ссылка на смену пароля отправлена на email',
+            status.HTTP_400_BAD_REQUEST:
+                ('Некорректный запрос. Ошибка валидации данных '
+                 'или пользователь с таким email отсутствует')
+        }
+    )
+    def post(self, request):
+        serializer = PasswordResetSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        email = serializer.validated_data.get('email')
+
+        if PasswordResetCode.objects.filter(email=email).exists():
+            encoded_uuid = self.create_reset_code(email, retry=True)
+            send_reset_code(email=email, code=encoded_uuid, again=True)
+            data = {'detail': 'Ссылка отправлена повторно',
+                    'reset_code': encoded_uuid}  # тоже пока оставлю
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            encoded_uuid = self.create_reset_code(email)
+            send_reset_code(email=email, code=encoded_uuid)
+            data = {'detail': 'Ссылка на смену пароля отправлена на email',
+                    'reset_code': encoded_uuid}  # тоже пока оставлю
+            return Response(data, status=status.HTTP_200_OK)
+
+    def create_reset_code(self, email: str, retry: bool = False) -> str:
+        uuid_code = uuid.uuid4()
+        encoded_uuid = encode_data(
+            settings.RESET_INVITE_SECRET_KEY, str(uuid_code))
+        if retry:
+            PasswordResetCode.objects.filter(
+                email=email).update(code=uuid_code)
+            return encoded_uuid
+        PasswordResetCode.objects.create(email=email, code=uuid_code)
+        return encoded_uuid
+
+
+class PasswordResetConfirmView(APIView):
+    '''Новый пароль'''
+
+    permission_classes = (AllowAny,)
+
+    @swagger_auto_schema(
+        request_body=PasswordResetConfirmSerializer,
+        operation_id='users_password_reset_confirm',
+        responses={
+            status.HTTP_200_OK: 'Пароль успешно изменен.',
+            status.HTTP_400_BAD_REQUEST: 'Недействительный ключ.'
+        }
+    )
+    def post(self, request):
+        serializer = PasswordResetConfirmSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        reset_code = serializer.validated_data.pop('reset_code')
+        decode_uuid = verify_code(
+            settings.RESET_INVITE_SECRET_KEY, reset_code, PasswordResetCode)
+        reset_code = PasswordResetCode.objects.get(code=decode_uuid)
+
+        email = reset_code.email
+        password = make_password(serializer.validated_data.pop('password'))
+        User.objects.filter(email=email).update(password=password)
+        reset_code.delete()
+
+        data = {'detail': 'Пароль успешно изменен.'}
+        return Response(data, status=status.HTTP_200_OK)
+
+
+class PasswordChangeView(APIView):
+    '''Смена пароля'''
+
+    permission_classes = (IsAuthenticated,)
+
+    @swagger_auto_schema(
+        request_body=PasswordChangeSerializer,
+        operation_id='users_password_change',
+        responses={
+            status.HTTP_200_OK: 'Пароль успешно изменен.'
+        }
+    )
+    def post(self, request):
+        serializer = PasswordChangeSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        user = self.request.user
+        current_password = serializer.validated_data.get('current_password')
+
+        if not user.check_password(current_password):
+            data = {'detail': 'Текущий пароль указан неверно.'}
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+        password = serializer.validated_data.get('new_password')
+        user.set_password(password)
+        user.save()
+        data = {'detail': 'Пароль успешно изменен.'}
         return Response(data, status=status.HTTP_200_OK)
 
 
