@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+from django.core.validators import MinLengthValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -17,13 +18,16 @@ class Department(models.Model):
 
     name = models.CharField(
         verbose_name='Наименование',
-        max_length=255,
+        unique=True,
+        max_length=128,
+        validators=[MinLengthValidator(2)]
     )
     description = models.TextField(
         verbose_name='Описание',
-        max_length=500,
+        max_length=254,
         null=True,
-        blank=True
+        blank=True,
+        validators=[MinLengthValidator(8)]
     )
 
     class Meta:
@@ -38,21 +42,19 @@ class Position(models.Model):
 
     name = models.CharField(
         verbose_name='Название должности',
-        max_length=255,
+        unique=True,
+        max_length=128,
+        validators=[MinLengthValidator(2)]
     )
-    description = models.TextField(
-        verbose_name='Описание',
-        max_length=500,
-        null=True,
+    departments = models.ManyToManyField(
+        Department,
+        verbose_name='Отделы',
+        related_name='positions',
         blank=True
     )
-    department = models.ForeignKey(
-        Department,
-        verbose_name='Отдел',
-        related_name='positions',
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL
+    chief_position = models.BooleanField(
+        verbose_name='Руководящая должность',
+        default=False
     )
 
     class Meta:
@@ -67,8 +69,9 @@ class Hobby(models.Model):
 
     name = models.CharField(
         verbose_name='Наименование',
-        max_length=255,
-        unique=True
+        max_length=32,
+        unique=True,
+        validators=[MinLengthValidator(2)]
     )
 
     class Meta:
@@ -94,24 +97,33 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name=_('email'),
         unique=True,
-        max_length=255
+        max_length=254,
+        validators=[MinLengthValidator(8)]
     )
     first_name = models.CharField(
         verbose_name=_('first name'),
-        max_length=120,
-        validators=[validate_first_name]
+        max_length=32,
+        validators=[validate_first_name, MinLengthValidator(2)]
     )
     last_name = models.CharField(
         verbose_name=_('last name'),
-        max_length=120,
-        validators=[validate_last_name]
+        max_length=32,
+        validators=[validate_last_name, MinLengthValidator(2)]
     )
     patronymic = models.CharField(
         verbose_name='Отчество',
-        max_length=120,
+        max_length=32,
         blank=True,
         null=True,
-        validators=[validate_patronymic]
+        validators=[validate_patronymic, MinLengthValidator(2)]
+    )
+    department = models.ForeignKey(
+        Department,
+        verbose_name='Отдел',
+        related_name='employees',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
     )
     position = models.ForeignKey(
         Position,
@@ -142,12 +154,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     about = models.TextField(
         verbose_name='О себе',
-        max_length=500,
+        max_length=256,
         blank=True,
-        null=True
+        null=True,
+        validators=[MinLengthValidator(2)]
     )
     phone = PhoneNumberField(
         verbose_name='Телефон',
+        max_length=12,
         blank=True,
         null=True
     )
@@ -202,7 +216,7 @@ class InviteCode(models.Model):
     )
     email = models.EmailField(
         unique=True,
-        max_length=255
+        max_length=254
     )
     code = models.UUIDField(
         unique=True,

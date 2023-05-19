@@ -3,7 +3,7 @@ import re
 from django.core.exceptions import ValidationError
 
 
-class UppercaseValidator:
+class UppercasePasswordValidator:
     message = ('Пароль должен содержать хотя бы %(min_count)d '
                'букв%(plural)s верхнего регистра.')
     pattern = '[A-ZА-Я]'
@@ -33,14 +33,14 @@ class UppercaseValidator:
             })
 
 
-class LowercaseValidator(UppercaseValidator):
+class LowercasePasswordValidator(UppercasePasswordValidator):
     message = ('Пароль должен содержать хотя бы %(min_count)d '
                'букв%(plural)s нижнего регистра.')
     pattern = '[a-zа-я]'
     code = 'password_no_lower'
 
 
-class NoSpacesValidator:
+class NoSpacesPasswordValidator:
     message = 'Пароль не должен содержать пробелов.'
 
     def validate(self, password, user=None):
@@ -54,12 +54,32 @@ class NoSpacesValidator:
         return self.message
 
 
+class MaximumLengthPasswordValidator:
+    message = ('Пароль не должен содержать больше %(max_length)d символов')
+    code = 'password_max_length'
+
+    def __init__(self, max_length=254):
+        self.max_length = max_length
+
+    def validate(self, password, user=None):
+        if len(password) > self.max_length:
+            params = {'max_length': self.max_length}
+            raise ValidationError(
+                self.message,
+                code=self.code,
+                params=params
+            )
+
+    def get_help_text(self):
+        return (self.message % {'max_length': self.max_length})
+
+
 def validate_name(value, name: str, plural: str, plural2: str):
     if len(value) < 2:
         raise ValidationError(
             f'{name} должн{plural} содержать минимум 2 символа'
         )
-    if not re.match(r'^[a-zA-Zа-яА-Я]+(-[a-zA-Zа-яА-Я]+)?$', value):
+    if not re.match(r'^[а-яА-Я]+(-[а-яА-Я]+)?$', value):
         raise ValidationError(f'Некорректн{plural2} {name.lower()}')
 
 

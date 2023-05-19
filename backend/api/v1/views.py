@@ -12,6 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from users.models import Department, Hobby, InviteCode, Position, User
 
+from .filters import DepartmentInviteCodeFilter, PositionInviteCodeFilter
 from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                           ChiefSafePermission, EmployeePostPermission,
                           EmployeeSafePermission, HRAllPermission)
@@ -20,14 +21,15 @@ from .serializers import (DepartmentSerializer, HobbySerializer,
                           SendInviteSerializer, UserSelfUpdateSerializer,
                           UserSerializer, UserUpdateSerializer,
                           VerifyInviteSerializer)
-from .utils import decode_data, encode_data, send_code
+from .utils import encode_data, invite_code_param, send_code, verify_code
 
 
 class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ('email', 'first_name', 'last_name')
-    filterset_fields = ('email', 'first_name', 'last_name', 'role', 'position')
+    filterset_fields = ('email', 'first_name', 'last_name',
+                        'role', 'department', 'position')
     http_method_names = ('get', 'patch')
     permission_classes = [HRAllPermission | ChiefSafePermission]
 
@@ -35,7 +37,7 @@ class UserViewSet(ModelViewSet):
         queryset = (
             User.objects
             .filter(is_active=True, is_superuser=False)
-            .select_related('position', 'position__department')
+            .select_related('position', 'department')
             .prefetch_related('hobbies')
         )
         return queryset
@@ -94,28 +96,31 @@ class SendInviteView(APIView):
         email = serializer.validated_data.get('email')
 
         if User.objects.filter(email=email).exists():
-            data = {'result': 'Пользователь с таким email уже зарегистрирован'}
+            data = {'detail': 'Пользователь с таким email уже зарегистрирован'}
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
         elif InviteCode.objects.filter(email=email).exists():
             encoded_uuid = self.create_invite_code(email, retry=True)
             send_code(email=email, code=encoded_uuid, again=True)
-            data = {'result': 'Ссылка отправлена повторно',
+            data = {'detail': 'Ссылка отправлена повторно',
                     'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
         else:
             encoded_uuid = self.create_invite_code(email)
             send_code(email=email, code=encoded_uuid)
-            data = {'result': 'Ссылка для регистрации отправлена на email',
+            data = {'detail': 'Ссылка для регистрации отправлена на email',
                     'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
 
     def create_invite_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
         encoded_uuid = encode_data(settings.INVITE_SECRET_KEY, str(uuid_code))
+        user = self.request.user
         if retry:
-            InviteCode.objects.filter(email=email).update(code=uuid_code)
+            InviteCode.objects.filter(
+                email=email, sender=user
+            ).update(code=uuid_code)
             return encoded_uuid
-        InviteCode.objects.create(email=email, code=uuid_code)
+        InviteCode.objects.create(email=email, sender=user, code=uuid_code)
         return encoded_uuid
 
 
@@ -128,7 +133,7 @@ class RegisterView(APIView):
         request_body=RegisterSerializer,
         operation_id='users_register',
         responses={
-            status.HTTP_200_OK: 'Пользователь успешно добавлен',
+            status.HTTP_201_CREATED: 'Пользователь успешно добавлен',
             status.HTTP_400_BAD_REQUEST: 'Недействительный ключ-приглашение'
         }
     )
@@ -141,12 +146,8 @@ class RegisterView(APIView):
             )
 
         invite_code = serializer.validated_data.pop('invite_code')
-        try:
-            decode_uuid = decode_data(settings.INVITE_SECRET_KEY, invite_code)
-            invite_code = InviteCode.objects.get(code=decode_uuid)
-        except Exception:
-            data = {'result': 'Недействительный ключ-приглашение'}
-            return Response(data, status=status.HTTP_400_BAD_REQUEST)
+        decode_uuid = verify_code(settings.INVITE_SECRET_KEY, invite_code)
+        invite_code = InviteCode.objects.get(code=decode_uuid)
 
         email = invite_code.email
         password = make_password(serializer.validated_data.pop('password'))
@@ -155,7 +156,7 @@ class RegisterView(APIView):
         )
         invite_code.delete()
 
-        data = {'result': 'Пользователь успешно добавлен'}
+        data = {'detail': 'Пользователь успешно добавлен'}
         return Response(data, status=status.HTTP_201_CREATED)
 
 
@@ -181,37 +182,44 @@ class VerifyInviteView(APIView):
             )
 
         invite_code = serializer.validated_data.get('invite_code')
-
-        try:
-            decode_data(settings.INVITE_SECRET_KEY, invite_code)
-        except Exception:
-            data = {'result': 'Недействительный ключ-приглашение'}
-            return Response(data, status=status.HTTP_400_BAD_REQUEST)
-
-        data = {'result': 'Ключ-приглашение прошел проверку'}
+        verify_code(settings.INVITE_SECRET_KEY, invite_code)
+        data = {'detail': 'Ключ-приглашение прошел проверку'}
         return Response(data, status=status.HTTP_200_OK)
 
 
 class DepartmentViewSet(ModelViewSet):
     serializer_class = DepartmentSerializer
     queryset = Department.objects.all()
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DepartmentInviteCodeFilter, DjangoFilterBackend,)
     pagination_class = None
     filterset_fields = ('id', 'name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [HRAllPermission | AllReadOnlyPermissions]
 
+    @swagger_auto_schema(manual_parameters=[invite_code_param])
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @swagger_auto_schema(manual_parameters=[invite_code_param])
+    def retrieve(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
 
 class PositionViewSet(ModelViewSet):
     serializer_class = PositionSerializer
     queryset = Position.objects.all()
-    filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('id', 'name', 'department',)
+    filter_backends = (PositionInviteCodeFilter, DjangoFilterBackend,)
+    filterset_fields = ('id', 'name', 'departments', 'chief_position',)
     http_method_names = ('get', 'post', 'patch', 'delete')
-    permission_classes = [
-        HRAllPermission | ChiefSafePermission | EmployeeSafePermission
-        | AllReadOnlyPermissions
-    ]
+    permission_classes = [HRAllPermission | AllReadOnlyPermissions]
+
+    @swagger_auto_schema(manual_parameters=[invite_code_param])
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @swagger_auto_schema(manual_parameters=[invite_code_param])
+    def retrieve(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
 
 class HobbyViewSet(ModelViewSet):

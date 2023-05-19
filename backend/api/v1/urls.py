@@ -8,7 +8,15 @@ from . import views
 
 app_name = 'api'
 
-v10 = DefaultRouter()
+
+class OptionalSlashRouter(DefaultRouter):
+
+    def __init__(self):
+        super().__init__()
+        self.trailing_slash = '/?'
+
+
+v10 = OptionalSlashRouter()
 v10.register('users', views.UserViewSet, basename='users')
 v10.register('hobbies', views.HobbyViewSet, basename='hobbies')
 v10.register('departments', views.DepartmentViewSet, basename='departments')
@@ -24,23 +32,23 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path(
-        'users/current_user/',
+    re_path(
+        r'^users/current_user/?$',
         views.CurrentUserView.as_view(),
         name='current_user'
     ),
-    path(
-        'users/send_invite/',
+    re_path(
+        r'^users/send_invite/?$',
         views.SendInviteView.as_view(),
         name='send_invite'
     ),
-    path(
-        'users/register/',
+    re_path(
+        r'^users/register/?$',
         views.RegisterView.as_view(),
         name='register'
     ),
-    path(
-        'users/verify_invite/',
+    re_path(
+        r'^users/verify_invite/?$',
         views.VerifyInviteView.as_view(),
         name='verify_invite'
     ),

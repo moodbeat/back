@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 INVITE_SECRET_KEY = os.getenv('DJANGO_INVITE_SECRET_KEY')
 
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS', default='*')]
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -88,9 +89,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
-    {'NAME': 'users.validators.UppercaseValidator', 'OPTIONS': {'min_count': 1}, },
-    {'NAME': 'users.validators.LowercaseValidator', 'OPTIONS': {'min_count': 1}, },
-    {'NAME': 'users.validators.NoSpacesValidator', },
+    {'NAME': 'users.validators.UppercasePasswordValidator', 'OPTIONS': {'min_count': 1}, },
+    {'NAME': 'users.validators.LowercasePasswordValidator', 'OPTIONS': {'min_count': 1}, },
+    {'NAME': 'users.validators.NoSpacesPasswordValidator', },
+    {'NAME': 'users.validators.MaximumLengthPasswordValidator', },
 ]
 
 REST_FRAMEWORK = {
@@ -142,3 +144,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 INVITE_TIME_EXPIRES_DAYS = 7
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+if DEBUG is False:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    # Setup support for proxy headers
+    USE_X_FORWARDED_HOST = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# CSRF_TRUSTED_ORIGINS = []
