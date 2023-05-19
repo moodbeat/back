@@ -131,11 +131,29 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     password_confirm = serializers.CharField(required=True)
 
     class Meta:
-        fields = ('invite_code', 'first_name',
-                  'last_name', 'department', 'position', 'password')
+        fields = ('reset_code', 'password', 'password_confirm')
 
     def validate_password(self, value):
         password_confirm = self.initial_data.get('password_confirm')
+
+        if password_confirm != value:
+            raise serializers.ValidationError('Пароли не совпадают.')
+
+        validate_password(value)
+        return value
+
+
+class PasswordChangeSerializer(serializers.Serializer):
+
+    current_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+    new_password_confirm = serializers.CharField(required=True)
+
+    class Meta:
+        fields = ('current_password', 'new_password', 'new_password_confirm')
+
+    def validate_new_password(self, value):
+        password_confirm = self.initial_data.get('new_password_confirm')
 
         if password_confirm != value:
             raise serializers.ValidationError('Пароли не совпадают.')

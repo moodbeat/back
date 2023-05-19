@@ -18,6 +18,7 @@ from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                           ChiefSafePermission, EmployeePostPermission,
                           EmployeeSafePermission, HRAllPermission)
 from .serializers import (DepartmentSerializer, HobbySerializer,
+                          PasswordChangeSerializer,
                           PasswordResetConfirmSerializer,
                           PasswordResetSerializer, PositionSerializer,
                           RegisterSerializer, SendInviteSerializer,
@@ -273,6 +274,40 @@ class PasswordResetConfirmView(APIView):
         User.objects.filter(email=email).update(password=password)
         reset_code.delete()
 
+        data = {'detail': 'Пароль успешно изменен.'}
+        return Response(data, status=status.HTTP_200_OK)
+
+
+class PasswordChangeView(APIView):
+    '''Смена пароля'''
+
+    permission_classes = (IsAuthenticated,)
+
+    @swagger_auto_schema(
+        request_body=PasswordChangeSerializer,
+        operation_id='users_password_change',
+        responses={
+            status.HTTP_200_OK: 'Пароль успешно изменен.'
+        }
+    )
+    def post(self, request):
+        serializer = PasswordChangeSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        user = self.request.user
+        current_password = serializer.validated_data.get('current_password')
+
+        if not user.check_password(current_password):
+            data = {'detail': 'Текущий пароль указан неверно.'}
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+        password = serializer.validated_data.get('new_password')
+        user.set_password(password)
+        user.save()
         data = {'detail': 'Пароль успешно изменен.'}
         return Response(data, status=status.HTTP_200_OK)
 

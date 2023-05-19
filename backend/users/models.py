@@ -259,7 +259,7 @@ class PasswordResetCode(models.Model):
 
     class Meta:
         verbose_name = 'Сброс пароля'
-        verbose_name_plural = 'Спросы паролей'
+        verbose_name_plural = 'Сбросы паролей'
         ordering = ['-created']
 
     def __str__(self):
