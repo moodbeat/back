@@ -64,6 +64,45 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         fields = ('first_name', 'last_name', 'patronymic',
                   'department', 'position', 'role', 'phone')
 
+    def validate_position(self, value):
+        department = self.initial_data.get('department')
+
+        if department:
+            if not value.departments.filter(pk=department).exists():
+                raise serializers.ValidationError(
+                    'Выбранная должность не относится к указанному отделу.'
+                )
+
+        user_department = self.instance.department
+
+        if user_department:
+            if not value.departments.filter(pk=user_department.pk).exists():
+                raise serializers.ValidationError(
+                    'Выбранная должность не относится к текущему отделу '
+                    'пользователя.'
+                )
+        else:
+            raise serializers.ValidationError(
+                'У пользователя отсутствует отдел.'
+            )
+
+        return value
+
+    def validate_department(self, value):
+        department = self.initial_data.get('department')
+        position = self.initial_data.get('position')
+
+        if department is None and position:
+            self.initial_data.pop('position', None)
+
+        user = self.instance
+
+        if department is None and user.position:
+            user.position = None
+            user.save()
+
+        return value
+
 
 class SendInviteSerializer(serializers.Serializer):
 
@@ -100,11 +139,13 @@ class RegisterSerializer(serializers.Serializer):
         if department:
             if not value.departments.filter(pk=department).exists():
                 raise serializers.ValidationError(
-                    "Выбранная должность не принадлежит к указанному отделу.")
+                    'Выбранная должность не относится к указанному отделу.'
+                )
 
             if value.chief_position is True:
                 raise serializers.ValidationError(
-                    "Нельзя выбирать при регистрации руководящую должность.")
+                    'Нельзя выбирать при регистрации руководящую должность.'
+                )
 
         return value
 

@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from users.models import Department, Hobby, InviteCode, Position, User
 
-from .filters import InviteCodeFilter, PositionInviteCodeFilter
+from .filters import DepartmentInviteCodeFilter, PositionInviteCodeFilter
 from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                           ChiefSafePermission, EmployeePostPermission,
                           EmployeeSafePermission, HRAllPermission)
@@ -28,7 +28,8 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ('email', 'first_name', 'last_name')
-    filterset_fields = ('email', 'first_name', 'last_name', 'role', 'position')
+    filterset_fields = ('email', 'first_name', 'last_name',
+                        'role', 'department', 'position')
     http_method_names = ('get', 'patch')
     permission_classes = [HRAllPermission | ChiefSafePermission]
 
@@ -189,7 +190,7 @@ class VerifyInviteView(APIView):
 class DepartmentViewSet(ModelViewSet):
     serializer_class = DepartmentSerializer
     queryset = Department.objects.all()
-    filter_backends = (InviteCodeFilter, DjangoFilterBackend,)
+    filter_backends = (DepartmentInviteCodeFilter, DjangoFilterBackend,)
     pagination_class = None
     filterset_fields = ('id', 'name',)
     http_method_names = ('get', 'post', 'patch', 'delete')

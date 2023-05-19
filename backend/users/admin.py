@@ -31,8 +31,8 @@ class UserInline(admin.TabularInline):
 
 
 @admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+class DepartmentAdmin(EmployeesCountMixin, admin.ModelAdmin):
+    list_display = ('name', 'employees_count')
 
 
 @admin.register(Position)
@@ -85,7 +85,7 @@ class CustomUserAdmin(UserAdmin):
         if department and position:
             if not position.departments.filter(pk=department.pk).exists():
                 raise ValueError(
-                    "Выбранная должность не принадлежит к указанному отделу.")
+                    'Выбранная должность не принадлежит к указанному отделу.')
 
         super().save_model(request, obj, form, change)
 

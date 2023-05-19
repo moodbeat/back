@@ -1,6 +1,7 @@
 from django.conf import settings
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
+from users.models import Department
 
 from .utils import verify_code
 
@@ -22,6 +23,21 @@ class InviteCodeFilter(BaseFilterBackend):
 
 
 class PositionInviteCodeFilter(InviteCodeFilter):
+    '''При выборе должностей исключать руководящие'''
+
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)
         return queryset.exclude(chief_position=True)
+
+
+class DepartmentInviteCodeFilter(InviteCodeFilter):
+    '''
+    Фильтр по отделам, исключающий отделы без должностей или
+    только с руководящими должностями
+    '''
+
+    def filter_queryset(self, request, queryset, view):
+        queryset = super().filter_queryset(request, queryset, view)
+        queryset = Department.objects.filter(
+            positions__chief_position=False).distinct()
+        return queryset
