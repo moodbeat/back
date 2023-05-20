@@ -64,6 +64,13 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         fields = ('first_name', 'last_name', 'patronymic',
                   'department', 'position', 'role', 'phone')
 
+    def validate(self, data):
+        if self.instance and self.instance.is_hr:
+            raise serializers.ValidationError(
+                'Нельзя редактировать сотрудника с ролью HR.'
+            )
+        return data
+
     def validate_position(self, value):
         department = self.initial_data.get('department')
         position = self.initial_data.get('position')

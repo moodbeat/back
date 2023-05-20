@@ -101,7 +101,8 @@ class SendInviteView(APIView):
         if User.objects.filter(email=email).exists():
             data = {'detail': 'Пользователь с таким email уже зарегистрирован'}
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
-        elif InviteCode.objects.filter(email=email).exists():
+
+        if InviteCode.objects.filter(email=email).exists():
             encoded_uuid = self.create_invite_code(email, retry=True)
             send_invite_code(email=email, code=encoded_uuid, again=True)
             data = {'detail': 'Ссылка отправлена повторно',
