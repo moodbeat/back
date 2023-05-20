@@ -325,10 +325,6 @@ class DepartmentViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
-    @swagger_auto_schema(manual_parameters=[invite_code_param])
-    def retrieve(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
-
 
 class PositionViewSet(ModelViewSet):
     serializer_class = PositionSerializer
@@ -340,10 +336,6 @@ class PositionViewSet(ModelViewSet):
 
     @swagger_auto_schema(manual_parameters=[invite_code_param])
     def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
-
-    @swagger_auto_schema(manual_parameters=[invite_code_param])
-    def retrieve(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
 
