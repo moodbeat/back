@@ -38,6 +38,5 @@ class DepartmentInviteCodeFilter(InviteCodeFilter):
 
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)
-        queryset = Department.objects.filter(
+        return Department.objects.filter(
             positions__chief_position=False).distinct()
-        return queryset

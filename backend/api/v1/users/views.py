@@ -1,5 +1,8 @@
 import uuid
 
+from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
+                                ChiefSafePermission, EmployeePostPermission,
+                                EmployeeSafePermission, HRAllPermission)
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
@@ -14,9 +17,6 @@ from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position, User)
 
 from .filters import DepartmentInviteCodeFilter, PositionInviteCodeFilter
-from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
-                          ChiefSafePermission, EmployeePostPermission,
-                          EmployeeSafePermission, HRAllPermission)
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PasswordChangeSerializer,
                           PasswordResetConfirmSerializer,
@@ -38,13 +38,12 @@ class UserViewSet(ModelViewSet):
     permission_classes = [HRAllPermission | ChiefSafePermission]
 
     def get_queryset(self):
-        queryset = (
+        return (
             User.objects
             .filter(is_active=True, is_superuser=False)
             .select_related('position', 'department')
             .prefetch_related('hobbies')
         )
-        return queryset
 
     @swagger_auto_schema(request_body=UserUpdateSerializer)
     def partial_update(self, request, *args, **kwargs):
@@ -102,18 +101,19 @@ class SendInviteView(APIView):
         if User.objects.filter(email=email).exists():
             data = {'detail': 'Пользователь с таким email уже зарегистрирован'}
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
-        elif InviteCode.objects.filter(email=email).exists():
+
+        if InviteCode.objects.filter(email=email).exists():
             encoded_uuid = self.create_invite_code(email, retry=True)
             send_invite_code(email=email, code=encoded_uuid, again=True)
             data = {'detail': 'Ссылка отправлена повторно',
                     'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
-        else:
-            encoded_uuid = self.create_invite_code(email)
-            send_invite_code(email=email, code=encoded_uuid)
-            data = {'detail': 'Ссылка для регистрации отправлена на email',
-                    'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
-            return Response(data, status=status.HTTP_200_OK)
+
+        encoded_uuid = self.create_invite_code(email)
+        send_invite_code(email=email, code=encoded_uuid)
+        data = {'detail': 'Ссылка для регистрации отправлена на email',
+                'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
+        return Response(data, status=status.HTTP_200_OK)
 
     def create_invite_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
@@ -224,12 +224,12 @@ class PasswordResetView(APIView):
             data = {'detail': 'Ссылка отправлена повторно',
                     'reset_code': encoded_uuid}  # тоже пока оставлю
             return Response(data, status=status.HTTP_200_OK)
-        else:
-            encoded_uuid = self.create_reset_code(email)
-            send_reset_code(email=email, code=encoded_uuid)
-            data = {'detail': 'Ссылка на смену пароля отправлена на email',
-                    'reset_code': encoded_uuid}  # тоже пока оставлю
-            return Response(data, status=status.HTTP_200_OK)
+
+        encoded_uuid = self.create_reset_code(email)
+        send_reset_code(email=email, code=encoded_uuid)
+        data = {'detail': 'Ссылка на смену пароля отправлена на email',
+                'reset_code': encoded_uuid}  # тоже пока оставлю
+        return Response(data, status=status.HTTP_200_OK)
 
     def create_reset_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
