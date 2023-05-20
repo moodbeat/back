@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'api.apps.ApiConfig',
+    'events.apps.EventsConfig',
+    'metrics.apps.MetricsConfig',
     'users.apps.UsersConfig',
 ]
 
