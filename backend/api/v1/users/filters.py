@@ -17,8 +17,10 @@ class InviteCodeFilter(BaseFilterBackend):
                 'Неавторизованным пользователям необходимо предоставить '
                 'действующий ключ-приглашение'
             )
-
-        verify_code(settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode)
+        if invite_code is not None:
+            verify_code(
+                settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode
+            )
         return queryset
 
 
