@@ -38,13 +38,12 @@ class UserViewSet(ModelViewSet):
     permission_classes = [HRAllPermission | ChiefSafePermission]
 
     def get_queryset(self):
-        queryset = (
+        return (
             User.objects
             .filter(is_active=True, is_superuser=False)
             .select_related('position', 'department')
             .prefetch_related('hobbies')
         )
-        return queryset
 
     @swagger_auto_schema(request_body=UserUpdateSerializer)
     def partial_update(self, request, *args, **kwargs):
@@ -108,12 +107,12 @@ class SendInviteView(APIView):
             data = {'detail': 'Ссылка отправлена повторно',
                     'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
-        else:
-            encoded_uuid = self.create_invite_code(email)
-            send_invite_code(email=email, code=encoded_uuid)
-            data = {'detail': 'Ссылка для регистрации отправлена на email',
-                    'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
-            return Response(data, status=status.HTTP_200_OK)
+
+        encoded_uuid = self.create_invite_code(email)
+        send_invite_code(email=email, code=encoded_uuid)
+        data = {'detail': 'Ссылка для регистрации отправлена на email',
+                'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
+        return Response(data, status=status.HTTP_200_OK)
 
     def create_invite_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
@@ -224,12 +223,12 @@ class PasswordResetView(APIView):
             data = {'detail': 'Ссылка отправлена повторно',
                     'reset_code': encoded_uuid}  # тоже пока оставлю
             return Response(data, status=status.HTTP_200_OK)
-        else:
-            encoded_uuid = self.create_reset_code(email)
-            send_reset_code(email=email, code=encoded_uuid)
-            data = {'detail': 'Ссылка на смену пароля отправлена на email',
-                    'reset_code': encoded_uuid}  # тоже пока оставлю
-            return Response(data, status=status.HTTP_200_OK)
+
+        encoded_uuid = self.create_reset_code(email)
+        send_reset_code(email=email, code=encoded_uuid)
+        data = {'detail': 'Ссылка на смену пароля отправлена на email',
+                'reset_code': encoded_uuid}  # тоже пока оставлю
+        return Response(data, status=status.HTTP_200_OK)
 
     def create_reset_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()

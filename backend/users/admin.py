@@ -8,8 +8,7 @@ from .models import Department, Hobby, InviteCode, Position, User
 class EmployeesCountMixin:
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        queryset = queryset.annotate(employees_count=Count('employees'))
-        return queryset
+        return queryset.annotate(employees_count=Count('employees'))
 
     def employees_count(self, obj):
         return obj.employees_count

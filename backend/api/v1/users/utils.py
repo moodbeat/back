@@ -8,8 +8,7 @@ from rest_framework.exceptions import ValidationError
 
 def encode_data(secret_key: str, data: str) -> str:
     secret_key_hash = hashlib.sha256(secret_key.encode()).digest()
-    encoded_data = base64.b64encode(data.encode() + secret_key_hash).decode()
-    return encoded_data
+    return base64.b64encode(data.encode() + secret_key_hash).decode()
 
 
 def decode_data(secret_key: str, encoded_data: str) -> str:
