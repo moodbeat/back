@@ -1,5 +1,8 @@
 import uuid
 
+from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
+                                ChiefSafePermission, EmployeePostPermission,
+                                EmployeeSafePermission, HRAllPermission)
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
@@ -14,9 +17,6 @@ from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position, User)
 
 from .filters import DepartmentInviteCodeFilter, PositionInviteCodeFilter
-from .permissions import (AllReadOnlyPermissions, ChiefPostPermission,
-                          ChiefSafePermission, EmployeePostPermission,
-                          EmployeeSafePermission, HRAllPermission)
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PasswordChangeSerializer,
                           PasswordResetConfirmSerializer,
