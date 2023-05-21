@@ -7,7 +7,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from socials.models import HelpType
 
-from .serializers import HelpTypeSerializer, SpecialistsSerializer
+from .serializers import (HelpTypeSerializer, NeedHelpSerializer,
+                          SpecialistsSerializer)
 from .utils import user_param
 
 User = get_user_model()
@@ -48,6 +49,7 @@ class HelpViewSet(APIView):
 
 
 class SpecialistsView(APIView):
+
     permission_classes = (IsAuthenticated,)
 
     @swagger_auto_schema(
@@ -63,3 +65,24 @@ class SpecialistsView(APIView):
             queryset = User.objects.filter(role='hr').exclude(id=user.id)
         serializer = SpecialistsSerializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class NeedHelpView(APIView):
+
+    permission_classes = (IsAuthenticated,)
+
+    @swagger_auto_schema(
+        responses={status.HTTP_200_OK: NeedHelpSerializer},
+        request_body=NeedHelpSerializer
+    )
+    def post(self, request):
+        serializer = NeedHelpSerializer(
+            data=request.data,
+            context={'request': request._request}
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

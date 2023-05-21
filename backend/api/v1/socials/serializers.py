@@ -24,6 +24,25 @@ class HelpTypeSerializer(serializers.ModelSerializer):
 
 class NeedHelpSerializer(serializers.ModelSerializer):
 
+    sender = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    viewed = serializers.BooleanField(read_only=True)
+
     class Meta:
-        models = NeedHelp
+        model = NeedHelp
         fields = '__all__'
+
+    def validate(self, data):
+        sender = data.get('sender')
+        recipient = data.get('recipient')
+
+        if sender == recipient:
+            raise serializers.ValidationError(
+                'Нельзя отправлять запрос самому себе.'
+            )
+
+        if not recipient.is_hr and not recipient.is_chief:
+            raise serializers.ValidationError(
+                'Принимающая сторона должна быть HR или руководителем.'
+            )
+
+        return data

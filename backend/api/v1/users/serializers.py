@@ -190,14 +190,16 @@ class RegisterSerializer(serializers.Serializer):
         fields = ('invite_code', 'first_name',
                   'last_name', 'department', 'position', 'password')
 
-    def validate_password(self, value):
-        password_confirm = self.initial_data.get('password_confirm')
+    def validate(self, data):
+        password_confirm = data.get('password_confirm')
+        password = data.get('password')
 
-        if password_confirm != value:
+        if password_confirm != password:
             raise serializers.ValidationError('Пароли не совпадают.')
 
-        validate_password(value)
-        return value
+        validate_password(password)
+        data.pop('password_confirm')
+        return data
 
     def validate_position(self, value):
         department = self.initial_data.get('department')

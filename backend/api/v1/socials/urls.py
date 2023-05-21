@@ -13,4 +13,9 @@ urlpatterns = [
         views.SpecialistsView.as_view(),
         name='specialists'
     ),
+    re_path(
+        r'^need_help/?$',
+        views.NeedHelpView.as_view(),
+        name='need_help'
+    ),
 ]
