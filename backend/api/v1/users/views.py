@@ -61,7 +61,7 @@ class CurrentUserView(APIView):
 
     @swagger_auto_schema(responses={status.HTTP_200_OK: UserSerializer})
     def get(self, request):
-        serializer = self.serializer_class(request.user)
+        serializer = UserSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(request_body=UserSelfUpdateSerializer)
