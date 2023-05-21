@@ -1,8 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
-from users.models import Department, Hobby, Position, User
+from users.models import Department, Hobby, Position
 
 from .fields import Base64ImageField
+
+User = get_user_model()
 
 
 class DepartmentSerializer(serializers.ModelSerializer):

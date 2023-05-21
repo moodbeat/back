@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
+    'socials.apps.SocialsConfig',
 ]
 
 MIDDLEWARE = [
