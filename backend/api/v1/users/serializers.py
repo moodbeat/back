@@ -1,8 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
-from users.models import Department, Hobby, Position, User
+from users.models import Department, Hobby, Position
 
 from .fields import Base64ImageField
+
+User = get_user_model()
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -175,6 +178,7 @@ class RegisterSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
+    password_confirm = serializers.CharField(required=True)
     department = serializers.PrimaryKeyRelatedField(
         queryset=Department.objects.all(), required=True
     )
@@ -186,9 +190,16 @@ class RegisterSerializer(serializers.Serializer):
         fields = ('invite_code', 'first_name',
                   'last_name', 'department', 'position', 'password')
 
-    def validate_password(self, value):
-        validate_password(value)
-        return value
+    def validate(self, data):
+        password_confirm = data.get('password_confirm')
+        password = data.get('password')
+
+        if password_confirm != password:
+            raise serializers.ValidationError('Пароли не совпадают.')
+
+        validate_password(password)
+        data.pop('password_confirm')
+        return data
 
     def validate_position(self, value):
         department = self.initial_data.get('department')

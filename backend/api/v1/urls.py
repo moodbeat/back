@@ -1,3 +1,4 @@
+from api.v1.socials import urls as urls_socials
 from api.v1.users import urls as urls_users
 from django.urls import include, path, re_path
 from drf_yasg import openapi
@@ -15,6 +16,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', include(urls_users)),
+    path('socials/', include(urls_socials)),
     path('auth/', include('djoser.urls.jwt')),
     re_path(
         r'^swagger(?P<format>\.json|\.yaml)$',

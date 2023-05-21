@@ -4,6 +4,7 @@ from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                                 ChiefSafePermission, EmployeePostPermission,
                                 EmployeeSafePermission, HRAllPermission)
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
@@ -14,7 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
-                          Position, User)
+                          Position)
 
 from .filters import DepartmentInviteCodeFilter, PositionInviteCodeFilter
 from .serializers import (DepartmentSerializer, HobbySerializer,
@@ -26,6 +27,8 @@ from .serializers import (DepartmentSerializer, HobbySerializer,
                           UserUpdateSerializer, VerifyInviteSerializer)
 from .utils import (encode_data, invite_code_param, send_invite_code,
                     send_reset_code, verify_code)
+
+User = get_user_model()
 
 
 class UserViewSet(ModelViewSet):
@@ -58,7 +61,7 @@ class CurrentUserView(APIView):
 
     @swagger_auto_schema(responses={status.HTTP_200_OK: UserSerializer})
     def get(self, request):
-        serializer = self.serializer_class(request.user)
+        serializer = UserSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @swagger_auto_schema(request_body=UserSelfUpdateSerializer)
@@ -325,10 +328,6 @@ class DepartmentViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
-    @swagger_auto_schema(manual_parameters=[invite_code_param])
-    def retrieve(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
-
 
 class PositionViewSet(ModelViewSet):
     serializer_class = PositionSerializer
@@ -340,10 +339,6 @@ class PositionViewSet(ModelViewSet):
 
     @swagger_auto_schema(manual_parameters=[invite_code_param])
     def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
-
-    @swagger_auto_schema(manual_parameters=[invite_code_param])
-    def retrieve(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
 
