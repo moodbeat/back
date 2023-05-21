@@ -175,6 +175,7 @@ class RegisterSerializer(serializers.Serializer):
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
+    password_confirm = serializers.CharField(required=True)
     department = serializers.PrimaryKeyRelatedField(
         queryset=Department.objects.all(), required=True
     )
@@ -187,6 +188,11 @@ class RegisterSerializer(serializers.Serializer):
                   'last_name', 'department', 'position', 'password')
 
     def validate_password(self, value):
+        password_confirm = self.initial_data.get('password_confirm')
+
+        if password_confirm != value:
+            raise serializers.ValidationError('Пароли не совпадают.')
+
         validate_password(value)
         return value
 
