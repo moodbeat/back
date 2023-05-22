@@ -45,7 +45,7 @@ class PositionAdmin(EmployeesCountMixin, admin.ModelAdmin):
 
 @admin.register(Hobby)
 class HobbyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name',)
 
 
 @admin.register(User)

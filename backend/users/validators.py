@@ -93,3 +93,15 @@ def validate_last_name(value):
 
 def validate_patronymic(value):
     validate_name(value, 'Отчество', 'о', 'ое')
+
+
+def alpha_space_dash_validator(value):
+    pattern = r'^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\s-]*[A-Za-zА-Яа-яЁё]$'
+    if not re.match(pattern, value):
+        raise ValidationError('Неверный формат.')
+    if '--' in value:
+        raise ValidationError('Два или более тире подряд не допускаются.')
+    if '  ' in value:
+        raise ValidationError('Два или более пробела подряд не допускаются.')
+    if re.search(r'\s-', value) or re.search(r'-\s', value):
+        raise ValidationError('Пробел и тире не могут использоваться вместе.')

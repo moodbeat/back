@@ -10,8 +10,8 @@ from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .managers import UserManager
-from .validators import (validate_first_name, validate_last_name,
-                         validate_patronymic)
+from .validators import (alpha_space_dash_validator, validate_first_name,
+                         validate_last_name, validate_patronymic)
 
 
 class Department(models.Model):
@@ -19,8 +19,11 @@ class Department(models.Model):
     name = models.CharField(
         verbose_name='Наименование',
         unique=True,
-        max_length=128,
-        validators=[MinLengthValidator(2)]
+        max_length=48,
+        validators=[
+            MinLengthValidator(2),
+            alpha_space_dash_validator
+        ]
     )
     description = models.TextField(
         verbose_name='Описание',
@@ -43,8 +46,11 @@ class Position(models.Model):
     name = models.CharField(
         verbose_name='Название должности',
         unique=True,
-        max_length=128,
-        validators=[MinLengthValidator(2)]
+        max_length=48,
+        validators=[
+            MinLengthValidator(2),
+            alpha_space_dash_validator
+        ]
     )
     departments = models.ManyToManyField(
         Department,
@@ -71,7 +77,10 @@ class Hobby(models.Model):
         verbose_name='Наименование',
         max_length=32,
         unique=True,
-        validators=[MinLengthValidator(2)]
+        validators=[
+            MinLengthValidator(2),
+            alpha_space_dash_validator
+        ]
     )
 
     class Meta:
