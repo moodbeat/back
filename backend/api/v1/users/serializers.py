@@ -201,14 +201,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def validate_position(self, value):
         department = self.initial_data.get('department')
-        # позже на рефакторинг
-        try:
-            value = int(value)
-        except (TypeError, ValueError):
-            raise serializers.ValidationError(
-                'Идентификатор должности/отдела должен быть целым числом.'
-            )
-        # ---
+
         if department:
             if not value.departments.filter(pk=department).exists():
                 raise serializers.ValidationError(
