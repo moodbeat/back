@@ -115,3 +115,11 @@ def alpha_space_dash_validator(value):
         raise ValidationError('Два или более пробела подряд не допускаются.')
     if re.search(r'\s-', value) or re.search(r'-\s', value):
         raise ValidationError('Пробел и тире не могут использоваться вместе.')
+
+
+def validate_email_latin(value):
+
+    if not value.isascii():
+        raise ValidationError(
+            'Email должен содержать только латинские символы'
+        )

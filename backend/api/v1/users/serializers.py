@@ -116,11 +116,10 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         return value
 
 
-class SendInviteSerializer(serializers.Serializer):
-
-    email = serializers.EmailField(required=True)
+class SendInviteSerializer(serializers.ModelSerializer):
 
     class Meta:
+        model = User
         fields = ('email',)
 
 
