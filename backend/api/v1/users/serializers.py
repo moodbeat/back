@@ -19,7 +19,7 @@ class PositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Position
-        fields = ('id', 'name', 'chief_position')
+        fields = ('id', 'name', 'chief_position', 'departments')
 
 
 class HobbySerializer(serializers.ModelSerializer):
@@ -172,11 +172,9 @@ class PasswordChangeSerializer(serializers.Serializer):
         return value
 
 
-class RegisterSerializer(serializers.Serializer):
+class RegisterSerializer(serializers.ModelSerializer):
 
     invite_code = serializers.CharField(required=True)
-    first_name = serializers.CharField(required=True)
-    last_name = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
     password_confirm = serializers.CharField(required=True)
     department = serializers.PrimaryKeyRelatedField(
@@ -187,8 +185,9 @@ class RegisterSerializer(serializers.Serializer):
     )
 
     class Meta:
-        fields = ('invite_code', 'first_name',
-                  'last_name', 'department', 'position', 'password')
+        model = User
+        fields = ('invite_code', 'first_name', 'last_name',
+                  'department', 'position', 'password', 'password_confirm')
 
     def validate(self, data):
         password_confirm = data.get('password_confirm')

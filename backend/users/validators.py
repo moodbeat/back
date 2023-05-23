@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class UppercasePasswordValidator:
     message = ('Пароль должен содержать хотя бы %(min_count)d '
                'букв%(plural)s верхнего регистра.')
-    pattern = '[A-ZА-Я]'
+    pattern = '[A-ZА-ЯЁё]'
     code = 'password_no_upper'
 
     def __init__(self, min_count=1):
@@ -79,8 +79,18 @@ def validate_name(value, name: str, plural: str, plural2: str):
         raise ValidationError(
             f'{name} должн{plural} содержать минимум 2 символа'
         )
-    if not re.match(r'^[а-яА-Я]+(-[а-яА-Я]+)?$', value):
+    if not re.match(r'^[а-яА-ЯЁё]+(-[а-яА-ЯЁё]+)?$', value):
         raise ValidationError(f'Некорректн{plural2} {name.lower()}')
+    if value.startswith('-') or value.endswith('-'):
+        raise ValidationError(
+            f'{name} не может начинаться или заканчиваться дефисом'
+        )
+    if '--' in value:
+        raise ValidationError('Два или более тире подряд не допускаются.')
+    if '  ' in value:
+        raise ValidationError('Два или более пробела подряд не допускаются.')
+    if re.search(r'\s-', value) or re.search(r'-\s', value):
+        raise ValidationError('Пробел и тире не могут использоваться вместе.')
 
 
 def validate_first_name(value):
