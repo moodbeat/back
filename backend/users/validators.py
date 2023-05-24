@@ -123,3 +123,12 @@ def validate_email_latin(value):
         raise ValidationError(
             'Email должен содержать только латинские символы'
         )
+
+
+def validate_email_prefix(value):
+    # на рефакторинг
+    prefix = value.split('@')[0]
+    pattern = r'^[A-Za-z0-9]+([-._]?[A-Za-z0-9]+)*$'
+
+    if not re.match(pattern, prefix):
+        raise ValidationError("Некорректный email.")

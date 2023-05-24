@@ -10,9 +10,9 @@ from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .managers import UserManager
-from .validators import (
-    alpha_space_dash_validator, validate_first_name, validate_last_name,
-    validate_patronymic, validate_email_latin)
+from .validators import (alpha_space_dash_validator, validate_email_latin,
+                         validate_email_prefix, validate_first_name,
+                         validate_last_name, validate_patronymic)
 
 
 class Department(models.Model):
@@ -110,7 +110,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=254,
         validators=[
             MinLengthValidator(8),
-            validate_email_latin
+            validate_email_latin,
+            validate_email_prefix
         ]
     )
     first_name = models.CharField(
