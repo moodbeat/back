@@ -1,20 +1,21 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 
-from .models import Condition, Survey, Question, Result, Variant
+from .models import Condition, Survey, Question, Result, Variant, \
+    CompletedSurvey
 
 
 @admin.register(Condition)
 class ConditionAdmin(admin.ModelAdmin):
-    list_display = ('user', 'mood', 'note', 'date')
+    list_display = ('employee', 'mood', 'note', 'date')
     list_filter = ('mood', 'date')
-    search_fields = ('user__first_name', 'user__last_name')
-    ordering = ('user__email',)
+    search_fields = ('employee__first_name', 'employee__last_name')
+    ordering = ('employee__email',)
     readonly_fields = ('date',)
 
     fieldsets = (
         (None, {
-            'fields': ('user', 'mood', 'note')
+            'fields': ('employee', 'mood', 'note')
         }),
         ('Служебная информация', {
             'fields': ('date',),
@@ -86,3 +87,11 @@ class VariantAdmin(admin.ModelAdmin):
     list_filter = ('question', 'text',)
     search_fields = ('question', 'text',)
     ordering = ('id',)
+
+
+@admin.register(CompletedSurvey)
+class CompletedSurvey(admin.ModelAdmin):
+    list_display = ('employee', 'survey', 'result', 'completion_date')
+    list_filter = ('completion_date', 'employee', 'survey')
+    search_fields = ('employee', 'survey')
+    ordering = ('completion_date', 'employee')

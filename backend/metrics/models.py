@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from metrics.validators import validate_last_filled_date
+# from api.v1.metrics.validators import validate_last_filled_date
 from users.models import Department
 
 User = get_user_model()
@@ -21,7 +22,7 @@ class Condition(models.Model):
         ('Good', _('Отлично')),
     )
 
-    user = models.ForeignKey(
+    employee = models.ForeignKey(
         User,
         verbose_name='Сотрудник',
         null=True,
@@ -46,9 +47,9 @@ class Condition(models.Model):
         null=True
     )
     date = models.DateTimeField(
-        verbose_name=_('add date'),
-        default=timezone.now,
-        validators=[validate_last_filled_date]
+        # verbose_name=_('add date'),
+        verbose_name=_('Дата/время добавления показателей'),
+        auto_now_add=True
     )
 
     class Meta:
@@ -57,15 +58,26 @@ class Condition(models.Model):
 
     def __str__(self):
         return (
-            f'Настроение {self.user.first_name} {self.user.last_name} - '
-            f'{self.mood} '
+            f'Настроение {self.employee.first_name} {self.employee.last_name} '
+            f'- {self.mood}'
         )
+
+    def clean(self):
+        current_time = timezone.localtime()
+        last_add_date = Condition.objects.filter(
+            employee=self.employee
+        ).order_by('-date').first()
+        if last_add_date and (
+                current_time - last_add_date.date
+        ) < timezone.timedelta(hours=24):
+            raise ValidationError(
+                'Можно добавлять значения не чаще чем раз в сутки!')
 
 
 class Survey(models.Model):
     author = models.ForeignKey(
         User,
-        verbose_name='Сотрудник',
+        verbose_name='Сотрудник, автор опроса',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
@@ -88,7 +100,8 @@ class Survey(models.Model):
         max_length=255,
     )
     creation_date = models.DateTimeField(
-        verbose_name=_('creation date'),
+        # verbose_name=_('creation date'),
+        verbose_name=_('Дата/время создания опроса'),
         default=timezone.now,
     )
     is_active = models.BooleanField(
@@ -151,10 +164,22 @@ class Result(models.Model):
         verbose_name_plural = 'Результаты'
 
     def __str__(self):
-        return self.description
+        return self.description[:30]
 
 
 class Variant(models.Model):
+    # убрала отсюда результат, потому что не оч понятно, к чему он тут относится
+    ANSWERS = (
+        ('Yes', _('Да')),
+        ('No', _('Нет')),
+        ('Never', _('Никогда')),
+        ('Seldom', _('Очень редко')),
+        ('Sometimes', _('Иногда')),
+        ('Often', _('Часто')),
+        ('Very often', _('Очень часто')),
+        ('Every day', _('Каждый день')),
+    )
+
     question = models.ForeignKey(
         Question,
         verbose_name='Вопрос',
@@ -164,9 +189,51 @@ class Variant(models.Model):
     )
     text = models.CharField(
         verbose_name='Текст варианта ответа',
-        max_length=255,
+        choices=ANSWERS,
+        max_length=12,
     )
 
     class Meta:
         verbose_name = 'Вариант ответа'
         verbose_name_plural = 'Варианты ответов'
+
+    def __str__(self):
+        return f'Ответ {self.text} на вопрос "{self.question.text[:30]}"'
+
+
+class CompletedSurvey(models.Model):
+    employee = models.ForeignKey(
+        User,
+        verbose_name='Сотрудник',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
+    survey = models.ForeignKey(
+        Survey,
+        verbose_name='Опрос',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    result = models.ForeignKey(
+        Result,
+        verbose_name='Результат опроса',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    completion_date = models.DateTimeField(
+        # verbose_name=_('completion date'),
+        verbose_name=_('Дата/время завершения опроса'),
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = 'Завершенный опрос'
+        verbose_name_plural = 'Завершенные опросы'
+
+    def __str__(self):
+        return (f'"{self.survey.title}" пройден '
+               f'сотрудником {self.employee.last_name}')

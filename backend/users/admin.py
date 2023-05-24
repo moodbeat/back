@@ -1,15 +1,17 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from django.db.models import Count
 
-from .models import Department, Position, User, Hobby
+from .models import Department, Hobby, InviteCode, Position
+
+User = get_user_model()
 
 
 class EmployeesCountMixin:
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        queryset = queryset.annotate(employees_count=Count('employees'))
-        return queryset
+        return queryset.annotate(employees_count=Count('employees'))
 
     def employees_count(self, obj):
         return obj.employees_count
@@ -33,24 +35,25 @@ class UserInline(admin.TabularInline):
 @admin.register(Department)
 class DepartmentAdmin(EmployeesCountMixin, admin.ModelAdmin):
     list_display = ('name', 'employees_count')
-    inlines = [UserInline,]
 
 
 @admin.register(Position)
 class PositionAdmin(EmployeesCountMixin, admin.ModelAdmin):
-    list_display = ('name', 'employees_count')
-    inlines = [UserInline,]
+    list_display = ('name', 'employees_count', 'chief_position')
+    inlines = [UserInline, ]
 
 
 @admin.register(Hobby)
 class HobbyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name',)
 
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('email', 'first_name', 'last_name', 'password')}),
+        (None, {'fields': (
+            'email', 'first_name', 'last_name', 'patronymic', 'password'
+        )}),
         (('Служебная информация'), {'fields': (
             'department', 'position', 'role', 'phone'
         )}),
@@ -69,10 +72,35 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
     list_display = ('email', 'first_name', 'last_name',
-                    'role', 'department', 'position')
+                    'role', 'position')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related('department', 'position')
+        return queryset.select_related('position', 'department')
+
+    def save_model(self, request, obj, form, change):
+        department = obj.department
+        position = obj.position
+
+        if department and position:
+            if not position.departments.filter(pk=department.pk).exists():
+                raise ValueError(
+                    'Выбранная должность не принадлежит к указанному отделу.')
+
+        super().save_model(request, obj, form, change)
+
+
+@admin.register(InviteCode)
+class InviteCodeAdmin(admin.ModelAdmin):
+    list_display = ('email', 'sender', 'created', 'expire_date')
+    readonly_fields = ('email', 'sender', 'created', 'expire_date')
+    exclude = ('code',)
+    ordering = ('-created',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False

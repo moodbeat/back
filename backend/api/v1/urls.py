@@ -1,15 +1,11 @@
+from api.v1.events import urls as urls_events
+from api.v1.socials import urls as urls_socials
+from api.v1.users import urls as urls_users
+from api.v1.metrics import urls as urls_metrics
 from django.urls import include, path, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
-from rest_framework.routers import DefaultRouter
-
-from . import views
-
-app_name = 'api'
-
-v10 = DefaultRouter()
-v10.register('users', views.UserViewSet, basename='users')
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -21,17 +17,10 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path(
-        'users/send_invite/',
-        views.SendInviteView.as_view(),
-        name='send_invite'
-    ),
-    path(
-        'users/register/',
-        views.RegisterView.as_view(),
-        name='register'
-    ),
-    path('', include(v10.urls)),
+    path('', include(urls_users)),
+    path('socials/', include(urls_socials)),
+    path('', include(urls_events)),
+    path('', include(urls_metrics)),
     path('auth/', include('djoser.urls.jwt')),
     re_path(
         r'^swagger(?P<format>\.json|\.yaml)$',
