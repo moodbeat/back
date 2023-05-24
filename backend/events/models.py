@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
+from django.utils import timezone
 from users.models import Department
 
 User = get_user_model()
@@ -124,3 +126,28 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+
+        if self.start_time >= self.end_time:
+            raise ValidationError(
+                'Дата и время начала должны быть раньше даты и времени '
+                'окончания.'
+            )
+
+        current_time = timezone.localtime()
+        # wtf???
+        if self.start_time >= current_time:
+            raise ValidationError(
+                'Дата и время начала должна быть не раньше текущего времени.'
+            )
+
+        time_difference = self.end_time - self.start_time
+        if (
+            time_difference.total_seconds() < 1800
+            or time_difference.total_seconds() > 43200
+        ):
+            raise ValidationError(
+                'Разница между датой и временем начала и окончания должна '
+                'быть от 30 минут до 12 часов.'
+            )

@@ -46,7 +46,18 @@ class EntryWriteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EventSerializer(serializers.ModelSerializer):
+class EventReadSerializer(serializers.ModelSerializer):
+
+    author = AuthorSerializer()
+
+    class Meta:
+        model = Event
+        fields = '__all__'
+
+
+class EventWriteSerializer(serializers.ModelSerializer):
+
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Event
