@@ -62,3 +62,8 @@ class EventWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
+
+    def validate(self, attrs):
+        instance = Event(**attrs)
+        instance.clean()
+        return attrs

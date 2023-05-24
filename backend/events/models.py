@@ -136,8 +136,7 @@ class Event(models.Model):
             )
 
         current_time = timezone.localtime()
-        # wtf???
-        if self.start_time >= current_time:
+        if self.start_time <= current_time:
             raise ValidationError(
                 'Дата и время начала должна быть не раньше текущего времени.'
             )
