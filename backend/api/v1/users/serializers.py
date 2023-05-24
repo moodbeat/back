@@ -89,7 +89,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
         user_department = self.instance.department
 
-        if user_department:
+        if user_department and not department:
             if not value.departments.filter(pk=user_department.pk).exists():
                 raise serializers.ValidationError(
                     'Выбранная должность не относится к текущему отделу '
@@ -103,13 +103,13 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     def validate_department(self, value):
         department = self.initial_data.get('department')
         position = self.initial_data.get('position')
-
+        # даааа это рефакторить, помогите или убейте меня хахах
         if department is None and position:
             self.initial_data.pop('position', None)
 
         user = self.instance
 
-        if department is None and user.position:
+        if department is None and user.position or position is None:
             user.position = None
             user.save()
 
