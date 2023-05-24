@@ -123,7 +123,9 @@ class SendInviteSerializer(serializers.ModelSerializer):
         fields = ('email',)
 
 
-class PasswordResetSerializer(SendInviteSerializer):
+class PasswordResetSerializer(serializers.Serializer):
+
+    email = serializers.EmailField(required=True)
 
     def validate_email(self, value):
         if not User.objects.filter(email=value).exists():
