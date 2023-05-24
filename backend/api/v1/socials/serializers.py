@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from socials.models import HelpType, NeedHelp
+from socials.models import HelpType, NeedHelp, Status
 
 User = get_user_model()
 
@@ -46,3 +46,20 @@ class NeedHelpSerializer(serializers.ModelSerializer):
             )
 
         return data
+
+
+class StatusSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Status
+        fields = ('text', 'views', 'likes', 'created')
+
+
+class StatusAddSerializer(StatusSerializer):
+
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Status
+        fields = '__all__'
+        read_only_fields = ('views', 'likes')

@@ -84,3 +84,38 @@ class NeedHelp(models.Model):
     class Meta:
         verbose_name = 'Запрос помощи'
         verbose_name_plural = 'Запросы помощи'
+
+
+class Status(models.Model):
+
+    author = models.ForeignKey(
+        User,
+        verbose_name='Автор',
+        related_name='statuses',
+        on_delete=models.CASCADE,
+    )
+    # mood = models.ForeignKey()
+    # lastest_pool_result = models.ForeignKey()
+    # theme
+    text = models.TextField(
+        verbose_name='Текст',
+        max_length=320,
+        validators=[MinLengthValidator(4)]
+    )
+    views = models.PositiveIntegerField(
+        verbose_name='Просмотров',
+        default=0
+    )
+    likes = models.IntegerField(
+        verbose_name='Понравилось',
+        default=0
+    )
+    created = models.DateTimeField(
+        verbose_name='Дата и время отправки',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Статус'
+        verbose_name_plural = 'Статусы'
+        ordering = ['-created']

@@ -1,8 +1,14 @@
-from django.urls import re_path
+from api.v1.utils import OptionalSlashRouter
+from django.urls import include, path, re_path
 
 from . import views
 
+v10 = OptionalSlashRouter()
+
+v10.register('statuses', views.StatusViewSet, basename='statuses')
+
 urlpatterns = [
+    path('', include(v10.urls)),
     re_path(
         r'^help_types/?$',
         views.HelpViewSet.as_view(),

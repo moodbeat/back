@@ -19,7 +19,7 @@ class PositionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Position
-        fields = ('id', 'name', 'chief_position')
+        fields = ('id', 'name', 'chief_position', 'departments')
 
 
 class HobbySerializer(serializers.ModelSerializer):
@@ -89,7 +89,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
         user_department = self.instance.department
 
-        if user_department:
+        if user_department and not department:
             if not value.departments.filter(pk=user_department.pk).exists():
                 raise serializers.ValidationError(
                     'Выбранная должность не относится к текущему отделу '
@@ -103,28 +103,29 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     def validate_department(self, value):
         department = self.initial_data.get('department')
         position = self.initial_data.get('position')
-
+        # даааа это рефакторить, помогите или убейте меня хахах
         if department is None and position:
             self.initial_data.pop('position', None)
 
         user = self.instance
 
-        if department is None and user.position:
+        if department is None and user.position or position is None:
             user.position = None
             user.save()
 
         return value
 
 
-class SendInviteSerializer(serializers.Serializer):
-
-    email = serializers.EmailField(required=True)
+class SendInviteSerializer(serializers.ModelSerializer):
 
     class Meta:
+        model = User
         fields = ('email',)
 
 
-class PasswordResetSerializer(SendInviteSerializer):
+class PasswordResetSerializer(serializers.Serializer):
+
+    email = serializers.EmailField(required=True)
 
     def validate_email(self, value):
         if not User.objects.filter(email=value).exists():
@@ -172,11 +173,9 @@ class PasswordChangeSerializer(serializers.Serializer):
         return value
 
 
-class RegisterSerializer(serializers.Serializer):
+class RegisterSerializer(serializers.ModelSerializer):
 
     invite_code = serializers.CharField(required=True)
-    first_name = serializers.CharField(required=True)
-    last_name = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
     password_confirm = serializers.CharField(required=True)
     department = serializers.PrimaryKeyRelatedField(
@@ -187,8 +186,9 @@ class RegisterSerializer(serializers.Serializer):
     )
 
     class Meta:
-        fields = ('invite_code', 'first_name',
-                  'last_name', 'department', 'position', 'password')
+        model = User
+        fields = ('invite_code', 'first_name', 'last_name',
+                  'department', 'position', 'password', 'password_confirm')
 
     def validate(self, data):
         password_confirm = data.get('password_confirm')
