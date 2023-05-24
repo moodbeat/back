@@ -29,7 +29,9 @@ class PositionInviteCodeFilter(InviteCodeFilter):
 
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)
-        return queryset.exclude(chief_position=True)
+        if not request.user.is_authenticated:
+            return queryset.exclude(chief_position=True)
+        return queryset
 
 
 class DepartmentInviteCodeFilter(InviteCodeFilter):
@@ -40,5 +42,7 @@ class DepartmentInviteCodeFilter(InviteCodeFilter):
 
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)
-        return Department.objects.filter(
-            positions__chief_position=False).distinct()
+        if not request.user.is_authenticated:
+            return Department.objects.filter(
+                positions__chief_position=False).distinct()
+        return queryset
