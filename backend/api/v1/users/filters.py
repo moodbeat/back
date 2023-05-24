@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
-from users.models import Department, InviteCode
+from users.models import InviteCode
 
 from .utils import verify_code
 
@@ -43,6 +43,5 @@ class DepartmentInviteCodeFilter(InviteCodeFilter):
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)
         if not request.user.is_authenticated:
-            return Department.objects.filter(
-                positions__chief_position=False).distinct()
+            return queryset.filter(positions__chief_position=False).distinct()
         return queryset
