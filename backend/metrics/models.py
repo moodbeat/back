@@ -57,21 +57,19 @@ class Condition(models.Model):
         verbose_name_plural = 'Состояния'
 
     def __str__(self):
-        return (
-            f'Настроение {self.employee.first_name} {self.employee.last_name} '
-            f'- {self.mood}'
-        )
+        return self.mood
 
-    def clean(self):
-        current_time = timezone.localtime()
-        last_add_date = Condition.objects.filter(
-            employee=self.employee
-        ).order_by('-date').first()
-        if last_add_date and (
-                current_time - last_add_date.date
-        ) < timezone.timedelta(hours=24):
-            raise ValidationError(
-                'Можно добавлять значения не чаще чем раз в сутки!')
+    # Для админки не вижу смысла, а в сериализаторах не работает
+    # def clean(self):
+    #     current_time = timezone.localtime()
+    #     last_add_date = Condition.objects.filter(
+    #         employee=self.employee
+    #     ).order_by('-date').first()
+    #     if last_add_date and (
+    #             current_time - last_add_date.date
+    #     ) < timezone.timedelta(hours=24):
+    #         raise ValidationError(
+    #             'Можно добавлять значения не чаще, чем раз в сутки!')
 
 
 class Survey(models.Model):
