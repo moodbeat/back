@@ -1,6 +1,8 @@
 from api.v1.users.fields import Base64ImageField
+from api.v1.users.serializers import DepartmentSerializer, UserSerializer
 from django.contrib.auth import get_user_model
 from events.models import Category, Entry, Event
+from events.validators import validate_event_data
 from rest_framework import serializers
 
 User = get_user_model()
@@ -58,12 +60,15 @@ class EventReadSerializer(serializers.ModelSerializer):
 class EventWriteSerializer(serializers.ModelSerializer):
 
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    departments = DepartmentSerializer
+    employees = UserSerializer
 
     class Meta:
         model = Event
         fields = '__all__'
 
     def validate(self, attrs):
-        instance = Event(**attrs)
-        instance.clean()
+        start_time = attrs.get('start_time')
+        end_time = attrs.get('end_time')
+        validate_event_data(start_time, end_time)
         return attrs
