@@ -1,0 +1,32 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: check-added-large-files
+    - id: trailing-whitespace
+      args: [--markdown-linebreak-ext=md]
+    - id: check-merge-conflict
+    - id: mixed-line-ending
+      args: [--fix=crlf]
+    - id: no-commit-to-branch
+      args: [--branch, master, --branch, main]
+    - id: name-tests-test
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.12.0
+  hooks:
+    - id: isort
+      args: [--settings, setup.cfg]
+
+- repo: https://github.com/pycqa/flake8
+  rev: 5.0.4
+  hooks:
+    - id: flake8
+      additional_dependencies:
+        - flake8-docstrings
+        - pep8-naming
+        - flake8-broken-line
+        - flake8-return
+      args: [--config, setup.cfg]
