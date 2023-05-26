@@ -9,7 +9,7 @@ repos:
       args: [--markdown-linebreak-ext=md]
     - id: check-merge-conflict
     - id: mixed-line-ending
-      args: [--fix=crlf]
+      args: [--fix=lf]
     - id: no-commit-to-branch
       args: [--branch, master, --branch, main]
     - id: name-tests-test
