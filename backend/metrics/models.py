@@ -1,9 +1,11 @@
+from datetime import date
+
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-# from api.v1.metrics.validators import validate_last_filled_date
 from users.models import Department
 
 User = get_user_model()
@@ -122,6 +124,7 @@ class Question(models.Model):
         Survey,
         verbose_name='опрос',
         on_delete=models.CASCADE,
+        related_name='questions',
     )
     text = models.CharField(
         verbose_name='текст вопроса',
@@ -150,6 +153,7 @@ class CompletedSurvey(models.Model):
         User,
         verbose_name='сотрудник',
         on_delete=models.CASCADE,
+        related_name='results',
     )
     survey = models.ForeignKey(
         Survey,
@@ -163,15 +167,15 @@ class CompletedSurvey(models.Model):
     )
     positive_value = models.PositiveSmallIntegerField(
         verbose_name='кол-во утвердительных ответов',
-        validators=[MaxValueValidator(10)],
+        validators=[MaxValueValidator(100)],
     )
     negative_value = models.PositiveSmallIntegerField(
         verbose_name='кол-во отрицательных ответов',
-        validators=[MaxValueValidator(10)],
+        validators=[MaxValueValidator(100)],
     )
     completion_date = models.DateField(
         verbose_name='дата и время прохождения опроса',
-        default=timezone.now,
+        default=date.today,
     )
 
     class Meta:
@@ -183,17 +187,21 @@ class CompletedSurvey(models.Model):
             models.UniqueConstraint(
                 fields=['employee', 'survey', 'completion_date'],
                 name='unique_day_completed_survey',
-            ),
-            models.CheckConstraint(
-                check=models.Q(
-                    positive_value=(10 - models.F('negative_value'))
-                ), name='check_sum_results',
-            ),
+            )
         ]
 
     def __str__(self):
         return (f'"{self.survey.title}" пройден '
                 f'сотрудником {self.employee.get_full_name}')
+
+    def clean(self):
+        if (
+            self.positive_value + self.negative_value
+        ) != self.survey.questions.count():
+            raise ValidationError(
+                'Количество ответов не соответстует количеству вопросов'
+            )
+        return super().clean()
 
     def save(self, *args, **kwargs):
         """При создании объекта интерпретирует значение результата в текст."""
