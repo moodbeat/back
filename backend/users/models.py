@@ -209,6 +209,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_employee(self):
         return self.role == self.EMPLOYEE
 
+    @property
+    def get_full_name(self):
+        full_name = f'{self.first_name} {self.last_name}'
+        return full_name.strip()
+
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'

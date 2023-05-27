@@ -1,8 +1,6 @@
 from django.contrib import admin
-from django.core.exceptions import ValidationError
 
-from .models import Condition, Survey, Question, Result, Variant, \
-    CompletedSurvey
+from .models import CompletedSurvey, Condition, Question, Survey
 
 
 @admin.register(Condition)
@@ -57,41 +55,30 @@ class SurveyAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('survey', 'text', 'priority',)
-    list_filter = ('survey', 'text', 'priority',)
-    search_fields = ('survey', 'text')
+    list_display = ('survey', 'text',)
+    list_filter = ('survey', 'text',)
+    search_fields = ('survey', 'text',)
     ordering = ('id',)
 
     fieldsets = (
         (None, {
             'fields': ('survey', 'text',)
         }),
-        ('Служебная информация', {
-            'fields': ('priority',),
-            'classes': ('collapse',)
-        })
     )
-
-
-@admin.register(Result)
-class ResultAdmin(admin.ModelAdmin):
-    list_display = ('survey', 'description', 'level',)
-    list_filter = ('survey', 'description', 'level',)
-    search_fields = ('survey', 'description')
-    ordering = ('id',)
-
-
-@admin.register(Variant)
-class VariantAdmin(admin.ModelAdmin):
-    list_display = ('question', 'text',)
-    list_filter = ('question', 'text',)
-    search_fields = ('question', 'text',)
-    ordering = ('id',)
 
 
 @admin.register(CompletedSurvey)
 class CompletedSurvey(admin.ModelAdmin):
-    list_display = ('employee', 'survey', 'result', 'completion_date')
-    list_filter = ('completion_date', 'employee', 'survey')
-    search_fields = ('employee', 'survey')
-    ordering = ('completion_date', 'employee')
+    list_display = ('employee', 'survey', 'result', 'completion_date',)
+    list_filter = ('completion_date', 'employee', 'survey', 'result',)
+    search_fields = ('employee', 'survey',)
+    ordering = ('-completion_date', 'employee', 'survey',)
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                'employee', 'survey', 'positive_value',
+                'negative_value', 'completion_date',
+            )
+        }),
+    )
