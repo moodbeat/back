@@ -1,3 +1,10 @@
+from django.contrib.auth import get_user_model
+# from django.utils import timezone
+from django_filters.rest_framework import DjangoFilterBackend
+# from rest_framework import request
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
+
 from api.v1.metrics.filters import CompletedSurveyFilter, SurveyFilter
 from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         CompletedSurveySerializer,
@@ -6,13 +13,7 @@ from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         SurveyCreateSerializer,
                                         SurveySerializer)
 from api.v1.permissions import HRAllPermission, SurveyAuthorOrAdminOnly
-from django.contrib.auth import get_user_model
-# from django.utils import timezone
-from django_filters.rest_framework import DjangoFilterBackend
 from metrics.models import CompletedSurvey, Condition, Question, Survey
-# from rest_framework import request
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
 
 User = get_user_model()
 

@@ -1,8 +1,9 @@
 # from datetime import timedelta
 
 from django.utils import timezone
-from metrics import models
 from rest_framework import serializers
+
+from metrics import models
 
 
 class ConditionReadSerializer(serializers.ModelSerializer):
