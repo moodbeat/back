@@ -68,7 +68,17 @@ class AllowAuthorOrReadOnly(permissions.BasePermission):
         )
 
 
+# зачем он? есть же стандартный?
 class IsNotAuthenticated(permissions.BasePermission):
 
     def has_permission(self, request, view):
         return not request.user.is_authenticated
+
+
+class SurveyAuthorOrAdminOnly(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        return (
+            request.user.is_authenticated
+            and (request.user == obj.author or request.user.is_superuser)
+        )
