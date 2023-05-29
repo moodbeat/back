@@ -1,8 +1,8 @@
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -83,12 +83,10 @@ class Survey(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
-    department = models.ForeignKey(
+    department = models.ManyToManyField(
         Department,
+        through='SurveyDepartment',
         verbose_name='отдел',
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
     )
     title = models.CharField(
         verbose_name='название опроса',
@@ -99,6 +97,11 @@ class Survey(models.Model):
         blank=True,
         null=True,
         max_length=255,
+    )
+    frequency = models.PositiveSmallIntegerField(
+        verbose_name='периодичность прохождения опроса',
+        default=30,
+        validators=[MinValueValidator(1), MaxValueValidator(90)],
     )
     creation_date = models.DateTimeField(
         verbose_name='дата и время создания опроса',
@@ -116,6 +119,21 @@ class Survey(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SurveyDepartment(models.Model):
+    """Модель для связи департаментов и опросов."""
+
+    survey = models.ForeignKey(
+        Survey,
+        on_delete=models.CASCADE,
+        verbose_name='опрос',
+    )
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.CASCADE,
+        verbose_name='департамент',
+    )
 
 
 class Question(models.Model):
@@ -175,7 +193,11 @@ class CompletedSurvey(models.Model):
         validators=[MaxValueValidator(100)],
     )
     completion_date = models.DateField(
-        verbose_name='дата и время прохождения опроса',
+        verbose_name='дата прохождения опроса',
+        default=date.today,
+    )
+    next_attempt_date = models.DateField(
+        verbose_name='дата следующей попытки',
         default=date.today,
     )
 
@@ -184,34 +206,48 @@ class CompletedSurvey(models.Model):
         verbose_name = 'результат опроса сотрудника'
         verbose_name_plural = 'результаты опросов сотрудников'
 
-        constraints = [
-            models.UniqueConstraint(
-                fields=['employee', 'survey', 'completion_date'],
-                name='unique_day_completed_survey',
-            )
-        ]
-
     def __str__(self):
         return (f'"{self.survey.title}" пройден '
                 f'сотрудником {self.employee.get_full_name}')
 
     def clean(self):
+        """Дополнительная валидация перед сохранением."""
         if (
             self.positive_value + self.negative_value
         ) != self.survey.questions.count():
             raise ValidationError(
                 'Количество ответов не соответстует количеству вопросов'
             )
+        filter_params = {
+            'employee': self.employee,
+            'survey': self.survey,
+            'next_attempt_date__gt': date.today(),
+        }
+        if CompletedSurvey.objects.filter(**filter_params).exists():
+            raise ValidationError(
+                'Слишком рано для повторного прохождения опроса'
+            )
         return super().clean()
 
     def save(self, *args, **kwargs):
-        """При создании объекта интерпретирует значение результата в текст."""
-        if self.positive_value in (7, 8, 9):
+        """При создании объекта интерпретирует значение результата в текст.
+
+        Также в зависимости от периодичности `frequency`, установленной
+        в модели `Survey` определяет дату следующей попытки прохождения опроса.
+        """
+        result_in_persent = (
+            self.positive_value / self.survey.questions.count() * 100
+        )
+        if result_in_persent in range(71, 91):
             self.result = self.ResultInterpretation.HIGH
-        elif self.positive_value in (2, 3, 4, 5, 6):
+        elif result_in_persent in range(21, 71):
             self.result = self.ResultInterpretation.MEDIUM
-        elif self.positive_value in (0, 1):
+        elif result_in_persent in range(21):
             self.result = self.ResultInterpretation.LOW
-        elif self.positive_value == 10:
+        elif result_in_persent in range(91, 101):
             self.result = self.ResultInterpretation.CRITICAL
+
+        self.next_attempt_date = date.today() + timedelta(
+            days=self.survey.frequency
+        )
         return super(CompletedSurvey, self).save(*args, **kwargs)

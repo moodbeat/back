@@ -41,8 +41,8 @@ class ConditionViewSet(ModelViewSet):
 ))
 class SurveyViewSet(ModelViewSet):
     queryset = Survey.objects.select_related(
-        'author', 'department',
-    ).prefetch_related('questions').all()
+        'author'
+    ).prefetch_related('department', 'questions').all()
     filter_backends = (DjangoFilterBackend,)
     filterset_class = SurveyFilter
     http_method_names = ('get', 'post', 'patch',)

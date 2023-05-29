@@ -16,7 +16,7 @@ class SurveyFilter(filters.FilterSet):
         parent = super().qs
         exc_surey = Survey.objects.filter(
             completedsurvey__employee=self.request.user,
-            completedsurvey__completion_date=date.today(),
+            completedsurvey__next_attempt_date__gt=date.today(),
         ).values('id')
         return parent.exclude(id__in=(exc_surey))
 

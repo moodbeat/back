@@ -1,9 +1,12 @@
 # from datetime import timedelta
+from datetime import date
 
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from rest_framework import serializers
 
 from metrics import models
+from users.models import Department
 
 
 class ConditionReadSerializer(serializers.ModelSerializer):
@@ -64,6 +67,10 @@ class SurveyCreateSerializer(serializers.ModelSerializer):
         default=serializers.CurrentUserDefault(),
     )
     questions = QuestionSerializer(many=True)
+    department = serializers.PrimaryKeyRelatedField(
+        queryset=Department.objects.all(),
+        many=True,
+    )
 
     class Meta:
         model = models.Survey
@@ -88,10 +95,13 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
     employee = serializers.HiddenField(
         default=serializers.CurrentUserDefault(),
     )
+    completion_date = serializers.HiddenField(
+        default=date.today,
+    )
 
     class Meta:
         model = models.CompletedSurvey
-        exclude = ('completion_date', 'result',)
+        exclude = ('result', 'next_attempt_date',)
 
     def validate(self, data):
         if (
@@ -99,6 +109,15 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
         ) != data['survey'].questions.count():
             raise serializers.ValidationError(
                 'Количество ответов не соответстует количеству вопросов'
+            )
+        filter_params = {
+            'employee': data['employee'],
+            'survey': data['survey'],
+            'next_attempt_date__gt': date.today(),
+        }
+        if models.CompletedSurvey.objects.filter(**filter_params).exists():
+            raise ValidationError(
+                'Слишком рано для повторного прохождения опроса'
             )
         return data
 

@@ -1301,11 +1301,19 @@
         "pk": 1,
         "fields": {
             "author": 1,
-            "department": 4,
             "title": "Экспресс-оценка выгорания",
             "description": "Экспресс оценка выгорания содержит 10 вопросов. На вопросы необходимо отвечать \"да\" или \"нет\".",
+            "frequency": 30,
             "creation_date": "2023-05-27T10:26:24.834Z",
             "is_active": true
+        }
+    },
+    {
+        "model": "metrics.surveydepartment",
+        "pk": 1,
+        "fields": {
+            "survey": 1,
+            "department": 2
         }
     },
     {

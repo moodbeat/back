@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import CompletedSurvey, Condition, Question, Survey
+from .models import (CompletedSurvey, Condition, Question, Survey,
+                     SurveyDepartment)
 
 
 @admin.register(Condition)
@@ -22,11 +23,14 @@ class ConditionAdmin(admin.ModelAdmin):
     )
 
 
+class SurveyDepartmentInline(admin.TabularInline):
+    model = SurveyDepartment
+
+
 @admin.register(Survey)
 class SurveyAdmin(admin.ModelAdmin):
     list_display = (
         'author',
-        'department',
         'title',
         'description',
         'creation_date',
@@ -39,15 +43,16 @@ class SurveyAdmin(admin.ModelAdmin):
         'author__first_name',
         'author__last_name'
     )
+    inlines = (SurveyDepartmentInline,)
     ordering = ('-creation_date', 'title')
     readonly_fields = ('creation_date',)
 
     fieldsets = (
         (None, {
-            'fields': ('author', 'department', 'title', 'description')
+            'fields': ('author', 'title', 'description', 'frequency')
         }),
         ('Служебная информация', {
-            'fields': ('creation_date', 'is_active'),
+            'fields': ('creation_date', 'is_active',),
             'classes': ('collapse',)
         })
     )
@@ -81,4 +86,8 @@ class CompletedSurvey(admin.ModelAdmin):
                 'negative_value', 'completion_date',
             )
         }),
+        ('Служебная информация', {
+            'fields': ('next_attempt_date',),
+            'classes': ('collapse',)
+        })
     )
