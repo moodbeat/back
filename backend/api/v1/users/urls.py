@@ -2,6 +2,7 @@ from api.v1.utils import OptionalSlashRouter
 from django.urls import include, path, re_path
 
 from . import views
+from .consumers import UserNotifyConsumer
 
 v10 = OptionalSlashRouter()
 v10.register('users', views.UserViewSet, basename='users')
@@ -46,4 +47,11 @@ urlpatterns = [
         name='password_change'
     ),
     path('', include(v10.urls)),
+]
+
+ws_urlpatterns = [
+    re_path(
+        r'^users/notifications/?$',
+        UserNotifyConsumer.as_asgi()
+    )
 ]
