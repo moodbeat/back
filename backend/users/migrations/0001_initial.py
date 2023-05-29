@@ -6,10 +6,11 @@ import django.core.validators
 import django.db.models.deletion
 import django.utils.timezone
 import phonenumber_field.modelfields
-import users.managers
-import users.validators
 from django.conf import settings
 from django.db import migrations, models
+
+import users.managers
+import users.validators
 
 
 class Migration(migrations.Migration):
@@ -17,126 +18,382 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('auth', '0012_alter_user_first_name_max_length'),
+        ("auth", "0012_alter_user_first_name_max_length"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
-                ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
-                ('email', models.EmailField(max_length=254, unique=True, validators=[django.core.validators.MinLengthValidator(8), users.validators.validate_email_latin, users.validators.validate_email_prefix], verbose_name='email')),
-                ('first_name', models.CharField(max_length=32, validators=[users.validators.validate_first_name, django.core.validators.MinLengthValidator(2)], verbose_name='first name')),
-                ('last_name', models.CharField(max_length=32, validators=[users.validators.validate_last_name, django.core.validators.MinLengthValidator(2)], verbose_name='last name')),
-                ('patronymic', models.CharField(blank=True, max_length=32, null=True, validators=[users.validators.validate_patronymic, django.core.validators.MinLengthValidator(2)], verbose_name='Отчество')),
-                ('role', models.CharField(choices=[('hr', 'HR'), ('chief', 'Руководитель'), ('employee', 'Работник')], db_index=True, default='employee', max_length=10, verbose_name='Роль')),
-                ('avatar', models.ImageField(blank=True, null=True, upload_to='users/avatars/', verbose_name='Аватар/Фото')),
-                ('about', models.TextField(blank=True, max_length=256, null=True, validators=[django.core.validators.MinLengthValidator(2)], verbose_name='О себе')),
-                ('phone', phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=12, null=True, region=None, verbose_name='Телефон')),
-                ('is_staff', models.BooleanField(default=False, verbose_name='staff status')),
-                ('is_active', models.BooleanField(default=True, verbose_name='active')),
-                ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("password", models.CharField(max_length=128, verbose_name="password")),
+                (
+                    "last_login",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="last login"
+                    ),
+                ),
+                (
+                    "is_superuser",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Designates that this user has all permissions without explicitly assigning them.",
+                        verbose_name="superuser status",
+                    ),
+                ),
+                (
+                    "email",
+                    models.EmailField(
+                        max_length=254,
+                        unique=True,
+                        validators=[
+                            django.core.validators.MinLengthValidator(8),
+                            users.validators.validate_email_latin,
+                            users.validators.validate_email_prefix,
+                        ],
+                        verbose_name="email",
+                    ),
+                ),
+                (
+                    "first_name",
+                    models.CharField(
+                        max_length=32,
+                        validators=[
+                            users.validators.validate_first_name,
+                            django.core.validators.MinLengthValidator(2),
+                        ],
+                        verbose_name="first name",
+                    ),
+                ),
+                (
+                    "last_name",
+                    models.CharField(
+                        max_length=32,
+                        validators=[
+                            users.validators.validate_last_name,
+                            django.core.validators.MinLengthValidator(2),
+                        ],
+                        verbose_name="last name",
+                    ),
+                ),
+                (
+                    "patronymic",
+                    models.CharField(
+                        blank=True,
+                        max_length=32,
+                        null=True,
+                        validators=[
+                            users.validators.validate_patronymic,
+                            django.core.validators.MinLengthValidator(2),
+                        ],
+                        verbose_name="Отчество",
+                    ),
+                ),
+                (
+                    "role",
+                    models.CharField(
+                        choices=[
+                            ("hr", "HR"),
+                            ("chief", "Руководитель"),
+                            ("employee", "Работник"),
+                        ],
+                        db_index=True,
+                        default="employee",
+                        max_length=10,
+                        verbose_name="Роль",
+                    ),
+                ),
+                (
+                    "avatar",
+                    models.ImageField(
+                        blank=True,
+                        null=True,
+                        upload_to="users/avatars/",
+                        verbose_name="Аватар/Фото",
+                    ),
+                ),
+                (
+                    "about",
+                    models.TextField(
+                        blank=True,
+                        max_length=256,
+                        null=True,
+                        validators=[django.core.validators.MinLengthValidator(2)],
+                        verbose_name="О себе",
+                    ),
+                ),
+                (
+                    "phone",
+                    phonenumber_field.modelfields.PhoneNumberField(
+                        blank=True,
+                        max_length=12,
+                        null=True,
+                        region=None,
+                        verbose_name="Телефон",
+                    ),
+                ),
+                (
+                    "is_staff",
+                    models.BooleanField(default=False, verbose_name="staff status"),
+                ),
+                ("is_active", models.BooleanField(default=True, verbose_name="active")),
+                (
+                    "date_joined",
+                    models.DateTimeField(
+                        default=django.utils.timezone.now, verbose_name="date joined"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Пользователь',
-                'verbose_name_plural': 'Пользователи',
-                'ordering': ['-date_joined'],
+                "verbose_name": "Пользователь",
+                "verbose_name_plural": "Пользователи",
+                "ordering": ["-date_joined"],
             },
             managers=[
-                ('objects', users.managers.UserManager()),
+                ("objects", users.managers.UserManager()),
             ],
         ),
         migrations.CreateModel(
-            name='Department',
+            name="Department",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=48, unique=True, validators=[django.core.validators.MinLengthValidator(2), users.validators.alpha_space_dash_validator], verbose_name='Наименование')),
-                ('description', models.TextField(blank=True, max_length=254, null=True, validators=[django.core.validators.MinLengthValidator(8)], verbose_name='Описание')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=48,
+                        unique=True,
+                        validators=[
+                            django.core.validators.MinLengthValidator(2),
+                            users.validators.alpha_space_dash_validator,
+                        ],
+                        verbose_name="Наименование",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        max_length=254,
+                        null=True,
+                        validators=[django.core.validators.MinLengthValidator(8)],
+                        verbose_name="Описание",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Отдел',
-                'verbose_name_plural': 'Отделы',
+                "verbose_name": "Отдел",
+                "verbose_name_plural": "Отделы",
             },
         ),
         migrations.CreateModel(
-            name='Hobby',
+            name="Hobby",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=32, unique=True, validators=[django.core.validators.MinLengthValidator(2), users.validators.alpha_space_dash_validator], verbose_name='Наименование')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=32,
+                        unique=True,
+                        validators=[
+                            django.core.validators.MinLengthValidator(2),
+                            users.validators.alpha_space_dash_validator,
+                        ],
+                        verbose_name="Наименование",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Интерес',
-                'verbose_name_plural': 'Интересы',
+                "verbose_name": "Интерес",
+                "verbose_name_plural": "Интересы",
             },
         ),
         migrations.CreateModel(
-            name='PasswordResetCode',
+            name="PasswordResetCode",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('code', models.UUIDField(default=uuid.uuid4, unique=True)),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='Дата отправки кода')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                ("code", models.UUIDField(default=uuid.uuid4, unique=True)),
+                (
+                    "created",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата отправки кода"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Сброс пароля',
-                'verbose_name_plural': 'Сбросы паролей',
-                'ordering': ['-created'],
+                "verbose_name": "Сброс пароля",
+                "verbose_name_plural": "Сбросы паролей",
+                "ordering": ["-created"],
             },
         ),
         migrations.CreateModel(
-            name='Position',
+            name="Position",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=48, unique=True, validators=[django.core.validators.MinLengthValidator(2), users.validators.alpha_space_dash_validator], verbose_name='Название должности')),
-                ('chief_position', models.BooleanField(default=False, verbose_name='Руководящая должность')),
-                ('departments', models.ManyToManyField(blank=True, related_name='positions', to='users.department', verbose_name='Отделы')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=48,
+                        unique=True,
+                        validators=[
+                            django.core.validators.MinLengthValidator(2),
+                            users.validators.alpha_space_dash_validator,
+                        ],
+                        verbose_name="Название должности",
+                    ),
+                ),
+                (
+                    "chief_position",
+                    models.BooleanField(
+                        default=False, verbose_name="Руководящая должность"
+                    ),
+                ),
+                (
+                    "departments",
+                    models.ManyToManyField(
+                        blank=True,
+                        related_name="positions",
+                        to="users.department",
+                        verbose_name="Отделы",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Должность',
-                'verbose_name_plural': 'Должности',
+                "verbose_name": "Должность",
+                "verbose_name_plural": "Должности",
             },
         ),
         migrations.CreateModel(
-            name='InviteCode',
+            name="InviteCode",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254, unique=True)),
-                ('code', models.UUIDField(default=uuid.uuid4, unique=True)),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='Дата отправки инвайта')),
-                ('sender', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='invitations', to=settings.AUTH_USER_MODEL, verbose_name='Отправитель')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254, unique=True)),
+                ("code", models.UUIDField(default=uuid.uuid4, unique=True)),
+                (
+                    "created",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата отправки инвайта"
+                    ),
+                ),
+                (
+                    "sender",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="invitations",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Отправитель",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Приглашение',
-                'verbose_name_plural': 'Приглашения',
-                'ordering': ['-created'],
+                "verbose_name": "Приглашение",
+                "verbose_name_plural": "Приглашения",
+                "ordering": ["-created"],
             },
         ),
         migrations.AddField(
-            model_name='user',
-            name='department',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='employees', to='users.department', verbose_name='Отдел'),
+            model_name="user",
+            name="department",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="employees",
+                to="users.department",
+                verbose_name="Отдел",
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='groups',
-            field=models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups'),
+            model_name="user",
+            name="groups",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+                related_name="user_set",
+                related_query_name="user",
+                to="auth.group",
+                verbose_name="groups",
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='hobbies',
-            field=models.ManyToManyField(blank=True, related_name='users', to='users.hobby', verbose_name='Хобби'),
+            model_name="user",
+            name="hobbies",
+            field=models.ManyToManyField(
+                blank=True, related_name="users", to="users.hobby", verbose_name="Хобби"
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='position',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='employees', to='users.position', verbose_name='Должность'),
+            model_name="user",
+            name="position",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="employees",
+                to="users.position",
+                verbose_name="Должность",
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='user_permissions',
-            field=models.ManyToManyField(blank=True, help_text='Specific permissions for this user.', related_name='user_set', related_query_name='user', to='auth.permission', verbose_name='user permissions'),
+            model_name="user",
+            name="user_permissions",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Specific permissions for this user.",
+                related_name="user_set",
+                related_query_name="user",
+                to="auth.permission",
+                verbose_name="user permissions",
+            ),
         ),
     ]

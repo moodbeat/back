@@ -63,7 +63,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='Condition',
+            name="Condition",
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('mood', models.CharField(choices=[('Bad', 'Плохо'), ('So so', 'Так себе'), ('OK', 'Нормально'), ('Fine', 'Хорошо'), ('Good', 'Отлично')], max_length=9, verbose_name='Настроение')),
@@ -72,8 +72,8 @@ class Migration(migrations.Migration):
                 ('employee', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Сотрудник')),
             ],
             options={
-                'verbose_name': 'Состояние (сотрудника)',
-                'verbose_name_plural': 'Состояния',
+                "verbose_name": "Состояние (сотрудника)",
+                "verbose_name_plural": "Состояния",
             },
         ),
         migrations.CreateModel(
