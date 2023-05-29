@@ -165,7 +165,10 @@ class RegisterView(APIView):
         )
         invite_code.delete()
 
-        data = {'detail': 'Пользователь успешно добавлен'}
+        data = {
+            'detail': 'Пользователь успешно добавлен',
+            'email': email,
+        }
         return Response(data, status=status.HTTP_201_CREATED)
 
 
