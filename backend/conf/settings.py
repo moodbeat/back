@@ -105,6 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'users.validators.LowercasePasswordValidator', 'OPTIONS': {'min_count': 1}, },
     {'NAME': 'users.validators.NoSpacesPasswordValidator', },
     {'NAME': 'users.validators.MaximumLengthPasswordValidator', },
+    {'NAME': 'users.validators.AllowOnlyThisCharactersValidator', },
 ]
 
 REST_FRAMEWORK = {

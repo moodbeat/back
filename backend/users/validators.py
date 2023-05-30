@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class UppercasePasswordValidator:
     message = ('Пароль должен содержать хотя бы %(min_count)d '
                'букв%(plural)s верхнего регистра.')
-    pattern = '[A-ZА-ЯЁё]'
+    pattern = '[A-ZА-ЯЁ]'
     code = 'password_no_upper'
 
     def __init__(self, min_count=1):
@@ -72,6 +72,22 @@ class MaximumLengthPasswordValidator:
 
     def get_help_text(self):
         return (self.message % {'max_length': self.max_length})
+
+
+class AllowOnlyThisCharactersValidator:
+    message = 'Пароль содержит недопустимые символы.'
+    pattern = r'^[A-Za-zА-Яа-яЁё\d@$!%*#?&]+$'
+    code = 'password_invalid_chars'
+
+    def validate(self, password, user=None):
+        if not re.match(self.pattern, password):
+            raise ValidationError(
+                self.message,
+                code=self.code
+            )
+
+    def get_help_text(self):
+        return self.message
 
 
 def validate_name(value, name: str, plural: str, plural2: str):
