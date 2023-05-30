@@ -155,7 +155,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     mental_state = models.CharField(
         verbose_name='Текущее состояние',
         choices=MentalStateChoices.choices,
-        default='Нормальное состояние'
+        default='Нормальное состояние',
+        max_length=32
     )
     hobbies = models.ManyToManyField(
         Hobby,
