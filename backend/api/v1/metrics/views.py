@@ -93,6 +93,9 @@ class CompletedSurveyViewSet(ModelViewSet):
     def get_permissions(self):
         if self.request.method == 'GET':
             self.permission_classes = (HRAllPermission,)
+            my_results = self.request.query_params.get('my_results')
+            if my_results:
+                self.permission_classes = (IsAuthenticated,)
         return super().get_permissions()
 
     def get_serializer_class(self):

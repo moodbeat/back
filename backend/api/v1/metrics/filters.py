@@ -22,7 +22,13 @@ class SurveyFilter(filters.FilterSet):
 
 
 class CompletedSurveyFilter(filters.FilterSet):
+    my_results = filters.BooleanFilter(method='filter_my_results')
 
     class Meta:
         model = CompletedSurvey
         fields = ('employee', 'survey', 'completion_date', 'result')
+
+    def filter_my_results(self, queryset, name, value):
+        if value and self.request.user.is_authenticated:
+            return queryset.filter(employee=self.request.user)
+        return queryset

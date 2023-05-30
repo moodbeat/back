@@ -2,7 +2,8 @@ from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import (MaxValueValidator, MinLengthValidator,
+                                    MinValueValidator)
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -27,9 +28,10 @@ class Condition(models.Model):
     )
     note = models.CharField(
         verbose_name='Заметка',
-        max_length=255,
+        max_length=128,
+        null=True,
         blank=True,
-        null=True
+        validators=[MinLengthValidator(4)]
     )
     date = models.DateTimeField(
         verbose_name=_('Дата/время добавления показателей'),
