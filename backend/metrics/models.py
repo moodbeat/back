@@ -14,15 +14,6 @@ User = get_user_model()
 
 class Condition(models.Model):
 
-    # пока по макету делаю
-    ENERGY_MOOD_CHOICES = (
-        ('Bad', _('Плохо')),
-        ('So so', _('Так себе')),
-        ('OK', _('Нормально')),
-        ('Fine', _('Хорошо')),
-        ('Good', _('Отлично')),
-    )
-
     employee = models.ForeignKey(
         User,
         verbose_name='Сотрудник',
@@ -30,16 +21,9 @@ class Condition(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
     )
-    # опять же по макетам это не нужно
-    # energy = models.CharField(
-    #     verbose_name='Энергия',
-    #     choices=ENERGY_MOOD_CHOICES,
-    #     max_length=9,
-    # )
-    mood = models.CharField(
+    mood = models.PositiveSmallIntegerField(
         verbose_name='Настроение',
-        choices=ENERGY_MOOD_CHOICES,
-        max_length=9,
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     note = models.CharField(
         verbose_name='Заметка',
@@ -48,7 +32,6 @@ class Condition(models.Model):
         null=True
     )
     date = models.DateTimeField(
-        # verbose_name=_('add date'),
         verbose_name=_('Дата/время добавления показателей'),
         auto_now_add=True
     )
@@ -58,19 +41,10 @@ class Condition(models.Model):
         verbose_name_plural = 'Состояния'
 
     def __str__(self):
-        return self.mood
-
-    # Для админки не вижу смысла, а в сериализаторах не работает
-    # def clean(self):
-    #     current_time = timezone.localtime()
-    #     last_add_date = Condition.objects.filter(
-    #         employee=self.employee
-    #     ).order_by('-date').first()
-    #     if last_add_date and (
-    #             current_time - last_add_date.date
-    #     ) < timezone.timedelta(hours=24):
-    #         raise ValidationError(
-    #             'Можно добавлять значения не чаще, чем раз в сутки!')
+        return (
+            'Состояние сотрудника '
+            f'{self.employee}: {self.mood} ({self.date})'
+        )
 
 
 class Survey(models.Model):
