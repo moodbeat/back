@@ -104,6 +104,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         (EMPLOYEE, 'Работник')
     )
 
+    class MentalStateChoices(models.TextChoices):
+        NORM = 'Нормальное состояние'
+        HARD = 'Тревожное'
+        CRIT = 'В группе риска'
+
     email = models.EmailField(
         verbose_name=_('email'),
         unique=True,
@@ -146,6 +151,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
         on_delete=models.SET_NULL
+    )
+    mental_state = models.CharField(
+        verbose_name='Текущее состояние',
+        choices=MentalStateChoices.choices,
+        default='Нормальное состояние'
     )
     hobbies = models.ManyToManyField(
         Hobby,
