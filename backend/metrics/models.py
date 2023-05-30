@@ -163,10 +163,9 @@ class CompletedSurvey(models.Model):
     """Модель связывающая сотрудников и их результаты прохождения опроса."""
 
     class ResultInterpretation(models.TextChoices):
-        LOW = 'Низкий уровень'
-        MEDIUM = 'Средний уровень'
-        HIGH = 'Высокий уровень'
-        CRITICAL = 'Критический уровень'
+        NORM = 'Нормальное состояние'
+        HARD = 'Тревожное'
+        CRIT = 'В группе риска'
 
     employee = models.ForeignKey(
         User,
@@ -238,15 +237,16 @@ class CompletedSurvey(models.Model):
         result_in_persent = (
             self.positive_value / self.survey.questions.count() * 100
         )
-        if result_in_persent in range(71, 91):
-            self.result = self.ResultInterpretation.HIGH
-        elif result_in_persent in range(21, 71):
-            self.result = self.ResultInterpretation.MEDIUM
-        elif result_in_persent in range(21):
-            self.result = self.ResultInterpretation.LOW
-        elif result_in_persent in range(91, 101):
-            self.result = self.ResultInterpretation.CRITICAL
+        if result_in_persent in range(11):
+            mental_state = self.ResultInterpretation.NORM
+        elif result_in_persent in range(11, 71):
+            mental_state = self.ResultInterpretation.HARD
+        elif result_in_persent in range(71, 101):
+            mental_state = self.ResultInterpretation.CRIT
 
+        self.result = mental_state
+        self.employee.mental_state = mental_state
+        self.employee.save()
         self.next_attempt_date = date.today() + timedelta(
             days=self.survey.frequency
         )
