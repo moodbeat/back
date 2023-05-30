@@ -8,7 +8,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.metrics.filters import CompletedSurveyFilter, SurveyFilter
+from api.v1.metrics.filters import (CompletedSurveyFilter, ConditionFilter,
+                                    SurveyFilter)
 from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         CompletedSurveySerializer,
                                         ConditionReadSerializer,
@@ -22,15 +23,24 @@ User = get_user_model()
 
 
 class ConditionViewSet(ModelViewSet):
-    queryset = Condition.objects.all()
+    queryset = Condition.objects.select_related('employee').all()
     filter_backends = (DjangoFilterBackend,)
+    filterset_class = ConditionFilter
     http_method_names = ('get', 'post',)
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return ConditionReadSerializer
         return ConditionWriteSerializer
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = (HRAllPermission,)
+            my_conditions = self.request.query_params.get('my_conditions')
+            if my_conditions:
+                self.permission_classes = (IsAuthenticated,)
+        return super().get_permissions()
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(

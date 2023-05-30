@@ -2,7 +2,26 @@ from datetime import date
 
 from django_filters import rest_framework as filters
 
-from metrics.models import CompletedSurvey, Survey
+from metrics.models import CompletedSurvey, Condition, Survey
+
+
+class ConditionFilter(filters.FilterSet):
+    position = filters.CharFilter(
+        field_name='employee__position', lookup_expr='exact'
+    )
+    department = filters.CharFilter(
+        field_name='employee__department', lookup_expr='exact'
+    )
+    my_conditions = filters.BooleanFilter(method='filter_my_conditions')
+
+    class Meta:
+        model = Condition
+        fields = ('employee', 'position', 'department')
+
+    def filter_my_conditions(self, queryset, name, value):
+        if value and self.request.user.is_authenticated:
+            return queryset.filter(employee=self.request.user)
+        return queryset
 
 
 class SurveyFilter(filters.FilterSet):

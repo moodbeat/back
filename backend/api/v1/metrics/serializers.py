@@ -13,7 +13,7 @@ class ConditionReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Condition
-        fields = ('mood', 'note', 'date')
+        fields = ('employee', 'mood', 'note', 'date')
 
 
 class ConditionWriteSerializer(serializers.ModelSerializer):
