@@ -36,7 +36,7 @@ class SurveyAdmin(admin.ModelAdmin):
         'creation_date',
         'is_active',
     )
-    list_filter = ('author', 'department', 'title')
+    list_filter = ('department',)
     search_fields = (
         'title',
         'description',
@@ -61,7 +61,7 @@ class SurveyAdmin(admin.ModelAdmin):
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('survey', 'text',)
-    list_filter = ('survey', 'text',)
+    list_filter = ('survey',)
     search_fields = ('survey', 'text',)
     ordering = ('id',)
 

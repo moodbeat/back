@@ -1,6 +1,7 @@
 import base64
 import hashlib
 
+from django.conf import settings
 from django.core.mail import send_mail
 from drf_yasg import openapi
 from rest_framework.exceptions import ValidationError
@@ -22,8 +23,8 @@ def decode_data(secret_key: str, encoded_data: str) -> str:
 
 
 def send_invite_code(email: str, code: str, again: bool = False):
-    subject = 'Приглашение на сайт'
-    url = f'https://url/register?invite={code}'
+    subject = 'Регистрация в сервисе (название скоро определим)'
+    url = f'https://carefor-emp-mood.netlify.app/register?invite_code={code}'
     welcome = 'Добро пожаловать на наш сайт.'
 
     if again:
@@ -31,21 +32,23 @@ def send_invite_code(email: str, code: str, again: bool = False):
 
     message = (f'{welcome} \n'
                f'Для дальнейшей регистрации пройдите по адресу: {url}')
-    from_email = 'noreply@example.com'
     recipient_list = [email]
 
     send_mail(
         subject,
         message,
-        from_email,
+        settings.EMAIL_HOST_USER,
         recipient_list,
         fail_silently=False,
     )
 
 
 def send_reset_code(email: str, code: str, again: bool = False):
-    subject = 'Смена пароля'
-    url = f'https://url/register?password_reset={code}'
+    subject = 'Смена пароля в сервисе (название скоро определим)'
+    url = (
+        'https://carefor-emp-mood.netlify.app/password-reset'
+        f'?reset_code={code}'
+    )
     welcome = 'Ваша ссылка на смену пароля'
 
     if again:
@@ -53,13 +56,12 @@ def send_reset_code(email: str, code: str, again: bool = False):
 
     message = (f'{welcome} \n'
                f'Для смены пароля пройдите по адресу: {url}')
-    from_email = 'noreply@example.com'
     recipient_list = [email]
 
     send_mail(
         subject,
         message,
-        from_email,
+        settings.EMAIL_HOST_USER,
         recipient_list,
         fail_silently=False,
     )

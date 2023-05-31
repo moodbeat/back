@@ -152,9 +152,30 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ----------------------------------------------------------------
+
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
+DJANGO_SMTP = os.getenv('DJANGO_SMTP', False) == 'True'
+
+if DJANGO_SMTP:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+
+EMAIL_PORT = 465
+
+EMAIL_USE_TLS = False
+
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+# ----------------------------------------------------------------
 
 INVITE_TIME_EXPIRES_DAYS = 7
 

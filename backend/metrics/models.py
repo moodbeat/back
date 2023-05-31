@@ -41,6 +41,7 @@ class Condition(models.Model):
     class Meta:
         verbose_name = 'Состояние (сотрудника)'
         verbose_name_plural = 'Состояния'
+        ordering = ('-date',)
 
     def __str__(self):
         return (
