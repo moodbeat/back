@@ -35,7 +35,9 @@ class ConditionWriteSerializer(serializers.ModelSerializer):
             .order_by('-date')
             .first()
         )
-        if last_add_condition:
+        infinity_freq = self.context.get(
+            'request').query_params.get('infinity_freq')
+        if last_add_condition and not infinity_freq:
             last_add_date = last_add_condition.date
             if last_add_date and (
                     current_time - last_add_date).total_seconds() < 36000:
