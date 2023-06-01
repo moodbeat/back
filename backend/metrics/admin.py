@@ -9,8 +9,7 @@ class ConditionAdmin(admin.ModelAdmin):
     list_display = ('employee', 'mood', 'note', 'date')
     list_filter = ('mood', 'date')
     search_fields = ('employee__first_name', 'employee__last_name')
-    ordering = ('employee__email',)
-    readonly_fields = ('date',)
+    ordering = ('-date',)
 
     fieldsets = (
         (None, {
@@ -21,6 +20,10 @@ class ConditionAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         })
     )
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related('employee',)
 
 
 class SurveyDepartmentInline(admin.TabularInline):
@@ -75,7 +78,7 @@ class QuestionAdmin(admin.ModelAdmin):
 @admin.register(CompletedSurvey)
 class CompletedSurvey(admin.ModelAdmin):
     list_display = ('employee', 'survey', 'result', 'completion_date',)
-    list_filter = ('completion_date', 'employee', 'survey', 'result',)
+    list_filter = ('completion_date', 'survey', 'result',)
     search_fields = ('employee', 'survey',)
     ordering = ('-completion_date', 'employee', 'survey',)
 
@@ -91,3 +94,7 @@ class CompletedSurvey(admin.ModelAdmin):
             'classes': ('collapse',)
         })
     )
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related('employee', 'survey')

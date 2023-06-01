@@ -35,7 +35,7 @@ class Condition(models.Model):
     )
     date = models.DateTimeField(
         verbose_name=_('Дата/время добавления показателей'),
-        auto_now_add=True
+        default=timezone.now
     )
 
     class Meta:
@@ -216,9 +216,9 @@ class CompletedSurvey(models.Model):
         )
         if result_in_persent in range(11):
             mental_state = self.ResultInterpretation.NORM
-        elif result_in_persent in range(11, 71):
+        elif result_in_persent in range(11, 69):
             mental_state = self.ResultInterpretation.HARD
-        elif result_in_persent in range(71, 101):
+        elif result_in_persent in range(69, 101):
             mental_state = self.ResultInterpretation.CRIT
 
         self.result = mental_state
