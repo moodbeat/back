@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
+
 from users.models import Department
 
 from .validators import validate_event_data

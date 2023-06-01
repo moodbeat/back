@@ -1,13 +1,14 @@
 from django.conf import settings
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
+
 from users.models import InviteCode
 
 from .utils import verify_code
 
 
 class InviteCodeFilter(BaseFilterBackend):
-    '''Доступ для гостей только по ключу-приглашению'''
+    """Доступ для гостей только по ключу-приглашению."""
 
     def filter_queryset(self, request, queryset, view):
         invite_code = request.query_params.get('invite_code')
@@ -25,7 +26,7 @@ class InviteCodeFilter(BaseFilterBackend):
 
 
 class PositionInviteCodeFilter(InviteCodeFilter):
-    '''При выборе должностей исключать руководящие'''
+    """При выборе должностей исключать руководящие."""
 
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)
@@ -35,10 +36,12 @@ class PositionInviteCodeFilter(InviteCodeFilter):
 
 
 class DepartmentInviteCodeFilter(InviteCodeFilter):
-    '''
-    Фильтр по отделам, исключающий отделы без должностей или
-    только с руководящими должностями
-    '''
+    """
+    Фильтр по отделам.
+
+    Исключает отделы без должностей или только с руководящими должностями.
+
+    """
 
     def filter_queryset(self, request, queryset, view):
         queryset = super().filter_queryset(request, queryset, view)

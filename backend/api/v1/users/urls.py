@@ -1,5 +1,6 @@
-from api.v1.utils import OptionalSlashRouter
 from django.urls import include, path, re_path
+
+from api.v1.utils import OptionalSlashRouter
 
 from . import views
 from .consumers import UserNotifyConsumer

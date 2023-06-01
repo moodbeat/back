@@ -1,6 +1,5 @@
 from drf_yasg import openapi
 
-
 user_param = openapi.Parameter(
     'user',
     openapi.IN_QUERY,

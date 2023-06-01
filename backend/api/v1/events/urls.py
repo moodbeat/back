@@ -1,5 +1,6 @@
-from api.v1.utils import OptionalSlashRouter
 from django.urls import include, path
+
+from api.v1.utils import OptionalSlashRouter
 
 from . import views
 

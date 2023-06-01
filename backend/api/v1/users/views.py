@@ -3,7 +3,6 @@ import uuid
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
-from django.db.models import OuterRef, Prefetch, Subquery
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
@@ -16,7 +15,6 @@ from rest_framework.viewsets import ModelViewSet
 from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                                 ChiefSafePermission, EmployeePostPermission,
                                 EmployeeSafePermission, HRAllPermission)
-from metrics.models import Condition
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position)
 
@@ -44,28 +42,12 @@ class UserViewSet(ModelViewSet):
     permission_classes = [HRAllPermission | ChiefSafePermission]
 
     def get_queryset(self):
-
-        queryset = (
+        return (
             User.objects
             .filter(is_active=True, is_superuser=False)
             .select_related('position', 'department')
-            .prefetch_related(
-                Prefetch(
-                    'condition_set',
-                    queryset=Condition.objects.filter(
-                        id__in=Subquery(
-                            Condition.objects.filter(
-                                employee_id=OuterRef('id')
-                            ).order_by('-date').values('id')[:1]
-                        )
-                    ),
-                    to_attr='latest_condition'
-                ),
-                'hobbies'
-            )
+            .prefetch_related('condition_set', 'hobbies')
         )
-
-        return queryset
 
     @swagger_auto_schema(request_body=UserUpdateSerializer)
     def partial_update(self, request, *args, **kwargs):
@@ -74,7 +56,7 @@ class UserViewSet(ModelViewSet):
 
 
 class CurrentUserView(APIView):
-    '''Данные текущего пользователя'''
+    """Данные текущего пользователя."""
 
     permission_classes = (IsAuthenticated,)
 
@@ -99,7 +81,7 @@ class CurrentUserView(APIView):
 
 
 class SendInviteView(APIView):
-    '''Отправка на почту ссылки для регистрации'''
+    """Отправка на почту ссылки для регистрации."""
 
     permission_classes = (HRAllPermission,)
 
@@ -155,7 +137,7 @@ class SendInviteView(APIView):
 
 
 class RegisterView(APIView):
-    '''Регистрация по ссылке-приглашению'''
+    """Регистрация по ссылке-приглашению."""
 
     permission_classes = (AllowAny,)
 
@@ -195,7 +177,7 @@ class RegisterView(APIView):
 
 
 class VerifyInviteView(APIView):
-    '''Проверка ключа-приглашения'''
+    """Проверка ключа-приглашения."""
 
     permission_classes = (AllowAny,)
 
@@ -222,7 +204,7 @@ class VerifyInviteView(APIView):
 
 
 class PasswordResetView(APIView):
-    '''Отправка на почту ссылки на смену пароля'''
+    """Отправка на почту ссылки на смену пароля."""
 
     permission_classes = (AllowAny,)
 
@@ -272,7 +254,7 @@ class PasswordResetView(APIView):
 
 
 class PasswordResetConfirmView(APIView):
-    '''Новый пароль'''
+    """Новый пароль."""
 
     permission_classes = (AllowAny,)
 
@@ -307,7 +289,7 @@ class PasswordResetConfirmView(APIView):
 
 
 class PasswordChangeView(APIView):
-    '''Смена пароля'''
+    """Смена пароля."""
 
     permission_classes = (IsAuthenticated,)
 
