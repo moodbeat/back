@@ -78,7 +78,7 @@ class Survey(models.Model):
     frequency = models.PositiveSmallIntegerField(
         verbose_name='периодичность прохождения опроса',
         default=30,
-        validators=[MinValueValidator(1), MaxValueValidator(90)],
+        validators=[MaxValueValidator(90)],
     )
     creation_date = models.DateTimeField(
         verbose_name='дата и время создания опроса',
