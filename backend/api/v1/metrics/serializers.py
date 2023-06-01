@@ -121,7 +121,10 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
             'survey': data['survey'],
             'next_attempt_date__gt': date.today(),
         }
-        if models.CompletedSurvey.objects.filter(**filter_params).exists():
+        if (
+            data['survey'].frequency
+            and models.CompletedSurvey.objects.filter(**filter_params).exists()
+        ):
             raise ValidationError(
                 'Слишком рано для повторного прохождения опроса'
             )
