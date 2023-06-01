@@ -13,33 +13,39 @@ class ConditionReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Condition
-        fields = ('mood', 'note', 'date')
+        fields = '__all__'
 
 
 class ConditionWriteSerializer(serializers.ModelSerializer):
-    mood = serializers.ChoiceField(
-        choices=models.Condition.ENERGY_MOOD_CHOICES
-    )
+
     employee = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )
-    date = serializers.SerializerMethodField()
-
-    def get_date(self, obj):
-        return timezone.localtime()
 
     class Meta:
         model = models.Condition
         fields = ('employee', 'mood', 'note', 'date')
 
-    # не получается вылидировать поле
-    # def validate_date(self, value):
-    #     current_time = timezone.localtime()
-    #     last_add_date = Condition.objects.filter().order_by('-date').first()
-    #     if last_add_date and (current_time - last_add_date).hour < 10:
-    #         raise ValidationError(
-    #             'Можно добавлять значения не чаще, чем раз в сутки!')
-    #     return value
+    def validate(self, attrs):
+        current_time = timezone.localtime()
+        user = self.context.get('request', None).user
+        last_add_condition = (
+            models.Condition.objects
+            .filter(employee=user)
+            .order_by('-date')
+            .first()
+        )
+        if last_add_condition:
+            last_add_date = last_add_condition.date
+            if last_add_date and (
+                    current_time - last_add_date).total_seconds() < 36000:
+                raise ValidationError(
+                    'Можно добавлять значения не чаще, чем раз в 10 часов.'
+                )
+        return attrs
+
+    def to_representation(self, instance):
+        return ConditionReadSerializer(instance, context=self.context).data
 
 
 class QuestionSerializer(serializers.ModelSerializer):

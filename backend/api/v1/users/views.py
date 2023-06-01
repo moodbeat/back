@@ -1,8 +1,5 @@
 import uuid
 
-from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
-                                ChiefSafePermission, EmployeePostPermission,
-                                EmployeeSafePermission, HRAllPermission)
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
@@ -14,6 +11,10 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+
+from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
+                                ChiefSafePermission, EmployeePostPermission,
+                                EmployeeSafePermission, HRAllPermission)
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position)
 
@@ -45,7 +46,7 @@ class UserViewSet(ModelViewSet):
             User.objects
             .filter(is_active=True, is_superuser=False)
             .select_related('position', 'department')
-            .prefetch_related('hobbies')
+            .prefetch_related('condition_set', 'hobbies')
         )
 
     @swagger_auto_schema(request_body=UserUpdateSerializer)
@@ -55,9 +56,12 @@ class UserViewSet(ModelViewSet):
 
 
 class CurrentUserView(APIView):
-    '''Данные текущего пользователя'''
+    """Данные текущего пользователя."""
 
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return UserViewSet.get_queryset(self)
 
     @swagger_auto_schema(responses={status.HTTP_200_OK: UserSerializer})
     def get(self, request):
@@ -77,7 +81,7 @@ class CurrentUserView(APIView):
 
 
 class SendInviteView(APIView):
-    '''Отправка на почту ссылки для регистрации'''
+    """Отправка на почту ссылки для регистрации."""
 
     permission_classes = (HRAllPermission,)
 
@@ -133,7 +137,7 @@ class SendInviteView(APIView):
 
 
 class RegisterView(APIView):
-    '''Регистрация по ссылке-приглашению'''
+    """Регистрация по ссылке-приглашению."""
 
     permission_classes = (AllowAny,)
 
@@ -173,7 +177,7 @@ class RegisterView(APIView):
 
 
 class VerifyInviteView(APIView):
-    '''Проверка ключа-приглашения'''
+    """Проверка ключа-приглашения."""
 
     permission_classes = (AllowAny,)
 
@@ -200,7 +204,7 @@ class VerifyInviteView(APIView):
 
 
 class PasswordResetView(APIView):
-    '''Отправка на почту ссылки на смену пароля'''
+    """Отправка на почту ссылки на смену пароля."""
 
     permission_classes = (AllowAny,)
 
@@ -250,7 +254,7 @@ class PasswordResetView(APIView):
 
 
 class PasswordResetConfirmView(APIView):
-    '''Новый пароль'''
+    """Новый пароль."""
 
     permission_classes = (AllowAny,)
 
@@ -285,7 +289,7 @@ class PasswordResetConfirmView(APIView):
 
 
 class PasswordChangeView(APIView):
-    '''Смена пароля'''
+    """Смена пароля."""
 
     permission_classes = (IsAuthenticated,)
 

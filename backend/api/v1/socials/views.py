@@ -1,5 +1,3 @@
-from api.v1.permissions import (ChiefPostPermission, EmployeePostPermission,
-                                HRAllPermission)
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
@@ -9,6 +7,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+
+from api.v1.permissions import (ChiefPostPermission, EmployeePostPermission,
+                                HRAllPermission)
 from socials.models import HelpType, Status
 
 from .serializers import (HelpTypeSerializer, NeedHelpSerializer,

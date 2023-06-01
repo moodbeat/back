@@ -1,6 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
+from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
+
+from api.v1.metrics.serializers import ConditionReadSerializer
 from users.models import Department, Hobby, Position
 
 from .fields import Base64ImageField
@@ -34,18 +37,26 @@ class UserSerializer(serializers.ModelSerializer):
     department = DepartmentSerializer(read_only=True)
     position = PositionSerializer(read_only=True)
     hobbies = HobbySerializer(many=True, read_only=True)
+    latest_condition = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = (
             'id', 'email', 'first_name', 'last_name', 'patronymic', 'role',
-            'department', 'position', 'hobbies', 'avatar', 'about', 'phone',
-            'date_joined'
+            'department', 'position', 'latest_condition', 'mental_state',
+            'hobbies', 'avatar', 'about', 'phone', 'date_joined'
         )
+
+    @swagger_serializer_method(serializer_or_field=ConditionReadSerializer)
+    def get_latest_condition(self, obj):
+        latest_condition = obj.condition_set.order_by('-date').first()
+        if not latest_condition:
+            return None
+        return ConditionReadSerializer(latest_condition).data
 
 
 class UserSelfUpdateSerializer(serializers.ModelSerializer):
-    '''Для редактирования своего профиля'''
+    """Для редактирования своего профиля."""
 
     avatar = Base64ImageField()
     hobbies = HobbySerializer
@@ -56,7 +67,7 @@ class UserSelfUpdateSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
-    '''Для редактирования профилей сотрудников HR'ом'''
+    """Для редактирования профилей сотрудников HR'ом."""
 
     department = DepartmentSerializer
     position = PositionSerializer

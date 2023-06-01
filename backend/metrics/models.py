@@ -2,7 +2,8 @@ from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import (MaxValueValidator, MinLengthValidator,
+                                    MinValueValidator)
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -14,15 +15,6 @@ User = get_user_model()
 
 class Condition(models.Model):
 
-    # пока по макету делаю
-    ENERGY_MOOD_CHOICES = (
-        ('Bad', _('Плохо')),
-        ('So so', _('Так себе')),
-        ('OK', _('Нормально')),
-        ('Fine', _('Хорошо')),
-        ('Good', _('Отлично')),
-    )
-
     employee = models.ForeignKey(
         User,
         verbose_name='Сотрудник',
@@ -30,47 +22,32 @@ class Condition(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
     )
-    # опять же по макетам это не нужно
-    # energy = models.CharField(
-    #     verbose_name='Энергия',
-    #     choices=ENERGY_MOOD_CHOICES,
-    #     max_length=9,
-    # )
-    mood = models.CharField(
+    mood = models.PositiveSmallIntegerField(
         verbose_name='Настроение',
-        choices=ENERGY_MOOD_CHOICES,
-        max_length=9,
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
     note = models.CharField(
         verbose_name='Заметка',
-        max_length=255,
+        max_length=128,
+        null=True,
         blank=True,
-        null=True
+        validators=[MinLengthValidator(4)]
     )
     date = models.DateTimeField(
-        # verbose_name=_('add date'),
         verbose_name=_('Дата/время добавления показателей'),
-        auto_now_add=True
+        default=timezone.now
     )
 
     class Meta:
         verbose_name = 'Состояние (сотрудника)'
         verbose_name_plural = 'Состояния'
+        ordering = ('-date',)
 
     def __str__(self):
-        return self.mood
-
-    # Для админки не вижу смысла, а в сериализаторах не работает
-    # def clean(self):
-    #     current_time = timezone.localtime()
-    #     last_add_date = Condition.objects.filter(
-    #         employee=self.employee
-    #     ).order_by('-date').first()
-    #     if last_add_date and (
-    #             current_time - last_add_date.date
-    #     ) < timezone.timedelta(hours=24):
-    #         raise ValidationError(
-    #             'Можно добавлять значения не чаще, чем раз в сутки!')
+        return (
+            'Состояние сотрудника '
+            f'{self.employee}: {self.mood} ({self.date})'
+        )
 
 
 class Survey(models.Model):
@@ -163,10 +140,9 @@ class CompletedSurvey(models.Model):
     """Модель связывающая сотрудников и их результаты прохождения опроса."""
 
     class ResultInterpretation(models.TextChoices):
-        LOW = 'Низкий уровень'
-        MEDIUM = 'Средний уровень'
-        HIGH = 'Высокий уровень'
-        CRITICAL = 'Критический уровень'
+        NORM = 'Нормальное состояние'
+        HARD = 'Тревожное'
+        CRIT = 'В группе риска'
 
     employee = models.ForeignKey(
         User,
@@ -238,15 +214,16 @@ class CompletedSurvey(models.Model):
         result_in_persent = (
             self.positive_value / self.survey.questions.count() * 100
         )
-        if result_in_persent in range(71, 91):
-            self.result = self.ResultInterpretation.HIGH
-        elif result_in_persent in range(21, 71):
-            self.result = self.ResultInterpretation.MEDIUM
-        elif result_in_persent in range(21):
-            self.result = self.ResultInterpretation.LOW
-        elif result_in_persent in range(91, 101):
-            self.result = self.ResultInterpretation.CRITICAL
+        if result_in_persent in range(11):
+            mental_state = self.ResultInterpretation.NORM
+        elif result_in_persent in range(11, 69):
+            mental_state = self.ResultInterpretation.HARD
+        elif result_in_persent in range(69, 101):
+            mental_state = self.ResultInterpretation.CRIT
 
+        self.result = mental_state
+        self.employee.mental_state = mental_state
+        self.employee.save()
         self.next_attempt_date = date.today() + timedelta(
             days=self.survey.frequency
         )

@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
+from rest_framework import serializers
+
 from api.v1.users.fields import Base64ImageField
 from api.v1.users.serializers import DepartmentSerializer, UserSerializer
-from django.contrib.auth import get_user_model
 from events.models import Category, Entry, Event
 from events.validators import validate_event_data
-from rest_framework import serializers
 
 User = get_user_model()
 
