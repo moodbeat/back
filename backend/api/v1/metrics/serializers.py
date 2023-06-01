@@ -13,7 +13,7 @@ class ConditionReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Condition
-        fields = ('employee', 'mood', 'note', 'date')
+        fields = '__all__'
 
 
 class ConditionWriteSerializer(serializers.ModelSerializer):
@@ -43,6 +43,9 @@ class ConditionWriteSerializer(serializers.ModelSerializer):
                     'Можно добавлять значения не чаще, чем раз в 10 часов.'
                 )
         return attrs
+
+    def to_representation(self, instance):
+        return ConditionReadSerializer(instance, context=self.context).data
 
 
 class QuestionSerializer(serializers.ModelSerializer):

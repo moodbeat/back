@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
+
 from users.models import Department, Hobby, Position
 
 from .fields import Base64ImageField
@@ -34,14 +35,26 @@ class UserSerializer(serializers.ModelSerializer):
     department = DepartmentSerializer(read_only=True)
     position = PositionSerializer(read_only=True)
     hobbies = HobbySerializer(many=True, read_only=True)
+    latest_condition = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = (
             'id', 'email', 'first_name', 'last_name', 'patronymic', 'role',
-            'department', 'position', 'mental_state', 'hobbies', 'avatar',
-            'about', 'phone', 'date_joined'
+            'department', 'position', 'latest_condition', 'mental_state',
+            'hobbies', 'avatar', 'about', 'phone', 'date_joined'
         )
+
+    def get_latest_condition(self, obj):
+        latest_condition = obj.condition_set.order_by('-date').first()
+        if latest_condition:
+            return {
+                'id': latest_condition.id,
+                'mood': latest_condition.mood,
+                'note': latest_condition.note,
+                'date': latest_condition.date
+            }
+        return None
 
 
 class UserSelfUpdateSerializer(serializers.ModelSerializer):

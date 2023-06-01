@@ -1,11 +1,9 @@
 import uuid
 
-from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
-                                ChiefSafePermission, EmployeePostPermission,
-                                EmployeeSafePermission, HRAllPermission)
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.db.models import OuterRef, Prefetch, Subquery
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
@@ -14,6 +12,11 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+
+from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
+                                ChiefSafePermission, EmployeePostPermission,
+                                EmployeeSafePermission, HRAllPermission)
+from metrics.models import Condition
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position)
 
@@ -41,12 +44,28 @@ class UserViewSet(ModelViewSet):
     permission_classes = [HRAllPermission | ChiefSafePermission]
 
     def get_queryset(self):
-        return (
+
+        queryset = (
             User.objects
             .filter(is_active=True, is_superuser=False)
             .select_related('position', 'department')
-            .prefetch_related('hobbies')
+            .prefetch_related(
+                Prefetch(
+                    'condition_set',
+                    queryset=Condition.objects.filter(
+                        id__in=Subquery(
+                            Condition.objects.filter(
+                                employee_id=OuterRef('id')
+                            ).order_by('-date').values('id')[:1]
+                        )
+                    ),
+                    to_attr='latest_condition'
+                ),
+                'hobbies'
+            )
         )
+
+        return queryset
 
     @swagger_auto_schema(request_body=UserUpdateSerializer)
     def partial_update(self, request, *args, **kwargs):
@@ -58,6 +77,9 @@ class CurrentUserView(APIView):
     '''Данные текущего пользователя'''
 
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        return UserViewSet.get_queryset(self)
 
     @swagger_auto_schema(responses={status.HTTP_200_OK: UserSerializer})
     def get(self, request):

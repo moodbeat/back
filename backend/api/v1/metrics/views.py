@@ -22,6 +22,9 @@ from metrics.models import CompletedSurvey, Condition, Question, Survey
 User = get_user_model()
 
 
+@method_decorator(name='create', decorator=swagger_auto_schema(
+    responses={status.HTTP_201_CREATED: ConditionReadSerializer},
+))
 class ConditionViewSet(ModelViewSet):
     queryset = Condition.objects.select_related('employee').all()
     filter_backends = (DjangoFilterBackend,)
