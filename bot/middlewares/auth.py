@@ -14,7 +14,7 @@ class AuthMiddleware(BaseMiddleware):
     ) -> Any:
 
         state = await data.get('state').get_data()
-        if not state.get('tokens'):
+        if not state.get('headers'):
             user = await get_user_by_telegram_id(event.from_user.id)
 
             if user:
