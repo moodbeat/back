@@ -44,13 +44,13 @@ async def save_user_data(message: types.Message, state: FSMContext):
     }
 
     try:
-        response = await requests.post(
+        response = requests.post(
             config.base_endpoint + 'auth/jwt/create/', json=data
         )
         response.raise_for_status()
         tokens = response.json()
 
-    except requests.exceptions.ConnectionError:
+    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
         return await message.answer(
             'Не удалось соединиться с сервером авторизации.'
         )

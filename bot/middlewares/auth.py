@@ -19,17 +19,16 @@ class AuthMiddleware(BaseMiddleware):
 
             if user:
                 user_data = {
-                    'tokens':
+                    'user': user,
+                    'headers':
                     {
-                        'access': user.access_token,
-                        'refresh': user.refresh_token
+                        'Authorization': 'Bearer ' + user.access_token
                     }
                 }
                 await data.get('state').update_data(data=user_data)
             else:
-                await event.answer(
+                return await event.answer(
                     'Вы не авторизованы. Введите /auth, чтобы авторизоваться.'
                 )
-                return
 
         return await handler(event, data)
