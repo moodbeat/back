@@ -2,7 +2,7 @@ from typing import Any, Awaitable, Callable, Dict
 
 from aiogram import BaseMiddleware
 from aiogram.types import CallbackQuery
-from db.requests import get_user_by_telegram_id
+from db.requests import find_user
 
 
 class AuthMiddleware(BaseMiddleware):
@@ -15,7 +15,7 @@ class AuthMiddleware(BaseMiddleware):
 
         state = await data.get('state').get_data()
         if not state.get('headers'):
-            user = await get_user_by_telegram_id(event.from_user.id)
+            user = await find_user(telegram_id=event.from_user.id)
 
             if user:
                 user_data = {

@@ -6,7 +6,7 @@ from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from config_reader import config
-from db.requests import save_auth_data
+from db.requests import add_auth_data
 
 router = Router()
 
@@ -66,7 +66,7 @@ async def save_user_data(message: types.Message, state: FSMContext):
 
         return
 
-    await save_auth_data(
+    await add_auth_data(
         telegram_id=telegram_id,
         email=email,
         access_token=tokens.get('access'),
