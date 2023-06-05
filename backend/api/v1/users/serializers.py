@@ -45,7 +45,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'email', 'first_name', 'last_name', 'patronymic', 'role',
             'department', 'position', 'latest_condition', 'mental_state',
-            'hobbies', 'avatar', 'about', 'phone', 'date_joined'
+            'hobbies', 'avatar', 'avatar_thumbnail', 'about', 'phone',
+            'date_joined'
         )
 
     @swagger_serializer_method(serializer_or_field=ConditionReadSerializer)
@@ -60,11 +61,12 @@ class UserSelfUpdateSerializer(serializers.ModelSerializer):
     """Для редактирования своего профиля."""
 
     avatar = Base64ImageField()
+    avatar_thumbnail = serializers.ImageField(read_only=True)
     hobbies = HobbySerializer
 
     class Meta:
         model = User
-        fields = ('about', 'avatar', 'hobbies')
+        fields = ('about', 'avatar', 'avatar_thumbnail', 'hobbies')
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):

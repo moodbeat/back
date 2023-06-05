@@ -12,7 +12,7 @@ class SpecialistsSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id', 'first_name', 'last_name', 'patronymic', 'role',
-            'department', 'position', 'avatar'
+            'department', 'position', 'avatar', 'avatar_thumbnail'
         )
 
 
