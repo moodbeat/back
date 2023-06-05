@@ -5,6 +5,8 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import MinLengthValidator
 from django.db import models
+from django.db.models import UniqueConstraint
+from django.db.models.functions import Lower
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
@@ -229,9 +231,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
         ordering = ['-date_joined']
+        constraints = [
+            UniqueConstraint(
+                Lower('email'),
+                name='user_email_ci_uniqueness',
+            ),
+        ]
 
     def __str__(self):
         return self.email
+
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        super().save(*args, **kwargs)
 
 
 class InviteCode(models.Model):
@@ -269,6 +281,10 @@ class InviteCode(models.Model):
         return self.created + timezone.timedelta(
             days=settings.INVITE_TIME_EXPIRES_DAYS)
 
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        super().save(*args, **kwargs)
+
     expire_date.short_description = 'Дата окончания инвайта'
 
 
@@ -294,3 +310,7 @@ class PasswordResetCode(models.Model):
 
     def __str__(self):
         return f'reset_{self.pk} to {self.email}'
+
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        super().save(*args, **kwargs)

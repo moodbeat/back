@@ -105,11 +105,11 @@ class SendInviteView(APIView):
 
         email = serializer.validated_data.get('email')
 
-        if User.objects.filter(email=email).exists():
+        if User.objects.filter(email__iexact=email).exists():
             data = {'detail': 'Пользователь с таким email уже зарегистрирован'}
             return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
-        if InviteCode.objects.filter(email=email).exists():
+        if InviteCode.objects.filter(email__iexact=email).exists():
             encoded_uuid = self.create_invite_code(email, retry=True)
             send_invite_code(email=email, code=encoded_uuid, again=True)
             data = {'detail': 'Ссылка отправлена повторно',
@@ -129,7 +129,7 @@ class SendInviteView(APIView):
         user = self.request.user
         if retry:
             InviteCode.objects.filter(
-                email=email, sender=user
+                email__iexact=email, sender=user
             ).update(code=uuid_code)
             return encoded_uuid
         InviteCode.objects.create(email=email, sender=user, code=uuid_code)
@@ -228,7 +228,7 @@ class PasswordResetView(APIView):
 
         email = serializer.validated_data.get('email')
 
-        if PasswordResetCode.objects.filter(email=email).exists():
+        if PasswordResetCode.objects.filter(email__iexact=email).exists():
             encoded_uuid = self.create_reset_code(email, retry=True)
             send_reset_code(email=email, code=encoded_uuid, again=True)
             data = {'detail': 'Ссылка отправлена повторно',
@@ -247,7 +247,7 @@ class PasswordResetView(APIView):
             settings.RESET_INVITE_SECRET_KEY, str(uuid_code))
         if retry:
             PasswordResetCode.objects.filter(
-                email=email).update(code=uuid_code)
+                email__iexact=email).update(code=uuid_code)
             return encoded_uuid
         PasswordResetCode.objects.create(email=email, code=uuid_code)
         return encoded_uuid
@@ -281,7 +281,7 @@ class PasswordResetConfirmView(APIView):
 
         email = reset_code.email
         password = make_password(serializer.validated_data.pop('password'))
-        User.objects.filter(email=email).update(password=password)
+        User.objects.filter(email__iexact=email).update(password=password)
         reset_code.delete()
 
         data = {'detail': 'Пароль успешно изменен.'}

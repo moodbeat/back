@@ -83,6 +83,10 @@ CHANNEL_LAYERS = {
     }
 }
 
+DJOSER = {
+    'LOGIN_FIELD': 'email'
+}
+
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
@@ -123,6 +127,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
     'AUTH_HEADER_TYPES': ('Bearer',),
+    'TOKEN_OBTAIN_SERIALIZER': 'api.v1.users.serializers.CustomTokenObtainSerializer',
 }
 
 SWAGGER_SETTINGS = {
