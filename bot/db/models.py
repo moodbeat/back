@@ -10,9 +10,16 @@ Base = declarative_base()
 class Auth(Base):
     __tablename__ = 'auth'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(
+        Integer,
+        primary_key=True
+    )
     telegram_id = Column(BigInteger)
     email = Column(String)
     access_token = Column(String)
     refresh_token = Column(String)
-    auth_date = Column(DateTime, default=datetime.utcnow)
+    auth_date = Column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
