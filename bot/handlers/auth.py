@@ -7,6 +7,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from config_reader import config
 from db.requests import add_auth_data, find_user, update_auth_data
+from email_validator import EmailNotValidError, validate_email
 
 router = Router()
 
@@ -24,9 +25,21 @@ async def auth_email(message: types.Message, state: FSMContext):
 
 @router.message(AuthState.email)
 async def auth_password(message: types.Message, state: FSMContext):
-    await state.update_data(email=message.text)
-    await state.set_state(AuthState.password)
-    await message.answer('Введите пароль:')
+    email = message.text
+
+    try:
+        valid_email = validate_email(email, check_deliverability=False)
+        email = valid_email.normalized
+
+        await state.update_data(email=email)
+        await state.set_state(AuthState.password)
+        await message.answer('Введите пароль:')
+
+    except EmailNotValidError:
+        await message.answer(
+            'Введен некорректный адрес электронной почты.\n\n'
+            'Попробуйте снова.'
+        )
 
 
 @router.message(AuthState.password)
