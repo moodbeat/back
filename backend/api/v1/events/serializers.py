@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from sorl.thumbnail import get_thumbnail
 
 from api.v1.users.fields import Base64ImageField
 from api.v1.users.serializers import DepartmentSerializer, UserSerializer
@@ -18,12 +19,21 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class AuthorSerializer(serializers.ModelSerializer):
 
+    avatar_thumbnail = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = (
             'id', 'first_name', 'last_name', 'role',
             'department', 'position', 'avatar', 'avatar_thumbnail'
         )
+
+    def get_avatar_thumbnail(self, obj):
+        if obj.avatar:
+            return get_thumbnail(
+                obj.avatar, '120x120', crop='center', quality=99
+            ).url
+        return None
 
 
 class EntryReadSerializer(serializers.ModelSerializer):

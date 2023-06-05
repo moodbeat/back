@@ -1,11 +1,8 @@
-import os.path
 import uuid
-from io import BytesIO
 
 from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.core.files.base import ContentFile
 from django.core.validators import MinLengthValidator
 from django.db import models
 from django.db.models import UniqueConstraint
@@ -13,7 +10,6 @@ from django.db.models.functions import Lower
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
-from PIL import Image
 
 from .managers import UserManager
 from .validators import (alpha_space_dash_validator, validate_email_latin,
@@ -183,12 +179,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         null=True
     )
-    avatar_thumbnail = models.ImageField(
-        verbose_name='Миниатюра аватара/фото',
-        upload_to='users/thumbnails/',
-        blank=True,
-        null=True
-    )
     about = models.TextField(
         verbose_name='О себе',
         max_length=256,
@@ -253,43 +243,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         self.email = self.email.lower()
-
-        if not self.make_thumbnail():
-            raise Exception(
-                'Could not create thumbnail - is the file type valid?'
-            )
-
         super().save(*args, **kwargs)
-
-    def make_thumbnail(self):
-        # https://stackoverflow.com/questions/23922289/
-        image = Image.open(self.avatar)
-        image.thumbnail((200, 200), Image.ANTIALIAS)
-
-        thumb_name, thumb_extension = os.path.splitext(self.avatar.name)
-        thumb_extension = thumb_extension.lower()
-
-        thumb_filename = thumb_name + '_thumb' + thumb_extension
-
-        if thumb_extension in ['.jpg', '.jpeg']:
-            ftype = 'JPEG'
-        elif thumb_extension == '.gif':
-            ftype = 'GIF'
-        elif thumb_extension == '.png':
-            ftype = 'PNG'
-        else:
-            return False
-
-        temp_thumb = BytesIO()
-        image.save(temp_thumb, ftype)
-        temp_thumb.seek(0)
-
-        self.avatar_thumbnail.save(
-            thumb_filename, ContentFile(temp_thumb.read()), save=False
-        )
-        temp_thumb.close()
-
-        return True
 
 
 class InviteCode(models.Model):

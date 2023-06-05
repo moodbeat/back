@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.filters import SearchFilter
@@ -68,13 +69,28 @@ class CurrentUserView(APIView):
         serializer = UserSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    @swagger_auto_schema(request_body=UserSelfUpdateSerializer)
+    @swagger_auto_schema(
+        request_body=UserSelfUpdateSerializer,
+        manual_parameters=[
+            openapi.Parameter(
+                'delete_avatar',
+                openapi.IN_QUERY,
+                description='Параметр удаления аватара.',
+                type=openapi.TYPE_BOOLEAN
+            ),
+        ]
+    )
     def patch(self, request):
         serializer = UserSelfUpdateSerializer(
             request.user,
             data=request.data,
             partial=True
         )
+        delete_avatar = request.query_params.get('delete_avatar', None)
+        user = self.request.user
+        if delete_avatar:
+            if user.avatar:
+                user.avatar.delete(save=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
