@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from api.v1.metrics.serializers import ConditionReadSerializer
 from users.models import Department, Hobby, Position
@@ -139,7 +140,7 @@ class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
 
     def validate_email(self, value):
-        if not User.objects.filter(email=value).exists():
+        if not User.objects.filter(email__iexact=value).exists():
             raise serializers.ValidationError(
                 'Пользователь с указанным email адресом отсутствует.'
             )
@@ -235,3 +236,10 @@ class VerifyInviteSerializer(serializers.Serializer):
 
     class Meta:
         fields = ('invite_code',)
+
+
+class CustomTokenObtainSerializer(TokenObtainPairSerializer):
+
+    def validate(self, attrs):
+        attrs["email"] = attrs.get("email").lower()
+        return super(CustomTokenObtainSerializer, self).validate(attrs)
