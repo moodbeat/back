@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'djoser',
     'drf_yasg',
     'corsheaders',
+    'sorl.thumbnail',
 
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',

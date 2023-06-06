@@ -3,6 +3,7 @@ from django.contrib.auth.password_validation import validate_password
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from sorl.thumbnail import get_thumbnail
 
 from api.v1.metrics.serializers import ConditionReadSerializer
 from users.models import Department, Hobby, Position
@@ -39,13 +40,15 @@ class UserSerializer(serializers.ModelSerializer):
     position = PositionSerializer(read_only=True)
     hobbies = HobbySerializer(many=True, read_only=True)
     latest_condition = serializers.SerializerMethodField()
+    avatar_thumbnail = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = (
             'id', 'email', 'first_name', 'last_name', 'patronymic', 'role',
             'department', 'position', 'latest_condition', 'mental_state',
-            'hobbies', 'avatar', 'about', 'phone', 'date_joined'
+            'hobbies', 'avatar', 'avatar_thumbnail', 'about', 'phone',
+            'date_joined'
         )
 
     @swagger_serializer_method(serializer_or_field=ConditionReadSerializer)
@@ -55,16 +58,31 @@ class UserSerializer(serializers.ModelSerializer):
             return None
         return ConditionReadSerializer(latest_condition).data
 
+    def get_avatar_thumbnail(self, obj):
+        if obj.avatar:
+            return get_thumbnail(
+                obj.avatar, '120x120', crop='center', quality=99
+            ).url
+        return None
+
 
 class UserSelfUpdateSerializer(serializers.ModelSerializer):
     """Для редактирования своего профиля."""
 
     avatar = Base64ImageField()
+    avatar_thumbnail = serializers.SerializerMethodField()
     hobbies = HobbySerializer
 
     class Meta:
         model = User
-        fields = ('about', 'avatar', 'hobbies')
+        fields = ('about', 'avatar', 'avatar_thumbnail', 'hobbies')
+
+    def get_avatar_thumbnail(self, obj):
+        if obj.avatar:
+            return get_thumbnail(
+                obj.avatar, '120x120', crop='center', quality=99
+            ).url
+        return None
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):

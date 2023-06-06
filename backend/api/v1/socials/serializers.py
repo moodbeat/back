@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from sorl.thumbnail import get_thumbnail
 
 from socials.models import HelpType, NeedHelp, Status
 
@@ -8,12 +9,21 @@ User = get_user_model()
 
 class SpecialistsSerializer(serializers.ModelSerializer):
 
+    avatar_thumbnail = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = (
             'id', 'first_name', 'last_name', 'patronymic', 'role',
-            'department', 'position', 'avatar'
+            'department', 'position', 'avatar', 'avatar_thumbnail'
         )
+
+    def get_avatar_thumbnail(self, obj):
+        if obj.avatar:
+            return get_thumbnail(
+                obj.avatar, '120x120', crop='center', quality=99
+            ).url
+        return None
 
 
 class HelpTypeSerializer(serializers.ModelSerializer):
