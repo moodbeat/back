@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'sorl.thumbnail',
+    'django_cleanup.apps.CleanupConfig',
 
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',

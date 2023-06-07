@@ -16,6 +16,7 @@ daphne==4.0.0
 defusedxml==0.7.1
 distlib==0.3.6
 Django==4.2.1
+django-cleanup==7.0.0
 django-cors-headers==3.14.0
 django-debug-toolbar==4.0.0
 django-filter==23.2
@@ -72,6 +73,7 @@ sorl-thumbnail==12.9.0
 sqlparse==0.4.4
 tomli==2.0.1
 Twisted==22.10.0
+twisted-iocpsupport==1.0.3
 txaio==23.1.1
 typing_extensions==4.6.2
 tzdata==2023.3
