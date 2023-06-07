@@ -3,7 +3,8 @@ import uuid
 from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.core.validators import MinLengthValidator
+from django.core.validators import (MaxValueValidator, MinLengthValidator,
+                                    MinValueValidator)
 from django.db import models
 from django.db.models import UniqueConstraint
 from django.db.models.functions import Lower
@@ -94,6 +95,43 @@ class Hobby(models.Model):
         return self.name
 
 
+class MentalState(models.Model):
+
+    LEVELS = (
+        (1, 'Норма'),
+        (2, 'Плохо'),
+        (3, 'Критический уровень')
+    )
+
+    name = models.CharField(
+        verbose_name='Наименование',
+        max_length=128,
+        validators=[MinLengthValidator(2)]
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        max_length=512,
+        blank=True,
+        null=True
+    )
+    level = models.PositiveSmallIntegerField(
+        verbose_name='Уровень',
+        default=1,
+        choices=LEVELS,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(3)
+        ]
+    )
+
+    class Meta:
+        verbose_name = 'Психологическое состояние'
+        verbose_name_plural = 'Психологические состояния'
+
+    def __str__(self):
+        return self.name
+
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     HR = 'hr'
@@ -105,11 +143,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         (CHIEF, 'Руководитель'),
         (EMPLOYEE, 'Работник')
     )
-
-    class MentalStateChoices(models.TextChoices):
-        NORM = 'Нормальное состояние'
-        HARD = 'Тревожное'
-        CRIT = 'В группе риска'
 
     email = models.EmailField(
         verbose_name=_('email'),
@@ -154,11 +187,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         on_delete=models.SET_NULL
     )
-    mental_state = models.CharField(
-        verbose_name='Текущее состояние',
-        choices=MentalStateChoices.choices,
-        default='Нормальное состояние',
-        max_length=32
+    mental_state = models.ForeignKey(
+        MentalState,
+        verbose_name='Психологическое состояние',
+        related_name='employees',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
     )
     hobbies = models.ManyToManyField(
         Hobby,

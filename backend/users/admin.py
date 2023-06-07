@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from django.db.models import Count
 
-from .models import Department, Hobby, InviteCode, Position
+from .models import Department, Hobby, InviteCode, MentalState, Position
 
 User = get_user_model()
 
@@ -46,6 +46,11 @@ class PositionAdmin(EmployeesCountMixin, admin.ModelAdmin):
 @admin.register(Hobby)
 class HobbyAdmin(admin.ModelAdmin):
     list_display = ('name',)
+
+
+@admin.register(MentalState)
+class MentalStateAdmin(admin.ModelAdmin):
+    list_display = ('name', 'level')
 
 
 @admin.register(User)
