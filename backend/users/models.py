@@ -208,7 +208,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         default='employee',
         db_index=True
     )
-    avatar = models.ImageField(
+    avatar_full = models.ImageField(
         verbose_name='Аватар/Фото',
         upload_to='users/avatars/',
         blank=True,
