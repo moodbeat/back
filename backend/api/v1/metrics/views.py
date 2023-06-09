@@ -5,6 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 # from rest_framework import request
 from rest_framework import status
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
@@ -14,10 +15,14 @@ from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         CompletedSurveySerializer,
                                         ConditionReadSerializer,
                                         ConditionWriteSerializer,
+                                        LifeBalanceCreateSerializer,
+                                        LifeBalanceSerializer,
+                                        LifeDirectionSerializer,
                                         SurveyCreateSerializer,
                                         SurveySerializer)
 from api.v1.permissions import HRAllPermission, SurveyAuthorOrAdminOnly
-from metrics.models import CompletedSurvey, Condition, Question, Survey
+from metrics.models import (CompletedSurvey, Condition, LifeDirection,
+                            Question, Survey, UserLifeBalance)
 
 User = get_user_model()
 
@@ -44,6 +49,33 @@ class ConditionViewSet(ModelViewSet):
             if my_conditions:
                 self.permission_classes = (IsAuthenticated,)
         return super().get_permissions()
+
+
+class LifeDirectionListView(ListAPIView):
+    queryset = LifeDirection.objects.all()
+    serializer_class = LifeDirectionSerializer
+    permission_classes = (IsAuthenticated,)
+    pagination_class = None
+
+
+@method_decorator(name='create', decorator=swagger_auto_schema(
+    responses={status.HTTP_201_CREATED: LifeBalanceCreateSerializer},
+))
+class LifeBalanceViewSet(ModelViewSet):
+    filter_backends = (DjangoFilterBackend,)
+    http_method_names = ('get', 'post',)
+    permission_classes = (IsAuthenticated,)
+    filterset_fields = ('employee', 'set_priority',)
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return LifeBalanceSerializer
+        return LifeBalanceCreateSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_hr:
+            return UserLifeBalance.objects.all()
+        return UserLifeBalance.objects.filter(employee=self.request.user)
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(

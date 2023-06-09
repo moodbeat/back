@@ -58,6 +58,40 @@ class QuestionSerializer(serializers.ModelSerializer):
         fields = ('text',)
 
 
+class LifeDirectionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.LifeDirection
+        exclude = ('id',)
+
+
+class LifeBalanceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.UserLifeBalance
+        fields = '__all__'
+
+
+class LifeBalanceCreateSerializer(serializers.ModelSerializer):
+
+    employee = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = models.UserLifeBalance
+        fields = '__all__'
+
+    def validate(self, data):
+        without_set_priority = self.initial_data
+        without_set_priority.pop('set_priority', None)
+        if not without_set_priority:
+            raise serializers.ValidationError(
+                'Заполните хотя бы один показатель.'
+            )
+        return data
+
+
 class SurveySerializer(serializers.ModelSerializer):
     """Сериализатор для представления опроса."""
 

@@ -99,7 +99,7 @@ class UserLifeBalance(models.Model):
         default=False
     )
 
-    set1 = models.PositiveSmallIntegerField(
+    num1 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 1',
         validators=[
             MinValueValidator(1),
@@ -107,7 +107,7 @@ class UserLifeBalance(models.Model):
         ],
         default=1
     )
-    set2 = models.PositiveSmallIntegerField(
+    num2 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 2',
         validators=[
             MinValueValidator(1),
@@ -115,7 +115,7 @@ class UserLifeBalance(models.Model):
         ],
         default=1
     )
-    set3 = models.PositiveSmallIntegerField(
+    num3 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 3',
         validators=[
             MinValueValidator(1),
@@ -123,7 +123,7 @@ class UserLifeBalance(models.Model):
         ],
         default=1
     )
-    set4 = models.PositiveSmallIntegerField(
+    num4 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 4',
         validators=[
             MinValueValidator(1),
@@ -131,7 +131,7 @@ class UserLifeBalance(models.Model):
         ],
         default=1
     )
-    set5 = models.PositiveSmallIntegerField(
+    num5 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 5',
         validators=[
             MinValueValidator(1),
@@ -139,7 +139,7 @@ class UserLifeBalance(models.Model):
         ],
         default=1
     )
-    set6 = models.PositiveSmallIntegerField(
+    num6 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 6',
         validators=[
             MinValueValidator(1),
@@ -147,7 +147,7 @@ class UserLifeBalance(models.Model):
         ],
         default=1
     )
-    set7 = models.PositiveSmallIntegerField(
+    num7 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 7',
         validators=[
             MinValueValidator(1),
@@ -155,7 +155,7 @@ class UserLifeBalance(models.Model):
         ],
         default=1
     )
-    set8 = models.PositiveSmallIntegerField(
+    num8 = models.PositiveSmallIntegerField(
         verbose_name='Показатели жизненного направления под номером 8',
         validators=[
             MinValueValidator(1),
