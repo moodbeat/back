@@ -73,9 +73,9 @@ class LifeDirection(models.Model):
     )
 
     class Meta:
-        ordering = ('-num',)
+        ordering = ('num',)
         verbose_name = 'Жизненное направление'
-        verbose_name_plural = 'Жизненное направление'
+        verbose_name_plural = 'Жизненные направления'
 
     def __str__(self):
         return self.name
