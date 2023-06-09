@@ -73,9 +73,9 @@ class LifeBalanceViewSet(ModelViewSet):
         return LifeBalanceCreateSerializer
 
     def get_queryset(self):
-        if self.request.user.is_hr:
+        if self.request.user.is_authenticated and self.request.user.is_hr:
             return UserLifeBalance.objects.all()
-        return UserLifeBalance.objects.filter(employee=self.request.user)
+        return UserLifeBalance.objects.filter(employee=self.request.user.id)
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(
