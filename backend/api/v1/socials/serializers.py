@@ -9,19 +9,19 @@ User = get_user_model()
 
 class SpecialistsSerializer(serializers.ModelSerializer):
 
-    avatar_thumbnail = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = (
             'id', 'first_name', 'last_name', 'patronymic', 'role',
-            'department', 'position', 'avatar', 'avatar_thumbnail'
+            'department', 'position', 'avatar', 'avatar_full'
         )
 
-    def get_avatar_thumbnail(self, obj):
-        if obj.avatar:
+    def get_avatar(self, obj):
+        if obj.avatar_full:
             return get_thumbnail(
-                obj.avatar, '120x120', crop='center', quality=99
+                obj.avatar_full, '120x120', crop='center', quality=99
             ).url
         return None
 

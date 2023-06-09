@@ -6,7 +6,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from sorl.thumbnail import get_thumbnail
 
 from api.v1.metrics.serializers import ConditionReadSerializer
-from users.models import Department, Hobby, Position
+from users.models import Department, Hobby, MentalState, Position
 
 from .fields import Base64ImageField
 
@@ -34,21 +34,29 @@ class HobbySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class MentalStateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MentalState
+        fields = '__all__'
+
+
 class UserSerializer(serializers.ModelSerializer):
 
     department = DepartmentSerializer(read_only=True)
     position = PositionSerializer(read_only=True)
+    mental_state = MentalStateSerializer(read_only=True)
     hobbies = HobbySerializer(many=True, read_only=True)
     latest_condition = serializers.SerializerMethodField()
-    avatar_thumbnail = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField()
 
     class Meta:
         model = User
         fields = (
             'id', 'email', 'first_name', 'last_name', 'patronymic', 'role',
-            'department', 'position', 'latest_condition', 'mental_state',
-            'hobbies', 'avatar', 'avatar_thumbnail', 'about', 'phone',
-            'date_joined'
+            'avatar', 'avatar_full', 'about', 'phone', 'date_joined',
+            'mental_state', 'latest_condition', 'position', 'department',
+            'hobbies',
         )
 
     @swagger_serializer_method(serializer_or_field=ConditionReadSerializer)
@@ -58,10 +66,10 @@ class UserSerializer(serializers.ModelSerializer):
             return None
         return ConditionReadSerializer(latest_condition).data
 
-    def get_avatar_thumbnail(self, obj):
-        if obj.avatar:
+    def get_avatar(self, obj):
+        if obj.avatar_full:
             return get_thumbnail(
-                obj.avatar, '120x120', crop='center', quality=99
+                obj.avatar_full, '120x120', crop='center', quality=99
             ).url
         return None
 
@@ -70,19 +78,19 @@ class UserSelfUpdateSerializer(serializers.ModelSerializer):
     """Для редактирования своего профиля."""
 
     avatar = Base64ImageField()
-    avatar_thumbnail = serializers.SerializerMethodField()
     hobbies = HobbySerializer
 
     class Meta:
         model = User
-        fields = ('about', 'avatar', 'avatar_thumbnail', 'hobbies')
+        fields = ('about', 'avatar', 'hobbies')
 
-    def get_avatar_thumbnail(self, obj):
-        if obj.avatar:
-            return get_thumbnail(
-                obj.avatar, '120x120', crop='center', quality=99
-            ).url
-        return None
+    def update(self, instance, validated_data):
+        if 'avatar' in validated_data:
+            instance.avatar_full = validated_data['avatar']
+        return super().update(instance, validated_data)
+
+    def to_representation(self, instance):
+        return UserSerializer(instance, context=self.context).data
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):

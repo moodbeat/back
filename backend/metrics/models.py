@@ -8,7 +8,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from users.models import Department
+from users.models import Department, MentalState
 
 User = get_user_model()
 
@@ -140,7 +140,7 @@ class CompletedSurvey(models.Model):
     """Модель связывающая сотрудников и их результаты прохождения опроса."""
 
     class ResultInterpretation(models.TextChoices):
-        NORM = 'Нормальное состояние'
+        NORM = 'Нормальное'
         HARD = 'Тревожное'
         CRIT = 'В группе риска'
 
@@ -215,13 +215,18 @@ class CompletedSurvey(models.Model):
             self.positive_value / self.survey.questions.count() * 100
         )
         if result_in_persent in range(11):
-            mental_state = self.ResultInterpretation.NORM
+            state = self.ResultInterpretation.NORM
+            level = 1
         elif result_in_persent in range(11, 69):
-            mental_state = self.ResultInterpretation.HARD
+            state = self.ResultInterpretation.HARD
+            level = 2
         elif result_in_persent in range(69, 101):
-            mental_state = self.ResultInterpretation.CRIT
+            state = self.ResultInterpretation.CRIT
+            level = 3
 
-        self.result = mental_state
+        self.result = state
+
+        mental_state = MentalState.objects.filter(level=level).first()
         self.employee.mental_state = mental_state
         self.employee.save()
         self.next_attempt_date = date.today() + timedelta(

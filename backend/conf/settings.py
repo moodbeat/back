@@ -2,7 +2,11 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+import sentry_sdk
 from dotenv import load_dotenv
+from sentry_sdk.integrations.django import DjangoIntegration
+
+from .utils import RemoveEscapeSequencesFilter
 
 load_dotenv()
 
@@ -11,6 +15,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 RESET_INVITE_SECRET_KEY = os.getenv('DJANGO_RESET_INVITE_SECRET_KEY')
+
+DEV_SERVICES = os.getenv('DEV_SERVICES', False) == 'True'
 
 DEBUG = os.getenv('DJANGO_DEBUG', False) == 'True'
 
@@ -36,6 +42,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'sorl.thumbnail',
+    'django_cleanup.apps.CleanupConfig',
 
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
@@ -194,3 +201,63 @@ if DEBUG is False:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # CSRF_TRUSTED_ORIGINS = []
+
+if DEV_SERVICES:
+
+    log_dir = os.path.join(BASE_DIR, 'logs')
+
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
+    log_file = os.path.join(log_dir, 'error.log')
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'level': 'INFO',
+                'class': 'logging.StreamHandler',
+            },
+            'file': {
+                'level': 'WARNING',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': log_file,
+                'maxBytes': 10 * 1024 * 1024,
+                'backupCount': 1,
+                'formatter': 'verbose',
+                'filters': ['remove_escape_sequences'],
+            },
+        },
+        'filters': {
+            'remove_escape_sequences': {
+                '()': RemoveEscapeSequencesFilter,
+            },
+        },
+        'formatters': {
+            'simple': {
+                'format': '%(levelname)s %(message)s',
+            },
+            'verbose': {
+                'format': '%(asctime)s %(levelname)s [%(process)d] %(name)s: %(message)s',
+                'datefmt': '%Y-%m-%d %H:%M:%S',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console', 'file'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+        },
+    }
+
+    SENTRY_DSN = os.getenv('SENTRY_DSN')
+
+    if SENTRY_DSN:
+        sentry_sdk.init(
+            dsn=SENTRY_DSN,
+            integrations=[DjangoIntegration()],
+            traces_sample_rate=1.0,
+            send_default_pii=True
+        )
