@@ -192,11 +192,61 @@ class Question(models.Model):
         verbose_name='Текст вопроса',
         max_length=400,
     )
+    priority = models.PositiveSmallIntegerField(
+        verbose_name='Приоритет при выдаче',
+        null=True,
+        blank=True,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(99)
+        ]
+    )
 
     class Meta:
-        ordering = ('id',)
+        ordering = ('priority', 'id')
         verbose_name = 'Вопрос'
         verbose_name_plural = 'Вопросы'
+
+    def __str__(self):
+        return self.text
+
+
+class Variant(models.Model):
+    """Вариант ответа."""
+
+    text = models.CharField(
+        verbose_name='Текст варианта',
+        max_length=255
+    )
+    priority = models.PositiveSmallIntegerField(
+        verbose_name='Приоритет при выдаче',
+        null=True,
+        blank=True,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(99)
+        ]
+    )
+    for_type = models.BooleanField(
+        verbose_name='Типовой вопрос',
+        default=False
+    )
+    survey_type = models.ForeignKey(
+        SurveyType,
+        verbose_name='Тип опроса',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    value = models.IntegerField(
+        verbose_name='Значение',
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        ordering = ('priority', 'id')
+        verbose_name = 'Вариант ответа'
+        verbose_name_plural = 'Варианты ответа'
 
     def __str__(self):
         return self.text
