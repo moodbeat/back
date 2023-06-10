@@ -89,8 +89,10 @@ class CurrentUserView(APIView):
         delete_avatar = request.query_params.get('delete_avatar', None)
         user = self.request.user
         if delete_avatar:
-            if user.avatar:
-                user.avatar.delete(save=True)
+            if user.avatar_full:
+                user.avatar_full.delete(save=True)
+            if serializer.initial_data.get('avatar', None):
+                del serializer.initial_data['avatar']
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
