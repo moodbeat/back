@@ -1,7 +1,6 @@
 from django.contrib import admin
 
-from .models import (CompletedSurvey, Condition, LifeDirection, Question,
-                     Survey, UserLifeBalance)
+from .models import Condition, LifeDirection, UserLifeBalance
 
 
 @admin.register(Condition)
@@ -48,70 +47,70 @@ class UserLifeBalanceAdmin(admin.ModelAdmin):
     list_display = ('date', 'employee', 'set_priority')
 
 
-@admin.register(Survey)
-class SurveyAdmin(admin.ModelAdmin):
-    list_display = (
-        'author',
-        'title',
-        'description',
-        'creation_date',
-        'is_active',
-    )
-    list_filter = ('department',)
-    search_fields = (
-        'title',
-        'description',
-        'author__first_name',
-        'author__last_name'
-    )
-    ordering = ('-creation_date', 'title')
-    readonly_fields = ('creation_date',)
+# @admin.register(Survey)
+# class SurveyAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'author',
+#         'title',
+#         'description',
+#         'creation_date',
+#         'is_active',
+#     )
+#     list_filter = ('department',)
+#     search_fields = (
+#         'title',
+#         'description',
+#         'author__first_name',
+#         'author__last_name'
+#     )
+#     ordering = ('-creation_date', 'title')
+#     readonly_fields = ('creation_date',)
 
-    fieldsets = (
-        (None, {
-            'fields': ('author', 'title', 'description', 'frequency')
-        }),
-        ('Служебная информация', {
-            'fields': ('creation_date', 'is_active',),
-            'classes': ('collapse',)
-        })
-    )
-
-
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('survey', 'text',)
-    list_filter = ('survey',)
-    search_fields = ('survey', 'text',)
-    ordering = ('id',)
-
-    fieldsets = (
-        (None, {
-            'fields': ('survey', 'text',)
-        }),
-    )
+#     fieldsets = (
+#         (None, {
+#             'fields': ('author', 'title', 'description', 'frequency')
+#         }),
+#         ('Служебная информация', {
+#             'fields': ('creation_date', 'is_active',),
+#             'classes': ('collapse',)
+#         })
+#     )
 
 
-@admin.register(CompletedSurvey)
-class CompletedSurvey(admin.ModelAdmin):
-    list_display = ('employee', 'survey', 'completion_date',)
-    list_filter = ('completion_date', 'survey',)
-    search_fields = ('employee', 'survey',)
-    ordering = ('-completion_date', 'employee', 'survey',)
+# @admin.register(Question)
+# class QuestionAdmin(admin.ModelAdmin):
+#     list_display = ('survey', 'text',)
+#     list_filter = ('survey',)
+#     search_fields = ('survey', 'text',)
+#     ordering = ('id',)
 
-    fieldsets = (
-        (None, {
-            'fields': (
-                'employee', 'survey', 'positive_value',
-                'negative_value', 'completion_date',
-            )
-        }),
-        ('Служебная информация', {
-            'fields': ('next_attempt_date',),
-            'classes': ('collapse',)
-        })
-    )
+#     fieldsets = (
+#         (None, {
+#             'fields': ('survey', 'text',)
+#         }),
+#     )
 
-    def get_queryset(self, request):
-        queryset = super().get_queryset(request)
-        return queryset.select_related('employee', 'survey')
+
+# @admin.register(CompletedSurvey)
+# class CompletedSurvey(admin.ModelAdmin):
+#     list_display = ('employee', 'survey', 'completion_date',)
+#     list_filter = ('completion_date', 'survey',)
+#     search_fields = ('employee', 'survey',)
+#     ordering = ('-completion_date', 'employee', 'survey',)
+
+#     fieldsets = (
+#         (None, {
+#             'fields': (
+#                 'employee', 'survey', 'positive_value',
+#                 'negative_value', 'completion_date',
+#             )
+#         }),
+#         ('Служебная информация', {
+#             'fields': ('next_attempt_date',),
+#             'classes': ('collapse',)
+#         })
+#     )
+
+#     def get_queryset(self, request):
+#         queryset = super().get_queryset(request)
+#         return queryset.select_related('employee', 'survey')

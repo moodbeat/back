@@ -1,14 +1,8 @@
-# from datetime import timedelta
-from datetime import date
-
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from rest_framework import serializers
 
-from metrics import models
-from metrics.models import (CompletedSurvey, Condition, LifeDirection,
-                            Question, Survey, UserLifeBalance)
-from users.models import Department
+from metrics.models import Condition, LifeDirection, Question, UserLifeBalance
 
 
 class ConditionReadSerializer(serializers.ModelSerializer):
@@ -85,80 +79,81 @@ class LifeBalanceCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class SurveySerializer(serializers.ModelSerializer):
-    """Сериализатор для представления опроса."""
+# class SurveySerializer(serializers.ModelSerializer):
+#     """Сериализатор для представления опроса."""
 
-    questions = QuestionSerializer(many=True)
+#     questions = QuestionSerializer(many=True)
 
-    class Meta:
-        model = Survey
-        fields = '__all__'
-
-
-class SurveyCreateSerializer(serializers.ModelSerializer):
-    """Сериализатор для создания опроса."""
-
-    author = serializers.HiddenField(
-        default=serializers.CurrentUserDefault(),
-    )
-    questions = QuestionSerializer(many=True)
-    department = serializers.PrimaryKeyRelatedField(
-        queryset=Department.objects.all(),
-        many=True,
-    )
-
-    class Meta:
-        model = Survey
-        exclude = ('creation_date',)
-
-    def to_representation(self, instance):
-        """После создания объект сериализуется через `SurveySerializer`."""
-        return SurveySerializer(instance, context=self.context).data
+#     class Meta:
+#         model = Survey
+#         fields = '__all__'
 
 
-class CompletedSurveySerializer(serializers.ModelSerializer):
-    """Сериализатор для представления результатов пройденных опросов."""
+# class SurveyCreateSerializer(serializers.ModelSerializer):
+#     """Сериализатор для создания опроса."""
 
-    class Meta:
-        model = CompletedSurvey
-        exclude = ('positive_value', 'negative_value',)
+#     author = serializers.HiddenField(
+#         default=serializers.CurrentUserDefault(),
+#     )
+#     questions = QuestionSerializer(many=True)
+#     department = serializers.PrimaryKeyRelatedField(
+#         queryset=Department.objects.all(),
+#         many=True,
+#     )
+
+#     class Meta:
+#         model = Survey
+#         exclude = ('creation_date',)
+
+#     def to_representation(self, instance):
+#         """После создания объект сериализуется через `SurveySerializer`."""
+#         return SurveySerializer(instance, context=self.context).data
 
 
-class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
-    """Сериализатор для записи результатов прохождения опроса."""
+# class CompletedSurveySerializer(serializers.ModelSerializer):
+#     """Сериализатор для представления результатов пройденных опросов."""
 
-    employee = serializers.HiddenField(
-        default=serializers.CurrentUserDefault(),
-    )
-    completion_date = serializers.HiddenField(
-        default=date.today,
-    )
+#     class Meta:
+#         model = CompletedSurvey
+#         exclude = ('positive_value', 'negative_value',)
 
-    class Meta:
-        model = CompletedSurvey
-        exclude = ('result', 'next_attempt_date',)
 
-    def validate(self, data):
-        if (
-            data['positive_value'] + data['negative_value']
-        ) != data['survey'].questions.count():
-            raise serializers.ValidationError(
-                'Количество ответов не соответстует количеству вопросов'
-            )
-        filter_params = {
-            'employee': data['employee'],
-            'survey': data['survey'],
-            'next_attempt_date__gt': date.today(),
-        }
-        if (
-            data['survey'].frequency
-            and models.CompletedSurvey.objects.filter(**filter_params).exists()
-        ):
-            raise ValidationError(
-                'Слишком рано для повторного прохождения опроса'
-            )
-        return data
+# class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
+#     """Сериализатор для записи результатов прохождения опроса."""
 
-    def to_representation(self, instance):
-        """После создания сериализуется через `CompletedSurveySerializer`."""
-        return CompletedSurveySerializer(instance, context=self.context).data
+#     employee = serializers.HiddenField(
+#         default=serializers.CurrentUserDefault(),
+#     )
+#     completion_date = serializers.HiddenField(
+#         default=date.today,
+#     )
+
+#     class Meta:
+#         model = CompletedSurvey
+#         exclude = ('result', 'next_attempt_date',)
+
+#     def validate(self, data):
+#         if (
+#             data['positive_value'] + data['negative_value']
+#         ) != data['survey'].questions.count():
+#             raise serializers.ValidationError(
+#                 'Количество ответов не соответстует количеству вопросов'
+#             )
+#         filter_params = {
+#             'employee': data['employee'],
+#             'survey': data['survey'],
+#             'next_attempt_date__gt': date.today(),
+#         }
+#         if (
+#             data['survey'].frequency
+#             and models.CompletedSurvey.objects.filter(
+#                 **filter_params).exists()
+#         ):
+#             raise ValidationError(
+#                 'Слишком рано для повторного прохождения опроса'
+#             )
+#         return data
+
+#     def to_representation(self, instance):
+#         """После создания сериализуется через `CompletedSurveySerializer`."""
+#         return CompletedSurveySerializer(instance, context=self.context).data
