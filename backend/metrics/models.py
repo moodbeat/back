@@ -10,6 +10,8 @@ from django.utils.translation import gettext_lazy as _
 
 from users.models import Department, MentalState
 
+from .validators import validate_results
+
 User = get_user_model()
 
 
@@ -98,70 +100,9 @@ class UserLifeBalance(models.Model):
         verbose_name='Задать новые приоритеты.',
         default=False
     )
-
-    num1 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 1',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
-    )
-    num2 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 2',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
-    )
-    num3 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 3',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
-    )
-    num4 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 4',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
-    )
-    num5 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 5',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
-    )
-    num6 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 6',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
-    )
-    num7 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 7',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
-    )
-    num8 = models.PositiveSmallIntegerField(
-        verbose_name='Показатели жизненного направления под номером 8',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
-        default=1
+    results = models.JSONField(
+        verbose_name='Результаты',
+        validators=[validate_results]
     )
 
     class Meta:
