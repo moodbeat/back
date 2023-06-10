@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (CompletedSurvey, Condition, LifeDirection, Question,
-                     Survey, SurveyDepartment, UserLifeBalance)
+                     Survey, UserLifeBalance)
 
 
 @admin.register(Condition)
@@ -24,10 +24,6 @@ class ConditionAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
         return queryset.select_related('employee',)
-
-
-class SurveyDepartmentInline(admin.TabularInline):
-    model = SurveyDepartment
 
 
 @admin.register(LifeDirection)
@@ -68,7 +64,6 @@ class SurveyAdmin(admin.ModelAdmin):
         'author__first_name',
         'author__last_name'
     )
-    inlines = (SurveyDepartmentInline,)
     ordering = ('-creation_date', 'title')
     readonly_fields = ('creation_date',)
 
@@ -99,8 +94,8 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(CompletedSurvey)
 class CompletedSurvey(admin.ModelAdmin):
-    list_display = ('employee', 'survey', 'result', 'completion_date',)
-    list_filter = ('completion_date', 'survey', 'result',)
+    list_display = ('employee', 'survey', 'completion_date',)
+    list_filter = ('completion_date', 'survey',)
     search_fields = ('employee', 'survey',)
     ordering = ('-completion_date', 'employee', 'survey',)
 

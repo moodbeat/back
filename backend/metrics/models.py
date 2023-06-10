@@ -1,14 +1,13 @@
-from datetime import date, timedelta
+from datetime import date
 
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
 from django.core.validators import (MaxValueValidator, MinLengthValidator,
                                     MinValueValidator)
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from users.models import Department, MentalState
+from users.models import Department
 
 from .validators import validate_results
 
@@ -111,67 +110,73 @@ class UserLifeBalance(models.Model):
         verbose_name_plural = 'Жизненный баланс сотрудников'
 
 
+class SurveyType(models.Model):
+    """Тип опроса."""
+
+    name = models.CharField(
+        verbose_name='Наименование',
+        max_length=255
+    )
+    slug = models.SlugField(
+        verbose_name='Slug'
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        max_length=255,
+        blank=True,
+        null=False
+    )
+
+    class Meta:
+        verbose_name = 'Тип опросов'
+        verbose_name_plural = 'Типы опросов'
+
+
 class Survey(models.Model):
     """Опрос."""
 
     author = models.ForeignKey(
         User,
-        verbose_name='автор опроса',
+        verbose_name='Автор опроса',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
     )
     department = models.ManyToManyField(
         Department,
-        through='SurveyDepartment',
-        verbose_name='отдел',
+        verbose_name='Отделы',
     )
     title = models.CharField(
-        verbose_name='название опроса',
+        verbose_name='Название опроса',
         max_length=255,
     )
     description = models.CharField(
-        verbose_name='описание опроса',
+        verbose_name='Описание опроса',
         blank=True,
         null=True,
         max_length=255,
     )
     frequency = models.PositiveSmallIntegerField(
-        verbose_name='периодичность прохождения опроса',
+        verbose_name='Периодичность прохождения опроса',
         default=30,
         validators=[MaxValueValidator(90)],
     )
     creation_date = models.DateTimeField(
-        verbose_name='дата и время создания опроса',
+        verbose_name='Дата и время создания опроса',
         default=timezone.now,
     )
     is_active = models.BooleanField(
-        verbose_name='статус активности',
+        verbose_name='Статус активности',
         default=True,
     )
 
     class Meta:
         ordering = ('-id',)
-        verbose_name = 'опрос'
-        verbose_name_plural = 'опросы'
+        verbose_name = 'Опрос'
+        verbose_name_plural = 'Опросы'
 
     def __str__(self):
         return self.title
-
-
-class SurveyDepartment(models.Model):
-    """Модель для связи департаментов и опросов."""
-
-    survey = models.ForeignKey(
-        Survey,
-        on_delete=models.CASCADE,
-        verbose_name='опрос',
-    )
-    department = models.ForeignKey(
-        Department,
-        on_delete=models.CASCADE,
-        verbose_name='департамент',
-    )
 
 
 class Question(models.Model):
@@ -179,19 +184,19 @@ class Question(models.Model):
 
     survey = models.ForeignKey(
         Survey,
-        verbose_name='опрос',
+        verbose_name='Опрос',
         on_delete=models.CASCADE,
         related_name='questions',
     )
     text = models.CharField(
-        verbose_name='текст вопроса',
+        verbose_name='Текст вопроса',
         max_length=400,
     )
 
     class Meta:
         ordering = ('id',)
-        verbose_name = 'вопрос'
-        verbose_name_plural = 'вопросы'
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Вопросы'
 
     def __str__(self):
         return self.text
@@ -200,97 +205,87 @@ class Question(models.Model):
 class CompletedSurvey(models.Model):
     """Модель связывающая сотрудников и их результаты прохождения опроса."""
 
-    class ResultInterpretation(models.TextChoices):
-        NORM = 'Нормальное'
-        HARD = 'Тревожное'
-        CRIT = 'В группе риска'
-
     employee = models.ForeignKey(
         User,
         verbose_name='сотрудник',
         on_delete=models.CASCADE,
-        related_name='results',
+        related_name='survey_results',
     )
     survey = models.ForeignKey(
         Survey,
         verbose_name='опрос',
         on_delete=models.CASCADE,
     )
-    result = models.TextField(
-        verbose_name='интерпретация результата',
-        choices=ResultInterpretation.choices,
-        blank=True,
+    summary = models.JSONField(
+        verbose_name='Сводка'
     )
-    positive_value = models.PositiveSmallIntegerField(
-        verbose_name='кол-во утвердительных ответов',
-        validators=[MaxValueValidator(100)],
+    questions = models.JSONField(
+        verbose_name='Вопросы',
+        null=True,
+        default=None
     )
-    negative_value = models.PositiveSmallIntegerField(
-        verbose_name='кол-во отрицательных ответов',
-        validators=[MaxValueValidator(100)],
+    results = models.JSONField(
+        verbose_name='Выбранные варианты'
     )
     completion_date = models.DateField(
         verbose_name='дата прохождения опроса',
         default=date.today,
     )
-    next_attempt_date = models.DateField(
-        verbose_name='дата следующей попытки',
-        default=date.today,
-    )
 
     class Meta:
         ordering = ('-id',)
-        verbose_name = 'результат опроса сотрудника'
-        verbose_name_plural = 'результаты опросов сотрудников'
+        verbose_name = 'Результат опроса сотрудника'
+        verbose_name_plural = 'Результаты опросов сотрудников'
 
     def __str__(self):
-        return (f'"{self.survey.title}" пройден '
+        return (f'"{self.survey.title}" Пройден '
                 f'сотрудником {self.employee.get_full_name}')
 
-    def clean(self):
-        """Дополнительная валидация перед сохранением."""
-        if (
-            self.positive_value + self.negative_value
-        ) != self.survey.questions.count():
-            raise ValidationError(
-                'Количество ответов не соответстует количеству вопросов'
-            )
-        filter_params = {
-            'employee': self.employee,
-            'survey': self.survey,
-            'next_attempt_date__gt': date.today(),
-        }
-        if CompletedSurvey.objects.filter(**filter_params).exists():
-            raise ValidationError(
-                'Слишком рано для повторного прохождения опроса'
-            )
-        return super().clean()
+    # def clean(self):
+    #     """Дополнительная валидация перед сохранением."""
+    #     if (
+    #         self.positive_value + self.negative_value
+    #     ) != self.survey.questions.count():
+    #         raise ValidationError(
+    #             'Количество ответов не соответстует количеству вопросов'
+    #         )
+    #     filter_params = {
+    #         'employee': self.employee,
+    #         'survey': self.survey,
+    #         'next_attempt_date__gt': date.today(),
+    #     }
+    #     if CompletedSurvey.objects.filter(**filter_params).exists():
+    #         raise ValidationError(
+    #             'Слишком рано для повторного прохождения опроса'
+    #         )
+    #     return super().clean()
 
-    def save(self, *args, **kwargs):
-        """При создании объекта интерпретирует значение результата в текст.
+    # def save(self, *args, **kwargs):
+    #     """При создании объекта интерпретирует значение результата в текст.
 
-        Также в зависимости от периодичности `frequency`, установленной
-        в модели `Survey` определяет дату следующей попытки прохождения опроса.
-        """
-        result_in_persent = (
-            self.positive_value / self.survey.questions.count() * 100
-        )
-        if result_in_persent in range(11):
-            state = self.ResultInterpretation.NORM
-            level = 1
-        elif result_in_persent in range(11, 69):
-            state = self.ResultInterpretation.HARD
-            level = 2
-        elif result_in_persent in range(69, 101):
-            state = self.ResultInterpretation.CRIT
-            level = 3
+    #     Также в зависимости от периодичности `frequency`, установленной
+    #     в модели `Survey` определяет дату следующей попытки прохождения
+    #     опроса.
+    #     """
+    #     result_in_persent = (
+    #         self.positive_value / self.survey.questions.count() * 100
+    #     )
+    #     if result_in_persent in range(11):
+    #         state = self.ResultInterpretation.NORM
+    #         level = 1
+    #     elif result_in_persent in range(11, 69):
+    #         state = self.ResultInterpretation.HARD
+    #         level = 2
+    #     elif result_in_persent in range(69, 101):
+    #         state = self.ResultInterpretation.CRIT
+    #         level = 3
 
-        self.result = state
+    #     self.result = state
 
-        mental_state = MentalState.objects.filter(level=level).first()
-        self.employee.mental_state = mental_state
-        self.employee.save()
-        self.next_attempt_date = date.today() + timedelta(
-            days=self.survey.frequency
-        )
-        return super(CompletedSurvey, self).save(*args, **kwargs)
+    #     mental_state = MentalState.objects.filter(level=level).first()
+    #     self.employee.mental_state = mental_state
+    #     self.employee.save()
+    #     self.next_attempt_date = date.today() + timedelta(
+    #         days=self.survey.frequency
+    #     )
+    #     return super(CompletedSurvey, self).save(*args, **kwargs)
