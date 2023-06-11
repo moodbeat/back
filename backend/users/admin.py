@@ -51,6 +51,18 @@ class HobbyAdmin(admin.ModelAdmin):
 @admin.register(MentalState)
 class MentalStateAdmin(admin.ModelAdmin):
     list_display = ('name', 'level')
+    readonly_fields = ('level',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        if obj:
+            return True
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(User)

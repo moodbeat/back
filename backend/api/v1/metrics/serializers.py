@@ -6,13 +6,15 @@ from django.utils import timezone
 from rest_framework import serializers
 
 from metrics import models
+from metrics.models import (CompletedSurvey, Condition, LifeDirection,
+                            Question, Survey, UserLifeBalance)
 from users.models import Department
 
 
 class ConditionReadSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = models.Condition
+        model = Condition
         fields = '__all__'
 
 
@@ -23,14 +25,14 @@ class ConditionWriteSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        model = models.Condition
+        model = Condition
         fields = ('employee', 'mood', 'note', 'date')
 
     def validate(self, attrs):
         current_time = timezone.localtime()
         user = self.context.get('request', None).user
         last_add_condition = (
-            models.Condition.objects
+            Condition.objects
             .filter(employee=user)
             .order_by('-date')
             .first()
@@ -54,8 +56,33 @@ class QuestionSerializer(serializers.ModelSerializer):
     """Сериализатор для вопросов."""
 
     class Meta:
-        model = models.Question
+        model = Question
         fields = ('text',)
+
+
+class LifeDirectionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = LifeDirection
+        exclude = ('id',)
+
+
+class LifeBalanceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserLifeBalance
+        fields = '__all__'
+
+
+class LifeBalanceCreateSerializer(serializers.ModelSerializer):
+
+    employee = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = UserLifeBalance
+        fields = '__all__'
 
 
 class SurveySerializer(serializers.ModelSerializer):
@@ -64,7 +91,7 @@ class SurveySerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True)
 
     class Meta:
-        model = models.Survey
+        model = Survey
         fields = '__all__'
 
 
@@ -81,7 +108,7 @@ class SurveyCreateSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        model = models.Survey
+        model = Survey
         exclude = ('creation_date',)
 
     def to_representation(self, instance):
@@ -93,7 +120,7 @@ class CompletedSurveySerializer(serializers.ModelSerializer):
     """Сериализатор для представления результатов пройденных опросов."""
 
     class Meta:
-        model = models.CompletedSurvey
+        model = CompletedSurvey
         exclude = ('positive_value', 'negative_value',)
 
 
@@ -108,7 +135,7 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        model = models.CompletedSurvey
+        model = CompletedSurvey
         exclude = ('result', 'next_attempt_date',)
 
     def validate(self, data):

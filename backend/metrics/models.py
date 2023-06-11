@@ -10,6 +10,8 @@ from django.utils.translation import gettext_lazy as _
 
 from users.models import Department, MentalState
 
+from .validators import validate_results
+
 User = get_user_model()
 
 
@@ -48,6 +50,65 @@ class Condition(models.Model):
             'Состояние сотрудника '
             f'{self.employee}: {self.mood} ({self.date})'
         )
+
+
+class LifeDirection(models.Model):
+    """Жизненное направление для колеса баланса."""
+
+    name = models.CharField(
+        verbose_name='Наименование',
+        max_length=128,
+    )
+    num = models.PositiveSmallIntegerField(
+        verbose_name='Номер',
+        unique=True,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(8)
+        ]
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        max_length=256,
+        blank=True,
+        null=True
+    )
+
+    class Meta:
+        ordering = ('num',)
+        verbose_name = 'Жизненное направление'
+        verbose_name_plural = 'Жизненные направления'
+
+    def __str__(self):
+        return self.name
+
+
+class UserLifeBalance(models.Model):
+    """Оценка/установка баланса."""
+
+    employee = models.ForeignKey(
+        User,
+        verbose_name='Сотрудник',
+        related_name='life_balance',
+        on_delete=models.CASCADE
+    )
+    date = models.DateTimeField(
+        verbose_name='Дата/время добавления показателей',
+        default=timezone.now
+    )
+    set_priority = models.BooleanField(
+        verbose_name='Задать новые приоритеты.',
+        default=False
+    )
+    results = models.JSONField(
+        verbose_name='Результаты',
+        validators=[validate_results]
+    )
+
+    class Meta:
+        ordering = ('-date',)
+        verbose_name = 'Жизненный баланс сотрудника'
+        verbose_name_plural = 'Жизненный баланс сотрудников'
 
 
 class Survey(models.Model):

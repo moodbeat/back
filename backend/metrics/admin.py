@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import (CompletedSurvey, Condition, Question, Survey,
-                     SurveyDepartment)
+from .models import (CompletedSurvey, Condition, LifeDirection, Question,
+                     Survey, SurveyDepartment, UserLifeBalance)
 
 
 @admin.register(Condition)
@@ -28,6 +28,28 @@ class ConditionAdmin(admin.ModelAdmin):
 
 class SurveyDepartmentInline(admin.TabularInline):
     model = SurveyDepartment
+
+
+@admin.register(LifeDirection)
+class LifeDirectionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'num',)
+    readonly_fields = ('num',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        if obj:
+            return True
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(UserLifeBalance)
+class UserLifeBalanceAdmin(admin.ModelAdmin):
+    list_display = ('date', 'employee', 'set_priority')
 
 
 @admin.register(Survey)

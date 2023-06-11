@@ -11,7 +11,7 @@ from api.v1.users import urls as urls_users
 
 schema_view = get_schema_view(
     openapi.Info(
-        title='Employee Mood API',
+        title='MoodBeat API',
         default_version='1.0'
     ),
     public=True,
