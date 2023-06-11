@@ -1,0 +1,224 @@
+[
+{
+  "model": "metrics.surveytype",
+  "pk": 1,
+  "fields": {
+    "name": "Опросы с вариантами да/нет",
+    "slug": "yn",
+    "description": ""
+  }
+},
+{
+  "model": "metrics.surveytype",
+  "pk": 2,
+  "fields": {
+    "name": "Опросник на выгорание MBI",
+    "slug": "mbi",
+    "description": ""
+  }
+},
+{
+  "model": "metrics.survey",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "title": "Экспресс-оценка выгорания",
+    "type": 1,
+    "description": "Экспресс оценка выгорания содержит 10 вопросов. На вопросы необходимо отвечать \"да\" или \"нет\".",
+    "frequency": 30,
+    "creation_date": "2023-06-11T07:42:44.172Z",
+    "is_active": true,
+    "department": []
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 1,
+  "fields": {
+    "survey": 1,
+    "text": "Когда в воскресенье пополудни я вспоминаю о том, что завтра снова идти на работу, то остаток уик-энда уже испорчен",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 2,
+  "fields": {
+    "survey": 1,
+    "text": "Если бы у меня была возможность уйти на пенсию (по выслуге лет, инвалидности), я сделал (а) бы это без промедления",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 3,
+  "fields": {
+    "survey": 1,
+    "text": "Коллеги на работе раздражают меня. Невозможно терпеть их одни и те же разговоры",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 4,
+  "fields": {
+    "survey": 1,
+    "text": "То насколько меня раздражают коллеги, еще мелочи по сравнению с тем, как выводят меня из равновесия клиенты (пациенты, ученики, посетители, заказчики)",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 5,
+  "fields": {
+    "survey": 1,
+    "text": "На протяжении последних трех месяцев я отказывался (отказывалась) от курсов повышения квалификации, от участия в конференциях и т.д.",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 6,
+  "fields": {
+    "survey": 1,
+    "text": "Коллегам (посетителям, заказчикам, ученикам и т.д.) я придумал (а) Обидные прозвища (например, \"идиоты\"), которые использую мысленно",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 7,
+  "fields": {
+    "survey": 1,
+    "text": "С делами по службе я справляюсь \"одной левой\" нет ничего такого, что могло бы удивить меня в ней своей новизной",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 8,
+  "fields": {
+    "survey": 1,
+    "text": "О моей работе мне едва ли кто скажет что-нибудь новое",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 9,
+  "fields": {
+    "survey": 1,
+    "text": "Стоит мне только вспомнить о своей работе, как хочется взять и послать ее ко всем чертям",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 10,
+  "fields": {
+    "survey": 1,
+    "text": "За последние три месяца мне не попала в руки ни одна специальная книга, из которой я почерпнул бы что-нибудь новенькое",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 1,
+  "fields": {
+    "text": "Никогда",
+    "priority": 1,
+    "survey_type": 2,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 2,
+  "fields": {
+    "text": "Очень редко",
+    "priority": 2,
+    "survey_type": 2,
+    "value": 2
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 3,
+  "fields": {
+    "text": "Редко",
+    "priority": 3,
+    "survey_type": 2,
+    "value": 3
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 4,
+  "fields": {
+    "text": "Иногда",
+    "priority": 4,
+    "survey_type": 2,
+    "value": 4
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 5,
+  "fields": {
+    "text": "Часто",
+    "priority": 5,
+    "survey_type": 2,
+    "value": 5
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 6,
+  "fields": {
+    "text": "Очень часто",
+    "priority": 6,
+    "survey_type": 2,
+    "value": 6
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 7,
+  "fields": {
+    "text": "Ежедневно",
+    "priority": 7,
+    "survey_type": 2,
+    "value": 7
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 8,
+  "fields": {
+    "text": "Да",
+    "priority": 1,
+    "survey_type": 1,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 9,
+  "fields": {
+    "text": "Нет",
+    "priority": 2,
+    "survey_type": 1,
+    "value": 0
+  }
+}
+]

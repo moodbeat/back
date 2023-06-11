@@ -131,6 +131,9 @@ class SurveyType(models.Model):
         verbose_name = 'Тип опросов'
         verbose_name_plural = 'Типы опросов'
 
+    def __str__(self):
+        return self.slug
+
 
 class Survey(models.Model):
     """Опрос."""
@@ -150,11 +153,17 @@ class Survey(models.Model):
         verbose_name='Название опроса',
         max_length=255,
     )
-    description = models.CharField(
+    type = models.ForeignKey(
+        SurveyType,
+        verbose_name='Тип опроса',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    description = models.TextField(
         verbose_name='Описание опроса',
         blank=True,
         null=True,
-        max_length=255,
+        max_length=800,
     )
     frequency = models.PositiveSmallIntegerField(
         verbose_name='Периодичность прохождения опроса',
@@ -188,9 +197,14 @@ class Question(models.Model):
         on_delete=models.CASCADE,
         related_name='questions',
     )
-    text = models.CharField(
+    text = models.TextField(
         verbose_name='Текст вопроса',
-        max_length=400,
+        max_length=800,
+    )
+    mark = models.IntegerField(
+        verbose_name='Метка',
+        null=True,
+        blank=True
     )
     priority = models.PositiveSmallIntegerField(
         verbose_name='Приоритет при выдаче',
@@ -226,10 +240,6 @@ class Variant(models.Model):
             MinValueValidator(1),
             MaxValueValidator(99)
         ]
-    )
-    for_type = models.BooleanField(
-        verbose_name='Типовой вопрос',
-        default=False
     )
     survey_type = models.ForeignKey(
         SurveyType,

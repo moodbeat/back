@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Condition, LifeDirection, UserLifeBalance
+from .models import (Condition, LifeDirection, Question, Survey, SurveyType,
+                     UserLifeBalance, Variant)
 
 
 @admin.register(Condition)
@@ -47,48 +48,57 @@ class UserLifeBalanceAdmin(admin.ModelAdmin):
     list_display = ('date', 'employee', 'set_priority')
 
 
-# @admin.register(Survey)
-# class SurveyAdmin(admin.ModelAdmin):
-#     list_display = (
-#         'author',
-#         'title',
-#         'description',
-#         'creation_date',
-#         'is_active',
-#     )
-#     list_filter = ('department',)
-#     search_fields = (
-#         'title',
-#         'description',
-#         'author__first_name',
-#         'author__last_name'
-#     )
-#     ordering = ('-creation_date', 'title')
-#     readonly_fields = ('creation_date',)
-
-#     fieldsets = (
-#         (None, {
-#             'fields': ('author', 'title', 'description', 'frequency')
-#         }),
-#         ('Служебная информация', {
-#             'fields': ('creation_date', 'is_active',),
-#             'classes': ('collapse',)
-#         })
-#     )
+class QuestionInlineAdmin(admin.TabularInline):
+    model = Question
+    fields = ('survey', 'text', 'mark', 'priority')
+    show_change_link = True
+    show_full_result_count = True
+    extra = 1
 
 
-# @admin.register(Question)
-# class QuestionAdmin(admin.ModelAdmin):
-#     list_display = ('survey', 'text',)
-#     list_filter = ('survey',)
-#     search_fields = ('survey', 'text',)
-#     ordering = ('id',)
+@admin.register(Survey)
+class SurveyAdmin(admin.ModelAdmin):
+    list_display = (
+        'author',
+        'title',
+        'type',
+        'description',
+        'creation_date',
+        'is_active',
+    )
+    list_filter = ('department',)
+    search_fields = (
+        'title',
+        'description',
+        'author__first_name',
+        'author__last_name'
+    )
+    ordering = ('-creation_date', 'title')
+    readonly_fields = ('creation_date',)
+    inlines = (QuestionInlineAdmin,)
+    list_display_links = ('title',)
 
-#     fieldsets = (
-#         (None, {
-#             'fields': ('survey', 'text',)
-#         }),
-#     )
+    fieldsets = (
+        (None, {
+            'fields': ('author', 'title', 'type', 'description', 'frequency')
+        }),
+        ('Служебная информация', {
+            'fields': ('creation_date', 'is_active',),
+            'classes': ('collapse',)
+        })
+    )
+
+
+@admin.register(SurveyType)
+class SurveyType(admin.ModelAdmin):
+    list_display = ('name', 'slug',)
+    ordering = ('id',)
+
+
+@admin.register(Variant)
+class VariantAdmin(admin.ModelAdmin):
+    list_display = ('text', 'survey_type', 'priority', 'value')
+    ordering = ('id',)
 
 
 # @admin.register(CompletedSurvey)
