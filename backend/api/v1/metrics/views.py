@@ -15,6 +15,7 @@ from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         LifeBalanceCreateSerializer,
                                         LifeBalanceSerializer,
                                         LifeDirectionSerializer,
+                                        ShortSurveySerializer,
                                         SurveySerializer)
 from api.v1.permissions import HRAllPermission
 from metrics.models import (CompletedSurvey, Condition, LifeDirection, Survey,
@@ -76,6 +77,7 @@ class LifeBalanceViewSet(ModelViewSet):
         return UserLifeBalance.objects.filter(employee=self.request.user.id)
 
 
+@swagger_auto_schema(responses={status.HTTP_200_OK: SurveySerializer})
 class SurveyViewSet(ModelViewSet):
     queryset = (
         Survey.objects
@@ -85,10 +87,17 @@ class SurveyViewSet(ModelViewSet):
     )
     filter_backends = (DjangoFilterBackend,)
     filterset_class = SurveyFilter
-    http_method_names = ('get', 'post', 'patch',)
+    http_method_names = ('get',)
     permission_classes = (IsAuthenticated,)
-    # временно
-    serializer_class = SurveySerializer
+    serializer_class = ShortSurveySerializer
+    detail_serializer_class = SurveySerializer
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            if hasattr(self, 'detail_serializer_class'):
+                return self.detail_serializer_class
+
+        return super(SurveyViewSet, self).get_serializer_class()
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(

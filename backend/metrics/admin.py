@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import (Condition, LifeDirection, Question, Survey, SurveyType,
-                     UserLifeBalance, Variant)
+from .models import (CompletedSurvey, Condition, LifeDirection, Question,
+                     Survey, SurveyType, UserLifeBalance, Variant)
 
 
 @admin.register(Condition)
@@ -113,26 +113,26 @@ class VariantAdmin(admin.ModelAdmin):
     ordering = ('id',)
 
 
-# @admin.register(CompletedSurvey)
-# class CompletedSurvey(admin.ModelAdmin):
-#     list_display = ('employee', 'survey', 'completion_date',)
-#     list_filter = ('completion_date', 'survey',)
-#     search_fields = ('employee', 'survey',)
-#     ordering = ('-completion_date', 'employee', 'survey',)
+@admin.register(CompletedSurvey)
+class CompletedSurvey(admin.ModelAdmin):
+    list_display = ('employee', 'survey', 'completion_date',)
+    list_filter = ('survey',)
+    search_fields = ('employee', 'survey',)
+    ordering = ('-completion_date', 'employee', 'survey',)
 
-#     fieldsets = (
-#         (None, {
-#             'fields': (
-#                 'employee', 'survey', 'positive_value',
-#                 'negative_value', 'completion_date',
-#             )
-#         }),
-#         ('Служебная информация', {
-#             'fields': ('next_attempt_date',),
-#             'classes': ('collapse',)
-#         })
-#     )
+    fieldsets = (
+        (None, {
+            'fields': (
+                'employee', 'survey', 'questions',
+                'results', 'completion_date',
+            )
+        }),
+        ('Служебная информация', {
+            'fields': ('next_attempt_date',),
+            'classes': ('collapse',)
+        })
+    )
 
-#     def get_queryset(self, request):
-#         queryset = super().get_queryset(request)
-#         return queryset.select_related('employee', 'survey')
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related('employee', 'survey')

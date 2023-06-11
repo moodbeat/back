@@ -3,6 +3,7 @@ from datetime import date
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 
 from metrics.models import (CompletedSurvey, Condition, LifeDirection,
@@ -101,14 +102,29 @@ class UserShortSerializer(serializers.ModelSerializer):
         fields = ('id', 'first_name', 'last_name',)
 
 
-class SurveySerializer(serializers.ModelSerializer):
+class ShortSurveySerializer(serializers.ModelSerializer):
+
+    type = serializers.SlugRelatedField(slug_field='slug', read_only=True)
+    questions_quantity = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Survey
+        fields = (
+            'id', 'title', 'type', 'frequency', 'creation_date',
+            'questions_quantity', 'description', 'author'
+        )
+
+    def get_questions_quantity(self, obj):
+        questions = obj.questions.all()
+        return questions.count()
+
+
+class SurveySerializer(ShortSurveySerializer):
     """Сериализатор для представления опроса."""
 
     author = UserShortSerializer()
     questions = serializers.SerializerMethodField()
-    type = serializers.SlugRelatedField(slug_field='slug', read_only=True)
     variants = serializers.SerializerMethodField()
-    questions_quantity = serializers.SerializerMethodField()
 
     class Meta:
         model = Survey
@@ -118,10 +134,9 @@ class SurveySerializer(serializers.ModelSerializer):
             'variants', 'questions'
         )
 
-    def get_questions_quantity(self, obj):
-        questions = obj.questions.all()
-        return questions.count()
-
+    @swagger_serializer_method(
+        serializer_or_field=QuestionSerializer(many=True)
+    )
     def get_questions(self, obj):
         questions = obj.questions.all()
 
@@ -135,6 +150,9 @@ class SurveySerializer(serializers.ModelSerializer):
 
         return None
 
+    @swagger_serializer_method(
+        serializer_or_field=VariantSerializer(many=True)
+    )
     def get_variants(self, obj):
         variants = Variant.objects.filter(survey_type=obj.type)
         serializer = VariantSerializer(variants, many=True)
@@ -143,6 +161,9 @@ class SurveySerializer(serializers.ModelSerializer):
 
 class CompletedSurveySerializer(serializers.ModelSerializer):
     """Сериализатор для представления результатов пройденных опросов."""
+
+    employee = UserShortSerializer()
+    survey = ShortSurveySerializer()
 
     class Meta:
         model = CompletedSurvey
@@ -173,6 +194,11 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
         )
         return data
 
+    def to_representation(self, instance):
+        """После создания сериализуется через `CompletedSurveySerializer`."""
+        return CompletedSurveySerializer(instance, context=self.context).data
+
+
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""
 
@@ -192,44 +218,3 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
 #     def to_representation(self, instance):
 #         """После создания объект сериализуется через `SurveySerializer`."""
 #         return SurveySerializer(instance, context=self.context).data
-
-
-# class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
-#     """Сериализатор для записи результатов прохождения опроса."""
-
-#     employee = serializers.HiddenField(
-#         default=serializers.CurrentUserDefault(),
-#     )
-#     completion_date = serializers.HiddenField(
-#         default=date.today,
-#     )
-
-#     class Meta:
-#         model = CompletedSurvey
-#         exclude = ('result', 'next_attempt_date',)
-
-#     def validate(self, data):
-#         if (
-#             data['positive_value'] + data['negative_value']
-#         ) != data['survey'].questions.count():
-#             raise serializers.ValidationError(
-#                 'Количество ответов не соответстует количеству вопросов'
-#             )
-#         filter_params = {
-#             'employee': data['employee'],
-#             'survey': data['survey'],
-#             'next_attempt_date__gt': date.today(),
-#         }
-#         if (
-#             data['survey'].frequency
-#             and models.CompletedSurvey.objects.filter(
-#                 **filter_params).exists()
-#         ):
-#             raise ValidationError(
-#                 'Слишком рано для повторного прохождения опроса'
-#             )
-#         return data
-
-#     def to_representation(self, instance):
-#         """После создания сериализуется через `CompletedSurveySerializer`."""
-#         return CompletedSurveySerializer(instance, context=self.context).data

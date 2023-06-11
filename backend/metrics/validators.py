@@ -38,17 +38,29 @@ def validate_completed_survey(
     for num in questions:
         if not isinstance(num, int) or num < 1:
             raise ValidationError(
-                'Элементы списка должны быть целыми числами.'
+                'Элементы списка должны быть целыми положительными числами.'
             )
 
     for num in results:
         if not isinstance(num, int):
             raise ValidationError('Элементы списка должны быть числами.')
 
+    if len(set(questions)) != len(questions):
+        raise ValidationError('id в списке вопросов не должны повторяться.')
+
     if survey.questions.count() != len(questions):
         raise ValidationError(
             'Количество предоставленных id вопросов в списке не соответствует '
             'их количеству в данном опросе.'
+        )
+
+    question_ids = list(survey.questions.values_list('id', flat=True))
+
+    if set(questions) != set(question_ids):
+        missing_ids = set(questions) - set(question_ids)
+        raise ValidationError(
+            'Предоставленные id вопросов '
+            f'{list(missing_ids)} не содержатся в данном опросе.'
         )
 
     filter_params = {
