@@ -1,8 +1,12 @@
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from rest_framework import serializers
 
-from metrics.models import Condition, LifeDirection, Question, UserLifeBalance
+from metrics.models import (Condition, LifeDirection, Question, Survey,
+                            UserLifeBalance, Variant)
+
+User = get_user_model()
 
 
 class ConditionReadSerializer(serializers.ModelSerializer):
@@ -46,14 +50,6 @@ class ConditionWriteSerializer(serializers.ModelSerializer):
         return ConditionReadSerializer(instance, context=self.context).data
 
 
-class QuestionSerializer(serializers.ModelSerializer):
-    """Сериализатор для вопросов."""
-
-    class Meta:
-        model = Question
-        fields = ('text',)
-
-
 class LifeDirectionSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -79,15 +75,58 @@ class LifeBalanceCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# class SurveySerializer(serializers.ModelSerializer):
-#     """Сериализатор для представления опроса."""
+class QuestionSerializer(serializers.ModelSerializer):
+    """Сериализатор для вопросов."""
 
-#     questions = QuestionSerializer(many=True)
+    class Meta:
+        model = Question
+        exclude = ('survey', 'mark', 'priority',)
 
-#     class Meta:
-#         model = Survey
-#         fields = '__all__'
 
+class VariantSerializer(serializers.ModelSerializer):
+    """Сериализатор для представления вариантов ответа."""
+
+    class Meta:
+        model = Variant
+        fields = ('text', 'value')
+
+
+class UserShortSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name',)
+
+
+class SurveySerializer(serializers.ModelSerializer):
+    """Сериализатор для представления опроса."""
+
+    author = UserShortSerializer()
+    questions = serializers.SerializerMethodField()
+    type = serializers.SlugRelatedField(slug_field='slug', read_only=True)
+    variants = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Survey
+        fields = (
+            'id', 'title', 'type', 'frequency', 'creation_date',
+            'is_active', 'description', 'author', 'variants', 'questions'
+        )
+
+    def get_questions(self, obj):
+        questions = obj.questions.all()
+        if questions:
+            question_data = []
+            for index, question in enumerate(questions, start=1):
+                question_dict = QuestionSerializer(question).data
+                question_dict['number'] = index
+                question_data.append(question_dict)
+        return question_data
+
+    def get_variants(self, obj):
+        variants = Variant.objects.filter(survey_type=obj.type)
+        serializer = VariantSerializer(variants, many=True)
+        return serializer.data
 
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""

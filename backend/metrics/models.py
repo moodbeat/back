@@ -291,6 +291,10 @@ class CompletedSurvey(models.Model):
         verbose_name='дата прохождения опроса',
         default=date.today,
     )
+    next_attempt_date = models.DateField(
+        verbose_name='дата следующей попытки',
+        default=date.today,
+    )
 
     class Meta:
         ordering = ('-id',)

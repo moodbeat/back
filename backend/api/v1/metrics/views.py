@@ -12,9 +12,12 @@ from api.v1.metrics.serializers import (ConditionReadSerializer,
                                         ConditionWriteSerializer,
                                         LifeBalanceCreateSerializer,
                                         LifeBalanceSerializer,
-                                        LifeDirectionSerializer)
+                                        LifeDirectionSerializer,
+                                        SurveySerializer)
 from api.v1.permissions import HRAllPermission
-from metrics.models import Condition, LifeDirection, UserLifeBalance
+from metrics.models import Condition, LifeDirection, Survey, UserLifeBalance
+
+from .filters import SurveyFilter
 
 User = get_user_model()
 
@@ -69,6 +72,20 @@ class LifeBalanceViewSet(ModelViewSet):
             return UserLifeBalance.objects.all()
         return UserLifeBalance.objects.filter(employee=self.request.user.id)
 
+
+class SurveyViewSet(ModelViewSet):
+    queryset = (
+        Survey.objects
+        .select_related('author', 'type')
+        .prefetch_related('department', 'questions')
+        .all()
+    )
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = SurveyFilter
+    http_method_names = ('get', 'post', 'patch',)
+    permission_classes = (IsAuthenticated,)
+    # временно
+    serializer_class = SurveySerializer
 
 # @method_decorator(name='create', decorator=swagger_auto_schema(
 #     responses={status.HTTP_201_CREATED: SurveySerializer},
