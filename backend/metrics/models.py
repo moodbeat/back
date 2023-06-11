@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.core.validators import (MaxValueValidator, MinLengthValidator,
@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 
 from users.models import Department
 
-from .validators import validate_results
+from .validators import validate_completed_survey, validate_results
 
 User = get_user_model()
 
@@ -277,12 +277,12 @@ class CompletedSurvey(models.Model):
         on_delete=models.CASCADE,
     )
     summary = models.JSONField(
-        verbose_name='Сводка'
-    )
-    questions = models.JSONField(
-        verbose_name='Вопросы',
+        verbose_name='Сводка',
         null=True,
         default=None
+    )
+    questions = models.JSONField(
+        verbose_name='Вопросы'
     )
     results = models.JSONField(
         verbose_name='Выбранные варианты'
@@ -305,32 +305,24 @@ class CompletedSurvey(models.Model):
         return (f'"{self.survey.title}" Пройден '
                 f'сотрудником {self.employee.get_full_name}')
 
-    # def clean(self):
-    #     """Дополнительная валидация перед сохранением."""
-    #     if (
-    #         self.positive_value + self.negative_value
-    #     ) != self.survey.questions.count():
-    #         raise ValidationError(
-    #             'Количество ответов не соответстует количеству вопросов'
-    #         )
-    #     filter_params = {
-    #         'employee': self.employee,
-    #         'survey': self.survey,
-    #         'next_attempt_date__gt': date.today(),
-    #     }
-    #     if CompletedSurvey.objects.filter(**filter_params).exists():
-    #         raise ValidationError(
-    #             'Слишком рано для повторного прохождения опроса'
-    #         )
-    #     return super().clean()
+    def clean(self):
+        """Дополнительная валидация перед сохранением."""
+        validate_completed_survey(
+            self.survey,
+            self.questions,
+            self.results,
+            self.employee,
+            CompletedSurvey
+        )
+        return super().clean()
 
-    # def save(self, *args, **kwargs):
-    #     """При создании объекта интерпретирует значение результата в текст.
+    def save(self, *args, **kwargs):
+        """При создании объекта интерпретирует значение результата в текст.
 
-    #     Также в зависимости от периодичности `frequency`, установленной
-    #     в модели `Survey` определяет дату следующей попытки прохождения
-    #     опроса.
-    #     """
+        Также в зависимости от периодичности `frequency`, установленной
+        в модели `Survey` определяет дату следующей попытки прохождения
+        опроса.
+        """
     #     result_in_persent = (
     #         self.positive_value / self.survey.questions.count() * 100
     #     )
@@ -349,7 +341,8 @@ class CompletedSurvey(models.Model):
     #     mental_state = MentalState.objects.filter(level=level).first()
     #     self.employee.mental_state = mental_state
     #     self.employee.save()
-    #     self.next_attempt_date = date.today() + timedelta(
-    #         days=self.survey.frequency
-    #     )
-    #     return super(CompletedSurvey, self).save(*args, **kwargs)
+        if self.survey.frequency:
+            self.next_attempt_date = date.today() + timedelta(
+                days=self.survey.frequency
+            )
+        return super(CompletedSurvey, self).save(*args, **kwargs)

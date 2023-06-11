@@ -7,15 +7,18 @@ from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.metrics.filters import ConditionFilter
-from api.v1.metrics.serializers import (ConditionReadSerializer,
+from api.v1.metrics.filters import CompletedSurveyFilter, ConditionFilter
+from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
+                                        CompletedSurveySerializer,
+                                        ConditionReadSerializer,
                                         ConditionWriteSerializer,
                                         LifeBalanceCreateSerializer,
                                         LifeBalanceSerializer,
                                         LifeDirectionSerializer,
                                         SurveySerializer)
 from api.v1.permissions import HRAllPermission
-from metrics.models import Condition, LifeDirection, Survey, UserLifeBalance
+from metrics.models import (CompletedSurvey, Condition, LifeDirection, Survey,
+                            UserLifeBalance)
 
 from .filters import SurveyFilter
 
@@ -86,6 +89,33 @@ class SurveyViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     # временно
     serializer_class = SurveySerializer
+
+
+@method_decorator(name='create', decorator=swagger_auto_schema(
+    responses={status.HTTP_201_CREATED: CompletedSurveySerializer}
+))
+class CompletedSurveyViewSet(ModelViewSet):
+    queryset = CompletedSurvey.objects.select_related(
+        'employee', 'survey',
+    ).all()
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = CompletedSurveyFilter
+    http_method_names = ('get', 'post',)
+    permission_classes = (IsAuthenticated,)
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = (HRAllPermission,)
+            my_results = self.request.query_params.get('my_results')
+            if my_results:
+                self.permission_classes = (IsAuthenticated,)
+        return super().get_permissions()
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return CompletedSurveySerializer
+        return CompletedSurveyCreateSerializer
+
 
 # @method_decorator(name='create', decorator=swagger_auto_schema(
 #     responses={status.HTTP_201_CREATED: SurveySerializer},

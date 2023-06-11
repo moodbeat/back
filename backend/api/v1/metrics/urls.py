@@ -7,8 +7,12 @@ v10 = OptionalSlashRouter()
 
 v10.register('conditions', views.ConditionViewSet, basename='conditions')
 v10.register('life_balance', views.LifeBalanceViewSet, basename='life_balance')
+v10.register(
+    'surveys/results',
+    views.CompletedSurveyViewSet,
+    basename='surveys_results'
+)
 v10.register('surveys', views.SurveyViewSet, basename='surveys')
-# v10.register('results', views.CompletedSurveyViewSet, basename='results')
 
 urlpatterns = [
     path('', include(v10.urls)),

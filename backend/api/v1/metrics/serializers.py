@@ -1,10 +1,13 @@
+from datetime import date
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from rest_framework import serializers
 
-from metrics.models import (Condition, LifeDirection, Question, Survey,
-                            UserLifeBalance, Variant)
+from metrics.models import (CompletedSurvey, Condition, LifeDirection,
+                            Question, Survey, UserLifeBalance, Variant)
+from metrics.validators import validate_completed_survey
 
 User = get_user_model()
 
@@ -137,6 +140,39 @@ class SurveySerializer(serializers.ModelSerializer):
         serializer = VariantSerializer(variants, many=True)
         return serializer.data
 
+
+class CompletedSurveySerializer(serializers.ModelSerializer):
+    """Сериализатор для представления результатов пройденных опросов."""
+
+    class Meta:
+        model = CompletedSurvey
+        fields = '__all__'
+
+
+class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
+    """Сериализатор для записи результатов прохождения опроса."""
+
+    employee = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
+    )
+    completion_date = serializers.HiddenField(
+        default=date.today,
+    )
+
+    class Meta:
+        model = CompletedSurvey
+        exclude = ('summary', 'next_attempt_date',)
+
+    def validate(self, data):
+        survey = data.get('survey', None)
+        questions = data.get('questions', None)
+        results = data.get('results', None)
+        employee = self.context.get('request').user
+        validate_completed_survey(
+            survey, questions, results, employee, CompletedSurvey
+        )
+        return data
+
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""
 
@@ -156,14 +192,6 @@ class SurveySerializer(serializers.ModelSerializer):
 #     def to_representation(self, instance):
 #         """После создания объект сериализуется через `SurveySerializer`."""
 #         return SurveySerializer(instance, context=self.context).data
-
-
-# class CompletedSurveySerializer(serializers.ModelSerializer):
-#     """Сериализатор для представления результатов пройденных опросов."""
-
-#     class Meta:
-#         model = CompletedSurvey
-#         exclude = ('positive_value', 'negative_value',)
 
 
 # class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
