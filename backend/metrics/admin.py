@@ -56,6 +56,17 @@ class QuestionInlineAdmin(admin.TabularInline):
     extra = 1
 
 
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    list_display = ('survey', 'text', 'mark', 'priority')
+    list_filter = ('survey',)
+
+
+@admin.action(description='Удалить вместе с вопросами')
+def delete_survey_questions(modeladmin, request, queryset):
+    Question.objects.filter(survey__in=queryset).delete()
+
+
 @admin.register(Survey)
 class SurveyAdmin(admin.ModelAdmin):
     list_display = (
@@ -77,6 +88,7 @@ class SurveyAdmin(admin.ModelAdmin):
     readonly_fields = ('creation_date',)
     inlines = (QuestionInlineAdmin,)
     list_display_links = ('title',)
+    actions = (delete_survey_questions,)
 
     fieldsets = (
         (None, {

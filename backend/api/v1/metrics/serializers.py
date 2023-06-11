@@ -105,23 +105,32 @@ class SurveySerializer(serializers.ModelSerializer):
     questions = serializers.SerializerMethodField()
     type = serializers.SlugRelatedField(slug_field='slug', read_only=True)
     variants = serializers.SerializerMethodField()
+    questions_quantity = serializers.SerializerMethodField()
 
     class Meta:
         model = Survey
         fields = (
             'id', 'title', 'type', 'frequency', 'creation_date',
-            'is_active', 'description', 'author', 'variants', 'questions'
+            'questions_quantity', 'is_active', 'description', 'author',
+            'variants', 'questions'
         )
+
+    def get_questions_quantity(self, obj):
+        questions = obj.questions.all()
+        return questions.count()
 
     def get_questions(self, obj):
         questions = obj.questions.all()
+
         if questions:
             question_data = []
             for index, question in enumerate(questions, start=1):
                 question_dict = QuestionSerializer(question).data
                 question_dict['number'] = index
                 question_data.append(question_dict)
-        return question_data
+            return question_data
+
+        return None
 
     def get_variants(self, obj):
         variants = Variant.objects.filter(survey_type=obj.type)
