@@ -165,6 +165,13 @@ class MentalStateSerializer(serializers.ModelSerializer):
     class Meta:
         model = MentalState
         exclude = ('id',)
+        ref_name = 'MentalStateMetrics'
+
+
+class SurveyResultSerializer(serializers.Serializer):
+    question_id = serializers.IntegerField()
+    variant_value = serializers.IntegerField()
+    variant_id = serializers.IntegerField(required=False)
 
 
 class CompletedSurveySerializer(serializers.ModelSerializer):
@@ -188,18 +195,19 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
     completion_date = serializers.HiddenField(
         default=date.today,
     )
+    results = SurveyResultSerializer(many=True)
 
     class Meta:
         model = CompletedSurvey
         exclude = ('summary', 'next_attempt_date',)
+        ref_name = 'CompletedSurveyCreate'
 
     def validate(self, data):
         survey = data.get('survey', None)
-        questions = data.get('questions', None)
         results = data.get('results', None)
         employee = self.context.get('request').user
         validate_completed_survey(
-            survey, questions, results, employee, CompletedSurvey, Variant
+            survey, results, employee, CompletedSurvey, Variant
         )
         return data
 

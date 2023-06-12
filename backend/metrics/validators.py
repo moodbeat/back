@@ -21,20 +21,14 @@ def validate_results(value):
 
 def validate_completed_survey(
     survey: int,
-    questions: list,
     results: list,
     employee: object,
     completed_survey: object,
     variant: object
 ):
-
-    if not isinstance(questions, list) or not isinstance(results, list):
-        raise ValidationError('Значение должно быть списком.')
-
-    if not len(questions) == len(results):
-        raise ValidationError(
-            'Количество значений в обоих списках должно быть равным.'
-        )
+    # переделать это все по человечески
+    questions = [item['question_id'] for item in results]
+    values = [item['variant_value'] for item in results]
 
     for num in questions:
         if not isinstance(num, int) or num < 1:
@@ -42,7 +36,7 @@ def validate_completed_survey(
                 'Элементы списка должны быть целыми положительными числами.'
             )
 
-    for num in results:
+    for num in values:
         if not isinstance(num, int):
             raise ValidationError('Элементы списка должны быть числами.')
 
@@ -70,10 +64,10 @@ def validate_completed_survey(
         .values_list('value', flat=True)
     )
 
-    for result in list(set(results)):
-        if result not in variants_values:
+    for value in list(set(values)):
+        if value not in variants_values:
             raise ValidationError(
-                f'Недопустимое значение {result} в results. '
+                f'Недопустимое значение {value} в variant_value. '
                 'В данном опросе допустимы следующие значения: '
                 f'{list(variants_values)}'
             )

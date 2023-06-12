@@ -292,11 +292,8 @@ class CompletedSurvey(models.Model):
         null=True,
         default=None
     )
-    questions = models.JSONField(
-        verbose_name='Вопросы'
-    )
     results = models.JSONField(
-        verbose_name='Выбранные варианты'
+        verbose_name='Результаты'
     )
     completion_date = models.DateField(
         verbose_name='дата прохождения опроса',
@@ -320,7 +317,6 @@ class CompletedSurvey(models.Model):
         """Дополнительная валидация перед сохранением."""
         validate_completed_survey(
             self.survey,
-            self.questions,
             self.results,
             self.employee,
             CompletedSurvey,
@@ -360,14 +356,16 @@ class CompletedSurvey(models.Model):
         self.employee.save()
         self.mental_state = mental_state
         # еще костыль, для summary будет отдельная модель
-        summary = {
-            "graphs": [
-                {"type": "big", "percentage": 57, "value": 57},
-                {"type": "normal", "percentage": 89, "value": 48},
-                {"type": "normal", "percentage": 66, "value": 20},
-                {"type": "normal", "percentage": 57, "value": 28},
-            ]
-        }
+        summary = None
+        if self.survey.type.slug == 'mbi':
+            summary = {
+                "graphs": [
+                    {"type": "big", "percentage": 57, "value": 57},
+                    {"type": "normal", "percentage": 89, "value": 48},
+                    {"type": "normal", "percentage": 66, "value": 20},
+                    {"type": "normal", "percentage": 57, "value": 28},
+                ]
+            }
         self.summary = summary
 
         if self.survey.frequency:

@@ -124,7 +124,7 @@ class CompletedSurvey(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'employee', 'survey', 'questions',
+                'employee', 'survey',
                 'results', 'completion_date',
             )
         }),
