@@ -24,7 +24,8 @@ def validate_completed_survey(
     questions: list,
     results: list,
     employee: object,
-    completed_survey: object
+    completed_survey: object,
+    variant: object
 ):
 
     if not isinstance(questions, list) or not isinstance(results, list):
@@ -63,12 +64,29 @@ def validate_completed_survey(
             f'{list(missing_ids)} не содержатся в данном опросе.'
         )
 
+    variants_values = set(
+        variant.objects
+        .filter(survey_type=survey.type)
+        .values_list('value', flat=True)
+    )
+
+    for result in list(set(results)):
+        if result not in variants_values:
+            raise ValidationError(
+                f'Недопустимое значение {result} в results. '
+                'В данном опросе допустимы следующие значения: '
+                f'{list(variants_values)}'
+            )
+
     filter_params = {
         'employee': employee,
         'survey': survey,
         'next_attempt_date__gt': date.today(),
     }
-    if completed_survey.objects.filter(**filter_params).exists():
+    if (
+        survey.frequency
+        and completed_survey.objects.filter(**filter_params).exists()
+    ):
         raise ValidationError(
             'Слишком рано для повторного прохождения опроса.'
         )

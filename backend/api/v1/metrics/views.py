@@ -105,7 +105,7 @@ class SurveyViewSet(ModelViewSet):
 ))
 class CompletedSurveyViewSet(ModelViewSet):
     queryset = CompletedSurvey.objects.select_related(
-        'employee', 'survey',
+        'employee', 'survey', 'mental_state'
     ).all()
     filter_backends = (DjangoFilterBackend,)
     filterset_class = CompletedSurveyFilter

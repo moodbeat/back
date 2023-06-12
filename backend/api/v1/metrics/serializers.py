@@ -9,6 +9,7 @@ from rest_framework import serializers
 from metrics.models import (CompletedSurvey, Condition, LifeDirection,
                             Question, Survey, UserLifeBalance, Variant)
 from metrics.validators import validate_completed_survey
+from users.models import MentalState
 
 User = get_user_model()
 
@@ -111,7 +112,7 @@ class ShortSurveySerializer(serializers.ModelSerializer):
         model = Survey
         fields = (
             'id', 'title', 'type', 'frequency', 'creation_date',
-            'questions_quantity', 'description', 'author'
+            'questions_quantity', 'description', 'text', 'author'
         )
 
     def get_questions_quantity(self, obj):
@@ -130,7 +131,7 @@ class SurveySerializer(ShortSurveySerializer):
         model = Survey
         fields = (
             'id', 'title', 'type', 'frequency', 'creation_date',
-            'questions_quantity', 'is_active', 'description', 'author',
+            'questions_quantity', 'is_active', 'description', 'text', 'author',
             'variants', 'questions'
         )
 
@@ -159,11 +160,19 @@ class SurveySerializer(ShortSurveySerializer):
         return serializer.data
 
 
+class MentalStateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MentalState
+        exclude = ('id',)
+
+
 class CompletedSurveySerializer(serializers.ModelSerializer):
     """Сериализатор для представления результатов пройденных опросов."""
 
     employee = UserShortSerializer()
     survey = ShortSurveySerializer()
+    mental_state = MentalStateSerializer()
 
     class Meta:
         model = CompletedSurvey
@@ -190,7 +199,7 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
         results = data.get('results', None)
         employee = self.context.get('request').user
         validate_completed_survey(
-            survey, questions, results, employee, CompletedSurvey
+            survey, questions, results, employee, CompletedSurvey, Variant
         )
         return data
 

@@ -7,7 +7,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from users.models import Department
+from users.models import Department, MentalState
 
 from .validators import validate_completed_survey, validate_results
 
@@ -165,6 +165,11 @@ class Survey(models.Model):
         null=True,
         max_length=800,
     )
+    text = models.TextField(
+        verbose_name='Текст после прохождения опроса',
+        blank=True,
+        null=True
+    )
     frequency = models.PositiveSmallIntegerField(
         verbose_name='Периодичность прохождения опроса',
         default=30,
@@ -276,6 +281,12 @@ class CompletedSurvey(models.Model):
         verbose_name='опрос',
         on_delete=models.CASCADE,
     )
+    mental_state = models.ForeignKey(
+        MentalState,
+        verbose_name='Оценка состояния',
+        on_delete=models.SET_NULL,
+        null=True
+    )
     summary = models.JSONField(
         verbose_name='Сводка',
         null=True,
@@ -312,7 +323,8 @@ class CompletedSurvey(models.Model):
             self.questions,
             self.results,
             self.employee,
-            CompletedSurvey
+            CompletedSurvey,
+            Variant
         )
         return super().clean()
 
@@ -341,6 +353,23 @@ class CompletedSurvey(models.Model):
     #     mental_state = MentalState.objects.filter(level=level).first()
     #     self.employee.mental_state = mental_state
     #     self.employee.save()
+
+        # костыль до появления калькулятора
+        mental_state = MentalState.objects.filter(level=1).first()
+        self.employee.mental_state = mental_state
+        self.employee.save()
+        self.mental_state = mental_state
+        # еще костыль, для summary будет отдельная модель
+        summary = {
+            "graphs": [
+                {"type": "big", "percentage": 57, "value": 57},
+                {"type": "normal", "percentage": 89, "value": 48},
+                {"type": "normal", "percentage": 66, "value": 20},
+                {"type": "normal", "percentage": 57, "value": 28},
+            ]
+        }
+        self.summary = summary
+
         if self.survey.frequency:
             self.next_attempt_date = date.today() + timedelta(
                 days=self.survey.frequency

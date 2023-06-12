@@ -92,7 +92,8 @@ class SurveyAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('author', 'title', 'type', 'description', 'frequency')
+            'fields': ('author', 'title', 'type', 'description', 'text',
+                       'frequency')
         }),
         ('Служебная информация', {
             'fields': ('creation_date', 'is_active',),
@@ -115,7 +116,7 @@ class VariantAdmin(admin.ModelAdmin):
 
 @admin.register(CompletedSurvey)
 class CompletedSurvey(admin.ModelAdmin):
-    list_display = ('employee', 'survey', 'completion_date',)
+    list_display = ('employee', 'survey', 'mental_state', 'completion_date',)
     list_filter = ('survey',)
     search_fields = ('employee', 'survey',)
     ordering = ('-completion_date', 'employee', 'survey',)
@@ -135,4 +136,4 @@ class CompletedSurvey(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related('employee', 'survey')
+        return queryset.select_related('employee', 'survey', 'mental_state')
