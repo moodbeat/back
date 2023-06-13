@@ -358,12 +358,17 @@ class CompletedSurvey(models.Model):
         # еще костыль, для summary будет отдельная модель
         summary = None
         if self.survey.type.slug == 'mbi':
+            # это для фронта, чтобы заранее делали шкалы
             summary = {
                 "graphs": [
-                    {"type": "big", "percentage": 57, "value": 57},
-                    {"type": "normal", "percentage": 89, "value": 48},
-                    {"type": "normal", "percentage": 66, "value": 20},
-                    {"type": "normal", "percentage": 57, "value": 28},
+                    {"title": "Значение индекса системного выгорания",
+                     "type": "big", "percentage": 57, "value": 57},
+                    {"title": "Эмоциональное истощение",
+                     "type": "normal", "percentage": 89, "value": 48},
+                    {"title": "Деперсонализация",
+                     "type": "normal", "percentage": 66, "value": 20},
+                    {"title": "Редукция проф.достижений",
+                     "type": "normal", "percentage": 57, "value": 28},
                 ]
             }
         self.summary = summary

@@ -62,6 +62,12 @@ class LifeDirectionSerializer(serializers.ModelSerializer):
         exclude = ('id',)
 
 
+class LifeBalanceResultSerializer(serializers.Serializer):
+
+    num = serializers.IntegerField()
+    result = serializers.IntegerField()
+
+
 class LifeBalanceSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -74,6 +80,30 @@ class LifeBalanceCreateSerializer(serializers.ModelSerializer):
     employee = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )
+    results = LifeBalanceResultSerializer(many=True)
+
+    def validate_results(self, value):
+        nums = [item['num'] for item in value]
+        results = [item['result'] for item in value]
+        life_directions = LifeDirection.objects.all()
+
+        if len(value) != life_directions.count():
+            raise ValidationError(
+                'Количество элементов в результате не совпадает с '
+                'количеством жизненных направлений'
+            )
+
+        if set(nums) != set(life_directions.values_list('num', flat=True)):
+            raise ValidationError('Неверно указан один или несколько num.')
+
+        for num in results:
+            if not isinstance(num, int) or num < 1 or num > 10:
+                raise ValidationError(
+                    'Элементы в result должны быть целыми числами в диапазоне '
+                    'от 1 до 10.'
+                )
+
+        return value
 
     class Meta:
         model = UserLifeBalance

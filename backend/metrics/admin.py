@@ -47,6 +47,15 @@ class LifeDirectionAdmin(admin.ModelAdmin):
 class UserLifeBalanceAdmin(admin.ModelAdmin):
     list_display = ('date', 'employee', 'set_priority')
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 class QuestionInlineAdmin(admin.TabularInline):
     model = Question
