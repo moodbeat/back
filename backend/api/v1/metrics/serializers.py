@@ -115,7 +115,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        exclude = ('survey', 'mark', 'priority',)
+        exclude = ('survey', 'key', 'priority',)
 
 
 class VariantSerializer(serializers.ModelSerializer):
