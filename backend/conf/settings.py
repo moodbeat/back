@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'socials.apps.SocialsConfig',
     'events.apps.EventsConfig',
     'metrics.apps.MetricsConfig',
+    'notifications.apps.NotificationsConfig'
 ]
 
 MIDDLEWARE = [
