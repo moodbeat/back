@@ -229,7 +229,7 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CompletedSurvey
-        exclude = ('summary', 'next_attempt_date',)
+        exclude = ('summary', 'next_attempt_date', 'mental_state')
         ref_name = 'CompletedSurveyCreate'
 
     def validate(self, data):

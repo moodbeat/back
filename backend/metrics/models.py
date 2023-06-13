@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import (MaxValueValidator, MinLengthValidator,
                                     MinValueValidator)
 from django.db import models
@@ -175,6 +176,22 @@ class Survey(models.Model):
         default=30,
         validators=[MaxValueValidator(90)],
     )
+    min_range = models.PositiveSmallIntegerField(
+        verbose_name='Минимальный средний порог расчета',
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(100)
+        ],
+        null=True
+    )
+    max_range = models.PositiveSmallIntegerField(
+        verbose_name='Максимальный средний порог расчета',
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(100)
+        ],
+        null=True
+    )
     creation_date = models.DateTimeField(
         verbose_name='Дата и время создания опроса',
         default=timezone.now,
@@ -192,6 +209,30 @@ class Survey(models.Model):
     def __str__(self):
         return self.title
 
+    def clean(self):
+
+        if self.min_range is not None or self.max_range is not None:
+
+            if self.min_range is None or self.max_range is None:
+                raise ValidationError(
+                    'Должны быть заполнены нижний и максимальный пороги вместе'
+                    ', либо ни один из них.'
+                )
+
+            if self.min_range > self.max_range:
+                raise ValidationError(
+                    'Минимальное значение не может быть больше максимального '
+                    'значения.'
+                )
+
+            if self.max_range < self.min_range:
+                raise ValidationError(
+                    'Максимальное значение не может быть меньше минимального '
+                    'значения.'
+                )
+
+        return super().clean()
+
 
 class Question(models.Model):
     """Вопрос к опросу."""
@@ -206,8 +247,8 @@ class Question(models.Model):
         verbose_name='Текст вопроса',
         max_length=800,
     )
-    mark = models.IntegerField(
-        verbose_name='Метка',
+    key = models.IntegerField(
+        verbose_name='Ключ',
         null=True,
         blank=True
     )

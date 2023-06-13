@@ -59,7 +59,7 @@ class UserLifeBalanceAdmin(admin.ModelAdmin):
 
 class QuestionInlineAdmin(admin.TabularInline):
     model = Question
-    fields = ('survey', 'text', 'mark', 'priority')
+    fields = ('survey', 'text', 'key', 'priority')
     show_change_link = True
     show_full_result_count = True
     extra = 1
@@ -67,7 +67,7 @@ class QuestionInlineAdmin(admin.TabularInline):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('survey', 'text', 'mark', 'priority')
+    list_display = ('survey', 'text', 'key', 'priority')
     list_filter = ('survey',)
 
 
@@ -98,11 +98,12 @@ class SurveyAdmin(admin.ModelAdmin):
     inlines = (QuestionInlineAdmin,)
     list_display_links = ('title',)
     actions = (delete_survey_questions,)
+    save_on_top = True
 
     fieldsets = (
         (None, {
             'fields': ('author', 'title', 'type', 'description', 'text',
-                       'frequency')
+                       'frequency', 'min_range', 'max_range')
         }),
         ('Служебная информация', {
             'fields': ('creation_date', 'is_active',),
