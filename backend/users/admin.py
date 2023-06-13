@@ -74,7 +74,7 @@ class CustomUserAdmin(UserAdmin):
         (('Служебная информация'), {'fields': (
             'department', 'position', 'role', 'phone'
         )}),
-        (('Прочее'), {'fields': ('avatar', 'hobbies', 'mental_state')}),
+        (('Прочее'), {'fields': ('avatar_full', 'hobbies', 'mental_state')}),
         (('Роли и права'), {
             'fields': ('is_active', 'is_staff', 'is_superuser'),
         }),
