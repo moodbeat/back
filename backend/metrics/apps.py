@@ -7,4 +7,4 @@ class MetricsConfig(AppConfig):
     verbose_name = 'Метрики'
 
     def ready(self):
-        from notifications.signals import handlers  # noqa
+        from .signals import handlers  # noqa

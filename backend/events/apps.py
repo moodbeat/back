@@ -7,4 +7,4 @@ class EventsConfig(AppConfig):
     verbose_name = 'События'
 
     def ready(self):
-        from notifications.signals import handlers  # noqa
+        from .signals import handlers  # noqa
