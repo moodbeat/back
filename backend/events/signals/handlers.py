@@ -23,7 +23,7 @@ def create_notification_for_event_by_departments(
     `departments`.
     """
     if action == 'post_add':
-        Notification.objects.bulk_create([
+        results = Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.EVENT,
                 incident_id=instance.id,
@@ -32,10 +32,8 @@ def create_notification_for_event_by_departments(
                 Q(department__in=pk_set) & Q(is_active=True)
             )
         ])
-        for obj in User.objects.filter(
-            Q(department__in=pk_set) & Q(is_active=True)
-        ):
-            notification.send(sender=Notification, user=obj)
+        for obj in results:
+            notification.send(sender=Notification, instance=obj)
 
 
 @receiver(m2m_changed, sender=Event.employees.through)
@@ -50,7 +48,7 @@ def create_notification_for_event_by_employees(
     `departments`.
     """
     if action == 'post_add':
-        Notification.objects.bulk_create([
+        results = Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.EVENT,
                 incident_id=instance.id,
@@ -59,7 +57,5 @@ def create_notification_for_event_by_employees(
                 Q(id__in=pk_set) & Q(is_active=True)
             )
         ])
-        for obj in User.objects.filter(
-            Q(id__in=pk_set) & Q(is_active=True)
-        ):
-            notification.send(sender=Notification, user=obj)
+        for obj in results:
+            notification.send(sender=Notification, instance=obj)

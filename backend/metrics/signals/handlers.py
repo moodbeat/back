@@ -20,7 +20,7 @@ def create_notification_for_survey(sender, instance, created, **kwargs):
     """
     if created:
         department_id = instance.department.id
-        Notification.objects.bulk_create([
+        results = Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.SURVEY,
                 incident_id=instance.survey.id,
@@ -29,7 +29,5 @@ def create_notification_for_survey(sender, instance, created, **kwargs):
                 Q(department=department_id) & Q(is_active=True)
             )
         ])
-        for obj in User.objects.filter(
-            Q(department=department_id) & Q(is_active=True)
-        ):
-            notification.send(sender=Notification, user=obj)
+        for obj in results:
+            notification.send(sender=Notification, instance=obj)
