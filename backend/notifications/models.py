@@ -18,6 +18,9 @@ class Notification(models.Model):
         choices=IncidentType.choices,
         blank=True
     )
+    incident_id = models.PositiveIntegerField(
+        verbose_name='индивидуальный идентификатор события'
+    )
     user = models.ForeignKey(
         User,
         verbose_name='сотрудник',

@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from notifications.models import Notification
+from notifications.signals.handlers import notification
 
 from ..models import SurveyDepartment
 
@@ -18,11 +19,17 @@ def create_notification_for_survey(sender, instance, created, **kwargs):
     для всех пользователей из связанных департаментов модели `Survey`.
     """
     if created:
+        department_id = instance.department.id
         Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.SURVEY,
+                incident_id=instance.survey.id,
                 user=obj
             ) for obj in User.objects.filter(
-                Q(department=instance.id) & Q(is_active=True)
+                Q(department=department_id) & Q(is_active=True)
             )
         ])
+        for obj in User.objects.filter(
+            Q(department=department_id) & Q(is_active=True)
+        ):
+            notification.send(sender=Notification, user=obj)

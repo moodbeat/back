@@ -4,7 +4,6 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 
 class UserNotifyConsumer(AsyncWebsocketConsumer):
-
     async def connect(self):
         if self.scope['user'].is_authenticated:
             self.ws_id = self.scope['user'].id
@@ -15,11 +14,12 @@ class UserNotifyConsumer(AsyncWebsocketConsumer):
             await self.accept()
 
     async def disconnect(self, close_code):
-        await self.channel_layer.group_discard(
-            self.group_name, self.channel_name
-        )
+        if self.scope['user'].is_authenticated:
+            await self.channel_layer.group_discard(
+                self.group_name, self.channel_name
+            )
         await self.close()
 
     async def notification(self, event):
-        data = event['data']
-        await self.send(json.dumps({'message': data}))
+        message = event['message']
+        await self.send(json.dumps({'message': message}))
