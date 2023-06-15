@@ -1,6 +1,6 @@
 from django.conf import settings
 from django_elasticsearch_dsl_drf import filter_backends
-from elasticsearch_dsl.query import Bool, Match, Prefix
+from elasticsearch_dsl.query import Bool, Match, Prefix, Wildcard
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
 
@@ -68,13 +68,14 @@ class ElasticSearchFilter(filter_backends.BaseSearchFilterBackend):
                 }
             )
             prefix_name_query = Prefix(name=search_text)
+            wildcard_name_query = Wildcard(name=f'*{search_text}*')
 
-            bool_query.should.append(match_name_query)
-            bool_query.should.append(prefix_name_query)
+            bool_query.should.extend([
+                match_name_query,
+                prefix_name_query,
+                wildcard_name_query
+            ])
             search = search_document.search().query(bool_query)
-            response = search.execute()
-            ids = [hit.meta.id for hit in response]
-
-            return queryset.filter(id__in=ids).order_by('name')
+            return search.execute()
 
         return queryset

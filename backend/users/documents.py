@@ -18,5 +18,6 @@ class HobbyDocument(Document):
         model = Hobby
 
         fields = [
+            'id',
             'name',
         ]
