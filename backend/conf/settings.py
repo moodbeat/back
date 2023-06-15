@@ -35,6 +35,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl_drf',
     'django_filters',
     'debug_toolbar',
     'phonenumber_field',
@@ -84,6 +86,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'conf.wsgi.application'
 
 ASGI_APPLICATION = 'conf.asgi.application'
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'localhost:9200'
+    },
+}
 
 CHANNEL_LAYERS = {
     "default": {

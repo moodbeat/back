@@ -1,4 +1,6 @@
 from django.conf import settings
+from django_elasticsearch_dsl_drf import filter_backends
+from elasticsearch_dsl.query import Bool, Match, Prefix
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
 
@@ -48,3 +50,30 @@ class DepartmentInviteCodeFilter(InviteCodeFilter):
         if not request.user.is_authenticated:
             return queryset.filter(positions__chief_position=False).distinct()
         return queryset
+
+
+class ElasticSearchFilter(filter_backends.BaseSearchFilterBackend):
+    def filter_queryset(self, request, queryset, view):
+        search_text = request.query_params.get('search', '')
+        if search_text:
+            search_document = view.search_document
+            bool_query = Bool(should=[])
+
+            match_name_query = Match(
+                name={
+                    'query': search_text,
+                    'fuzziness': 'AUTO',
+                    'prefix_length': 0,
+                    'max_expansions': 10
+                }
+            )
+            bool_query.should.append(match_name_query)
+
+            prefix_name_query = Prefix(name=search_text)
+            bool_query.should.append(prefix_name_query)
+
+            search = search_document.search().query(bool_query)
+            response = search.execute()
+            ids = [hit.meta.id for hit in response]
+
+        return queryset.filter(id__in=ids).order_by('name')

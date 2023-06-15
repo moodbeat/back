@@ -16,10 +16,12 @@ from rest_framework.viewsets import ModelViewSet
 from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
                                 ChiefSafePermission, EmployeePostPermission,
                                 EmployeeSafePermission, HRAllPermission)
+from users.documents import HobbyDocument
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position)
 
-from .filters import DepartmentInviteCodeFilter, PositionInviteCodeFilter
+from .filters import (DepartmentInviteCodeFilter, ElasticSearchFilter,
+                      PositionInviteCodeFilter)
 from .serializers import (DepartmentSerializer, HobbySerializer,
                           PasswordChangeSerializer,
                           PasswordResetConfirmSerializer,
@@ -370,8 +372,9 @@ class PositionViewSet(ModelViewSet):
 class HobbyViewSet(ModelViewSet):
     serializer_class = HobbySerializer
     queryset = Hobby.objects.all()
-    filter_backends = (DjangoFilterBackend, SearchFilter)
+    filter_backends = (DjangoFilterBackend, ElasticSearchFilter)
     filterset_fields = ('id', 'name',)
+    search_document = HobbyDocument
     search_fields = ('name',)
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
