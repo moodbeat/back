@@ -67,13 +67,14 @@ class ElasticSearchFilter(filter_backends.BaseSearchFilterBackend):
                     'max_expansions': 10
                 }
             )
-            bool_query.should.append(match_name_query)
-
             prefix_name_query = Prefix(name=search_text)
-            bool_query.should.append(prefix_name_query)
 
+            bool_query.should.append(match_name_query)
+            bool_query.should.append(prefix_name_query)
             search = search_document.search().query(bool_query)
             response = search.execute()
             ids = [hit.meta.id for hit in response]
 
-        return queryset.filter(id__in=ids).order_by('name')
+            return queryset.filter(id__in=ids).order_by('name')
+
+        return queryset
