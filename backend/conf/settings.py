@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'socials.apps.SocialsConfig',
     'events.apps.EventsConfig',
     'metrics.apps.MetricsConfig',
+    'notifications.apps.NotificationsConfig'
 ]
 
 MIDDLEWARE = [
@@ -87,7 +88,13 @@ ASGI_APPLICATION = 'conf.asgi.application'
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                (os.getenv('REDIS_HOST', default='localhost'),
+                 os.getenv('REDIS_PORT', default='6379'))
+            ],
+        },
     }
 }
 
