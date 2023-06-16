@@ -2,10 +2,10 @@ from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import m2m_changed, pre_save
 from django.dispatch import receiver
 
-from metrics.models import CompletedSurvey, SurveyDepartment
+from metrics.models import CompletedSurvey, Survey
 from metrics.result_calcs import MBICalculate, YesNoCalculate
 from notifications.models import Notification
 from notifications.signals.handlers import notification
@@ -34,22 +34,24 @@ def calc_results_for_survey(sender, instance, **kwargs):
         )
 
 
-@receiver(post_save, sender=SurveyDepartment)
-def create_notification_for_survey(sender, instance, created, **kwargs):
+@receiver(m2m_changed, sender=Survey.department.through)
+def create_notification_for_event_by_departments(
+    action, pk_set, instance, **kwargs
+):
     """Вызывается при cвязывании объекта модели `Survey` с `Department`.
 
     В результате в БД создаются объекты модели `Notification`
-    для всех пользователей из связанных департаментов модели `Survey`.
+    для всех пользователей, связанных с департаментами - полем
+    `departments`.
     """
-    if created:
-        department_id = instance.department.id
+    if action == 'post_add':
         results = Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.SURVEY,
-                incident_id=instance.survey.id,
+                incident_id=instance.id,
                 user=obj
             ) for obj in User.objects.filter(
-                Q(department=department_id) & Q(is_active=True)
+                Q(department__in=pk_set) & Q(is_active=True)
             )
         ])
         for obj in results:
