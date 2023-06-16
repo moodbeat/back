@@ -21,7 +21,10 @@ Django==4.2.1
 django-cleanup==7.0.0
 django-cors-headers==3.14.0
 django-debug-toolbar==4.0.0
+django-elasticsearch-dsl==7.3
+django-elasticsearch-dsl-drf==0.22.5
 django-filter==23.2
+django-nine==0.2.7
 django-phonenumber-field==7.1.0
 django-querycount==0.8.3
 django-silk==5.0.3
@@ -30,6 +33,9 @@ djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
 djoser==2.2.0
 drf-yasg==1.21.5
+elastic-transport==8.4.0
+elasticsearch==7.17.9
+elasticsearch-dsl==7.4.1
 filelock==3.12.0
 flake8==6.0.0
 gprof2dot==2022.7.29
@@ -61,6 +67,7 @@ pycparser==2.21
 pyflakes==3.0.1
 PyJWT==2.6.0
 pyOpenSSL==23.1.1
+python-dateutil==2.8.2
 python-dotenv==1.0.0
 python3-openid==3.2.0
 pytz==2023.3
@@ -85,6 +92,6 @@ txaio==23.1.1
 typing_extensions==4.6.2
 tzdata==2023.3
 uritemplate==4.1.1
-urllib3==2.0.2
+urllib3==1.26.16
 virtualenv==20.23.0
 zope.interface==6.0
