@@ -1,6 +1,5 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-from django.db.models import Count
 from django.db.models.signals import post_save
 from django.dispatch import Signal, receiver
 
@@ -15,12 +14,10 @@ def get_data_for_websocket(sender, instance, **kwargs):
 
     Отправляются данные пользователю в вебсокет.
     Формат отправляемых данных:
-        `counts` - количество `событий` по типам
-        `events` - идентификаторы уведомлений, идентификаторы `событий`
+        `notifications` - идентификаторы уведомлений, идентификаторы `событий`
         и их типы
         `
         {
-            'counts': [{'incident_type': 'Опрос', 'incident_count': 10},],
             'notifications': [
                 {'id': 1, 'incident_type': 'Опрос', 'incident_id': 1},
             ]
@@ -32,17 +29,11 @@ def get_data_for_websocket(sender, instance, **kwargs):
     notifications = instance.user.notifications.filter(is_viewed=False).values(
         'id', 'incident_type', 'incident_id',
     )
-    counts = instance.user.notifications.filter(is_viewed=False).values(
-        'incident_type'
-    ).annotate(
-        incident_count=Count('incident_type')
-    )
     async_to_sync(channel_layer.group_send)(
         group_name,
         {
             'type': 'notification',
             'message': {
-                'counts': list(counts),
                 'notifications': list(notifications)
             }
         }
