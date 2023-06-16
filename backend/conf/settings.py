@@ -87,9 +87,13 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 
 ASGI_APPLICATION = 'conf.asgi.application'
 
+ELASTIC_HOST = os.getenv('ELASTIC_HOST', default='localhost')
+
+ELASTIC_PORT = os.getenv('ELASTIC_PORT', default='9200')
+
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'localhost:9200'
+        'hosts': f'{ELASTIC_HOST}:{ELASTIC_PORT}'
     },
 }
 
