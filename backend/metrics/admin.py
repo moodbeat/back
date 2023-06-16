@@ -99,8 +99,8 @@ class SurveyAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('author', 'title', 'type', 'description', 'text',
-                       'frequency', 'min_range', 'max_range')
+            'fields': ('author', 'title', 'type', 'department', 'description',
+                       'text', 'frequency', 'min_range', 'max_range')
         }),
         ('Служебная информация', {
             'fields': ('creation_date', 'is_active',),
