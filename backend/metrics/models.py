@@ -16,7 +16,6 @@ User = get_user_model()
 
 
 class Condition(models.Model):
-
     employee = models.ForeignKey(
         User,
         verbose_name='Сотрудник',
