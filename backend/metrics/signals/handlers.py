@@ -1,14 +1,37 @@
+from datetime import date, timedelta
+
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
+from metrics.models import CompletedSurvey, SurveyDepartment
+from metrics.result_calcs import MBICalculate, YesNoCalculate
 from notifications.models import Notification
 from notifications.signals.handlers import notification
 
-from ..models import SurveyDepartment
-
 User = get_user_model()
+
+
+@receiver(pre_save, sender=CompletedSurvey)
+def calc_results_for_survey(sender, instance, **kwargs):
+
+    survey_types = {
+        'yn': YesNoCalculate,
+        'mbi': MBICalculate
+    }
+
+    survey_type = instance.survey.type.slug
+
+    if survey_type in survey_types:
+        handler_class = survey_types[survey_type]
+        handler = handler_class()
+        handler.calculate_results(instance)
+
+    if instance.survey.frequency:
+        instance.next_attempt_date = date.today() + timedelta(
+            days=instance.survey.frequency
+        )
 
 
 @receiver(post_save, sender=SurveyDepartment)
