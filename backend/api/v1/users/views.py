@@ -13,9 +13,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.permissions import (AllReadOnlyPermissions, ChiefPostPermission,
-                                ChiefSafePermission, EmployeePostPermission,
-                                EmployeeSafePermission, HRAllPermission)
+from api.v1.permissions import (AllReadOnlyPermissions, ChiefSafePermission,
+                                HRAllPermission)
 from users.documents import HobbyDocument
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position)
@@ -376,8 +375,5 @@ class HobbyViewSet(ModelViewSet):
     filterset_fields = ('id', 'name',)
     search_document = HobbyDocument
     search_fields = ('name',)
-    http_method_names = ('get', 'post', 'patch', 'delete')
-    permission_classes = [
-        HRAllPermission | ChiefSafePermission | ChiefPostPermission
-        | EmployeeSafePermission | EmployeePostPermission
-    ]
+    http_method_names = ('get',)
+    permission_classes = [AllowAny]

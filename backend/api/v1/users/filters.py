@@ -1,6 +1,8 @@
+import re
+
 from django.conf import settings
 from django_elasticsearch_dsl_drf import filter_backends
-from elasticsearch_dsl.query import Bool, Match, Prefix, Wildcard
+from elasticsearch_dsl.query import Match, Prefix, Wildcard
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
 
@@ -55,10 +57,9 @@ class DepartmentInviteCodeFilter(InviteCodeFilter):
 class ElasticSearchFilter(filter_backends.BaseSearchFilterBackend):
     def filter_queryset(self, request, queryset, view):
         search_text = request.query_params.get('search', '')
-        if search_text:
-            search_document = view.search_document
-            bool_query = Bool(should=[])
+        search_text = re.sub(r'\d+', '', search_text)
 
+        if search_text:
             match_name_query = Match(
                 name={
                     'query': search_text,
@@ -70,12 +71,8 @@ class ElasticSearchFilter(filter_backends.BaseSearchFilterBackend):
             prefix_name_query = Prefix(name=search_text)
             wildcard_name_query = Wildcard(name=f'*{search_text}*')
 
-            bool_query.should.extend([
-                match_name_query,
-                prefix_name_query,
-                wildcard_name_query
-            ])
-            search = search_document.search().query(bool_query)
+            query = match_name_query | prefix_name_query | wildcard_name_query
+            search = view.search_document.search().query(query)
             return search.execute()
 
         return queryset
