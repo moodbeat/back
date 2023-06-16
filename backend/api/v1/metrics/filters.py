@@ -45,7 +45,7 @@ class CompletedSurveyFilter(filters.FilterSet):
 
     class Meta:
         model = CompletedSurvey
-        fields = ('employee', 'survey', 'completion_date', 'result')
+        fields = ('employee', 'survey', 'completion_date')
 
     def filter_my_results(self, queryset, name, value):
         if value and self.request.user.is_authenticated:
