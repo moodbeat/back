@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from django.db.models.signals import m2m_changed, post_save
+from django.db.models.signals import m2m_changed, post_delete, post_save
 from django.dispatch import receiver
 
 from notifications.models import Notification
@@ -30,6 +30,20 @@ def create_notification_for_event_for_all(sender, instance, created, **kwargs):
         ])
         for obj in results:
             notification.send(sender=Notification, instance=obj)
+
+
+@receiver(post_delete, sender=Event)
+def delete_notifications_after_obj_delete(sender, instance, *args, **kwargs):
+    """Вызывается после удаления объекта `Event`.
+
+    Удаляются все уведомления с id и типом удаленного экземпляра `Event`.
+    """
+    notifications = Notification.objects.filter(
+        incident_id=instance.id,
+        incident_type=Notification.IncidentType.EVENT
+    )
+    if notifications.exists():
+        notifications.delete()
 
 
 @receiver(m2m_changed, sender=Event.departments.through)

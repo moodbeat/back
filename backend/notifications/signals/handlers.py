@@ -1,6 +1,6 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-from django.db.models.signals import post_save
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import Signal, receiver
 
 from ..models import Notification
@@ -8,9 +8,9 @@ from ..models import Notification
 notification = Signal()
 
 
-@receiver([post_save, notification], sender=Notification)
+@receiver([post_save, post_delete, notification], sender=Notification)
 def get_data_for_websocket(sender, instance, **kwargs):
-    """Вызывается при создании нового объекта модели `Notification`.
+    """Вызывается при создании/удалении нового объекта модели `Notification`.
 
     Отправляются данные пользователю в вебсокет.
     Формат отправляемых данных:
