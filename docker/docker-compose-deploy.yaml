@@ -32,8 +32,6 @@ services:
 
   redis:
     image: redis:7.0-alpine
-    ports:
-      - 6379:6379
 
   web:
     container_name: em-web
