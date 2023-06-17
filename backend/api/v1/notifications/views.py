@@ -23,7 +23,7 @@ class NotificationViewSet(ModelViewSet):
             return Notification.objects.select_related(
                 'user'
             ).filter(user=self.request.user).all()
-        return super().get_queryset()
+        return None
 
     def get_permissions(self):
         if self.action == 'viewed':
