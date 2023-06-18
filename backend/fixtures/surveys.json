@@ -1,0 +1,458 @@
+[
+{
+  "model": "metrics.surveytype",
+  "pk": 1,
+  "fields": {
+    "name": "Опросы с вариантами да/нет",
+    "slug": "yn",
+    "description": ""
+  }
+},
+{
+  "model": "metrics.surveytype",
+  "pk": 2,
+  "fields": {
+    "name": "Опросник на выгорание MBI",
+    "slug": "mbi",
+    "description": ""
+  }
+},
+{
+  "model": "metrics.survey",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "title": "Экспресс-оценка выгорания",
+    "type": 1,
+    "description": "Экспресс оценка выгорания содержит 10 вопросов. На вопросы необходимо отвечать \"да\" или \"нет\".",
+    "frequency": 30,
+    "creation_date": "2023-06-11T07:42:44.172Z",
+    "is_active": true,
+    "department": []
+  }
+},
+{
+  "model": "metrics.survey",
+  "pk": 2,
+  "fields": {
+    "author": 1,
+    "title": "Опросник профессионального выгорания Маслач, MBI/ПВ",
+    "type": 2,
+    "description": "Вам предлагается 22 утверждения о чувствах и переживаниях, связанных с работой. Пожалуйста, прочитайте внимательно каждое утверждение и решите, чувствуете ли вы себя таким образом на вашей работе. Если у вас никогда не было такого чувства, выбирайте ответ \"никогда\". Если у вас было такое чувство, укажите, как часто вы его ощущали в течение последних месяцев.",
+    "frequency": 30,
+    "creation_date": "2023-06-11T09:51:56.162Z",
+    "is_active": true,
+    "department": []
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 1,
+  "fields": {
+    "survey": 1,
+    "text": "Когда в воскресенье пополудни я вспоминаю о том, что завтра снова идти на работу, то остаток уик-энда уже испорчен",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 2,
+  "fields": {
+    "survey": 1,
+    "text": "Если бы у меня была возможность уйти на пенсию (по выслуге лет, инвалидности), я сделал (а) бы это без промедления",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 3,
+  "fields": {
+    "survey": 1,
+    "text": "Коллеги на работе раздражают меня. Невозможно терпеть их одни и те же разговоры",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 4,
+  "fields": {
+    "survey": 1,
+    "text": "То насколько меня раздражают коллеги, еще мелочи по сравнению с тем, как выводят меня из равновесия клиенты (пациенты, ученики, посетители, заказчики)",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 5,
+  "fields": {
+    "survey": 1,
+    "text": "На протяжении последних трех месяцев я отказывался (отказывалась) от курсов повышения квалификации, от участия в конференциях и т.д.",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 6,
+  "fields": {
+    "survey": 1,
+    "text": "Коллегам (посетителям, заказчикам, ученикам и т.д.) я придумал (а) Обидные прозвища (например, \"идиоты\"), которые использую мысленно",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 7,
+  "fields": {
+    "survey": 1,
+    "text": "С делами по службе я справляюсь \"одной левой\" нет ничего такого, что могло бы удивить меня в ней своей новизной",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 8,
+  "fields": {
+    "survey": 1,
+    "text": "О моей работе мне едва ли кто скажет что-нибудь новое",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 9,
+  "fields": {
+    "survey": 1,
+    "text": "Стоит мне только вспомнить о своей работе, как хочется взять и послать ее ко всем чертям",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 10,
+  "fields": {
+    "survey": 1,
+    "text": "За последние три месяца мне не попала в руки ни одна специальная книга, из которой я почерпнул бы что-нибудь новенькое",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 11,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую себя эмоционально опустошенным",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 12,
+  "fields": {
+    "survey": 2,
+    "text": "После работы я чувствую себя как \"выжатый лимон\"",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 13,
+  "fields": {
+    "survey": 2,
+    "text": "Утром я чувствую усталость и нежелание идти на работу",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 14,
+  "fields": {
+    "survey": 2,
+    "text": "Я хорошо понимаю, что чувствуют мои подчиненные и коллеги, и стараюсь учитывать это в интересах дела",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 15,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую, что общаюсь с некоторыми подчиненными и коллегами как с предметами (без теплоты и расположения к ним)",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 16,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую себя энергичным и эмоционально воодушевленным",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 17,
+  "fields": {
+    "survey": 2,
+    "text": "Я умею находить правильное решение в конфликтных ситуациях, возникающих при общении с коллегами",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 18,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую угнетенность и апатию",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 19,
+  "fields": {
+    "survey": 2,
+    "text": "Я уверен, что моя работа нужна людям",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 20,
+  "fields": {
+    "survey": 2,
+    "text": "В последнее время я стал более \"черствым\" по отношению к тем, с кем работаю",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 21,
+  "fields": {
+    "survey": 2,
+    "text": "Я замечаю, что моя работа ожесточает меня",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 22,
+  "fields": {
+    "survey": 2,
+    "text": "У меня много планов на будущее, и я верю в их осуществление",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 23,
+  "fields": {
+    "survey": 2,
+    "text": "Моя работа все больше меня разочаровывает",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 24,
+  "fields": {
+    "survey": 2,
+    "text": "Мне кажется, что я слишком много работаю",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 25,
+  "fields": {
+    "survey": 2,
+    "text": "Бывает, что мне действительно безразлично то, что происходит c некоторыми моими подчиненными и коллегами",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 26,
+  "fields": {
+    "survey": 2,
+    "text": "Мне хочется уединиться и отдохнуть от всего и всех",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 27,
+  "fields": {
+    "survey": 2,
+    "text": "Я легко могу создать атмосферу доброжелательности и сотрудничества в коллективе",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 28,
+  "fields": {
+    "survey": 2,
+    "text": "Во время работы я чувствую приятное оживление",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 29,
+  "fields": {
+    "survey": 2,
+    "text": "Благодаря своей работе я уже сделал в жизни много действительно ценного",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 30,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую равнодушие и потерю интереса ко многому, что радовало меня в моей работе",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 31,
+  "fields": {
+    "survey": 2,
+    "text": "На работе я спокойно справляюсь с эмоциональными проблемами",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 32,
+  "fields": {
+    "survey": 2,
+    "text": "В последнее время мне кажется, что коллеги и подчиненные все чаще перекладывают на меня груз своих проблем и обязанностей",
+    "mark": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 1,
+  "fields": {
+    "text": "Никогда",
+    "priority": 1,
+    "survey_type": 2,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 2,
+  "fields": {
+    "text": "Очень редко",
+    "priority": 2,
+    "survey_type": 2,
+    "value": 2
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 3,
+  "fields": {
+    "text": "Редко",
+    "priority": 3,
+    "survey_type": 2,
+    "value": 3
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 4,
+  "fields": {
+    "text": "Иногда",
+    "priority": 4,
+    "survey_type": 2,
+    "value": 4
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 5,
+  "fields": {
+    "text": "Часто",
+    "priority": 5,
+    "survey_type": 2,
+    "value": 5
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 6,
+  "fields": {
+    "text": "Очень часто",
+    "priority": 6,
+    "survey_type": 2,
+    "value": 6
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 7,
+  "fields": {
+    "text": "Ежедневно",
+    "priority": 7,
+    "survey_type": 2,
+    "value": 7
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 8,
+  "fields": {
+    "text": "Да",
+    "priority": 1,
+    "survey_type": 1,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 9,
+  "fields": {
+    "text": "Нет",
+    "priority": 2,
+    "survey_type": 1,
+    "value": 0
+  }
+}
+]

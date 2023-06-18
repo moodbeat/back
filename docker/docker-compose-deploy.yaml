@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15.1-alpine
+    container_name: em-postgres15
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  elasticsearch:
+    container_name: em-elasticsearch
+    image: elasticsearch:8.8.0
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    depends_on:
+      - db
+
+  redis:
+    container_name: em-redis
+    image: redis:7.0-alpine
+
+  web:
+    container_name: em-web
+    build: ../backend/
+    restart: always
+    volumes:
+      - static:/app/static/
+      - media:/app/media/
+    depends_on:
+      - db
+      - elasticsearch
+      - redis
+    env_file:
+      - ./.env
+
+  nginx:
+    container_name: em-nginx
+    image: nginx:1.21.3-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static:/var/html/static/
+      - media:/var/html/media/
+    depends_on:
+      - web
+
+volumes:
+  static:
+  media:
+  postgres:
+  elasticsearch:

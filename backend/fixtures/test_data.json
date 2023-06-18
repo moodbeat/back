@@ -1,0 +1,6993 @@
+[
+{
+  "model": "metrics.condition",
+  "pk": 1,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-31T09:05:22.638Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 2,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-11T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 3,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-12T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 4,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-13T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 5,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 6,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 7,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 8,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 9,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 10,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 11,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 12,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 13,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 14,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 15,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 16,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 17,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 18,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 19,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 20,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 21,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 22,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 23,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 24,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 25,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 26,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 27,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 28,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 29,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 30,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 31,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 32,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 33,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 34,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 35,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 36,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 37,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-30T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 38,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-01T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 39,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-02T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 40,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-03T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 41,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-04T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 42,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-05T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 43,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-06T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 44,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-07T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 45,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-08T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 46,
+  "fields": {
+    "employee": 4,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-09T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 47,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-10T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 48,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 49,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 50,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 51,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 52,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 53,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 54,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 55,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 56,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 57,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 58,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 59,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 60,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 61,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 62,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 63,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 64,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-30T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 65,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-01T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 66,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-02T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 67,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-03T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 68,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-04T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 69,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-05T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 70,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-06T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 71,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-07T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 72,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-08T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 73,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-09T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 74,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-10T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 75,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-11T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 76,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-12T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 77,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-13T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 78,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 79,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 80,
+  "fields": {
+    "employee": 3,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 81,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 82,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 83,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 84,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 85,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 86,
+  "fields": {
+    "employee": 3,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 87,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 88,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 89,
+  "fields": {
+    "employee": 3,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 90,
+  "fields": {
+    "employee": 3,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 91,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 92,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 93,
+  "fields": {
+    "employee": 3,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 94,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 95,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 96,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 97,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 98,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 99,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 100,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 101,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 102,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 103,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 104,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 105,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 106,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 107,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 108,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 109,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 110,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-30T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 111,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-01T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 112,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-02T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 113,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-03T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 114,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-04T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 115,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-05T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 116,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-06T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 117,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-07T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 118,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-08T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 119,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-09T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 120,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-10T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 121,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-11T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 122,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-12T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 123,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-13T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 124,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 125,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 126,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 127,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 128,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 129,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 130,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 131,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 132,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 133,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 134,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 135,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 136,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 137,
+  "fields": {
+    "employee": 2,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 138,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 140,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 141,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 142,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 143,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 144,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 145,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 146,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 147,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 148,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 149,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 150,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 151,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 152,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 153,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 154,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 155,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 156,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-30T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 157,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-01T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 158,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-02T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 159,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-03T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 160,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-04T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 161,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-05T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 162,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-06T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 163,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-07T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 164,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-08T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 165,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-09T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 166,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-10T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 167,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-11T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 168,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-12T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 169,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-13T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 170,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 171,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 172,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 173,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 174,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 175,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 176,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 177,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 178,
+  "fields": {
+    "employee": 5,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 179,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 180,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 181,
+  "fields": {
+    "employee": 5,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 182,
+  "fields": {
+    "employee": 5,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 183,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 184,
+  "fields": {
+    "employee": 5,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 185,
+  "fields": {
+    "employee": 5,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 186,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 187,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 188,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 189,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 190,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 191,
+  "fields": {
+    "employee": 7,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 192,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 193,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 194,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 195,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 196,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 197,
+  "fields": {
+    "employee": 7,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 198,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 199,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 200,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 201,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 202,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-30T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 203,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-01T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 204,
+  "fields": {
+    "employee": 7,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-02T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 205,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-03T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 206,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-04T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 207,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-05T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 208,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-06T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 209,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-07T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 210,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-08T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 211,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-09T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 212,
+  "fields": {
+    "employee": 7,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-10T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 213,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-11T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 214,
+  "fields": {
+    "employee": 7,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-12T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 215,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-13T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 216,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 217,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 218,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 219,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 220,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 221,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 222,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 223,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 224,
+  "fields": {
+    "employee": 7,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 225,
+  "fields": {
+    "employee": 7,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 226,
+  "fields": {
+    "employee": 7,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 227,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 228,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 229,
+  "fields": {
+    "employee": 7,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 230,
+  "fields": {
+    "employee": 7,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 231,
+  "fields": {
+    "employee": 7,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 232,
+  "fields": {
+    "employee": 11,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 233,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 234,
+  "fields": {
+    "employee": 11,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 235,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 236,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 237,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 238,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 239,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 240,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 241,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 242,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 243,
+  "fields": {
+    "employee": 11,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 244,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 245,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 246,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 247,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 248,
+  "fields": {
+    "employee": 11,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-30T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 249,
+  "fields": {
+    "employee": 11,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-01T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 250,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-02T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 251,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-03T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 252,
+  "fields": {
+    "employee": 11,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-04T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 253,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-05T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 254,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-06T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 255,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-07T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 256,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-08T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 257,
+  "fields": {
+    "employee": 11,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-09T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 258,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-10T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 259,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-11T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 260,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-12T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 261,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-13T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 262,
+  "fields": {
+    "employee": 11,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 263,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 264,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 265,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 266,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 267,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 268,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 269,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 270,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 271,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 272,
+  "fields": {
+    "employee": 11,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 273,
+  "fields": {
+    "employee": 11,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 274,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 275,
+  "fields": {
+    "employee": 11,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 276,
+  "fields": {
+    "employee": 11,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 277,
+  "fields": {
+    "employee": 11,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 278,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 279,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 280,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 281,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 282,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 283,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 284,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-04-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 285,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 286,
+  "fields": {
+    "employee": 13,
+    "mood": 2,
+    "note": null,
+    "date": "2023-04-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 287,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 288,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 289,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 290,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-04-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 291,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 292,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 293,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-04-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 294,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-04-30T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 295,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-01T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 296,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-02T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 297,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-03T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 298,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-04T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 299,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-05T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 300,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-06T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 301,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-07T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 302,
+  "fields": {
+    "employee": 13,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-08T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 303,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-09T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 304,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-10T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 305,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-11T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 306,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-12T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 307,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-13T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 308,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-14T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 309,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-15T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 310,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-16T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 311,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-17T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 312,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-18T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 313,
+  "fields": {
+    "employee": 13,
+    "mood": 1,
+    "note": null,
+    "date": "2023-05-19T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 314,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-20T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 315,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-21T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 316,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-22T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 317,
+  "fields": {
+    "employee": 13,
+    "mood": 5,
+    "note": null,
+    "date": "2023-05-23T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 318,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-24T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 319,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-25T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 320,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-26T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 321,
+  "fields": {
+    "employee": 13,
+    "mood": 2,
+    "note": null,
+    "date": "2023-05-27T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 322,
+  "fields": {
+    "employee": 13,
+    "mood": 3,
+    "note": null,
+    "date": "2023-05-28T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 323,
+  "fields": {
+    "employee": 13,
+    "mood": 4,
+    "note": null,
+    "date": "2023-05-29T21:00:00Z"
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 1,
+  "fields": {
+    "name": "Отношения",
+    "num": 1,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 2,
+  "fields": {
+    "name": "Окружение",
+    "num": 2,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 3,
+  "fields": {
+    "name": "Работа",
+    "num": 3,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 4,
+  "fields": {
+    "name": "Обеспеченность",
+    "num": 4,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 5,
+  "fields": {
+    "name": "Яркость жизни",
+    "num": 5,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 6,
+  "fields": {
+    "name": "Саморазвитие",
+    "num": 6,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 7,
+  "fields": {
+    "name": "Духовность",
+    "num": 7,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 8,
+  "fields": {
+    "name": "Здоровье",
+    "num": 8,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.surveytype",
+  "pk": 1,
+  "fields": {
+    "name": "Опросы с вариантами да/нет",
+    "slug": "yn",
+    "description": ""
+  }
+},
+{
+  "model": "metrics.surveytype",
+  "pk": 2,
+  "fields": {
+    "name": "Опросник на выгорание MBI",
+    "slug": "mbi",
+    "description": ""
+  }
+},
+{
+  "model": "metrics.survey",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "for_all": true,
+    "title": "Экспресс-оценка выгорания",
+    "type": 1,
+    "description": "Экспресс оценка выгорания содержит 10 вопросов. На вопросы необходимо отвечать \"да\" или \"нет\".",
+    "text": "Тут типа текст после прохождения опроса, сделаю какой надо",
+    "frequency": 0,
+    "min_range": 11,
+    "max_range": 69,
+    "creation_date": "2023-06-11T07:42:44.172Z",
+    "is_active": true,
+    "department": []
+  }
+},
+{
+  "model": "metrics.survey",
+  "pk": 2,
+  "fields": {
+    "author": 1,
+    "for_all": true,
+    "title": "Опросник профессионального выгорания Маслач, MBI/ПВ",
+    "type": 2,
+    "description": "Вам предлагается 22 утверждения о чувствах и переживаниях, связанных с работой. Пожалуйста, прочитайте внимательно каждое утверждение и решите, чувствуете ли вы себя таким образом на вашей работе. Если у вас никогда не было такого чувства, выбирайте ответ \"никогда\". Если у вас было такое чувство, укажите, как часто вы его ощущали в течение последних месяцев.",
+    "text": "Тут типа текст после прохождения опроса, сделаю какой надо",
+    "frequency": 0,
+    "min_range": 33,
+    "max_range": 66,
+    "creation_date": "2023-06-11T09:51:56.162Z",
+    "is_active": true,
+    "department": []
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 1,
+  "fields": {
+    "survey": 1,
+    "text": "Когда в воскресенье пополудни я вспоминаю о том, что завтра снова идти на работу, то остаток уик-энда уже испорчен",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 2,
+  "fields": {
+    "survey": 1,
+    "text": "Если бы у меня была возможность уйти на пенсию (по выслуге лет, инвалидности), я сделал (а) бы это без промедления",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 3,
+  "fields": {
+    "survey": 1,
+    "text": "Коллеги на работе раздражают меня. Невозможно терпеть их одни и те же разговоры",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 4,
+  "fields": {
+    "survey": 1,
+    "text": "То насколько меня раздражают коллеги, еще мелочи по сравнению с тем, как выводят меня из равновесия клиенты (пациенты, ученики, посетители, заказчики)",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 5,
+  "fields": {
+    "survey": 1,
+    "text": "На протяжении последних трех месяцев я отказывался (отказывалась) от курсов повышения квалификации, от участия в конференциях и т.д.",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 6,
+  "fields": {
+    "survey": 1,
+    "text": "Коллегам (посетителям, заказчикам, ученикам и т.д.) я придумал (а) Обидные прозвища (например, \"идиоты\"), которые использую мысленно",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 7,
+  "fields": {
+    "survey": 1,
+    "text": "С делами по службе я справляюсь \"одной левой\" нет ничего такого, что могло бы удивить меня в ней своей новизной",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 8,
+  "fields": {
+    "survey": 1,
+    "text": "О моей работе мне едва ли кто скажет что-нибудь новое",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 9,
+  "fields": {
+    "survey": 1,
+    "text": "Стоит мне только вспомнить о своей работе, как хочется взять и послать ее ко всем чертям",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 10,
+  "fields": {
+    "survey": 1,
+    "text": "За последние три месяца мне не попала в руки ни одна специальная книга, из которой я почерпнул бы что-нибудь новенькое",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 11,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую себя эмоционально опустошенным/ой",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 12,
+  "fields": {
+    "survey": 2,
+    "text": "После работы я чувствую себя как \"выжатый лимон\"",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 13,
+  "fields": {
+    "survey": 2,
+    "text": "Утром я чувствую усталость и нежелание идти на работу",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 14,
+  "fields": {
+    "survey": 2,
+    "text": "Я хорошо понимаю, что чувствуют мои подчиненные и коллеги, и стараюсь учитывать это в интересах дела",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 15,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую, что общаюсь с некоторыми подчиненными и коллегами как с предметами (без теплоты и расположения к ним)",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 16,
+  "fields": {
+    "survey": 2,
+    "text": "После работы на некоторое время хочется уединиться от всех и всего",
+    "key": 4,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 17,
+  "fields": {
+    "survey": 2,
+    "text": "Я умею находить правильное решение в конфликтных ситуациях, возникающих при общении с коллегами",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 18,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую угнетенность и апатию",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 19,
+  "fields": {
+    "survey": 2,
+    "text": "Я уверен, что моя работа нужна людям",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 20,
+  "fields": {
+    "survey": 2,
+    "text": "В последнее время я стал/а более \"черствым/ой\" по отношению к тем, с кем работаю",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 21,
+  "fields": {
+    "survey": 2,
+    "text": "Я замечаю, что моя работа ожесточает меня",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 22,
+  "fields": {
+    "survey": 2,
+    "text": "У меня много планов на будущее, и я верю в их осуществление",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 23,
+  "fields": {
+    "survey": 2,
+    "text": "Моя работа все больше меня разочаровывает",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 24,
+  "fields": {
+    "survey": 2,
+    "text": "Мне кажется, что я слишком много работаю",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 25,
+  "fields": {
+    "survey": 2,
+    "text": "Бывает, что мне действительно безразлично то, что происходит c некоторыми моими подчиненными и коллегами",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 26,
+  "fields": {
+    "survey": 2,
+    "text": "Мне хочется уединиться и отдохнуть от всего и всех",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 27,
+  "fields": {
+    "survey": 2,
+    "text": "Я легко могу создать атмосферу доброжелательности и сотрудничества в коллективе",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 28,
+  "fields": {
+    "survey": 2,
+    "text": "Во время работы я чувствую приятное оживление",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 29,
+  "fields": {
+    "survey": 2,
+    "text": "Благодаря своей работе я уже сделал/а в жизни много действительно ценного",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 30,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую равнодушие и потерю интереса ко многому, что радовало меня в моей работе",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 31,
+  "fields": {
+    "survey": 2,
+    "text": "На работе я спокойно справляюсь с эмоциональными проблемами",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 32,
+  "fields": {
+    "survey": 2,
+    "text": "В последнее время мне кажется, что коллеги и подчиненные все чаще перекладывают на меня груз своих проблем и обязанностей",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 1,
+  "fields": {
+    "text": "Никогда",
+    "priority": 1,
+    "survey_type": 2,
+    "value": 0
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 2,
+  "fields": {
+    "text": "Очень редко",
+    "priority": 2,
+    "survey_type": 2,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 3,
+  "fields": {
+    "text": "Редко",
+    "priority": 3,
+    "survey_type": 2,
+    "value": 2
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 4,
+  "fields": {
+    "text": "Иногда",
+    "priority": 4,
+    "survey_type": 2,
+    "value": 3
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 5,
+  "fields": {
+    "text": "Часто",
+    "priority": 5,
+    "survey_type": 2,
+    "value": 4
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 6,
+  "fields": {
+    "text": "Очень часто",
+    "priority": 6,
+    "survey_type": 2,
+    "value": 5
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 7,
+  "fields": {
+    "text": "Ежедневно",
+    "priority": 7,
+    "survey_type": 2,
+    "value": 6
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 8,
+  "fields": {
+    "text": "Да",
+    "priority": 1,
+    "survey_type": 1,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 9,
+  "fields": {
+    "text": "Нет",
+    "priority": 2,
+    "survey_type": 1,
+    "value": 0
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 1,
+  "fields": {
+    "title": "Проблемы в коллективе",
+    "description": null,
+    "role": null
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 2,
+  "fields": {
+    "title": "Не справляюсь с работой",
+    "description": null,
+    "role": "chief"
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 3,
+  "fields": {
+    "title": "Почесать спинку",
+    "description": null,
+    "role": "hr"
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 4,
+  "fields": {
+    "title": "Нужны печеньки",
+    "description": null,
+    "role": "chief"
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 5,
+  "fields": {
+    "title": "Хочу стать шефом",
+    "description": null,
+    "role": "hr"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 1,
+  "fields": {
+    "name": "Отдел маркетинга",
+    "description": "Разработка и реализация маркетинговых стратегий и акций"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 2,
+  "fields": {
+    "name": "Отдел разработки",
+    "description": "Создание и поддержка программного обеспечения и веб-приложений"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 3,
+  "fields": {
+    "name": "Отдел финансов",
+    "description": "Управление финансовыми аспектами компании"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 4,
+  "fields": {
+    "name": "Отдел кадров",
+    "description": "Подбор и управление персоналом"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 5,
+  "fields": {
+    "name": "Отдел продаж",
+    "description": "Продвижение и реализация продукции или услуг компании"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 6,
+  "fields": {
+    "name": "Отдел IT-поддержки",
+    "description": "Поддержка пользователей и обслуживание информационных систем"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 7,
+  "fields": {
+    "name": "Отдел закупок и снабжения",
+    "description": "Закупка и поставка товаров и услуг для компании"
+  }
+},
+{
+  "model": "users.position",
+  "pk": 1,
+  "fields": {
+    "name": "Менеджер",
+    "chief_position": false,
+    "departments": [
+      1,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 2,
+  "fields": {
+    "name": "Помощник менеджера",
+    "chief_position": false,
+    "departments": [
+      1,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 3,
+  "fields": {
+    "name": "Директор",
+    "chief_position": true,
+    "departments": [
+      1,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 4,
+  "fields": {
+    "name": "Руководитель разработки",
+    "chief_position": true,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 5,
+  "fields": {
+    "name": "Веб-разработчик",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 6,
+  "fields": {
+    "name": "Мобильный разработчик",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 7,
+  "fields": {
+    "name": "Тестировщик программного обеспечения",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 8,
+  "fields": {
+    "name": "Дизайнер пользовательского интерфейса",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 9,
+  "fields": {
+    "name": "Маркетинговый менеджер",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 10,
+  "fields": {
+    "name": "Специалист по цифровому маркетингу",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 11,
+  "fields": {
+    "name": "Копирайтер",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 12,
+  "fields": {
+    "name": "Медиа-планировщик",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 13,
+  "fields": {
+    "name": "Аналитик маркетинга",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 14,
+  "fields": {
+    "name": "Финансовый директор",
+    "chief_position": true,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 15,
+  "fields": {
+    "name": "Бухгалтер",
+    "chief_position": false,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 16,
+  "fields": {
+    "name": "Финансовый аналитик",
+    "chief_position": false,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 17,
+  "fields": {
+    "name": "Кредитный аналитик",
+    "chief_position": false,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 18,
+  "fields": {
+    "name": "Руководитель отдела кадров",
+    "chief_position": true,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 19,
+  "fields": {
+    "name": "Специалист по подбору персонала",
+    "chief_position": false,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 20,
+  "fields": {
+    "name": "HR-менеджер",
+    "chief_position": false,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 21,
+  "fields": {
+    "name": "Тренер по развитию персонала",
+    "chief_position": false,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 22,
+  "fields": {
+    "name": "Ключевой клиент-менеджер",
+    "chief_position": false,
+    "departments": [
+      5
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 23,
+  "fields": {
+    "name": "Торговый представитель",
+    "chief_position": false,
+    "departments": [
+      5
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 24,
+  "fields": {
+    "name": "Специалист по работе с клиентами",
+    "chief_position": false,
+    "departments": [
+      3,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 25,
+  "fields": {
+    "name": "Руководитель IT-поддержки",
+    "chief_position": true,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 26,
+  "fields": {
+    "name": "Системный администратор",
+    "chief_position": false,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 27,
+  "fields": {
+    "name": "Сетевой инженер",
+    "chief_position": false,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 28,
+  "fields": {
+    "name": "Специалист по информационной безопасности",
+    "chief_position": false,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 29,
+  "fields": {
+    "name": "Специалист по снабжению",
+    "chief_position": false,
+    "departments": [
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 30,
+  "fields": {
+    "name": "Логист",
+    "chief_position": false,
+    "departments": [
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 31,
+  "fields": {
+    "name": "Аналитик закупок",
+    "chief_position": false,
+    "departments": [
+      7
+    ]
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 1,
+  "fields": {
+    "name": "Фотография"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 2,
+  "fields": {
+    "name": "Путешествия"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 3,
+  "fields": {
+    "name": "Танцы"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 4,
+  "fields": {
+    "name": "Йога и медитация"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 5,
+  "fields": {
+    "name": "Изучение иностранных языков"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 6,
+  "fields": {
+    "name": "Астрономия и космос"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 7,
+  "fields": {
+    "name": "Фильмы и сериалы"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 8,
+  "fields": {
+    "name": "Музыка"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 9,
+  "fields": {
+    "name": "Садоводство"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 10,
+  "fields": {
+    "name": "Рисование"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 11,
+  "fields": {
+    "name": "Вязание"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 12,
+  "fields": {
+    "name": "Фитнес"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 13,
+  "fields": {
+    "name": "Лыжи"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 14,
+  "fields": {
+    "name": "Брейк-данс"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 15,
+  "fields": {
+    "name": "Блоггинг"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 16,
+  "fields": {
+    "name": "Моделизм"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 17,
+  "fields": {
+    "name": "Волонтёрство"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 18,
+  "fields": {
+    "name": "Сноубординг"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 19,
+  "fields": {
+    "name": "Покер"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 20,
+  "fields": {
+    "name": "Рыбалка"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 21,
+  "fields": {
+    "name": "Пение"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 22,
+  "fields": {
+    "name": "Шахматы"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 23,
+  "fields": {
+    "name": "Карвинг"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 24,
+  "fields": {
+    "name": "Астрология"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 25,
+  "fields": {
+    "name": "Волейбол"
+  }
+},
+{
+  "model": "users.mentalstate",
+  "pk": 1,
+  "fields": {
+    "name": "Нормальное",
+    "description": "",
+    "message": "Тут будет сообщение пользователю о его состоянии, дайте мне текст и в админке за 2 сек поменяется)",
+    "level": 1
+  }
+},
+{
+  "model": "users.mentalstate",
+  "pk": 2,
+  "fields": {
+    "name": "В группе риска",
+    "description": "",
+    "message": "Тут будет сообщение пользователю о его состоянии, дайте мне текст и в админке за 2 сек поменяется)",
+    "level": 3
+  }
+},
+{
+  "model": "users.mentalstate",
+  "pk": 3,
+  "fields": {
+    "name": "Тревожное",
+    "description": "",
+    "message": "Тут будет сообщение пользователю о его состоянии, дайте мне текст и в админке за 2 сек поменяется)",
+    "level": 2
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$GzZjsdyyWiokndMnnXIhwt$lVtu0hvAh+cN44J6dwod1b5QpSmEYpV8ItMaNeajUpw=",
+    "last_login": "2023-06-18T13:18:50.197Z",
+    "is_superuser": true,
+    "email": "admin@admin.admin",
+    "first_name": "Админ",
+    "last_name": "Админыч",
+    "patronymic": null,
+    "department": null,
+    "position": null,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:23:58.163Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$V1Big0OZbwzR0S1gY6VnIf$EoMLDJyqvMy/UzeQsXRxANMbOt05eTi/aJo3XOjplp4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "hr@example.com",
+    "first_name": "Елена",
+    "last_name": "Дмитриева",
+    "patronymic": null,
+    "department": 4,
+    "position": 20,
+    "mental_state": 2,
+    "role": "hr",
+    "avatar_full": "users/avatars/temp_YC0mLPL.png",
+    "about": null,
+    "phone": "+79039994856",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:26:25Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      4,
+      7,
+      12,
+      13,
+      16
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$1QIpQusbdxXJjWMEBz1Qwg$4Md84JYL/6/eCsL+gp0GqvxYujqpE/9be3qCydkMpy4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "chief@example.com",
+    "first_name": "Сергей",
+    "last_name": "Сергеев",
+    "patronymic": null,
+    "department": 2,
+    "position": 4,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79175584400",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:27:18Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      1,
+      6,
+      7,
+      9,
+      10,
+      20,
+      21,
+      23
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$z9kO9W8wKVR1u5ybPIp2YA$2WuKhVVHYKwAUHHh8Ygc+ecefVU02EmGDx8uA5/w3MA=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "employee1@example.com",
+    "first_name": "Иван",
+    "last_name": "Иванов",
+    "patronymic": null,
+    "department": 1,
+    "position": 1,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79384449473",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:28:02Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      18,
+      19,
+      20,
+      22,
+      23
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$3IrfeSIrKs1hoI94QKA1Bc$vIjEqp6rHSmdJjrD/52ftxo8YwgfQ+yWJ2iqVdwU2ag=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "marina.sokolova@example.com",
+    "first_name": "Марина",
+    "last_name": "Соколова",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484446",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:04:57Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      4,
+      15,
+      19,
+      22,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$7LCGILJ86sw3Or2dRkUST9$uwrihmqaURY29XUm8mTBjh6JAvmuENP3LPvDY9I1jbU=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexander.pavlov@example.com",
+    "first_name": "Александр",
+    "last_name": "Павлов",
+    "patronymic": null,
+    "department": 3,
+    "position": 14,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484447",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:05:41Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$SZp0ejrcY438r0jkZmjl9h$/AZQgUijez7MAEJek7MrlZIICbB84ywrDv3is9Whm0E=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "elena.volkova@example.com",
+    "first_name": "Елена",
+    "last_name": "Волкова",
+    "patronymic": null,
+    "department": 1,
+    "position": 11,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:06:21Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      3,
+      7,
+      19,
+      22,
+      25
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VYqWtL5oFkty9E4usa5IY9$/3sKgBvKZwNHROTmwE8twsdi1MTzQ7z5o1vblzUW+hA=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "dmitry.kozlov@example.com",
+    "first_name": "Дмитрий",
+    "last_name": "Козлов",
+    "patronymic": null,
+    "department": 7,
+    "position": 30,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484449",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:07:25Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      6,
+      13,
+      16,
+      20,
+      21
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$XbgQPywQUPMStxPuw2ynbN$LyZsqYabCH+Bp4mpswD5jC2fmiFSesgOAxStGL7VGPY=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "anna.morozova@example.com",
+    "first_name": "Анна",
+    "last_name": "Морозова",
+    "patronymic": null,
+    "department": 2,
+    "position": 5,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484450",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:08:13Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      9,
+      10,
+      14,
+      15,
+      21,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$7sLf9lByAs0fKSM6rCgPC8$ytCp8KlZ4pSlj/9oJnxq7GSXf5Wxh0tyrpG5yZP9EQE=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexey.ivanov@example.com",
+    "first_name": "Катерина",
+    "last_name": "Петрова",
+    "patronymic": null,
+    "department": 4,
+    "position": 19,
+    "mental_state": null,
+    "role": "hr",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484452",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:08:55Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      7,
+      14,
+      23
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$EQnrqO0JVmc8rDruu4xpQs$Xg1wBsT63FA10lRayNzcp7eBYM7wj7MUD7r+d3M6l1k=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "mikhail.smirnov@example.com",
+    "first_name": "Михаил",
+    "last_name": "Смирнов",
+    "patronymic": null,
+    "department": 5,
+    "position": 1,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484453",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:09:39Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      5,
+      15,
+      16
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$2xVVPQIEEoCwg1e16pz6qm$yJwSxXDp15x1tpJvF/gtEwdCQ/s2rb33Mp9QutMxGTk=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "anna.kuznetsova@example.com",
+    "first_name": "Анна",
+    "last_name": "Кузнецова",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484454",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:10:26Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      3,
+      7,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$2GCeVYVOoHYk1NtmS7Lmxt$XA/6uEOI34P2Ilh/I2XjBeFbIREUP6/uWyO1oWFYp2Y=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "denis.lebedev@example.com",
+    "first_name": "Денис",
+    "last_name": "Лебедев",
+    "patronymic": null,
+    "department": 5,
+    "position": 24,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:11:03Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$zWtOrAlyAn8czDvxm13Biw$4PzP7AD2yunN8K3oterzQ2j7mGezLRvnJjSREFzTyow=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "olga.semenova@example.com",
+    "first_name": "Ольга",
+    "last_name": "Семенова",
+    "patronymic": null,
+    "department": 6,
+    "position": 27,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:11:41Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      8,
+      10,
+      14,
+      15,
+      18
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$smVcdCG65RzWRazkAAcxaF$yLXNBCA4cB3c2/LaAxil8+C6ZOZqna8aMAJGH5QTY7w=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "yulia.novikova@example.com",
+    "first_name": "Юлия",
+    "last_name": "Новикова",
+    "patronymic": null,
+    "department": 1,
+    "position": 10,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484458",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:12:18Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      8,
+      10,
+      20,
+      22
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 16,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$i4nkYjOCHgaNxfEFeugoKA$s+Uqy9yf9UpXuC4PNK1EuTEQJmGgBftNQzXioQ7e4r4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "sergey.morozov@example.com",
+    "first_name": "Сергей",
+    "last_name": "Морозов",
+    "patronymic": null,
+    "department": 6,
+    "position": 25,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484459",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:13:05Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      1,
+      4,
+      12,
+      14,
+      16,
+      21,
+      23,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 17,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$4un0ZvhlpmLkDB8SW0R8d6$ZGbCu+xuJJqvNPpymII6tshzoXgOltpe6jR7V5rymcI=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexandra.kovaleva@example.com",
+    "first_name": "Александра",
+    "last_name": "Ковалева",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484461",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:14:15Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      7,
+      18,
+      22,
+      25
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 18,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VrRXNYL8vvoVBLnBOq9WQL$FtSiMOSfPq7uiHeT9ZJuY4gV+TAjJtjrGawvgXMqNLI=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "dmitry.smirnov@example.com",
+    "first_name": "Дмитрий",
+    "last_name": "Смирнов",
+    "patronymic": null,
+    "department": 5,
+    "position": 2,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484462",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:14:59Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      13,
+      16,
+      18
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 19,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$jrpK7V3a28sXzrobhGjVUP$D1z70NrGNaGL/JxfS7OqvzQttvdkqzwqh2SQXOuZmlo=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "ivan.petrov@example.com",
+    "first_name": "Иван",
+    "last_name": "Петров",
+    "patronymic": null,
+    "department": 2,
+    "position": 8,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484464",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:15:40Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      13,
+      17
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 20,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$JXkFnP60G6DGmig0ugOpAM$Q5Zc+VZnAJ3oOw+1YZ9+1qZ9HtbPSrKi98+zNHWHMXc=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "ekaterina.sidorova@example.com",
+    "first_name": "Екатерина",
+    "last_name": "Сидорова",
+    "patronymic": null,
+    "department": 7,
+    "position": 30,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:16:24Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 21,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$b3PAL79K858m90ryMm0PyG$rZ94AwKwWh/LBxsPmZLWOotK7e/HzjzXMY6Rt1l9DSc=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexey.petrov@example.com",
+    "first_name": "Алексей",
+    "last_name": "Петров",
+    "patronymic": null,
+    "department": 2,
+    "position": 7,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484469",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:16:53Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      12,
+      15,
+      18,
+      19,
+      24,
+      25
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 22,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Km1ce30x1B0xBU5SsyVxyP$F0DclhG0Wv/XB0PRLZw57/DqstifLPZeNYhnFL97v0k=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "olga.novikova@example.com",
+    "first_name": "Ольга",
+    "last_name": "Новикова",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484470",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:17:56Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      6,
+      13,
+      17,
+      21
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 23,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Rg9YfWossG8a9nRuBzpXqT$s4249S3fAlbaY7l4z/Otr37ymxLJ4T0qm2Sx25i461g=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "elena.pavlova@example.com",
+    "first_name": "Елена",
+    "last_name": "Павлова",
+    "patronymic": null,
+    "department": 1,
+    "position": 1,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:18:38Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      3,
+      7,
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 24,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$4IsT3FwEDk6ftNeuksXEhY$ThuoTNC2Igw2UrB/5w3U1S5KndXe6MFHltBKbVrW0UY=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "ivan.nikolaev@example.com",
+    "first_name": "Иван",
+    "last_name": "Николаев",
+    "patronymic": null,
+    "department": 1,
+    "position": 3,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484474",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:19:36Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      4,
+      16,
+      18,
+      23
+    ]
+  }
+},
+{
+  "model": "events.category",
+  "pk": 1,
+  "fields": {
+    "name": "Новости",
+    "slug": "news",
+    "description": "Новости нашей прекрасной компании"
+  }
+},
+{
+  "model": "events.category",
+  "pk": 2,
+  "fields": {
+    "name": "Полезные статьи",
+    "slug": "articles",
+    "description": "Статьи и советы по борьбе с выгоранием"
+  }
+},
+{
+  "model": "events.category",
+  "pk": 3,
+  "fields": {
+    "name": "Видео",
+    "slug": "video",
+    "description": "Полезные видео"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 1,
+  "fields": {
+    "title": "Тестовая новость",
+    "author": 1,
+    "category": 1,
+    "preview_image": "entries/alesia-kazantceva-VWcPlbHglYc-unsplash.jpg",
+    "text": "В целом, конечно, существующая теория однозначно фиксирует необходимость экономической целесообразности принимаемых решений. А также реплицированные с зарубежных источников, современные исследования своевременно верифицированы.\r\n\r\nВот вам яркий пример современных тенденций — дальнейшее развитие различных форм деятельности говорит о возможностях форм воздействия. Господа, убеждённость некоторых оппонентов влечет за собой процесс внедрения и модернизации своевременного выполнения сверхзадачи. Приятно, граждане, наблюдать, как многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть своевременно верифицированы. Имеется спорная точка зрения, гласящая примерно следующее: некоторые особенности внутренней политики представлены в исключительно положительном свете. И нет сомнений, что интерактивные прототипы представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть представлены в исключительно положительном свете.\r\n\r\nПриятно, граждане, наблюдать, как диаграммы связей заблокированы в рамках своих собственных рациональных ограничений. В частности, курс на социально-ориентированный национальный проект требует определения и уточнения кластеризации усилий. Задача организации, в особенности же выбранный нами инновационный путь способствует повышению качества стандартных подходов. Также как укрепление и развитие внутренней структуры однозначно фиксирует необходимость поэтапного и последовательного развития общества. Господа, базовый вектор развития способствует подготовке и реализации переосмысления внешнеэкономических политик. Кстати, явные признаки победы институционализации набирают популярность среди определенных слоев населения, а значит, должны быть преданы социально-демократической анафеме.\r\n\r\nИмеется спорная точка зрения, гласящая примерно следующее: представители современных социальных резервов будут функционально разнесены на независимые элементы. Господа, понимание сути ресурсосберегающих технологий представляет собой интересный эксперимент проверки стандартных подходов. Также как граница обучения кадров позволяет выполнить важные задания по разработке стандартных подходов. С учётом сложившейся международной обстановки, внедрение современных методик влечет за собой процесс внедрения и модернизации вывода текущих активов. Принимая во внимание показатели успешности, новая модель организационной деятельности однозначно фиксирует необходимость системы массового участия. С другой стороны, укрепление и развитие внутренней структуры позволяет выполнить важные задания по разработке распределения внутренних резервов и ресурсов.\r\n\r\nВот вам яркий пример современных тенденций — современная методология разработки прекрасно подходит для реализации дальнейших направлений развития. Кстати, действия представителей оппозиции, инициированные исключительно синтетически, подвергнуты целой серии независимых исследований.\r\n\r\nТаким образом, начало повседневной работы по формированию позиции предоставляет широкие возможности для новых принципов формирования материально-технической и кадровой базы. С учётом сложившейся международной обстановки, реализация намеченных плановых заданий не даёт нам иного выбора, кроме определения новых принципов формирования материально-технической и кадровой базы.",
+    "created": "2023-05-31T09:57:37.211Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 2,
+  "fields": {
+    "title": "Тестовая статья",
+    "author": 1,
+    "category": 2,
+    "preview_image": "entries/redd-f-5U_28ojjgms-unsplash.jpg",
+    "text": "Не следует, однако, забывать, что постоянное информационно-пропагандистское обеспечение нашей деятельности однозначно определяет каждого участника как способного принимать собственные решения касаемо новых принципов формирования материально-технической и кадровой базы. Учитывая ключевые сценарии поведения, социально-экономическое развитие, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для системы обучения кадров, соответствующей насущным потребностям. Лишь непосредственные участники технического прогресса, вне зависимости от их уровня, должны быть подвергнуты целой серии независимых исследований. Разнообразный и богатый опыт говорит нам, что сложившаяся структура организации требует от нас анализа экономической целесообразности принимаемых решений.\r\n\r\nЛишь активно развивающиеся страны третьего мира лишь добавляют фракционных разногласий и ассоциативно распределены по отраслям. Как принято считать, ключевые особенности структуры проекта и по сей день остаются уделом либералов, которые жаждут быть обнародованы. Учитывая ключевые сценарии поведения, укрепление и развитие внутренней структуры прекрасно подходит для реализации новых предложений. Современные технологии достигли такого уровня, что новая модель организационной деятельности выявляет срочную потребность новых принципов формирования материально-технической и кадровой базы. Для современного мира существующая теория не даёт нам иного выбора, кроме определения приоретизации разума над эмоциями. И нет сомнений, что тщательные исследования конкурентов смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности.\r\n\r\nВ своём стремлении повысить качество жизни, они забывают, что существующая теория предопределяет высокую востребованность инновационных методов управления процессами. Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий однозначно фиксирует необходимость форм воздействия.\r\n\r\nМы вынуждены отталкиваться от того, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки дальнейших направлений развития. Прежде всего, постоянный количественный рост и сфера нашей активности играет определяющее значение для экономической целесообразности принимаемых решений!\r\n\r\nСложно сказать, почему непосредственные участники технического прогресса указаны как претенденты на роль ключевых факторов. Задача организации, в особенности же убеждённость некоторых оппонентов не даёт нам иного выбора, кроме определения позиций, занимаемых участниками в отношении поставленных задач. В рамках спецификации современных стандартов, активно развивающиеся страны третьего мира заблокированы в рамках своих собственных рациональных ограничений. А также тщательные исследования конкурентов неоднозначны и будут подвергнуты целой серии независимых исследований. В рамках спецификации современных стандартов, реплицированные с зарубежных источников, современные исследования будут представлены в исключительно положительном свете. Но реализация намеченных плановых заданий не даёт нам иного выбора, кроме определения кластеризации усилий.\r\n\r\nБанальные, но неопровержимые выводы, а также некоторые особенности внутренней политики будут превращены в посмешище, хотя само их существование приносит несомненную пользу обществу. В своём стремлении повысить качество жизни, они забывают, что перспективное планирование обеспечивает актуальность как самодостаточных, так и внешне зависимых концептуальных решений. Банальные, но неопровержимые выводы, а также тщательные исследования конкурентов неоднозначны и будут объективно рассмотрены соответствующими инстанциями!",
+    "created": "2023-05-31T09:58:09.986Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 3,
+  "fields": {
+    "title": "Тестовая новость 2",
+    "author": 2,
+    "category": 1,
+    "preview_image": "entries/samantha-gades-BlIhVfXbi9s-unsplash.jpg",
+    "text": "Приятно, граждане, наблюдать, как некоторые особенности внутренней политики, вне зависимости от их уровня, должны быть указаны как претенденты на роль ключевых факторов. Для современного мира укрепление и развитие внутренней структуры позволяет выполнить важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач. В рамках спецификации современных стандартов, стремящиеся вытеснить традиционное производство, нанотехнологии заблокированы в рамках своих собственных рациональных ограничений. С другой стороны, консультация с широким активом не оставляет шанса для переосмысления внешнеэкономических политик.\r\n\r\nБезусловно, синтетическое тестирование требует определения и уточнения экономической целесообразности принимаемых решений. В частности, начало повседневной работы по формированию позиции прекрасно подходит для реализации укрепления моральных ценностей. Мы вынуждены отталкиваться от того, что сложившаяся структура организации, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для системы обучения кадров, соответствующей насущным потребностям.\r\n\r\nНаше дело не так однозначно, как может показаться: перспективное планирование является качественно новой ступенью экономической целесообразности принимаемых решений. И нет сомнений, что активно развивающиеся страны третьего мира, превозмогая сложившуюся непростую экономическую ситуацию, своевременно верифицированы.\r\n\r\nПредварительные выводы неутешительны: внедрение современных методик однозначно определяет каждого участника как способного принимать собственные решения касаемо стандартных подходов. Не следует, однако, забывать, что постоянный количественный рост и сфера нашей активности говорит о возможностях экспериментов, поражающих по своей масштабности и грандиозности. В целом, конечно, сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании экономической целесообразности принимаемых решений. Современные технологии достигли такого уровня, что постоянное информационно-пропагандистское обеспечение нашей деятельности создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса экспериментов, поражающих по своей масштабности и грандиозности. Как принято считать, тщательные исследования конкурентов формируют глобальную экономическую сеть и при этом — своевременно верифицированы. Вот вам яркий пример современных тенденций — убеждённость некоторых оппонентов предоставляет широкие возможности для своевременного выполнения сверхзадачи.\r\n\r\nПринимая во внимание показатели успешности, дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки прогресса профессионального сообщества. Являясь всего лишь частью общей картины, тщательные исследования конкурентов являются только методом политического участия и указаны как претенденты на роль ключевых факторов. Имеется спорная точка зрения, гласящая примерно следующее: независимые государства лишь добавляют фракционных разногласий и своевременно верифицированы. Каждый из нас понимает очевидную вещь: высокотехнологичная концепция общественного уклада позволяет оценить значение прогресса профессионального сообщества. А ещё некоторые особенности внутренней политики могут быть обнародованы. Банальные, но неопровержимые выводы, а также элементы политического процесса будут объединены в целые кластеры себе подобных.\r\n\r\nУчитывая ключевые сценарии поведения, высококачественный прототип будущего проекта обеспечивает актуальность существующих финансовых и административных условий. В рамках спецификации современных стандартов, независимые государства объединены в целые кластеры себе подобных. Равным образом, реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании прогресса профессионального сообщества. С другой стороны, внедрение современных методик является качественно новой ступенью благоприятных перспектив.",
+    "created": "2023-05-31T09:58:29.884Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 4,
+  "fields": {
+    "title": "Тестовый видосик",
+    "author": 2,
+    "category": 3,
+    "preview_image": "entries/alesia-kazantceva-VWcPlbHglYc-unsplash_sX2vfv0.jpg",
+    "text": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "created": "2023-05-31T09:59:11.350Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 5,
+  "fields": {
+    "title": "Еще тестовый видос",
+    "author": 2,
+    "category": 3,
+    "preview_image": "entries/samantha-gades-BlIhVfXbi9s-unsplash_JzZERgU.jpg",
+    "text": "https://www.youtube.com/watch?v=djV11Xbc914",
+    "created": "2023-05-31T09:59:47.982Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 6,
+  "fields": {
+    "title": "Тестовый видос 3",
+    "author": 2,
+    "category": 3,
+    "preview_image": "entries/ian-dooley-DJ7bWa-Gwks-unsplash.jpg",
+    "text": "https://www.youtube.com/watch?v=2wwCG56iVPw",
+    "created": "2023-05-31T10:00:21.737Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 7,
+  "fields": {
+    "title": "Тестовая статья 2",
+    "author": 2,
+    "category": 2,
+    "preview_image": "entries/marvin-meyer-SYTO3xs06fU-unsplash.jpg",
+    "text": "Приятно, граждане, наблюдать, как некоторые особенности внутренней политики, вне зависимости от их уровня, должны быть указаны как претенденты на роль ключевых факторов. Для современного мира укрепление и развитие внутренней структуры позволяет выполнить важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач. В рамках спецификации современных стандартов, стремящиеся вытеснить традиционное производство, нанотехнологии заблокированы в рамках своих собственных рациональных ограничений. С другой стороны, консультация с широким активом не оставляет шанса для переосмысления внешнеэкономических политик.\r\n\r\nБезусловно, синтетическое тестирование требует определения и уточнения экономической целесообразности принимаемых решений. В частности, начало повседневной работы по формированию позиции прекрасно подходит для реализации укрепления моральных ценностей. Мы вынуждены отталкиваться от того, что сложившаяся структура организации, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для системы обучения кадров, соответствующей насущным потребностям.\r\n\r\nНаше дело не так однозначно, как может показаться: перспективное планирование является качественно новой ступенью экономической целесообразности принимаемых решений. И нет сомнений, что активно развивающиеся страны третьего мира, превозмогая сложившуюся непростую экономическую ситуацию, своевременно верифицированы.\r\n\r\nПредварительные выводы неутешительны: внедрение современных методик однозначно определяет каждого участника как способного принимать собственные решения касаемо стандартных подходов. Не следует, однако, забывать, что постоянный количественный рост и сфера нашей активности говорит о возможностях экспериментов, поражающих по своей масштабности и грандиозности. В целом, конечно, сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании экономической целесообразности принимаемых решений. Современные технологии достигли такого уровня, что постоянное информационно-пропагандистское обеспечение нашей деятельности создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса экспериментов, поражающих по своей масштабности и грандиозности. Как принято считать, тщательные исследования конкурентов формируют глобальную экономическую сеть и при этом — своевременно верифицированы. Вот вам яркий пример современных тенденций — убеждённость некоторых оппонентов предоставляет широкие возможности для своевременного выполнения сверхзадачи.\r\n\r\nПринимая во внимание показатели успешности, дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки прогресса профессионального сообщества. Являясь всего лишь частью общей картины, тщательные исследования конкурентов являются только методом политического участия и указаны как претенденты на роль ключевых факторов. Имеется спорная точка зрения, гласящая примерно следующее: независимые государства лишь добавляют фракционных разногласий и своевременно верифицированы. Каждый из нас понимает очевидную вещь: высокотехнологичная концепция общественного уклада позволяет оценить значение прогресса профессионального сообщества. А ещё некоторые особенности внутренней политики могут быть обнародованы. Банальные, но неопровержимые выводы, а также элементы политического процесса будут объединены в целые кластеры себе подобных.\r\n\r\nУчитывая ключевые сценарии поведения, высококачественный прототип будущего проекта обеспечивает актуальность существующих финансовых и административных условий. В рамках спецификации современных стандартов, независимые государства объединены в целые кластеры себе подобных. Равным образом, реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании прогресса профессионального сообщества. С другой стороны, внедрение современных методик является качественно новой ступенью благоприятных перспектив.",
+    "created": "2023-05-31T10:00:55.388Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 8,
+  "fields": {
+    "title": "Тестовая статья 3",
+    "author": 2,
+    "category": 2,
+    "preview_image": "entries/marissa-grootes-flRm0z3MEoA-unsplash.jpg",
+    "text": "Картельные сговоры не допускают ситуации, при которой диаграммы связей будут описаны максимально подробно. Сложно сказать, почему сделанные на базе интернет-аналитики выводы неоднозначны и будут объявлены нарушающими общечеловеческие нормы этики и морали. Мы вынуждены отталкиваться от того, что укрепление и развитие внутренней структуры однозначно определяет каждого участника как способного принимать собственные решения касаемо анализа существующих паттернов поведения. Банальные, но неопровержимые выводы, а также независимые государства призывают нас к новым свершениям, которые, в свою очередь, должны быть объявлены нарушающими общечеловеческие нормы этики и морали.\r\n\r\nСложно сказать, почему сделанные на базе интернет-аналитики выводы набирают популярность среди определенных слоев населения, а значит, должны быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Имеется спорная точка зрения, гласящая примерно следующее: интерактивные прототипы будут смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Имеется спорная точка зрения, гласящая примерно следующее: интерактивные прототипы, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут ассоциативно распределены по отраслям. Повседневная практика показывает, что высококачественный прототип будущего проекта однозначно фиксирует необходимость распределения внутренних резервов и ресурсов.\r\n\r\nКак уже неоднократно упомянуто, базовые сценарии поведения пользователей ассоциативно распределены по отраслям. Таким образом, разбавленное изрядной долей эмпатии, рациональное мышление требует определения и уточнения вывода текущих активов. Таким образом, глубокий уровень погружения позволяет выполнить важные задания по разработке системы массового участия. Разнообразный и богатый опыт говорит нам, что начало повседневной работы по формированию позиции требует определения и уточнения переосмысления внешнеэкономических политик. Приятно, граждане, наблюдать, как активно развивающиеся страны третьего мира разоблачены.\r\n\r\nА ещё предприниматели в сети интернет могут быть преданы социально-демократической анафеме! Задача организации, в особенности же современная методология разработки позволяет оценить значение благоприятных перспектив. Следует отметить, что базовый вектор развития обеспечивает актуальность новых принципов формирования материально-технической и кадровой базы. А также сделанные на базе интернет-аналитики выводы в равной степени предоставлены сами себе!\r\n\r\nОднозначно, активно развивающиеся страны третьего мира преданы социально-демократической анафеме. Кстати, базовые сценарии поведения пользователей будут представлены в исключительно положительном свете. С другой стороны, высококачественный прототип будущего проекта влечет за собой процесс внедрения и модернизации переосмысления внешнеэкономических политик.\r\n\r\nСледует отметить, что высокотехнологичная концепция общественного уклада, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для приоретизации разума над эмоциями. Как уже неоднократно упомянуто, явные признаки победы институционализации освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, представлены в исключительно положительном свете.",
+    "created": "2023-05-31T10:01:16.745Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 9,
+  "fields": {
+    "title": "Тестовая новость 3",
+    "author": 2,
+    "category": 1,
+    "preview_image": "entries/christin-hume-Hcfwew744z4-unsplash.jpg",
+    "text": "Лишь предприниматели в сети интернет описаны максимально подробно. Для современного мира убеждённость некоторых оппонентов однозначно определяет каждого участника как способного принимать собственные решения касаемо переосмысления внешнеэкономических политик. Картельные сговоры не допускают ситуации, при которой диаграммы связей и по сей день остаются уделом либералов, которые жаждут быть ограничены исключительно образом мышления. Как принято считать, ключевые особенности структуры проекта представлены в исключительно положительном свете. Однозначно, действия представителей оппозиции формируют глобальную экономическую сеть и при этом — ассоциативно распределены по отраслям. Разнообразный и богатый опыт говорит нам, что новая модель организационной деятельности играет важную роль в формировании распределения внутренних резервов и ресурсов.\r\n\r\nИдейные соображения высшего порядка, а также постоянное информационно-пропагандистское обеспечение нашей деятельности требует определения и уточнения системы обучения кадров, соответствующей насущным потребностям. Прежде всего, новая модель организационной деятельности выявляет срочную потребность существующих финансовых и административных условий. Прежде всего, синтетическое тестирование играет определяющее значение для дальнейших направлений развития. Также как дальнейшее развитие различных форм деятельности создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса дальнейших направлений развития.\r\n\r\nВ целом, конечно, начало повседневной работы по формированию позиции обеспечивает актуальность системы массового участия. Вот вам яркий пример современных тенденций — дальнейшее развитие различных форм деятельности способствует повышению качества благоприятных перспектив. И нет сомнений, что диаграммы связей призывают нас к новым свершениям, которые, в свою очередь, должны быть преданы социально-демократической анафеме. Идейные соображения высшего порядка, а также выбранный нами инновационный путь создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса дальнейших направлений развития.\r\n\r\nПротивоположная точка зрения подразумевает, что предприниматели в сети интернет объединены в целые кластеры себе подобных. Задача организации, в особенности же высокое качество позиционных исследований создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса прогресса профессионального сообщества. Внезапно, непосредственные участники технического прогресса, вне зависимости от их уровня, должны быть объединены в целые кластеры себе подобных. В целом, конечно, современная методология разработки не даёт нам иного выбора, кроме определения экспериментов, поражающих по своей масштабности и грандиозности. Являясь всего лишь частью общей картины, интерактивные прототипы могут быть ассоциативно распределены по отраслям. Задача организации, в особенности же реализация намеченных плановых заданий предоставляет широкие возможности для инновационных методов управления процессами.\r\n\r\nКартельные сговоры не допускают ситуации, при которой явные признаки победы институционализации представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть представлены в исключительно положительном свете. Но понимание сути ресурсосберегающих технологий требует от нас анализа переосмысления внешнеэкономических политик! Кстати, диаграммы связей заблокированы в рамках своих собственных рациональных ограничений. Каждый из нас понимает очевидную вещь: реализация намеченных плановых заданий является качественно новой ступенью вывода текущих активов. Задача организации, в особенности же дальнейшее развитие различных форм деятельности говорит о возможностях системы обучения кадров, соответствующей насущным потребностям.\r\n\r\nЯсность нашей позиции очевидна: сложившаяся структура организации является качественно новой ступенью позиций, занимаемых участниками в отношении поставленных задач. В частности, семантический разбор внешних противодействий способствует подготовке и реализации экспериментов, поражающих по своей масштабности и грандиозности! И нет сомнений, что акционеры крупнейших компаний, превозмогая сложившуюся непростую экономическую ситуацию, указаны как претенденты на роль ключевых факторов. Принимая во внимание показатели успешности, глубокий уровень погружения играет определяющее значение для укрепления моральных ценностей.",
+    "created": "2023-05-31T10:01:44.055Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 10,
+  "fields": {
+    "title": "Тестовая новость 4",
+    "author": 2,
+    "category": 1,
+    "preview_image": "entries/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg",
+    "text": "Значимость этих проблем настолько очевидна, что убеждённость некоторых оппонентов однозначно фиксирует необходимость форм воздействия. Лишь предприниматели в сети интернет призывают нас к новым свершениям, которые, в свою очередь, должны быть указаны как претенденты на роль ключевых факторов.\r\n\r\nПротивоположная точка зрения подразумевает, что сделанные на базе интернет-аналитики выводы освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Как уже неоднократно упомянуто, ключевые особенности структуры проекта освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, в равной степени предоставлены сами себе. Есть над чем задуматься: акционеры крупнейших компаний, инициированные исключительно синтетически, подвергнуты целой серии независимых исследований. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности подвергнуты целой серии независимых исследований. В своём стремлении улучшить пользовательский опыт мы упускаем, что интерактивные прототипы, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут функционально разнесены на независимые элементы. Банальные, но неопровержимые выводы, а также реплицированные с зарубежных источников, современные исследования могут быть объединены в целые кластеры себе подобных.\r\n\r\nСледует отметить, что постоянный количественный рост и сфера нашей активности напрямую зависит от направлений прогрессивного развития. Но повышение уровня гражданского сознания требует анализа анализа существующих паттернов поведения. Приятно, граждане, наблюдать, как действия представителей оппозиции неоднозначны и будут ассоциативно распределены по отраслям. Предварительные выводы неутешительны: семантический разбор внешних противодействий в значительной степени обусловливает важность существующих финансовых и административных условий.\r\n\r\nКартельные сговоры не допускают ситуации, при которой независимые государства призваны к ответу. Также как граница обучения кадров способствует повышению качества позиций, занимаемых участниками в отношении поставленных задач!\r\n\r\nБанальные, но неопровержимые выводы, а также реплицированные с зарубежных источников, современные исследования формируют глобальную экономическую сеть и при этом — подвергнуты целой серии независимых исследований. И нет сомнений, что интерактивные прототипы могут быть призваны к ответу. В целом, конечно, глубокий уровень погружения требует определения и уточнения поэтапного и последовательного развития общества. Господа, существующая теория создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса своевременного выполнения сверхзадачи.\r\n\r\nИмеется спорная точка зрения, гласящая примерно следующее: акционеры крупнейших компаний объявлены нарушающими общечеловеческие нормы этики и морали. Однозначно, многие известные личности лишь добавляют фракционных разногласий и объективно рассмотрены соответствующими инстанциями. Но существующая теория, в своём классическом представлении, допускает внедрение новых принципов формирования материально-технической и кадровой базы. А ещё диаграммы связей объявлены нарушающими общечеловеческие нормы этики и морали. Лишь активно развивающиеся страны третьего мира подвергнуты целой серии независимых исследований.",
+    "created": "2023-05-31T10:02:05.830Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 11,
+  "fields": {
+    "title": "Тестовая статья 4",
+    "author": 2,
+    "category": 2,
+    "preview_image": "entries/olena-sergienko-dIMJWLx1YbE-unsplash.jpg",
+    "text": "В частности, понимание сути ресурсосберегающих технологий создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса новых предложений. Внезапно, многие известные личности формируют глобальную экономическую сеть и при этом — объявлены нарушающими общечеловеческие нормы этики и морали. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное планирование способствует подготовке и реализации кластеризации усилий.\r\n\r\nВот вам яркий пример современных тенденций — высококачественный прототип будущего проекта, в своём классическом представлении, допускает внедрение новых принципов формирования материально-технической и кадровой базы. Идейные соображения высшего порядка, а также реализация намеченных плановых заданий способствует повышению качества своевременного выполнения сверхзадачи.\r\n\r\nБезусловно, понимание сути ресурсосберегающих технологий требует анализа кластеризации усилий. Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции способствует повышению качества приоретизации разума над эмоциями. Но тщательные исследования конкурентов своевременно верифицированы. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности будут объединены в целые кластеры себе подобных.\r\n\r\nВысокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: укрепление и развитие внутренней структуры не оставляет шанса для модели развития. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции предоставляет широкие возможности для как самодостаточных, так и внешне зависимых концептуальных решений.\r\n\r\nОднозначно, активно развивающиеся страны третьего мира являются только методом политического участия и объявлены нарушающими общечеловеческие нормы этики и морали. Равным образом, консультация с широким активом однозначно определяет каждого участника как способного принимать собственные решения касаемо распределения внутренних резервов и ресурсов. Сложно сказать, почему сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую ситуацию, обнародованы. Не следует, однако, забывать, что консультация с широким активом является качественно новой ступенью благоприятных перспектив. Банальные, но неопровержимые выводы, а также непосредственные участники технического прогресса представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть указаны как претенденты на роль ключевых факторов. Для современного мира синтетическое тестирование однозначно определяет каждого участника как способного принимать собственные решения касаемо экономической целесообразности принимаемых решений.\r\n\r\nТакже как синтетическое тестирование позволяет выполнить важные задания по разработке поэтапного и последовательного развития общества! Разнообразный и богатый опыт говорит нам, что дальнейшее развитие различных форм деятельности играет определяющее значение для экспериментов, поражающих по своей масштабности и грандиозности. Ясность нашей позиции очевидна: начало повседневной работы по формированию позиции выявляет срочную потребность соответствующих условий активизации. Но элементы политического процесса, инициированные исключительно синтетически, объективно рассмотрены соответствующими инстанциями. Вот вам яркий пример современных тенденций — высококачественный прототип будущего проекта обеспечивает широкому кругу (специалистов) участие в формировании системы массового участия. Как принято считать, многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть ограничены исключительно образом мышления.",
+    "created": "2023-05-31T10:02:27.217Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 12,
+  "fields": {
+    "title": "Тестовая статья 5",
+    "author": 2,
+    "category": 2,
+    "preview_image": "entries/alex-kotliarskyi-QBpZGqEMsKg-unsplash_2zIcgKG.jpg",
+    "text": "В частности, понимание сути ресурсосберегающих технологий создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса новых предложений. Внезапно, многие известные личности формируют глобальную экономическую сеть и при этом — объявлены нарушающими общечеловеческие нормы этики и морали. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное планирование способствует подготовке и реализации кластеризации усилий.\r\n\r\nВот вам яркий пример современных тенденций — высококачественный прототип будущего проекта, в своём классическом представлении, допускает внедрение новых принципов формирования материально-технической и кадровой базы. Идейные соображения высшего порядка, а также реализация намеченных плановых заданий способствует повышению качества своевременного выполнения сверхзадачи.\r\n\r\nБезусловно, понимание сути ресурсосберегающих технологий требует анализа кластеризации усилий. Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции способствует повышению качества приоретизации разума над эмоциями. Но тщательные исследования конкурентов своевременно верифицированы. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности будут объединены в целые кластеры себе подобных.\r\n\r\nВысокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: укрепление и развитие внутренней структуры не оставляет шанса для модели развития. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции предоставляет широкие возможности для как самодостаточных, так и внешне зависимых концептуальных решений.\r\n\r\nОднозначно, активно развивающиеся страны третьего мира являются только методом политического участия и объявлены нарушающими общечеловеческие нормы этики и морали. Равным образом, консультация с широким активом однозначно определяет каждого участника как способного принимать собственные решения касаемо распределения внутренних резервов и ресурсов. Сложно сказать, почему сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую ситуацию, обнародованы. Не следует, однако, забывать, что консультация с широким активом является качественно новой ступенью благоприятных перспектив. Банальные, но неопровержимые выводы, а также непосредственные участники технического прогресса представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть указаны как претенденты на роль ключевых факторов. Для современного мира синтетическое тестирование однозначно определяет каждого участника как способного принимать собственные решения касаемо экономической целесообразности принимаемых решений.\r\n\r\nТакже как синтетическое тестирование позволяет выполнить важные задания по разработке поэтапного и последовательного развития общества! Разнообразный и богатый опыт говорит нам, что дальнейшее развитие различных форм деятельности играет определяющее значение для экспериментов, поражающих по своей масштабности и грандиозности. Ясность нашей позиции очевидна: начало повседневной работы по формированию позиции выявляет срочную потребность соответствующих условий активизации. Но элементы политического процесса, инициированные исключительно синтетически, объективно рассмотрены соответствующими инстанциями. Вот вам яркий пример современных тенденций — высококачественный прототип будущего проекта обеспечивает широкому кругу (специалистов) участие в формировании системы массового участия. Как принято считать, многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть ограничены исключительно образом мышления.",
+    "created": "2023-05-31T10:02:58.478Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 13,
+  "fields": {
+    "title": "Тестовая новость 5",
+    "author": 2,
+    "category": 1,
+    "preview_image": "entries/olena-sergienko-dIMJWLx1YbE-unsplash_CbYdQYC.jpg",
+    "text": "Наше дело не так однозначно, как может показаться: новая модель организационной деятельности, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для поэтапного и последовательного развития общества. С другой стороны, высокотехнологичная концепция общественного уклада, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для переосмысления внешнеэкономических политик. Сложно сказать, почему базовые сценарии поведения пользователей, инициированные исключительно синтетически, объявлены нарушающими общечеловеческие нормы этики и морали.\r\n\r\nНе следует, однако, забывать, что современная методология разработки не оставляет шанса для инновационных методов управления процессами. Лишь сделанные на базе интернет-аналитики выводы будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Задача организации, в особенности же повышение уровня гражданского сознания в значительной степени обусловливает важность стандартных подходов. Идейные соображения высшего порядка, а также существующая теория однозначно фиксирует необходимость поставленных обществом задач. Господа, синтетическое тестирование однозначно определяет каждого участника как способного принимать собственные решения касаемо системы массового участия.\r\n\r\nЗадача организации, в особенности же реализация намеченных плановых заданий напрямую зависит от новых предложений. Разнообразный и богатый опыт говорит нам, что выбранный нами инновационный путь не даёт нам иного выбора, кроме определения стандартных подходов.\r\n\r\nНаше дело не так однозначно, как может показаться: синтетическое тестирование играет определяющее значение для распределения внутренних резервов и ресурсов. Повседневная практика показывает, что высококачественный прототип будущего проекта представляет собой интересный эксперимент проверки первоочередных требований. Для современного мира глубокий уровень погружения прекрасно подходит для реализации прогресса профессионального сообщества. Ясность нашей позиции очевидна: понимание сути ресурсосберегающих технологий, в своём классическом представлении, допускает внедрение дальнейших направлений развития.\r\n\r\nИдейные соображения высшего порядка, а также начало повседневной работы по формированию позиции предполагает независимые способы реализации позиций, занимаемых участниками в отношении поставленных задач. Значимость этих проблем настолько очевидна, что перспективное планирование представляет собой интересный эксперимент проверки вывода текущих активов. И нет сомнений, что акционеры крупнейших компаний представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть преданы социально-демократической анафеме. Следует отметить, что существующая теория требует от нас анализа кластеризации усилий. Равным образом, граница обучения кадров является качественно новой ступенью вывода текущих активов. И нет сомнений, что ключевые особенности структуры проекта указаны как претенденты на роль ключевых факторов.\r\n\r\nНо многие известные личности подвергнуты целой серии независимых исследований. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: сложившаяся структура организации требует от нас анализа как самодостаточных, так и внешне зависимых концептуальных решений. Как уже неоднократно упомянуто, акционеры крупнейших компаний могут быть своевременно верифицированы. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности призывают нас к новым свершениям, которые, в свою очередь, должны быть описаны максимально подробно. Принимая во внимание показатели успешности, высококачественный прототип будущего проекта не оставляет шанса для поставленных обществом задач.",
+    "created": "2023-05-31T10:03:14.526Z"
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 14,
+  "fields": {
+    "title": "Тестовая статья 6",
+    "author": 2,
+    "category": 2,
+    "preview_image": "entries/alesia-kazantceva-VWcPlbHglYc-unsplash_5qbPFly.jpg",
+    "text": "В своём стремлении улучшить пользовательский опыт мы упускаем, что сторонники тоталитаризма в науке лишь добавляют фракционных разногласий и в равной степени предоставлены сами себе. С другой стороны, семантический разбор внешних противодействий говорит о возможностях распределения внутренних резервов и ресурсов. Учитывая ключевые сценарии поведения, дальнейшее развитие различных форм деятельности требует анализа экспериментов, поражающих по своей масштабности и грандиозности.\r\n\r\nБезусловно, выбранный нами инновационный путь влечет за собой процесс внедрения и модернизации направлений прогрессивного развития. Ясность нашей позиции очевидна: постоянное информационно-пропагандистское обеспечение нашей деятельности прекрасно подходит для реализации стандартных подходов. Есть над чем задуматься: диаграммы связей в равной степени предоставлены сами себе! Задача организации, в особенности же базовый вектор развития требует от нас анализа прогресса профессионального сообщества. В своём стремлении улучшить пользовательский опыт мы упускаем, что стремящиеся вытеснить традиционное производство, нанотехнологии будут превращены в посмешище, хотя само их существование приносит несомненную пользу обществу.\r\n\r\nВнезапно, действия представителей оппозиции и по сей день остаются уделом либералов, которые жаждут быть ассоциативно распределены по отраслям. Прежде всего, семантический разбор внешних противодействий выявляет срочную потребность стандартных подходов. Но сделанные на базе интернет-аналитики выводы лишь добавляют фракционных разногласий и смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Являясь всего лишь частью общей картины, тщательные исследования конкурентов неоднозначны и будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. А ещё предприниматели в сети интернет смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Есть над чем задуматься: многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть разоблачены.\r\n\r\nЯвляясь всего лишь частью общей картины, независимые государства объединены в целые кластеры себе подобных. С другой стороны, экономическая повестка сегодняшнего дня однозначно определяет каждого участника как способного принимать собственные решения касаемо направлений прогрессивного развития. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: постоянный количественный рост и сфера нашей активности способствует подготовке и реализации поэтапного и последовательного развития общества! Повседневная практика показывает, что существующая теория позволяет выполнить важные задания по разработке новых предложений. С другой стороны, высокотехнологичная концепция общественного уклада обеспечивает актуальность первоочередных требований.\r\n\r\nПринимая во внимание показатели успешности, сложившаяся структура организации предполагает независимые способы реализации системы обучения кадров, соответствующей насущным потребностям. Картельные сговоры не допускают ситуации, при которой реплицированные с зарубежных источников, современные исследования и по сей день остаются уделом либералов, которые жаждут быть ассоциативно распределены по отраслям. Сложно сказать, почему непосредственные участники технического прогресса обнародованы! И нет сомнений, что непосредственные участники технического прогресса представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть обнародованы. Противоположная точка зрения подразумевает, что элементы политического процесса освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, представлены в исключительно положительном свете. Повседневная практика показывает, что высокотехнологичная концепция общественного уклада создаёт предпосылки для прогресса профессионального сообщества.\r\n\r\nКак уже неоднократно упомянуто, интерактивные прототипы формируют глобальную экономическую сеть и при этом — представлены в исключительно положительном свете. В рамках спецификации современных стандартов, многие известные личности подвергнуты целой серии независимых исследований. Предварительные выводы неутешительны: повышение уровня гражданского сознания говорит о возможностях системы обучения кадров, соответствующей насущным потребностям. Вот вам яркий пример современных тенденций — социально-экономическое развитие способствует подготовке и реализации стандартных подходов.",
+    "created": "2023-05-31T10:03:33.299Z"
+  }
+},
+{
+  "model": "events.event",
+  "pk": 1,
+  "fields": {
+    "name": "День рождения нашей замечательной компании",
+    "author": 2,
+    "for_all": true,
+    "text": "В этот замечательный день нашей компании стукнуло 10 лет! По адресу такому то вас ждет концерт и прочие ништяки)",
+    "created": "2023-06-18T13:35:55.333Z",
+    "start_time": "2023-07-22T08:00:00Z",
+    "end_time": "2023-07-22T14:30:00Z",
+    "departments": [],
+    "employees": []
+  }
+},
+{
+  "model": "events.event",
+  "pk": 2,
+  "fields": {
+    "name": "Лекция о борьбе со стрессом на работе",
+    "author": 2,
+    "for_all": true,
+    "text": "Лекцию проводит приглашенный заслуженный психолог Иванов И.И., переговорка #4.",
+    "created": "2023-06-18T13:37:14.860Z",
+    "start_time": "2023-07-18T13:00:00Z",
+    "end_time": "2023-07-18T14:00:00Z",
+    "departments": [],
+    "employees": []
+  }
+},
+{
+  "model": "events.event",
+  "pk": 3,
+  "fields": {
+    "name": "Вебинар о важности психологической поддержке сотрудников",
+    "author": 2,
+    "for_all": true,
+    "text": "Вебинар от HR нашей компании Елены Дмитровой. Ссылку на zoom скинем за час до начала.",
+    "created": "2023-06-18T13:38:43.173Z",
+    "start_time": "2023-07-27T08:30:00Z",
+    "end_time": "2023-07-27T10:00:00Z",
+    "departments": [],
+    "employees": []
+  }
+},
+{
+  "model": "events.event",
+  "pk": 4,
+  "fields": {
+    "name": "Финал конкурса по выбору лучших котиков",
+    "author": 2,
+    "for_all": true,
+    "text": "Просто наиважнейшее событие, которое невозможно пропустить. Обязательно быть всем!",
+    "created": "2023-06-18T13:40:20.558Z",
+    "start_time": "2023-08-01T11:00:00Z",
+    "end_time": "2023-08-01T12:20:00Z",
+    "departments": [],
+    "employees": []
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 1,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 2,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 3,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 4,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 5,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 6,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 7,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 8,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 9,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 10,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 11,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 12,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 13,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 14,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 15,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 16,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 17,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 18,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 19,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 20,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 21,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 22,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 23,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 24,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 25,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 26,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 27,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 28,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 29,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 30,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 31,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 32,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 33,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 34,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 35,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 36,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 37,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 38,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 39,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 40,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 41,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 42,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 43,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 44,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 45,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 46,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 47,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 48,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 49,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 50,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 51,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 52,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 53,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 54,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 55,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 56,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 57,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 58,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 59,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 60,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 61,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 62,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 63,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 64,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 65,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 66,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 67,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 68,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 69,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 70,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 71,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 72,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 73,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 74,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 75,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 76,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 77,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 78,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 79,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 80,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 81,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 82,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 83,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 84,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 85,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 86,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 87,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 88,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 89,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 90,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 91,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 92,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 93,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 94,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 95,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 96,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 97,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 98,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 99,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 100,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 101,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 102,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 103,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 104,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 105,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 106,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 107,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 108,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 109,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 110,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 111,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 112,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 113,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 114,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 115,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 116,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 117,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 118,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 119,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 120,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 121,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 122,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 123,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 124,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 125,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 126,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 127,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 128,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 129,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 130,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 131,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 132,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 133,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 134,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 135,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 136,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 137,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 138,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 139,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 140,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 141,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 142,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 143,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 144,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+}
+]
