@@ -145,9 +145,19 @@ class Survey(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
+    for_all = models.BooleanField(
+        verbose_name='Доступен всем',
+        help_text=(
+            'При положительном значении, поле с отделами игнорируется  '
+            'и уведомления о появлении нового опроса отправляются всем '
+            'активным сотрудникам'
+        ),
+        default=True
+    )
     department = models.ManyToManyField(
         Department,
         verbose_name='Отделы',
+        blank=True
     )
     title = models.CharField(
         verbose_name='Название опроса',

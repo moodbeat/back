@@ -19,7 +19,7 @@ class EntryAdmin(admin.ModelAdmin):
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    fields = ('created', 'name', 'author', 'for_all', 'employees',
+    fields = ('created', 'name', 'author', 'text', 'for_all', 'employees',
               'departments', 'start_time', 'end_time',)
     list_display = ('created', 'name', 'author',
                     'start_time', 'end_time', 'for_all')

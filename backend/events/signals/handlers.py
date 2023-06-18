@@ -20,7 +20,6 @@ def create_notification_for_event_for_all(sender, instance, created, **kwargs):
     для всех активных пользователей сервиса.
     """
     if created and instance.for_all:
-        instance.save()
         results = Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.EVENT,
