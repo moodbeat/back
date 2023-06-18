@@ -55,8 +55,9 @@ class DepartmentInviteCodeFilter(InviteCodeFilter):
 
 
 class ElasticSearchFilter(filter_backends.BaseSearchFilterBackend):
+
     def filter_queryset(self, request, queryset, view):
-        search_text = request.query_params.get('search', '')
+        search_text = request.query_params.get('search', '').lower()
         search_text = re.sub(r'\d+', '', search_text)
 
         if search_text:

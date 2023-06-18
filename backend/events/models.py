@@ -94,6 +94,15 @@ class Event(models.Model):
         on_delete=models.CASCADE,
         related_name='authored_events'
     )
+    for_all = models.BooleanField(
+        verbose_name='Отправка для всех',
+        help_text=(
+            'При положительном значении, поля с сотрудниками и отделами '
+            'игнорируются и приглашения отправляются всем активным '
+            'сотрудникам'
+        ),
+        default=False
+    )
     departments = models.ManyToManyField(
         Department,
         verbose_name='Отдел(ы)',
