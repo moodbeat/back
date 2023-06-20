@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django_elasticsearch_dsl',
     'django_elasticsearch_dsl_drf',
     'django_filters',
+    'django_celery_beat',
     'debug_toolbar',
     'phonenumber_field',
     'djoser',
@@ -280,3 +281,9 @@ if DEV_SERVICES:
             traces_sample_rate=1.0,
             send_default_pii=True
         )
+
+# ----------------------------------------------------------------
+
+CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER', 'redis://redis:6379')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT', 'redis://redis:6379')
