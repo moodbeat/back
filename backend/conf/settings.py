@@ -35,6 +35,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl_drf',
     'django_filters',
     'debug_toolbar',
     'phonenumber_field',
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'socials.apps.SocialsConfig',
     'events.apps.EventsConfig',
     'metrics.apps.MetricsConfig',
+    'notifications.apps.NotificationsConfig'
 ]
 
 MIDDLEWARE = [
@@ -85,9 +88,25 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 
 ASGI_APPLICATION = 'conf.asgi.application'
 
+ELASTIC_HOST = os.getenv('ELASTIC_HOST', default='localhost')
+
+ELASTIC_PORT = os.getenv('ELASTIC_PORT', default='9200')
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': f'{ELASTIC_HOST}:{ELASTIC_PORT}'
+    },
+}
+
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                (os.getenv('REDIS_HOST', default='localhost'),
+                 os.getenv('REDIS_PORT', default='6379'))
+            ],
+        },
     }
 }
 

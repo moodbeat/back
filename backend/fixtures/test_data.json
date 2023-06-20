@@ -1,1353 +1,5 @@
 [
 {
-  "model": "users.department",
-  "pk": 1,
-  "fields": {
-    "name": "Отдел маркетинга",
-    "description": "Разработка и реализация маркетинговых стратегий и акций"
-  }
-},
-{
-  "model": "users.department",
-  "pk": 2,
-  "fields": {
-    "name": "Отдел разработки",
-    "description": "Создание и поддержка программного обеспечения и веб-приложений"
-  }
-},
-{
-  "model": "users.department",
-  "pk": 3,
-  "fields": {
-    "name": "Отдел финансов",
-    "description": "Управление финансовыми аспектами компании"
-  }
-},
-{
-  "model": "users.department",
-  "pk": 4,
-  "fields": {
-    "name": "Отдел кадров",
-    "description": "Подбор и управление персоналом"
-  }
-},
-{
-  "model": "users.department",
-  "pk": 5,
-  "fields": {
-    "name": "Отдел продаж",
-    "description": "Продвижение и реализация продукции или услуг компании"
-  }
-},
-{
-  "model": "users.department",
-  "pk": 6,
-  "fields": {
-    "name": "Отдел IT-поддержки",
-    "description": "Поддержка пользователей и обслуживание информационных систем"
-  }
-},
-{
-  "model": "users.department",
-  "pk": 7,
-  "fields": {
-    "name": "Отдел закупок и снабжения",
-    "description": "Закупка и поставка товаров и услуг для компании"
-  }
-},
-{
-  "model": "users.position",
-  "pk": 1,
-  "fields": {
-    "name": "Менеджер",
-    "chief_position": false,
-    "departments": [
-      1,
-      5,
-      7
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 2,
-  "fields": {
-    "name": "Помощник менеджера",
-    "chief_position": false,
-    "departments": [
-      1,
-      5,
-      7
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 3,
-  "fields": {
-    "name": "Директор",
-    "chief_position": true,
-    "departments": [
-      1,
-      7
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 4,
-  "fields": {
-    "name": "Руководитель разработки",
-    "chief_position": true,
-    "departments": [
-      2
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 5,
-  "fields": {
-    "name": "Веб-разработчик",
-    "chief_position": false,
-    "departments": [
-      2
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 6,
-  "fields": {
-    "name": "Мобильный разработчик",
-    "chief_position": false,
-    "departments": [
-      2
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 7,
-  "fields": {
-    "name": "Тестировщик программного обеспечения",
-    "chief_position": false,
-    "departments": [
-      2
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 8,
-  "fields": {
-    "name": "Дизайнер пользовательского интерфейса",
-    "chief_position": false,
-    "departments": [
-      2
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 9,
-  "fields": {
-    "name": "Маркетинговый менеджер",
-    "chief_position": false,
-    "departments": [
-      1
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 10,
-  "fields": {
-    "name": "Специалист по цифровому маркетингу",
-    "chief_position": false,
-    "departments": [
-      1
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 11,
-  "fields": {
-    "name": "Копирайтер",
-    "chief_position": false,
-    "departments": [
-      1
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 12,
-  "fields": {
-    "name": "Медиа-планировщик",
-    "chief_position": false,
-    "departments": [
-      1
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 13,
-  "fields": {
-    "name": "Аналитик маркетинга",
-    "chief_position": false,
-    "departments": [
-      1
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 14,
-  "fields": {
-    "name": "Финансовый директор",
-    "chief_position": true,
-    "departments": [
-      3
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 15,
-  "fields": {
-    "name": "Бухгалтер",
-    "chief_position": false,
-    "departments": [
-      3
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 16,
-  "fields": {
-    "name": "Финансовый аналитик",
-    "chief_position": false,
-    "departments": [
-      3
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 17,
-  "fields": {
-    "name": "Кредитный аналитик",
-    "chief_position": false,
-    "departments": [
-      3
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 18,
-  "fields": {
-    "name": "Руководитель отдела кадров",
-    "chief_position": true,
-    "departments": [
-      4
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 19,
-  "fields": {
-    "name": "Специалист по подбору персонала",
-    "chief_position": false,
-    "departments": [
-      4
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 20,
-  "fields": {
-    "name": "HR-менеджер",
-    "chief_position": false,
-    "departments": [
-      4
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 21,
-  "fields": {
-    "name": "Тренер по развитию персонала",
-    "chief_position": false,
-    "departments": [
-      4
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 22,
-  "fields": {
-    "name": "Ключевой клиент-менеджер",
-    "chief_position": false,
-    "departments": [
-      5
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 23,
-  "fields": {
-    "name": "Торговый представитель",
-    "chief_position": false,
-    "departments": [
-      5
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 24,
-  "fields": {
-    "name": "Специалист по работе с клиентами",
-    "chief_position": false,
-    "departments": [
-      3,
-      5,
-      7
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 25,
-  "fields": {
-    "name": "Руководитель IT-поддержки",
-    "chief_position": true,
-    "departments": [
-      6
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 26,
-  "fields": {
-    "name": "Системный администратор",
-    "chief_position": false,
-    "departments": [
-      6
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 27,
-  "fields": {
-    "name": "Сетевой инженер",
-    "chief_position": false,
-    "departments": [
-      6
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 28,
-  "fields": {
-    "name": "Специалист по информационной безопасности",
-    "chief_position": false,
-    "departments": [
-      6
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 29,
-  "fields": {
-    "name": "Специалист по снабжению",
-    "chief_position": false,
-    "departments": [
-      7
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 30,
-  "fields": {
-    "name": "Логист",
-    "chief_position": false,
-    "departments": [
-      7
-    ]
-  }
-},
-{
-  "model": "users.position",
-  "pk": 31,
-  "fields": {
-    "name": "Аналитик закупок",
-    "chief_position": false,
-    "departments": [
-      7
-    ]
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 1,
-  "fields": {
-    "name": "Фотография"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 2,
-  "fields": {
-    "name": "Путешествия"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 3,
-  "fields": {
-    "name": "Танцы"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 4,
-  "fields": {
-    "name": "Йога и медитация"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 5,
-  "fields": {
-    "name": "Изучение иностранных языков"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 6,
-  "fields": {
-    "name": "Астрономия и космос"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 7,
-  "fields": {
-    "name": "Фильмы и сериалы"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 8,
-  "fields": {
-    "name": "Музыка"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 9,
-  "fields": {
-    "name": "Садоводство"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 10,
-  "fields": {
-    "name": "Рисование"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 11,
-  "fields": {
-    "name": "Вязание"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 12,
-  "fields": {
-    "name": "Фитнес"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 13,
-  "fields": {
-    "name": "Лыжи"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 14,
-  "fields": {
-    "name": "Брейк-данс"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 15,
-  "fields": {
-    "name": "Блоггинг"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 16,
-  "fields": {
-    "name": "Моделизм"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 17,
-  "fields": {
-    "name": "Волонтёрство"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 18,
-  "fields": {
-    "name": "Сноубординг"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 19,
-  "fields": {
-    "name": "Покер"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 20,
-  "fields": {
-    "name": "Рыбалка"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 21,
-  "fields": {
-    "name": "Пение"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 22,
-  "fields": {
-    "name": "Шахматы"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 23,
-  "fields": {
-    "name": "Карвинг"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 24,
-  "fields": {
-    "name": "Астрология"
-  }
-},
-{
-  "model": "users.hobby",
-  "pk": 25,
-  "fields": {
-    "name": "Волейбол"
-  }
-},
-{
-  "model": "users.mentalstate",
-  "pk": 1,
-  "fields": {
-    "name": "Нормальное",
-    "description": "",
-    "level": 1
-  }
-},
-{
-  "model": "users.mentalstate",
-  "pk": 2,
-  "fields": {
-    "name": "В группе риска",
-    "description": "",
-    "level": 3
-  }
-},
-{
-  "model": "users.mentalstate",
-  "pk": 3,
-  "fields": {
-    "name": "Тревожное",
-    "description": "",
-    "level": 2
-  }
-},
-{
-  "model": "users.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$GzZjsdyyWiokndMnnXIhwt$lVtu0hvAh+cN44J6dwod1b5QpSmEYpV8ItMaNeajUpw=",
-    "last_login": "2023-06-07T15:29:32.895Z",
-    "is_superuser": true,
-    "email": "admin@admin.admin",
-    "first_name": "Админ",
-    "last_name": "Админыч",
-    "patronymic": null,
-    "department": null,
-    "position": null,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": null,
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2023-05-18T23:23:58.163Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": []
-  }
-},
-{
-  "model": "users.user",
-  "pk": 2,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$V1Big0OZbwzR0S1gY6VnIf$EoMLDJyqvMy/UzeQsXRxANMbOt05eTi/aJo3XOjplp4=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "hr@example.com",
-    "first_name": "Елена",
-    "last_name": "Дмитриева",
-    "patronymic": null,
-    "department": 4,
-    "position": 20,
-    "mental_state": null,
-    "role": "hr",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79039994856",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-18T23:26:25Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      2,
-      4,
-      7,
-      12,
-      13,
-      16
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 3,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$1QIpQusbdxXJjWMEBz1Qwg$4Md84JYL/6/eCsL+gp0GqvxYujqpE/9be3qCydkMpy4=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "chief@example.com",
-    "first_name": "Сергей",
-    "last_name": "Сергеев",
-    "patronymic": null,
-    "department": 2,
-    "position": 4,
-    "mental_state": null,
-    "role": "chief",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79175584400",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-18T23:27:18Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      1,
-      6,
-      7,
-      9,
-      10,
-      20,
-      21,
-      23
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 4,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$z9kO9W8wKVR1u5ybPIp2YA$2WuKhVVHYKwAUHHh8Ygc+ecefVU02EmGDx8uA5/w3MA=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "employee1@example.com",
-    "first_name": "Иван",
-    "last_name": "Иванов",
-    "patronymic": null,
-    "department": 1,
-    "position": 1,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79384449473",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-18T23:28:02Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      2,
-      18,
-      19,
-      20,
-      22,
-      23
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 5,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$3IrfeSIrKs1hoI94QKA1Bc$vIjEqp6rHSmdJjrD/52ftxo8YwgfQ+yWJ2iqVdwU2ag=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "marina.sokolova@example.com",
-    "first_name": "Марина",
-    "last_name": "Соколова",
-    "patronymic": null,
-    "department": 3,
-    "position": 15,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484446",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:04:57Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      4,
-      15,
-      19,
-      22,
-      24
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 6,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$7LCGILJ86sw3Or2dRkUST9$uwrihmqaURY29XUm8mTBjh6JAvmuENP3LPvDY9I1jbU=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "alexander.pavlov@example.com",
-    "first_name": "Александр",
-    "last_name": "Павлов",
-    "patronymic": null,
-    "department": 3,
-    "position": 14,
-    "mental_state": null,
-    "role": "chief",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484447",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:05:41Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": []
-  }
-},
-{
-  "model": "users.user",
-  "pk": 7,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$SZp0ejrcY438r0jkZmjl9h$/AZQgUijez7MAEJek7MrlZIICbB84ywrDv3is9Whm0E=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "elena.volkova@example.com",
-    "first_name": "Елена",
-    "last_name": "Волкова",
-    "patronymic": null,
-    "department": 1,
-    "position": 11,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": null,
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:06:21Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      2,
-      3,
-      7,
-      19,
-      22,
-      25
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 8,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$VYqWtL5oFkty9E4usa5IY9$/3sKgBvKZwNHROTmwE8twsdi1MTzQ7z5o1vblzUW+hA=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "dmitry.kozlov@example.com",
-    "first_name": "Дмитрий",
-    "last_name": "Козлов",
-    "patronymic": null,
-    "department": 7,
-    "position": 30,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484449",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:07:25Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      2,
-      6,
-      13,
-      16,
-      20,
-      21
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 9,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$XbgQPywQUPMStxPuw2ynbN$LyZsqYabCH+Bp4mpswD5jC2fmiFSesgOAxStGL7VGPY=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "anna.morozova@example.com",
-    "first_name": "Анна",
-    "last_name": "Морозова",
-    "patronymic": null,
-    "department": 2,
-    "position": 5,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484450",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:08:13Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      2,
-      9,
-      10,
-      14,
-      15,
-      21,
-      24
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 10,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$7sLf9lByAs0fKSM6rCgPC8$ytCp8KlZ4pSlj/9oJnxq7GSXf5Wxh0tyrpG5yZP9EQE=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "alexey.ivanov@example.com",
-    "first_name": "Катерина",
-    "last_name": "Петрова",
-    "patronymic": null,
-    "department": 4,
-    "position": 19,
-    "mental_state": null,
-    "role": "hr",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484452",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:08:55Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      7,
-      14,
-      23
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 11,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$EQnrqO0JVmc8rDruu4xpQs$Xg1wBsT63FA10lRayNzcp7eBYM7wj7MUD7r+d3M6l1k=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "mikhail.smirnov@example.com",
-    "first_name": "Михаил",
-    "last_name": "Смирнов",
-    "patronymic": null,
-    "department": 5,
-    "position": 1,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484453",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:09:39Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      16,
-      5,
-      15
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 12,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$2xVVPQIEEoCwg1e16pz6qm$yJwSxXDp15x1tpJvF/gtEwdCQ/s2rb33Mp9QutMxGTk=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "anna.kuznetsova@example.com",
-    "first_name": "Анна",
-    "last_name": "Кузнецова",
-    "patronymic": null,
-    "department": 3,
-    "position": 15,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484454",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:10:26Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      24,
-      3,
-      7
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 13,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$2GCeVYVOoHYk1NtmS7Lmxt$XA/6uEOI34P2Ilh/I2XjBeFbIREUP6/uWyO1oWFYp2Y=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "denis.lebedev@example.com",
-    "first_name": "Денис",
-    "last_name": "Лебедев",
-    "patronymic": null,
-    "department": 5,
-    "position": 24,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": null,
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:11:03Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": []
-  }
-},
-{
-  "model": "users.user",
-  "pk": 14,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$zWtOrAlyAn8czDvxm13Biw$4PzP7AD2yunN8K3oterzQ2j7mGezLRvnJjSREFzTyow=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "olga.semenova@example.com",
-    "first_name": "Ольга",
-    "last_name": "Семенова",
-    "patronymic": null,
-    "department": 6,
-    "position": 27,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": null,
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:11:41Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      8,
-      10,
-      14,
-      15,
-      18
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 15,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$smVcdCG65RzWRazkAAcxaF$yLXNBCA4cB3c2/LaAxil8+C6ZOZqna8aMAJGH5QTY7w=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "yulia.novikova@example.com",
-    "first_name": "Юлия",
-    "last_name": "Новикова",
-    "patronymic": null,
-    "department": 1,
-    "position": 10,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484458",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:12:18Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      2,
-      8,
-      10,
-      20,
-      22
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 16,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$i4nkYjOCHgaNxfEFeugoKA$s+Uqy9yf9UpXuC4PNK1EuTEQJmGgBftNQzXioQ7e4r4=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "sergey.morozov@example.com",
-    "first_name": "Сергей",
-    "last_name": "Морозов",
-    "patronymic": null,
-    "department": 6,
-    "position": 25,
-    "mental_state": null,
-    "role": "chief",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484459",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:13:05Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      1,
-      4,
-      12,
-      14,
-      16,
-      21,
-      23,
-      24
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 17,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$4un0ZvhlpmLkDB8SW0R8d6$ZGbCu+xuJJqvNPpymII6tshzoXgOltpe6jR7V5rymcI=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "alexandra.kovaleva@example.com",
-    "first_name": "Александра",
-    "last_name": "Ковалева",
-    "patronymic": null,
-    "department": 3,
-    "position": 15,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484461",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:14:15Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      25,
-      18,
-      22,
-      7
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 18,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$VrRXNYL8vvoVBLnBOq9WQL$FtSiMOSfPq7uiHeT9ZJuY4gV+TAjJtjrGawvgXMqNLI=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "dmitry.smirnov@example.com",
-    "first_name": "Дмитрий",
-    "last_name": "Смирнов",
-    "patronymic": null,
-    "department": 5,
-    "position": 2,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484462",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:14:59Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      16,
-      18,
-      13
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 19,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$jrpK7V3a28sXzrobhGjVUP$D1z70NrGNaGL/JxfS7OqvzQttvdkqzwqh2SQXOuZmlo=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "ivan.petrov@example.com",
-    "first_name": "Иван",
-    "last_name": "Петров",
-    "patronymic": null,
-    "department": 2,
-    "position": 8,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484464",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:15:40Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      17,
-      13
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 20,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$JXkFnP60G6DGmig0ugOpAM$Q5Zc+VZnAJ3oOw+1YZ9+1qZ9HtbPSrKi98+zNHWHMXc=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "ekaterina.sidorova@example.com",
-    "first_name": "Екатерина",
-    "last_name": "Сидорова",
-    "patronymic": null,
-    "department": 7,
-    "position": 30,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": null,
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:16:24Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": []
-  }
-},
-{
-  "model": "users.user",
-  "pk": 21,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$b3PAL79K858m90ryMm0PyG$rZ94AwKwWh/LBxsPmZLWOotK7e/HzjzXMY6Rt1l9DSc=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "alexey.petrov@example.com",
-    "first_name": "Алексей",
-    "last_name": "Петров",
-    "patronymic": null,
-    "department": 2,
-    "position": 7,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484469",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:16:53Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      12,
-      15,
-      18,
-      19,
-      24,
-      25
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 22,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$Km1ce30x1B0xBU5SsyVxyP$F0DclhG0Wv/XB0PRLZw57/DqstifLPZeNYhnFL97v0k=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "olga.novikova@example.com",
-    "first_name": "Ольга",
-    "last_name": "Новикова",
-    "patronymic": null,
-    "department": 3,
-    "position": 15,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484470",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:17:56Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      17,
-      13,
-      21,
-      6
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 23,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$Rg9YfWossG8a9nRuBzpXqT$s4249S3fAlbaY7l4z/Otr37ymxLJ4T0qm2Sx25i461g=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "elena.pavlova@example.com",
-    "first_name": "Елена",
-    "last_name": "Павлова",
-    "patronymic": null,
-    "department": 1,
-    "position": 1,
-    "mental_state": null,
-    "role": "employee",
-    "avatar_full": "",
-    "about": null,
-    "phone": null,
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:18:38Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      3,
-      11,
-      12,
-      7
-    ]
-  }
-},
-{
-  "model": "users.user",
-  "pk": 24,
-  "fields": {
-    "password": "pbkdf2_sha256$600000$4IsT3FwEDk6ftNeuksXEhY$ThuoTNC2Igw2UrB/5w3U1S5KndXe6MFHltBKbVrW0UY=",
-    "last_login": null,
-    "is_superuser": false,
-    "email": "ivan.nikolaev@example.com",
-    "first_name": "Иван",
-    "last_name": "Николаев",
-    "patronymic": null,
-    "department": 1,
-    "position": 3,
-    "mental_state": null,
-    "role": "chief",
-    "avatar_full": "",
-    "about": null,
-    "phone": "+79164484474",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2023-05-19T01:19:36Z",
-    "groups": [],
-    "user_permissions": [],
-    "hobbies": [
-      16,
-      18,
-      4,
-      23
-    ]
-  }
-},
-{
   "model": "metrics.condition",
   "pk": 1,
   "fields": {
@@ -4568,23 +3220,129 @@
   }
 },
 {
+  "model": "metrics.lifedirection",
+  "pk": 1,
+  "fields": {
+    "name": "Отношения",
+    "num": 1,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 2,
+  "fields": {
+    "name": "Окружение",
+    "num": 2,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 3,
+  "fields": {
+    "name": "Работа",
+    "num": 3,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 4,
+  "fields": {
+    "name": "Обеспеченность",
+    "num": 4,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 5,
+  "fields": {
+    "name": "Яркость жизни",
+    "num": 5,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 6,
+  "fields": {
+    "name": "Саморазвитие",
+    "num": 6,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 7,
+  "fields": {
+    "name": "Духовность",
+    "num": 7,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.lifedirection",
+  "pk": 8,
+  "fields": {
+    "name": "Здоровье",
+    "num": 8,
+    "description": ""
+  }
+},
+{
+  "model": "metrics.surveytype",
+  "pk": 1,
+  "fields": {
+    "name": "Опросы с вариантами да/нет",
+    "slug": "yn",
+    "description": ""
+  }
+},
+{
+  "model": "metrics.surveytype",
+  "pk": 2,
+  "fields": {
+    "name": "Опросник на выгорание MBI",
+    "slug": "mbi",
+    "description": ""
+  }
+},
+{
   "model": "metrics.survey",
   "pk": 1,
   "fields": {
     "author": 1,
+    "for_all": true,
     "title": "Экспресс-оценка выгорания",
+    "type": 1,
     "description": "Экспресс оценка выгорания содержит 10 вопросов. На вопросы необходимо отвечать \"да\" или \"нет\".",
-    "frequency": 30,
-    "creation_date": "2023-05-27T10:26:24.834Z",
-    "is_active": true
+    "text": "Тут типа текст после прохождения опроса, сделаю какой надо",
+    "frequency": 0,
+    "min_range": 11,
+    "max_range": 69,
+    "creation_date": "2023-06-11T07:42:44.172Z",
+    "is_active": true,
+    "department": []
   }
 },
 {
-  "model": "metrics.surveydepartment",
-  "pk": 1,
+  "model": "metrics.survey",
+  "pk": 2,
   "fields": {
-    "survey": 1,
-    "department": 2
+    "author": 1,
+    "for_all": true,
+    "title": "Опросник профессионального выгорания Маслач, MBI/ПВ",
+    "type": 2,
+    "description": "Вам предлагается 22 утверждения о чувствах и переживаниях, связанных с работой. Пожалуйста, прочитайте внимательно каждое утверждение и решите, чувствуете ли вы себя таким образом на вашей работе. Если у вас никогда не было такого чувства, выбирайте ответ \"никогда\". Если у вас было такое чувство, укажите, как часто вы его ощущали в течение последних месяцев.",
+    "text": "Тут типа текст после прохождения опроса, сделаю какой надо",
+    "frequency": 0,
+    "min_range": 33,
+    "max_range": 66,
+    "creation_date": "2023-06-11T09:51:56.162Z",
+    "is_active": true,
+    "department": []
   }
 },
 {
@@ -4592,7 +3350,9 @@
   "pk": 1,
   "fields": {
     "survey": 1,
-    "text": "Когда в воскресенье пополудни я вспоминаю о том, что завтра снова идти на работу, то остаток уик-энда уже испорчен"
+    "text": "Когда в воскресенье пополудни я вспоминаю о том, что завтра снова идти на работу, то остаток уик-энда уже испорчен",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4600,7 +3360,9 @@
   "pk": 2,
   "fields": {
     "survey": 1,
-    "text": "Если бы у меня была возможность уйти на пенсию (по выслуге лет, инвалидности), я сделал (а) бы это без промедления"
+    "text": "Если бы у меня была возможность уйти на пенсию (по выслуге лет, инвалидности), я сделал (а) бы это без промедления",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4608,7 +3370,9 @@
   "pk": 3,
   "fields": {
     "survey": 1,
-    "text": "Коллеги на работе раздражают меня. Невозможно терпеть их одни и те же разговоры"
+    "text": "Коллеги на работе раздражают меня. Невозможно терпеть их одни и те же разговоры",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4616,7 +3380,9 @@
   "pk": 4,
   "fields": {
     "survey": 1,
-    "text": "То насколько меня раздражают коллеги, еще мелочи по сравнению с тем, как выводят меня из равновесия клиенты (пациенты, ученики, посетители, заказчики)"
+    "text": "То насколько меня раздражают коллеги, еще мелочи по сравнению с тем, как выводят меня из равновесия клиенты (пациенты, ученики, посетители, заказчики)",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4624,7 +3390,9 @@
   "pk": 5,
   "fields": {
     "survey": 1,
-    "text": "На протяжении последних трех месяцев я отказывался (отказывалась) от курсов повышения квалификации, от участия в конференциях и т.д."
+    "text": "На протяжении последних трех месяцев я отказывался (отказывалась) от курсов повышения квалификации, от участия в конференциях и т.д.",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4632,7 +3400,9 @@
   "pk": 6,
   "fields": {
     "survey": 1,
-    "text": "Коллегам (посетителям, заказчикам, ученикам и т.д.) я придумал (а) Обидные прозвища (например, \"идиоты\"), которые использую мысленно"
+    "text": "Коллегам (посетителям, заказчикам, ученикам и т.д.) я придумал (а) Обидные прозвища (например, \"идиоты\"), которые использую мысленно",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4640,7 +3410,9 @@
   "pk": 7,
   "fields": {
     "survey": 1,
-    "text": "С делами по службе я справляюсь \"одной левой\" нет ничего такого, что могло бы удивить меня в ней своей новизной"
+    "text": "С делами по службе я справляюсь \"одной левой\" нет ничего такого, что могло бы удивить меня в ней своей новизной",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4648,7 +3420,9 @@
   "pk": 8,
   "fields": {
     "survey": 1,
-    "text": "О моей работе мне едва ли кто скажет что-нибудь новое"
+    "text": "О моей работе мне едва ли кто скажет что-нибудь новое",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4656,7 +3430,9 @@
   "pk": 9,
   "fields": {
     "survey": 1,
-    "text": "Стоит мне только вспомнить о своей работе, как хочется взять и послать ее ко всем чертям"
+    "text": "Стоит мне только вспомнить о своей работе, как хочется взять и послать ее ко всем чертям",
+    "key": null,
+    "priority": null
   }
 },
 {
@@ -4664,7 +3440,1715 @@
   "pk": 10,
   "fields": {
     "survey": 1,
-    "text": "За последние три месяца мне не попала в руки ни одна специальная книга, из которой я почерпнул бы что-нибудь новенькое"
+    "text": "За последние три месяца мне не попала в руки ни одна специальная книга, из которой я почерпнул бы что-нибудь новенькое",
+    "key": null,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 11,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую себя эмоционально опустошенным/ой",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 12,
+  "fields": {
+    "survey": 2,
+    "text": "После работы я чувствую себя как \"выжатый лимон\"",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 13,
+  "fields": {
+    "survey": 2,
+    "text": "Утром я чувствую усталость и нежелание идти на работу",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 14,
+  "fields": {
+    "survey": 2,
+    "text": "Я хорошо понимаю, что чувствуют мои подчиненные и коллеги, и стараюсь учитывать это в интересах дела",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 15,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую, что общаюсь с некоторыми подчиненными и коллегами как с предметами (без теплоты и расположения к ним)",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 16,
+  "fields": {
+    "survey": 2,
+    "text": "После работы на некоторое время хочется уединиться от всех и всего",
+    "key": 4,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 17,
+  "fields": {
+    "survey": 2,
+    "text": "Я умею находить правильное решение в конфликтных ситуациях, возникающих при общении с коллегами",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 18,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую угнетенность и апатию",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 19,
+  "fields": {
+    "survey": 2,
+    "text": "Я уверен, что моя работа нужна людям",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 20,
+  "fields": {
+    "survey": 2,
+    "text": "В последнее время я стал/а более \"черствым/ой\" по отношению к тем, с кем работаю",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 21,
+  "fields": {
+    "survey": 2,
+    "text": "Я замечаю, что моя работа ожесточает меня",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 22,
+  "fields": {
+    "survey": 2,
+    "text": "У меня много планов на будущее, и я верю в их осуществление",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 23,
+  "fields": {
+    "survey": 2,
+    "text": "Моя работа все больше меня разочаровывает",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 24,
+  "fields": {
+    "survey": 2,
+    "text": "Мне кажется, что я слишком много работаю",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 25,
+  "fields": {
+    "survey": 2,
+    "text": "Бывает, что мне действительно безразлично то, что происходит c некоторыми моими подчиненными и коллегами",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 26,
+  "fields": {
+    "survey": 2,
+    "text": "Мне хочется уединиться и отдохнуть от всего и всех",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 27,
+  "fields": {
+    "survey": 2,
+    "text": "Я легко могу создать атмосферу доброжелательности и сотрудничества в коллективе",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 28,
+  "fields": {
+    "survey": 2,
+    "text": "Во время работы я чувствую приятное оживление",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 29,
+  "fields": {
+    "survey": 2,
+    "text": "Благодаря своей работе я уже сделал/а в жизни много действительно ценного",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 30,
+  "fields": {
+    "survey": 2,
+    "text": "Я чувствую равнодушие и потерю интереса ко многому, что радовало меня в моей работе",
+    "key": 1,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 31,
+  "fields": {
+    "survey": 2,
+    "text": "На работе я спокойно справляюсь с эмоциональными проблемами",
+    "key": 3,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.question",
+  "pk": 32,
+  "fields": {
+    "survey": 2,
+    "text": "В последнее время мне кажется, что коллеги и подчиненные все чаще перекладывают на меня груз своих проблем и обязанностей",
+    "key": 2,
+    "priority": null
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 1,
+  "fields": {
+    "text": "Никогда",
+    "priority": 1,
+    "survey_type": 2,
+    "value": 0
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 2,
+  "fields": {
+    "text": "Очень редко",
+    "priority": 2,
+    "survey_type": 2,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 3,
+  "fields": {
+    "text": "Редко",
+    "priority": 3,
+    "survey_type": 2,
+    "value": 2
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 4,
+  "fields": {
+    "text": "Иногда",
+    "priority": 4,
+    "survey_type": 2,
+    "value": 3
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 5,
+  "fields": {
+    "text": "Часто",
+    "priority": 5,
+    "survey_type": 2,
+    "value": 4
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 6,
+  "fields": {
+    "text": "Очень часто",
+    "priority": 6,
+    "survey_type": 2,
+    "value": 5
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 7,
+  "fields": {
+    "text": "Ежедневно",
+    "priority": 7,
+    "survey_type": 2,
+    "value": 6
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 8,
+  "fields": {
+    "text": "Да",
+    "priority": 1,
+    "survey_type": 1,
+    "value": 1
+  }
+},
+{
+  "model": "metrics.variant",
+  "pk": 9,
+  "fields": {
+    "text": "Нет",
+    "priority": 2,
+    "survey_type": 1,
+    "value": 0
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 1,
+  "fields": {
+    "title": "Проблемы в коллективе",
+    "description": null,
+    "role": null
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 2,
+  "fields": {
+    "title": "Не справляюсь с работой",
+    "description": null,
+    "role": "chief"
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 3,
+  "fields": {
+    "title": "Почесать спинку",
+    "description": null,
+    "role": "hr"
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 4,
+  "fields": {
+    "title": "Нужны печеньки",
+    "description": null,
+    "role": "chief"
+  }
+},
+{
+  "model": "socials.helptype",
+  "pk": 5,
+  "fields": {
+    "title": "Хочу стать шефом",
+    "description": null,
+    "role": "hr"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 1,
+  "fields": {
+    "name": "Отдел маркетинга",
+    "description": "Разработка и реализация маркетинговых стратегий и акций"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 2,
+  "fields": {
+    "name": "Отдел разработки",
+    "description": "Создание и поддержка программного обеспечения и веб-приложений"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 3,
+  "fields": {
+    "name": "Отдел финансов",
+    "description": "Управление финансовыми аспектами компании"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 4,
+  "fields": {
+    "name": "Отдел кадров",
+    "description": "Подбор и управление персоналом"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 5,
+  "fields": {
+    "name": "Отдел продаж",
+    "description": "Продвижение и реализация продукции или услуг компании"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 6,
+  "fields": {
+    "name": "Отдел IT-поддержки",
+    "description": "Поддержка пользователей и обслуживание информационных систем"
+  }
+},
+{
+  "model": "users.department",
+  "pk": 7,
+  "fields": {
+    "name": "Отдел закупок и снабжения",
+    "description": "Закупка и поставка товаров и услуг для компании"
+  }
+},
+{
+  "model": "users.position",
+  "pk": 1,
+  "fields": {
+    "name": "Менеджер",
+    "chief_position": false,
+    "departments": [
+      1,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 2,
+  "fields": {
+    "name": "Помощник менеджера",
+    "chief_position": false,
+    "departments": [
+      1,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 3,
+  "fields": {
+    "name": "Директор",
+    "chief_position": true,
+    "departments": [
+      1,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 4,
+  "fields": {
+    "name": "Руководитель разработки",
+    "chief_position": true,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 5,
+  "fields": {
+    "name": "Веб-разработчик",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 6,
+  "fields": {
+    "name": "Мобильный разработчик",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 7,
+  "fields": {
+    "name": "Тестировщик программного обеспечения",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 8,
+  "fields": {
+    "name": "Дизайнер пользовательского интерфейса",
+    "chief_position": false,
+    "departments": [
+      2
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 9,
+  "fields": {
+    "name": "Маркетинговый менеджер",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 10,
+  "fields": {
+    "name": "Специалист по цифровому маркетингу",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 11,
+  "fields": {
+    "name": "Копирайтер",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 12,
+  "fields": {
+    "name": "Медиа-планировщик",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 13,
+  "fields": {
+    "name": "Аналитик маркетинга",
+    "chief_position": false,
+    "departments": [
+      1
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 14,
+  "fields": {
+    "name": "Финансовый директор",
+    "chief_position": true,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 15,
+  "fields": {
+    "name": "Бухгалтер",
+    "chief_position": false,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 16,
+  "fields": {
+    "name": "Финансовый аналитик",
+    "chief_position": false,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 17,
+  "fields": {
+    "name": "Кредитный аналитик",
+    "chief_position": false,
+    "departments": [
+      3
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 18,
+  "fields": {
+    "name": "Руководитель отдела кадров",
+    "chief_position": true,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 19,
+  "fields": {
+    "name": "Специалист по подбору персонала",
+    "chief_position": false,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 20,
+  "fields": {
+    "name": "HR-менеджер",
+    "chief_position": false,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 21,
+  "fields": {
+    "name": "Тренер по развитию персонала",
+    "chief_position": false,
+    "departments": [
+      4
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 22,
+  "fields": {
+    "name": "Ключевой клиент-менеджер",
+    "chief_position": false,
+    "departments": [
+      5
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 23,
+  "fields": {
+    "name": "Торговый представитель",
+    "chief_position": false,
+    "departments": [
+      5
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 24,
+  "fields": {
+    "name": "Специалист по работе с клиентами",
+    "chief_position": false,
+    "departments": [
+      3,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 25,
+  "fields": {
+    "name": "Руководитель IT-поддержки",
+    "chief_position": true,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 26,
+  "fields": {
+    "name": "Системный администратор",
+    "chief_position": false,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 27,
+  "fields": {
+    "name": "Сетевой инженер",
+    "chief_position": false,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 28,
+  "fields": {
+    "name": "Специалист по информационной безопасности",
+    "chief_position": false,
+    "departments": [
+      6
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 29,
+  "fields": {
+    "name": "Специалист по снабжению",
+    "chief_position": false,
+    "departments": [
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 30,
+  "fields": {
+    "name": "Логист",
+    "chief_position": false,
+    "departments": [
+      7
+    ]
+  }
+},
+{
+  "model": "users.position",
+  "pk": 31,
+  "fields": {
+    "name": "Аналитик закупок",
+    "chief_position": false,
+    "departments": [
+      7
+    ]
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 1,
+  "fields": {
+    "name": "Фотография"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 2,
+  "fields": {
+    "name": "Путешествия"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 3,
+  "fields": {
+    "name": "Танцы"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 4,
+  "fields": {
+    "name": "Йога и медитация"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 5,
+  "fields": {
+    "name": "Изучение иностранных языков"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 6,
+  "fields": {
+    "name": "Астрономия и космос"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 7,
+  "fields": {
+    "name": "Фильмы и сериалы"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 8,
+  "fields": {
+    "name": "Музыка"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 9,
+  "fields": {
+    "name": "Садоводство"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 10,
+  "fields": {
+    "name": "Рисование"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 11,
+  "fields": {
+    "name": "Вязание"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 12,
+  "fields": {
+    "name": "Фитнес"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 13,
+  "fields": {
+    "name": "Лыжи"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 14,
+  "fields": {
+    "name": "Брейк-данс"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 15,
+  "fields": {
+    "name": "Блоггинг"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 16,
+  "fields": {
+    "name": "Моделизм"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 17,
+  "fields": {
+    "name": "Волонтёрство"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 18,
+  "fields": {
+    "name": "Сноубординг"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 19,
+  "fields": {
+    "name": "Покер"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 20,
+  "fields": {
+    "name": "Рыбалка"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 21,
+  "fields": {
+    "name": "Пение"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 22,
+  "fields": {
+    "name": "Шахматы"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 23,
+  "fields": {
+    "name": "Карвинг"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 24,
+  "fields": {
+    "name": "Астрология"
+  }
+},
+{
+  "model": "users.hobby",
+  "pk": 25,
+  "fields": {
+    "name": "Волейбол"
+  }
+},
+{
+  "model": "users.mentalstate",
+  "pk": 1,
+  "fields": {
+    "name": "Нормальное",
+    "description": "",
+    "message": "Тут будет сообщение пользователю о его состоянии, дайте мне текст и в админке за 2 сек поменяется)",
+    "level": 1
+  }
+},
+{
+  "model": "users.mentalstate",
+  "pk": 2,
+  "fields": {
+    "name": "В группе риска",
+    "description": "",
+    "message": "Тут будет сообщение пользователю о его состоянии, дайте мне текст и в админке за 2 сек поменяется)",
+    "level": 3
+  }
+},
+{
+  "model": "users.mentalstate",
+  "pk": 3,
+  "fields": {
+    "name": "Тревожное",
+    "description": "",
+    "message": "Тут будет сообщение пользователю о его состоянии, дайте мне текст и в админке за 2 сек поменяется)",
+    "level": 2
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$GzZjsdyyWiokndMnnXIhwt$lVtu0hvAh+cN44J6dwod1b5QpSmEYpV8ItMaNeajUpw=",
+    "last_login": "2023-06-18T13:18:50.197Z",
+    "is_superuser": true,
+    "email": "admin@admin.admin",
+    "first_name": "Админ",
+    "last_name": "Админыч",
+    "patronymic": null,
+    "department": null,
+    "position": null,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:23:58.163Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$V1Big0OZbwzR0S1gY6VnIf$EoMLDJyqvMy/UzeQsXRxANMbOt05eTi/aJo3XOjplp4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "hr@example.com",
+    "first_name": "Елена",
+    "last_name": "Дмитриева",
+    "patronymic": null,
+    "department": 4,
+    "position": 20,
+    "mental_state": 2,
+    "role": "hr",
+    "avatar_full": "users/avatars/temp_YC0mLPL.png",
+    "about": null,
+    "phone": "+79039994856",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:26:25Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      4,
+      7,
+      12,
+      13,
+      16
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$1QIpQusbdxXJjWMEBz1Qwg$4Md84JYL/6/eCsL+gp0GqvxYujqpE/9be3qCydkMpy4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "chief@example.com",
+    "first_name": "Сергей",
+    "last_name": "Сергеев",
+    "patronymic": null,
+    "department": 2,
+    "position": 4,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79175584400",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:27:18Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      1,
+      6,
+      7,
+      9,
+      10,
+      20,
+      21,
+      23
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$z9kO9W8wKVR1u5ybPIp2YA$2WuKhVVHYKwAUHHh8Ygc+ecefVU02EmGDx8uA5/w3MA=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "employee1@example.com",
+    "first_name": "Иван",
+    "last_name": "Иванов",
+    "patronymic": null,
+    "department": 1,
+    "position": 1,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79384449473",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-18T23:28:02Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      18,
+      19,
+      20,
+      22,
+      23
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$3IrfeSIrKs1hoI94QKA1Bc$vIjEqp6rHSmdJjrD/52ftxo8YwgfQ+yWJ2iqVdwU2ag=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "marina.sokolova@example.com",
+    "first_name": "Марина",
+    "last_name": "Соколова",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484446",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:04:57Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      4,
+      15,
+      19,
+      22,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$7LCGILJ86sw3Or2dRkUST9$uwrihmqaURY29XUm8mTBjh6JAvmuENP3LPvDY9I1jbU=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexander.pavlov@example.com",
+    "first_name": "Александр",
+    "last_name": "Павлов",
+    "patronymic": null,
+    "department": 3,
+    "position": 14,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484447",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:05:41Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$SZp0ejrcY438r0jkZmjl9h$/AZQgUijez7MAEJek7MrlZIICbB84ywrDv3is9Whm0E=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "elena.volkova@example.com",
+    "first_name": "Елена",
+    "last_name": "Волкова",
+    "patronymic": null,
+    "department": 1,
+    "position": 11,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:06:21Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      3,
+      7,
+      19,
+      22,
+      25
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VYqWtL5oFkty9E4usa5IY9$/3sKgBvKZwNHROTmwE8twsdi1MTzQ7z5o1vblzUW+hA=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "dmitry.kozlov@example.com",
+    "first_name": "Дмитрий",
+    "last_name": "Козлов",
+    "patronymic": null,
+    "department": 7,
+    "position": 30,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484449",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:07:25Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      6,
+      13,
+      16,
+      20,
+      21
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$XbgQPywQUPMStxPuw2ynbN$LyZsqYabCH+Bp4mpswD5jC2fmiFSesgOAxStGL7VGPY=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "anna.morozova@example.com",
+    "first_name": "Анна",
+    "last_name": "Морозова",
+    "patronymic": null,
+    "department": 2,
+    "position": 5,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484450",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:08:13Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      9,
+      10,
+      14,
+      15,
+      21,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$7sLf9lByAs0fKSM6rCgPC8$ytCp8KlZ4pSlj/9oJnxq7GSXf5Wxh0tyrpG5yZP9EQE=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexey.ivanov@example.com",
+    "first_name": "Катерина",
+    "last_name": "Петрова",
+    "patronymic": null,
+    "department": 4,
+    "position": 19,
+    "mental_state": null,
+    "role": "hr",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484452",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:08:55Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      7,
+      14,
+      23
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$EQnrqO0JVmc8rDruu4xpQs$Xg1wBsT63FA10lRayNzcp7eBYM7wj7MUD7r+d3M6l1k=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "mikhail.smirnov@example.com",
+    "first_name": "Михаил",
+    "last_name": "Смирнов",
+    "patronymic": null,
+    "department": 5,
+    "position": 1,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484453",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:09:39Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      5,
+      15,
+      16
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$2xVVPQIEEoCwg1e16pz6qm$yJwSxXDp15x1tpJvF/gtEwdCQ/s2rb33Mp9QutMxGTk=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "anna.kuznetsova@example.com",
+    "first_name": "Анна",
+    "last_name": "Кузнецова",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484454",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:10:26Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      3,
+      7,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$2GCeVYVOoHYk1NtmS7Lmxt$XA/6uEOI34P2Ilh/I2XjBeFbIREUP6/uWyO1oWFYp2Y=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "denis.lebedev@example.com",
+    "first_name": "Денис",
+    "last_name": "Лебедев",
+    "patronymic": null,
+    "department": 5,
+    "position": 24,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:11:03Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$zWtOrAlyAn8czDvxm13Biw$4PzP7AD2yunN8K3oterzQ2j7mGezLRvnJjSREFzTyow=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "olga.semenova@example.com",
+    "first_name": "Ольга",
+    "last_name": "Семенова",
+    "patronymic": null,
+    "department": 6,
+    "position": 27,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:11:41Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      8,
+      10,
+      14,
+      15,
+      18
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$smVcdCG65RzWRazkAAcxaF$yLXNBCA4cB3c2/LaAxil8+C6ZOZqna8aMAJGH5QTY7w=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "yulia.novikova@example.com",
+    "first_name": "Юлия",
+    "last_name": "Новикова",
+    "patronymic": null,
+    "department": 1,
+    "position": 10,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484458",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:12:18Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      2,
+      8,
+      10,
+      20,
+      22
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 16,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$i4nkYjOCHgaNxfEFeugoKA$s+Uqy9yf9UpXuC4PNK1EuTEQJmGgBftNQzXioQ7e4r4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "sergey.morozov@example.com",
+    "first_name": "Сергей",
+    "last_name": "Морозов",
+    "patronymic": null,
+    "department": 6,
+    "position": 25,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484459",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:13:05Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      1,
+      4,
+      12,
+      14,
+      16,
+      21,
+      23,
+      24
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 17,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$4un0ZvhlpmLkDB8SW0R8d6$ZGbCu+xuJJqvNPpymII6tshzoXgOltpe6jR7V5rymcI=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexandra.kovaleva@example.com",
+    "first_name": "Александра",
+    "last_name": "Ковалева",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484461",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:14:15Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      7,
+      18,
+      22,
+      25
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 18,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VrRXNYL8vvoVBLnBOq9WQL$FtSiMOSfPq7uiHeT9ZJuY4gV+TAjJtjrGawvgXMqNLI=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "dmitry.smirnov@example.com",
+    "first_name": "Дмитрий",
+    "last_name": "Смирнов",
+    "patronymic": null,
+    "department": 5,
+    "position": 2,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484462",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:14:59Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      13,
+      16,
+      18
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 19,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$jrpK7V3a28sXzrobhGjVUP$D1z70NrGNaGL/JxfS7OqvzQttvdkqzwqh2SQXOuZmlo=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "ivan.petrov@example.com",
+    "first_name": "Иван",
+    "last_name": "Петров",
+    "patronymic": null,
+    "department": 2,
+    "position": 8,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484464",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:15:40Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      13,
+      17
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 20,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$JXkFnP60G6DGmig0ugOpAM$Q5Zc+VZnAJ3oOw+1YZ9+1qZ9HtbPSrKi98+zNHWHMXc=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "ekaterina.sidorova@example.com",
+    "first_name": "Екатерина",
+    "last_name": "Сидорова",
+    "patronymic": null,
+    "department": 7,
+    "position": 30,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:16:24Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 21,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$b3PAL79K858m90ryMm0PyG$rZ94AwKwWh/LBxsPmZLWOotK7e/HzjzXMY6Rt1l9DSc=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "alexey.petrov@example.com",
+    "first_name": "Алексей",
+    "last_name": "Петров",
+    "patronymic": null,
+    "department": 2,
+    "position": 7,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484469",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:16:53Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      12,
+      15,
+      18,
+      19,
+      24,
+      25
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 22,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Km1ce30x1B0xBU5SsyVxyP$F0DclhG0Wv/XB0PRLZw57/DqstifLPZeNYhnFL97v0k=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "olga.novikova@example.com",
+    "first_name": "Ольга",
+    "last_name": "Новикова",
+    "patronymic": null,
+    "department": 3,
+    "position": 15,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484470",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:17:56Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      6,
+      13,
+      17,
+      21
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 23,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Rg9YfWossG8a9nRuBzpXqT$s4249S3fAlbaY7l4z/Otr37ymxLJ4T0qm2Sx25i461g=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "elena.pavlova@example.com",
+    "first_name": "Елена",
+    "last_name": "Павлова",
+    "patronymic": null,
+    "department": 1,
+    "position": 1,
+    "mental_state": null,
+    "role": "employee",
+    "avatar_full": "",
+    "about": null,
+    "phone": null,
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:18:38Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      3,
+      7,
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 24,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$4IsT3FwEDk6ftNeuksXEhY$ThuoTNC2Igw2UrB/5w3U1S5KndXe6MFHltBKbVrW0UY=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "ivan.nikolaev@example.com",
+    "first_name": "Иван",
+    "last_name": "Николаев",
+    "patronymic": null,
+    "department": 1,
+    "position": 3,
+    "mental_state": null,
+    "role": "chief",
+    "avatar_full": "",
+    "about": null,
+    "phone": "+79164484474",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-05-19T01:19:36Z",
+    "groups": [],
+    "user_permissions": [],
+    "hobbies": [
+      4,
+      16,
+      18,
+      23
+    ]
   }
 },
 {
@@ -4863,48 +5347,1647 @@
   }
 },
 {
-  "model": "socials.helptype",
+  "model": "events.event",
   "pk": 1,
   "fields": {
-    "title": "Проблемы в коллективе",
-    "description": null,
-    "role": null
+    "name": "День рождения нашей замечательной компании",
+    "author": 2,
+    "for_all": true,
+    "text": "В этот замечательный день нашей компании стукнуло 10 лет! По адресу такому то вас ждет концерт и прочие ништяки)",
+    "created": "2023-06-18T13:35:55.333Z",
+    "start_time": "2023-07-22T08:00:00Z",
+    "end_time": "2023-07-22T14:30:00Z",
+    "departments": [],
+    "employees": []
   }
 },
 {
-  "model": "socials.helptype",
+  "model": "events.event",
   "pk": 2,
   "fields": {
-    "title": "Не справляюсь с работой",
-    "description": null,
-    "role": "chief"
+    "name": "Лекция о борьбе со стрессом на работе",
+    "author": 2,
+    "for_all": true,
+    "text": "Лекцию проводит приглашенный заслуженный психолог Иванов И.И., переговорка #4.",
+    "created": "2023-06-18T13:37:14.860Z",
+    "start_time": "2023-07-18T13:00:00Z",
+    "end_time": "2023-07-18T14:00:00Z",
+    "departments": [],
+    "employees": []
   }
 },
 {
-  "model": "socials.helptype",
+  "model": "events.event",
   "pk": 3,
   "fields": {
-    "title": "Почесать спинку",
-    "description": null,
-    "role": "hr"
+    "name": "Вебинар о важности психологической поддержке сотрудников",
+    "author": 2,
+    "for_all": true,
+    "text": "Вебинар от HR нашей компании Елены Дмитровой. Ссылку на zoom скинем за час до начала.",
+    "created": "2023-06-18T13:38:43.173Z",
+    "start_time": "2023-07-27T08:30:00Z",
+    "end_time": "2023-07-27T10:00:00Z",
+    "departments": [],
+    "employees": []
   }
 },
 {
-  "model": "socials.helptype",
+  "model": "events.event",
   "pk": 4,
   "fields": {
-    "title": "Нужны печеньки",
-    "description": null,
-    "role": "chief"
+    "name": "Финал конкурса по выбору лучших котиков",
+    "author": 2,
+    "for_all": true,
+    "text": "Просто наиважнейшее событие, которое невозможно пропустить. Обязательно быть всем!",
+    "created": "2023-06-18T13:40:20.558Z",
+    "start_time": "2023-08-01T11:00:00Z",
+    "end_time": "2023-08-01T12:20:00Z",
+    "departments": [],
+    "employees": []
   }
 },
 {
-  "model": "socials.helptype",
+  "model": "notifications.notification",
+  "pk": 1,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 2,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 3,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 4,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
   "pk": 5,
   "fields": {
-    "title": "Хочу стать шефом",
-    "description": null,
-    "role": "hr"
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 6,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 7,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.174Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 8,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 9,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 10,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 11,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 12,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 13,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 14,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 15,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 16,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 17,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 18,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 19,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 20,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 21,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 22,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 23,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 24,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 2,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:38.175Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 25,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 26,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 27,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 28,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 29,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 30,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 31,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 32,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 33,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 34,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 35,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 36,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 37,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 38,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 39,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 40,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 41,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 42,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 43,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 44,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 45,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 46,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 47,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 48,
+  "fields": {
+    "incident_type": "Опрос",
+    "incident_id": 1,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:32:53.645Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 49,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 50,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 51,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 52,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 53,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 54,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 55,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 56,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 57,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 58,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 59,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 60,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 61,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 62,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 63,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 64,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 65,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 66,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 67,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 68,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 69,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 70,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 71,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 72,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 1,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:35:55.340Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 73,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 74,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 75,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 76,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 77,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 78,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 79,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 80,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 81,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 82,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 83,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 84,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 85,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 86,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 87,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 88,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 89,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 90,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 91,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 92,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 93,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 94,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 95,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 96,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 2,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:37:14.865Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 97,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 98,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 99,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 100,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 101,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 102,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 103,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 104,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 105,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 106,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 107,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 108,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 109,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 110,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 111,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 112,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 113,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 114,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 115,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 116,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 117,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 118,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 119,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 120,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 3,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:38:43.177Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 121,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 24,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 122,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 23,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 123,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 22,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 124,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 21,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 125,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 20,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 126,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 19,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 127,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 18,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 128,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 17,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 129,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 16,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 130,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 15,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 131,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 14,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 132,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 13,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 133,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 12,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 134,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 11,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 135,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 10,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 136,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 9,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 137,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 8,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 138,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 7,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 139,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 6,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.563Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 140,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 5,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 141,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 4,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 142,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 3,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 143,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 2,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 144,
+  "fields": {
+    "incident_type": "Событие",
+    "incident_id": 4,
+    "user": 1,
+    "is_viewed": false,
+    "creation_date": "2023-06-18T13:40:20.564Z"
   }
 }
 ]

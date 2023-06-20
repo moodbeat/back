@@ -38,7 +38,7 @@ class MentalStateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MentalState
-        fields = '__all__'
+        exclude = ('id',)
 
 
 class UserSerializer(serializers.ModelSerializer):

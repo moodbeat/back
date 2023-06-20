@@ -10,7 +10,7 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 
-from api.v1.users.urls import ws_urlpatterns
+from api.v1.notifications.urls import ws_urlpatterns
 
 application = ProtocolTypeRouter(
     {

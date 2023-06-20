@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    container_name: em-elasticsearch
+    image: elasticsearch:8.8.0
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - 9200:9200
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - 6379:6379
+
+
+volumes:
+  elasticsearch:

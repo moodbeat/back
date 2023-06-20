@@ -1,16 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.utils.decorators import method_decorator
-# from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
-# from rest_framework import request
 from rest_framework import status
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.metrics.filters import (CompletedSurveyFilter, ConditionFilter,
-                                    SurveyFilter)
+from api.v1.metrics.filters import CompletedSurveyFilter, ConditionFilter
 from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         CompletedSurveySerializer,
                                         ConditionReadSerializer,
@@ -18,11 +15,13 @@ from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         LifeBalanceCreateSerializer,
                                         LifeBalanceSerializer,
                                         LifeDirectionSerializer,
-                                        SurveyCreateSerializer,
+                                        ShortSurveySerializer,
                                         SurveySerializer)
-from api.v1.permissions import HRAllPermission, SurveyAuthorOrAdminOnly
-from metrics.models import (CompletedSurvey, Condition, LifeDirection,
-                            Question, Survey, UserLifeBalance)
+from api.v1.permissions import HRAllPermission
+from metrics.models import (CompletedSurvey, Condition, LifeDirection, Survey,
+                            UserLifeBalance)
+
+from .filters import SurveyFilter
 
 User = get_user_model()
 
@@ -78,49 +77,27 @@ class LifeBalanceViewSet(ModelViewSet):
         return UserLifeBalance.objects.filter(employee=self.request.user.id)
 
 
-@method_decorator(name='create', decorator=swagger_auto_schema(
-    responses={status.HTTP_201_CREATED: SurveySerializer},
-))
-@method_decorator(name='partial_update', decorator=swagger_auto_schema(
-    responses={status.HTTP_200_OK: SurveySerializer},
-))
+@swagger_auto_schema(responses={status.HTTP_200_OK: SurveySerializer})
 class SurveyViewSet(ModelViewSet):
-    queryset = Survey.objects.select_related(
-        'author'
-    ).prefetch_related('department', 'questions').all()
+    queryset = (
+        Survey.objects
+        .select_related('author', 'type')
+        .prefetch_related('department', 'questions')
+        .all()
+    )
     filter_backends = (DjangoFilterBackend,)
     filterset_class = SurveyFilter
-    http_method_names = ('get', 'post', 'patch',)
+    http_method_names = ('get',)
     permission_classes = (IsAuthenticated,)
-
-    def get_permissions(self):
-        if self.request.method == 'PATCH':
-            self.permission_classes = (SurveyAuthorOrAdminOnly,)
-        return super().get_permissions()
+    serializer_class = ShortSurveySerializer
+    detail_serializer_class = SurveySerializer
 
     def get_serializer_class(self):
-        if self.request.method == 'GET':
-            return SurveySerializer
-        return SurveyCreateSerializer
+        if self.action == 'retrieve':
+            if hasattr(self, 'detail_serializer_class'):
+                return self.detail_serializer_class
 
-    def perform_create(self, serializer):
-        questions_list = serializer.validated_data.pop('questions')
-        instance = serializer.save(author=self.request.user)
-        Question.objects.bulk_create(
-            Question(
-                survey=instance, text=obj['text']
-            ) for obj in questions_list
-        )
-
-    def perform_update(self, serializer):
-        questions_list = serializer.validated_data.pop('questions', None)
-        instance = serializer.save()
-        if questions_list:
-            Question.objects.bulk_create(
-                Question(
-                    survey=instance, text=obj['text']
-                ) for obj in questions_list
-            )
+        return super(SurveyViewSet, self).get_serializer_class()
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(
@@ -128,7 +105,7 @@ class SurveyViewSet(ModelViewSet):
 ))
 class CompletedSurveyViewSet(ModelViewSet):
     queryset = CompletedSurvey.objects.select_related(
-        'employee', 'survey',
+        'employee', 'survey', 'mental_state'
     ).all()
     filter_backends = (DjangoFilterBackend,)
     filterset_class = CompletedSurveyFilter
@@ -148,5 +125,22 @@ class CompletedSurveyViewSet(ModelViewSet):
             return CompletedSurveySerializer
         return CompletedSurveyCreateSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(employee=self.request.user)
+# оставлю пока не дойду то эндпоинтов конструктора
+#     def perform_create(self, serializer):
+#         questions_list = serializer.validated_data.pop('questions')
+#         instance = serializer.save(author=self.request.user)
+#         Question.objects.bulk_create(
+#             Question(
+#                 survey=instance, text=obj['text']
+#             ) for obj in questions_list
+#         )
+
+#     def perform_update(self, serializer):
+#         questions_list = serializer.validated_data.pop('questions', None)
+#         instance = serializer.save()
+#         if questions_list:
+#             Question.objects.bulk_create(
+#                 Question(
+#                     survey=instance, text=obj['text']
+#                 ) for obj in questions_list
+#             )

@@ -13,6 +13,27 @@ services:
     env_file:
       - ./.env
 
+  elasticsearch:
+    container_name: em-elasticsearch
+    image: elasticsearch:8.8.0
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    depends_on:
+      - db
+
+  redis:
+    container_name: em-redis
+    image: redis:7.0-alpine
+
   web:
     container_name: em-web
     build: ../backend/
@@ -22,6 +43,8 @@ services:
       - media:/app/media/
     depends_on:
       - db
+      - elasticsearch
+      - redis
     env_file:
       - ./.env
 
@@ -41,3 +64,4 @@ volumes:
   static:
   media:
   postgres:
+  elasticsearch:

@@ -114,6 +114,10 @@ class MentalState(models.Model):
         blank=True,
         null=True
     )
+    message = models.TextField(
+        verbose_name='Сообщение пользователю',
+        max_length=512
+    )
     level = models.PositiveSmallIntegerField(
         verbose_name='Уровень',
         default=1,
