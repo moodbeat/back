@@ -3,6 +3,7 @@ from datetime import timedelta
 from pathlib import Path
 
 import sentry_sdk
+from celery.schedules import crontab
 from dotenv import load_dotenv
 from sentry_sdk.integrations.django import DjangoIntegration
 
@@ -287,3 +288,14 @@ if DEV_SERVICES:
 CELERY_TIMEZONE = 'Europe/Moscow'
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER', 'redis://redis:6379')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT', 'redis://redis:6379')
+CELERY_BEAT_MAX_LOOP_INTERVAL = 20
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULE = {
+    'del_notifications_every_month': {
+        'task': 'del_old_viewed_notifications',
+        'schedule': crontab(minute=0, hour=3, day_of_month=1),
+        'kwargs': {
+            'days': os.getenv('NOTIFICATIONS_AGE_DELETE'),
+        }
+    },
+}
