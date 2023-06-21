@@ -298,4 +298,8 @@ CELERY_BEAT_SCHEDULE = {
             'days': os.getenv('NOTIFICATIONS_AGE_DELETE'),
         }
     },
+    'check_everyday_and_send_survey_notifications': {
+        'task': 'send_survey_notifications',
+        'schedule': crontab(minute=0, hour=12),
+    },
 }
