@@ -9,8 +9,9 @@ class BaseCalculate(ABC):
     def __init__(self, instance: object):
         self.instance = instance
         self.values = [i['variant_value'] for i in self.instance.results]
-        self.questions = [i['question_id'] for i in self.instance.results]
-        self.questions = Question.objects.filter(id__in=self.questions)
+        self.questions = Question.objects.filter(
+            id__in=[i['question_id'] for i in self.instance.results]
+        )
 
     @staticmethod
     def level_words(
