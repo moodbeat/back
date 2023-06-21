@@ -30,8 +30,8 @@ def calc_results_for_survey(sender, instance, **kwargs):
 
     if survey_type in survey_types:
         handler_class = survey_types[survey_type]
-        handler = handler_class()
-        handler.calculate_results(instance)
+        handler = handler_class(instance)
+        handler.calculate()
 
     if instance.survey.frequency:
         instance.next_attempt_date = date.today() + timedelta(

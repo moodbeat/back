@@ -1,41 +1,95 @@
+from abc import ABC, abstractmethod
 from math import sqrt
 
 from .models import MentalState, Question
 
 
-class YesNoCalculate:
+class BaseCalculate(ABC):
 
-    def calculate_results(self, instance):
+    def __init__(self, instance: object):
+        self.instance = instance
+        self.values = [i['variant_value'] for i in self.instance.results]
+        self.questions = [i['question_id'] for i in self.instance.results]
+        self.questions = Question.objects.filter(id__in=self.questions)
 
-        values = [item['variant_value'] for item in instance.results]
+    @staticmethod
+    def level_words(
+        level: int,
+        reverse: bool = False,
+        endings: int = 1
+    ) -> str:
+        """
+        Определяет текст шкалы в зависимости от уровня выгорания.
+
+        Args:
+            level (int): уровень выгорания.
+            reverse (bool, optional): в обратном порядке. Defaults to False.
+            endings (int, optional): 1 муж. род, 2 жен. род, 3 ср. род.
+            Defaults to 1.
+
+        Returns:
+            str: строка с уровнем выгорания.
+        """
+        words = {
+            1: ['низкий', 'низкая', 'низкое'],
+            2: ['средний', 'средняя', 'среднее'],
+            3: ['высокий', 'высокая', 'высокое']
+        }
+
+        if reverse:
+            words = {k: v[::-1] for k, v in words.items()}
+
+        return words[level][endings - 1]
+
+    @abstractmethod
+    def calculate(self):
+        pass
+
+
+class YesNoCalculate(BaseCalculate):
+    """
+    Тест с положительными/отрицательными вариантами.
+
+    Подсчет ведется по проценту положительных вариантов.
+
+    Args:
+        BaseCalculate (_type_): _description_
+    """
+
+    def calculate(self):
+
         result_in_persent = (
-            values.count(1) / instance.survey.questions.count() * 100
+            self.values.count(1) / self.questions.count() * 100
         )
-        instance.set_mental_state(result_in_persent)
+        self.instance.set_mental_state(result_in_persent)
 
 
-class MBICalculate:
+class MBICalculate(BaseCalculate):
+    """
+    Опросник выгорания Маслач.
 
-    def calculate_results(self, instance):
+    Args:
+        BaseCalculate (_type_): _description_
+    """
 
-        # https://psylab.info/Опросник_выгорания_Маслач
-        questions = [item['question_id'] for item in instance.results]
-        questions = Question.objects.filter(id__in=questions)
+    def calculate(self):
 
-        ee = questions.filter(key=1).values_list('id', flat=True)
+        ee = self.questions.filter(key=1).values_list('id', flat=True)
         ee_max = 6 * ee.count() + 6
         ee_sum = 0
-        dp = questions.filter(key=2).values_list('id', flat=True)
+
+        dp = self.questions.filter(key=2).values_list('id', flat=True)
         dp_max = 6 * dp.count()
         dp_sum = 0
-        pa = questions.filter(key=3).values_list('id', flat=True)
+
+        pa = self.questions.filter(key=3).values_list('id', flat=True)
         pa_max = 6 * pa.count()
         pa_sum = 0
 
         # по методике 1 вариант инвертирован, ему даем ключ 4
-        inverted = questions.filter(key=4).values_list('id', flat=True)
+        inverted = self.questions.filter(key=4).values_list('id', flat=True)
 
-        for value in instance.results:
+        for value in self.instance.results:
             if value['question_id'] in inverted:
                 invert = 6 - value['variant_value']
                 ee_sum += invert
@@ -74,9 +128,9 @@ class MBICalculate:
         level = max([ee_level, dp_level, pa_level])
 
         mental_state = MentalState.objects.filter(level=level).first()
-        instance.mental_state = mental_state
-        instance.employee.mental_state = mental_state
-        instance.employee.save()
+        self.instance.mental_state = mental_state
+        self.instance.employee.mental_state = mental_state
+        self.instance.employee.save()
 
         graphs_colors = {
             1: 'green',
@@ -84,28 +138,48 @@ class MBICalculate:
             3: 'red'
         }
 
+        # TODO это в отдельную функцию
         summary = {
             "graphs": [
                 {
                     "title": "Значение индекса системного выгорания",
-                    "size": "big", "color": "blue", "value": index,
-                    "min_value": 0, "max_value": 1
+                    "size": "big",
+                    "color": "blue",
+                    "value": index,
+                    "min_value": 0,
+                    "max_value": 1
                 },
                 {
                     "title": "Эмоциональное истощение",
-                    "size": "medium", "color": graphs_colors[ee_level],
-                    "value": ee_sum, "min_value": 0, "max_value": ee_max
+                    "text": self.level_words(level=ee_level, endings=3),
+                    "size": "medium",
+                    "color": graphs_colors[ee_level],
+                    "value": ee_sum,
+                    "min_value": 0,
+                    "max_value": ee_max
                 },
                 {
-                    "title": "Деперсонализация",
-                    "size": "medium", "color": graphs_colors[dp_level],
-                    "value": dp_sum, "min_value": 0, "max_value": dp_max
+                    "title": "Личностное отдаление",
+                    "text": self.level_words(level=dp_level, endings=3),
+                    "size": "medium",
+                    "color": graphs_colors[dp_level],
+                    "value": dp_sum,
+                    "min_value": 0,
+                    "max_value": dp_max
                 },
                 {
-                    "title": "Редукция проф.достижений",
-                    "size": "medium", "color": graphs_colors[pa_level],
-                    "value": pa_sum, "min_value": 0, "max_value": pa_max
+                    "title": "Редукция личных достижений",
+                    "text": self.level_words(
+                        level=pa_level,
+                        reverse=True,
+                        endings=2
+                    ),
+                    "size": "medium",
+                    "color": graphs_colors[pa_level],
+                    "value": pa_sum,
+                    "min_value": 0,
+                    "max_value": pa_max
                 },
             ]
         }
-        instance.summary = summary
+        self.instance.summary = summary
