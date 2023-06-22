@@ -9,7 +9,6 @@ from django.dispatch import receiver
 from metrics.models import CompletedSurvey, Survey
 from metrics.result_calcs import MBICalculate, YesNoCalculate
 from notifications.models import Notification
-from notifications.signals.handlers import notification
 
 User = get_user_model()
 
@@ -48,15 +47,13 @@ def create_notification_for_all(sender, instance, created, **kwargs):
     для всех активных пользователей сервиса.
     """
     if created and instance.for_all:
-        results = Notification.objects.bulk_create([
+        Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.SURVEY,
                 incident_id=instance.id,
                 user=obj
             ) for obj in User.objects.filter(is_active=True)
         ])
-        for obj in results:
-            notification.send(sender=Notification, instance=obj)
 
 
 @receiver(post_delete, sender=Survey)
@@ -65,12 +62,10 @@ def delete_notifications_after_obj_delete(sender, instance, *args, **kwargs):
 
     Удаляются все уведомления с id и типом удаленного экземпляра `Survey`.
     """
-    notifications = Notification.objects.filter(
+    Notification.objects.filter(
         incident_id=instance.id,
         incident_type=Notification.IncidentType.SURVEY
-    )
-    if notifications.exists():
-        notifications.delete()
+    ).delete()
 
 
 @receiver(m2m_changed, sender=Survey.department.through)
@@ -84,7 +79,7 @@ def create_notification_by_departments(
     `departments`.
     """
     if action == 'post_add' and instance.for_all is False:
-        results = Notification.objects.bulk_create([
+        Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.SURVEY,
                 incident_id=instance.id,
@@ -93,5 +88,3 @@ def create_notification_by_departments(
                 Q(department__in=pk_set) & Q(is_active=True)
             )
         ])
-        for obj in results:
-            notification.send(sender=Notification, instance=obj)

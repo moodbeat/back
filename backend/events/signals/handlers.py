@@ -4,7 +4,6 @@ from django.db.models.signals import m2m_changed, post_delete, post_save
 from django.dispatch import receiver
 
 from notifications.models import Notification
-from notifications.signals.handlers import notification
 
 from ..models import Event
 
@@ -20,15 +19,13 @@ def create_notification_for_event_for_all(sender, instance, created, **kwargs):
     для всех активных пользователей сервиса.
     """
     if created and instance.for_all:
-        results = Notification.objects.bulk_create([
+        Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.EVENT,
                 incident_id=instance.id,
                 user=obj
             ) for obj in User.objects.filter(is_active=True)
         ])
-        for obj in results:
-            notification.send(sender=Notification, instance=obj)
 
 
 @receiver(post_delete, sender=Event)
@@ -37,12 +34,10 @@ def delete_notifications_after_obj_delete(sender, instance, *args, **kwargs):
 
     Удаляются все уведомления с id и типом удаленного экземпляра `Event`.
     """
-    notifications = Notification.objects.filter(
+    Notification.objects.filter(
         incident_id=instance.id,
         incident_type=Notification.IncidentType.EVENT
-    )
-    if notifications.exists():
-        notifications.delete()
+    ).delete()
 
 
 @receiver(m2m_changed, sender=Event.departments.through)
@@ -57,7 +52,7 @@ def create_notification_for_event_by_departments(
     `departments`.
     """
     if action == 'post_add' and instance.for_all is False:
-        results = Notification.objects.bulk_create([
+        Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.EVENT,
                 incident_id=instance.id,
@@ -66,8 +61,6 @@ def create_notification_for_event_by_departments(
                 Q(department__in=pk_set) & Q(is_active=True)
             )
         ])
-        for obj in results:
-            notification.send(sender=Notification, instance=obj)
 
 
 @receiver(m2m_changed, sender=Event.employees.through)
@@ -82,7 +75,7 @@ def create_notification_for_event_by_employees(
     `departments`.
     """
     if action == 'post_add' and instance.for_all is False:
-        results = Notification.objects.bulk_create([
+        Notification.objects.bulk_create([
             Notification(
                 incident_type=Notification.IncidentType.EVENT,
                 incident_id=instance.id,
@@ -91,5 +84,3 @@ def create_notification_for_event_by_employees(
                 Q(id__in=pk_set) & Q(is_active=True)
             )
         ])
-        for obj in results:
-            notification.send(sender=Notification, instance=obj)

@@ -41,10 +41,37 @@ services:
     volumes:
       - static:/app/static/
       - media:/app/media/
+      - ./project/:/app/
     depends_on:
       - db
       - elasticsearch
       - redis
+    env_file:
+      - ./.env
+
+  celery-worker:
+    container_name: em-celery-worker
+    build: ../backend
+    restart: always
+    volumes:
+      - ./project/:/app/
+    depends_on:
+      - web
+      - redis
+    command: celery -A conf worker -l INFO
+    env_file:
+      - ./.env
+
+  celery-beat:
+    container_name: em-celery-beat
+    build: ../backend
+    restart: always
+    volumes:
+      - ./project/:/app/
+    depends_on:
+      - web
+      - redis
+    command: celery -A conf beat -l INFO
     env_file:
       - ./.env
 
