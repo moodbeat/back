@@ -5,7 +5,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from config_reader import config
-from handlers import auth, base, entries, events, surveys, need_help, users
+from handlers import auth, base, entries, events, need_help, surveys, users
 from handlers.bot_commands import set_bot_commands
 
 

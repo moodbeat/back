@@ -30,7 +30,7 @@ async def mood_keyboard():
 
 
 @router.message(Command('mood'))
-async def cmd_start(message: Message, state: FSMContext):
+async def cmd_mood(message: Message, state: FSMContext):
     state = await state.get_data()
     headers = state.get('headers')
     response = requests.get(
