@@ -13,7 +13,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class EntryAdmin(admin.ModelAdmin):
     fields = ('created', 'title', 'preview_image',
               'author', 'category', 'text',)
-    list_display = ('created', 'title', 'preview_image', 'author', 'category')
+    list_display = ('created', 'title', 'preview_image', 'author')
     readonly_fields = ('created',)
 
 
