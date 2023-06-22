@@ -11,60 +11,97 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ("events", "0001_initial"),
+        ("metrics", "0001_initial"),
         ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name="event",
-            name="author",
+            model_name="userlifebalance",
+            name="employee",
             field=models.ForeignKey(
                 on_delete=django.db.models.deletion.CASCADE,
-                related_name="authored_events",
+                related_name="life_balance",
                 to=settings.AUTH_USER_MODEL,
-                verbose_name="Автор",
+                verbose_name="Сотрудник",
             ),
         ),
         migrations.AddField(
-            model_name="event",
-            name="departments",
-            field=models.ManyToManyField(
-                blank=True,
-                related_name="events",
-                to="users.department",
-                verbose_name="Отдел(ы)",
-            ),
-        ),
-        migrations.AddField(
-            model_name="event",
-            name="employees",
-            field=models.ManyToManyField(
-                blank=True,
-                related_name="participated_events",
-                to=settings.AUTH_USER_MODEL,
-                verbose_name="Сотрудники",
-            ),
-        ),
-        migrations.AddField(
-            model_name="entry",
+            model_name="survey",
             name="author",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Автор опроса",
+            ),
+        ),
+        migrations.AddField(
+            model_name="survey",
+            name="department",
+            field=models.ManyToManyField(
+                blank=True, to="users.department", verbose_name="Отделы"
+            ),
+        ),
+        migrations.AddField(
+            model_name="survey",
+            name="type",
             field=models.ForeignKey(
                 null=True,
                 on_delete=django.db.models.deletion.SET_NULL,
-                related_name="entries",
-                to=settings.AUTH_USER_MODEL,
-                verbose_name="Автор",
+                to="metrics.surveytype",
+                verbose_name="Тип опроса",
             ),
         ),
         migrations.AddField(
-            model_name="entry",
-            name="category",
-            field=models.ManyToManyField(
+            model_name="question",
+            name="survey",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="questions",
+                to="metrics.survey",
+                verbose_name="Опрос",
+            ),
+        ),
+        migrations.AddField(
+            model_name="condition",
+            name="employee",
+            field=models.ForeignKey(
                 blank=True,
-                related_name="entries",
-                to="events.category",
-                verbose_name="Категория",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Сотрудник",
+            ),
+        ),
+        migrations.AddField(
+            model_name="completedsurvey",
+            name="employee",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="survey_results",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="сотрудник",
+            ),
+        ),
+        migrations.AddField(
+            model_name="completedsurvey",
+            name="mental_state",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="users.mentalstate",
+                verbose_name="Оценка состояния",
+            ),
+        ),
+        migrations.AddField(
+            model_name="completedsurvey",
+            name="survey",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="metrics.survey",
+                verbose_name="опрос",
             ),
         ),
     ]
