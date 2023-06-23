@@ -52,13 +52,11 @@ class Entry(models.Model):
         related_name='entries',
         null=True
     )
-    category = models.ForeignKey(
+    category = models.ManyToManyField(
         Category,
         verbose_name='Категория',
         related_name='entries',
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL,
+        blank=True
     )
     preview_image = models.ImageField(
         verbose_name='Превью-изображение записи',
