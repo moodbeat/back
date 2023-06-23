@@ -12,6 +12,7 @@ class Notification(models.Model):
         SURVEY = 'Опрос'
         EVENT = 'Событие'
         MESSAGE = 'Сообщение'
+        HELP = 'Помощь'
 
     incident_type = models.TextField(
         verbose_name='тип уведомления',
