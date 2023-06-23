@@ -8,7 +8,8 @@ from .models import Base
 engine = create_async_engine('sqlite+aiosqlite:///auth.db')
 
 async_session_maker = sessionmaker(
-    engine, class_=AsyncSession, expire_on_commit=False)
+    engine, class_=AsyncSession, expire_on_commit=False
+)
 
 
 async def create_table():

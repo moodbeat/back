@@ -1,3 +1,3 @@
-# employee_mood_backend
+# moodbeat backend
 
-The backend part of the "Employee mood" project curated by Yandex Accelerator
+soon

@@ -1,13 +1,17 @@
 from http import HTTPStatus
 
 import requests
-from aiogram import Router, types
-from aiogram.filters.command import Command
+from aiogram import Router
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from config_reader import config
-from db.requests import add_auth_data, find_user, update_auth_data
+from aiogram.types import Message
 from email_validator import EmailNotValidError, validate_email
+
+from config_reader import config
+from db.models import Auth
+from db.requests import add_auth_data, find_user, update_auth_data
+
 
 router = Router()
 
@@ -18,13 +22,18 @@ class AuthState(StatesGroup):
 
 
 @router.message(Command('auth'))
-async def auth_email(message: types.Message, state: FSMContext):
+async def auth_email(message: Message, state: FSMContext):
+    await message.answer(
+        f'Приветсвую, {message.from_user.first_name}! '
+        f'Я телеграм-бот сервиса «Настроение сотрудника».\n'
+        f'Для идентификации в системе мне необходимо знать Ваш '
+        f'адрес электронной почты.'
+    )
     await state.set_state(AuthState.email)
-    await message.answer('Введите email:')
 
 
 @router.message(AuthState.email)
-async def auth_password(message: types.Message, state: FSMContext):
+async def auth_password(message: Message, state: FSMContext):
     email = message.text
 
     try:
@@ -37,13 +46,13 @@ async def auth_password(message: types.Message, state: FSMContext):
 
     except EmailNotValidError:
         await message.answer(
-            'Введен некорректный адрес электронной почты.\n\n'
+            'Введён некорректный адрес электронной почты.\n\n'
             'Попробуйте снова.'
         )
 
 
 @router.message(AuthState.password)
-async def save_user_data(message: types.Message, state: FSMContext):
+async def save_user_data(message: Message, state: FSMContext):
     await state.update_data(password=message.text)
     data = await state.get_data()
     await state.clear()
@@ -77,7 +86,7 @@ async def save_user_data(message: types.Message, state: FSMContext):
                 'Не найдено учетной записи с указанными данными.'
             )
         else:
-            await message.answer('Какие то проблемы.')
+            await message.answer('Какие-то проблемы.')
 
         return
 
@@ -94,3 +103,18 @@ async def save_user_data(message: types.Message, state: FSMContext):
 
     await add_auth_data(**data)
     await message.answer('Вы успешно авторизованы.')
+
+
+@router.message(AuthState.password)
+async def get_refresh_token(message: Message, user: Auth):
+
+    try:
+        token = requests.post(
+            config.base_endpoint + 'auth/jwt/refresh/',
+            json={'refresh': user.refresh_token}
+        ).json()
+    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
+        return await message.answer(
+            'Не удалось соединиться с сервером авторизации.'
+        )
+    return token

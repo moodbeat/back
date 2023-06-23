@@ -37,7 +37,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class EntryReadSerializer(serializers.ModelSerializer):
 
-    category = CategorySerializer()
+    category = CategorySerializer(many=True)
     author = AuthorSerializer()
 
     class Meta:
@@ -47,9 +47,7 @@ class EntryReadSerializer(serializers.ModelSerializer):
 
 class EntryWriteSerializer(serializers.ModelSerializer):
 
-    category = serializers.SlugRelatedField(
-        slug_field='slug', queryset=Category.objects.all()
-    )
+    category = CategorySerializer
     preview_image = Base64ImageField()
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
