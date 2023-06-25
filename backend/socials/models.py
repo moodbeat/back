@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
 
+from events.models import Entry, Event
+
 User = get_user_model()
 
 
@@ -119,3 +121,47 @@ class Status(models.Model):
         verbose_name = 'Статус'
         verbose_name_plural = 'Статусы'
         ordering = ['-created']
+
+
+class Like(models.Model):
+
+    author = models.ForeignKey(
+        User,
+        verbose_name='Автор',
+        related_name='likes',
+        on_delete=models.CASCADE,
+    )
+    event = models.ForeignKey(
+        Event,
+        verbose_name='Событие',
+        related_name='likes',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    entry = models.ForeignKey(
+        Entry,
+        verbose_name='Запись',
+        related_name='likes',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    created = models.DateTimeField(
+        verbose_name='Дата и время',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Лайк'
+        verbose_name_plural = 'Лайки'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['author', 'entry'],
+                name='unique_entry',
+            ),
+            models.UniqueConstraint(
+                fields=['author', 'event'],
+                name='unique_event',
+            )
+        ]
