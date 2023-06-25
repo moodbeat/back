@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
 
@@ -165,3 +166,13 @@ class Like(models.Model):
                 name='unique_event',
             )
         ]
+
+    def clean(self):
+
+        if not self.event and not self.entry:
+            raise ValidationError('Выберите Событие или Запись.')
+
+        if self.event and self.entry:
+            raise ValidationError('Выберите что-то одно.')
+
+        return super().clean()
