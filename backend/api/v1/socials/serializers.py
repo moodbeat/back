@@ -96,3 +96,10 @@ class LikeSerializer(serializers.ModelSerializer):
             raise ValidationError('Выберите что-то одно.')
 
         return data
+
+
+class LikeShortSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Like
+        fields = ('id', 'created')
