@@ -42,7 +42,6 @@ services:
     volumes:
       - static:/app/static/
       - media:/app/media/
-      - ./project/:/app/
     depends_on:
       - db
       - elasticsearch
