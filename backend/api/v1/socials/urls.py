@@ -7,6 +7,7 @@ from . import views
 v10 = OptionalSlashRouter()
 
 v10.register('statuses', views.StatusViewSet, basename='statuses')
+v10.register('likes', views.LikeViewSet, basename='likes')
 
 urlpatterns = [
     path('', include(v10.urls)),

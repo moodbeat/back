@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import HelpType, NeedHelp, Status
+from .models import HelpType, Like, NeedHelp, Status
 
 
 @admin.register(HelpType)
@@ -20,4 +20,11 @@ class NeedHelpAdmin(admin.ModelAdmin):
 class StatusAdmin(admin.ModelAdmin):
     fields = ('created', 'author', 'text', 'views', 'likes')
     list_display = ('created', 'text', 'views', 'likes')
+    readonly_fields = ('created',)
+
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    fields = ('created', 'employee', 'event', 'entry',)
+    list_display = ('created', 'employee', 'event', 'entry',)
     readonly_fields = ('created',)

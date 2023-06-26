@@ -375,5 +375,10 @@ class HobbyViewSet(ModelViewSet):
     filterset_fields = ('id', 'name',)
     search_document = HobbyDocument
     search_fields = ('name',)
-    http_method_names = ('get',)
-    permission_classes = [AllowAny]
+    http_method_names = ('get', 'post')
+    permission_classes = (IsAuthenticated,)
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = (AllowAny,)
+        return super().get_permissions()

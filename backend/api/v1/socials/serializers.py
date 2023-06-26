@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from sorl.thumbnail import get_thumbnail
 
-from socials.models import HelpType, NeedHelp, Status
+from socials.models import HelpType, Like, NeedHelp, Status
 
 User = get_user_model()
 
@@ -74,3 +75,33 @@ class StatusAddSerializer(StatusSerializer):
         model = Status
         fields = '__all__'
         read_only_fields = ('views', 'likes')
+
+
+class LikeSerializer(serializers.ModelSerializer):
+
+    employee = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = Like
+        fields = '__all__'
+
+    def validate(self, data):
+        event = data.get('event', None)
+        entry = data.get('entry', None)
+
+        if not event and not entry:
+            raise ValidationError('Выберите Событие или Запись.')
+
+        if event and entry:
+            raise ValidationError('Выберите что-то одно.')
+
+        return data
+
+
+class LikeShortSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Like
+        fields = ('id', 'created')
