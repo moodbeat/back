@@ -3,9 +3,10 @@ import hashlib
 from email.utils import formataddr
 
 from django.conf import settings
-from django.core.mail import send_mail
 from drf_yasg import openapi
 from rest_framework.exceptions import ValidationError
+
+from .tasks import send_mail_via_celery
 
 
 def encode_data(secret_key: str, data: str) -> str:
@@ -38,7 +39,7 @@ def send_invite_code(email: str, code: str, again: bool = False):
                f'Для дальнейшей регистрации пройдите по адресу: {url}')
     recipient_list = [email]
 
-    send_mail(
+    send_mail_via_celery.delay(
         subject,
         message,
         formataddr(('MoodBeat', settings.EMAIL_HOST_USER)),
@@ -62,7 +63,7 @@ def send_reset_code(email: str, code: str, again: bool = False):
                f'Для смены пароля пройдите по адресу: {url}')
     recipient_list = [email]
 
-    send_mail(
+    send_mail_via_celery.delay(
         subject,
         message,
         formataddr(('MoodBeat', settings.EMAIL_HOST_USER)),
