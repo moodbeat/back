@@ -1,6 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
+
+from events.models import Entry, Event
 
 User = get_user_model()
 
@@ -119,3 +122,57 @@ class Status(models.Model):
         verbose_name = 'Статус'
         verbose_name_plural = 'Статусы'
         ordering = ['-created']
+
+
+class Like(models.Model):
+
+    employee = models.ForeignKey(
+        User,
+        verbose_name='Сотрудник',
+        related_name='likes',
+        on_delete=models.CASCADE,
+    )
+    event = models.ForeignKey(
+        Event,
+        verbose_name='Событие',
+        related_name='likes',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    entry = models.ForeignKey(
+        Entry,
+        verbose_name='Запись',
+        related_name='likes',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    created = models.DateTimeField(
+        verbose_name='Дата и время',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Лайк'
+        verbose_name_plural = 'Лайки'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['employee', 'entry'],
+                name='unique_entry',
+            ),
+            models.UniqueConstraint(
+                fields=['employee', 'event'],
+                name='unique_event',
+            )
+        ]
+
+    def clean(self):
+
+        if not self.event and not self.entry:
+            raise ValidationError('Выберите Событие или Запись.')
+
+        if self.event and self.entry:
+            raise ValidationError('Выберите что-то одно.')
+
+        return super().clean()

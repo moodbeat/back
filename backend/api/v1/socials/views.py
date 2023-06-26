@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db import IntegrityError
 from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
@@ -8,13 +9,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.permissions import (ChiefPostPermission, EmployeePostPermission,
-                                HRAllPermission)
-from socials.models import HelpType, Status
+from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefPostPermission,
+                                EmployeePostPermission, HRAllPermission)
+from socials.models import HelpType, Like, Status
 
-from .serializers import (HelpTypeSerializer, NeedHelpSerializer,
-                          SpecialistsSerializer, StatusAddSerializer,
-                          StatusSerializer)
+from .serializers import (HelpTypeSerializer, LikeSerializer,
+                          NeedHelpSerializer, SpecialistsSerializer,
+                          StatusAddSerializer, StatusSerializer)
 from .utils import user_param
 
 User = get_user_model()
@@ -107,3 +108,19 @@ class StatusViewSet(ModelViewSet):
         if self.request.method == 'GET':
             return StatusSerializer
         return StatusAddSerializer
+
+
+class LikeViewSet(ModelViewSet):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+    http_method_names = ('post', 'delete')
+    permission_classes = [IsAuthenticated & AllowAuthorOrReadOnly]
+
+    def create(self, request, *args, **kwargs):
+        try:
+            return super().create(request, *args, **kwargs)
+        except IntegrityError:
+            return Response(
+                {'error': 'Ошибка уникальности: Лайк уже существует.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )

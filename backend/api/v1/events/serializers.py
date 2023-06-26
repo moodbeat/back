@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
+from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 from sorl.thumbnail import get_thumbnail
 
+from api.v1.socials.serializers import LikeShortSerializer
 from api.v1.users.fields import Base64ImageField
 from api.v1.users.serializers import DepartmentSerializer, UserSerializer
 from events.models import Category, Entry, Event
@@ -35,7 +37,19 @@ class AuthorSerializer(serializers.ModelSerializer):
         return None
 
 
-class EntryReadSerializer(serializers.ModelSerializer):
+class WithLikedSerializer(serializers.ModelSerializer):
+
+    liked = serializers.SerializerMethodField()
+
+    @swagger_serializer_method(serializer_or_field=LikeShortSerializer)
+    def get_liked(self, obj):
+        liked = obj.likes.first()
+        if not liked:
+            return None
+        return LikeShortSerializer(liked).data
+
+
+class EntryReadSerializer(WithLikedSerializer):
 
     category = CategorySerializer(many=True)
     author = AuthorSerializer()
@@ -56,7 +70,7 @@ class EntryWriteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EventReadSerializer(serializers.ModelSerializer):
+class EventReadSerializer(WithLikedSerializer):
 
     author = AuthorSerializer()
 
