@@ -126,9 +126,9 @@ class Status(models.Model):
 
 class Like(models.Model):
 
-    author = models.ForeignKey(
+    employee = models.ForeignKey(
         User,
-        verbose_name='Автор',
+        verbose_name='Сотрудник',
         related_name='likes',
         on_delete=models.CASCADE,
     )
@@ -158,11 +158,11 @@ class Like(models.Model):
         verbose_name_plural = 'Лайки'
         constraints = [
             models.UniqueConstraint(
-                fields=['author', 'entry'],
+                fields=['employee', 'entry'],
                 name='unique_entry',
             ),
             models.UniqueConstraint(
-                fields=['author', 'event'],
+                fields=['employee', 'event'],
                 name='unique_event',
             )
         ]

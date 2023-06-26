@@ -79,7 +79,9 @@ class StatusAddSerializer(StatusSerializer):
 
 class LikeSerializer(serializers.ModelSerializer):
 
-    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    employee = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
 
     class Meta:
         model = Like

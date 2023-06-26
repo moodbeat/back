@@ -25,6 +25,6 @@ class StatusAdmin(admin.ModelAdmin):
 
 @admin.register(Like)
 class LikeAdmin(admin.ModelAdmin):
-    fields = ('created', 'author', 'event', 'entry',)
-    list_display = ('created', 'author', 'event', 'entry',)
+    fields = ('created', 'employee', 'event', 'entry',)
+    list_display = ('created', 'employee', 'event', 'entry',)
     readonly_fields = ('created',)
