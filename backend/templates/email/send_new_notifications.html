@@ -1,0 +1,33 @@
+{% extends 'email/base.html' %} {% block content %}
+
+<p>Здравствуйте,</p>
+<p>
+  у Вас новые уведомления в разделе <em><strong>{{ incident_type }}</strong></em>
+  проекта <em><strong>"MoodBeat"</strong></em>.
+
+  Нажмите на кнопку ниже для перехода на свой аккаунт.
+</p>
+<table
+  role="presentation"
+  border="0"
+  cellpadding="0"
+  cellspacing="0"
+  class="btn btn-primary"
+>
+  <tbody>
+    <tr>
+      <td align="center">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+            <tr>
+              <td>
+                <a href="{{ url }}" target="_blank">Перейти к аккаунту</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

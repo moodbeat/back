@@ -163,3 +163,5 @@ cython_debug/
 .vscode/
 backend/media/
 *.db
+
+sent_emails/
