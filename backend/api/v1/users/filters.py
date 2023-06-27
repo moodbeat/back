@@ -6,7 +6,7 @@ from elasticsearch_dsl.query import Match, Prefix, Wildcard
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
 
-from conf.service import invite_service
+from spare_kits import invite_service
 from users.models import InviteCode
 
 
