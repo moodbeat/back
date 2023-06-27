@@ -26,9 +26,9 @@ def get_data_for_websocket(sender, instance, **kwargs):
     """
     channel_layer = get_channel_layer()
     group_name = 'user_%s' % instance.user.id
-    notifications = instance.user.notifications.filter(is_viewed=False).values(
+    notifications = list(instance.user.notifications.filter(is_viewed=False).values(
         'id', 'incident_type', 'incident_id',
-    )
+    ))
     email_service.send_notification_on_email(
         instance.user,
         notifications[-1]['incident_type']
@@ -38,7 +38,7 @@ def get_data_for_websocket(sender, instance, **kwargs):
         {
             'type': 'notification',
             'message': {
-                'notifications': list(notifications)
+                'notifications': notifications
             }
         }
     )
