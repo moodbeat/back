@@ -40,7 +40,7 @@ class EmailService:
 
 
 class SecretCodeService:
-    def __decode_data(self, secret_key: str, encoded_data: str):
+    def decode_data(self, secret_key: str, encoded_data: str):
         """Декодирует данные по секретному ключу."""
         secret_key_hash = hashlib.sha256(secret_key.encode()).digest()
         decoded_data = base64.b64decode(encoded_data)
@@ -71,7 +71,7 @@ class InviteService(SecretCodeService, EmailService):
     def verify_code(self, secret_key: str, code: str, obj: object):
         """Проверяет ключ-приглашение на соответствие."""
         try:
-            decode = self.__decode_data(secret_key, code)
+            decode = self.decode_data(secret_key, code)
             obj.objects.get(code=decode)
             return decode
         except Exception:
