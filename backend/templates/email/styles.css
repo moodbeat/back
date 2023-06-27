@@ -68,7 +68,7 @@
         ------------------------------------- */
     .main {
       background: #ffffff;
-      border-radius: 3px;
+      border-radius: 16px;
       width: 100%;
     }
 
@@ -122,7 +122,7 @@
     p,
     ul,
     ol {
-      font-family: Comic Sans MS, Comic Sans MS5, cursive;
+      font-family: Verdana, Arial, sans-serif;
       font-size: 15px;
       font-weight: normal;
       margin: 0;
@@ -136,7 +136,7 @@
     }
 
     a {
-      color: #3498db;
+      color: #8a32e0;
       text-decoration: underline;
     }
 
@@ -160,10 +160,10 @@
     }
     .btn a {
       background-color: #ffffff;
-      border: solid 1px #3498db;
-      border-radius: 5px;
+      border: solid 1px #8a32e0;
+      border-radius: 16px;
       box-sizing: border-box;
-      color: #3498db;
+      color: #8a32e0;
       cursor: pointer;
       display: inline-block;
       font-size: 14px;
@@ -174,12 +174,12 @@
     }
 
     .btn-primary table td {
-      background-color: #3498db;
+      background-color: #8a32e0;
     }
 
     .btn-primary a {
-      background-color: #3498db;
-      border-color: #3498db;
+      background-color: #8a32e0;
+      border-color: #8a32e0;
       color: #ffffff;
     }
 
