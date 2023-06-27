@@ -84,7 +84,7 @@ class InviteService(SecretCodeService, EmailService):
         url = f'{self.host}register?invite_code={code}'
         subject = 'Регистрация на нашем сервисе'
         if again:
-            subject = 'Вам отправлена повторная ссылка для регистрации.'
+            subject = 'Вам отправлена повторная ссылка для регистрации'
         html_message = render_to_string(
             'email/send_invitation_link.html',
             {'url': url},
@@ -104,9 +104,9 @@ class InviteService(SecretCodeService, EmailService):
         url = (
             f'{self.host}password-reset?reset_code={code}'
         )
-        subject = 'Ваша ссылка для смены пароля.'
+        subject = 'Ваша ссылка для смены пароля'
         if again:
-            subject = 'Вам отправлена повторная ссылка на смену пароля.'
+            subject = 'Вам отправлена повторная ссылка на смену пароля'
         html_message = render_to_string(
             'email/send_password_restore_email.html',
             {'url': url},

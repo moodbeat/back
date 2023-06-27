@@ -15,7 +15,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from api.v1.permissions import (AllReadOnlyPermissions, ChiefSafePermission,
                                 HRAllPermission)
-from conf.service import invite_service
+from spare_kits import invite_service
 from users.documents import HobbyDocument
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position)

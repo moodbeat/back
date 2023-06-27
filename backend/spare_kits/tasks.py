@@ -2,7 +2,7 @@ from celery import shared_task
 from django.core.mail import send_mail, send_mass_mail
 
 
-@shared_task(name='send_mail', ignore_result=True)
+@shared_task(name='send_mail', ignore_result=True, rate_limit='1/m')
 def send_mail_via_celery(
     subject,
     message,
