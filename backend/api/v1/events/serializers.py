@@ -43,7 +43,7 @@ class WithLikedSerializer(serializers.ModelSerializer):
 
     @swagger_serializer_method(serializer_or_field=LikeShortSerializer)
     def get_liked(self, obj):
-        liked = obj.likes.first()
+        liked = obj.likes.filter(employee=self.context['request'].user).first()
         if not liked:
             return None
         return LikeShortSerializer(liked).data
