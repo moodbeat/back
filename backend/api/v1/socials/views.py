@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefPostPermission,
+from api.v1.permissions import (AllowAuthorOrReadOnlyLike, ChiefPostPermission,
                                 EmployeePostPermission, HRAllPermission)
 from socials.models import HelpType, Like, Status
 
@@ -114,7 +114,7 @@ class LikeViewSet(ModelViewSet):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
     http_method_names = ('post', 'delete')
-    permission_classes = [IsAuthenticated & AllowAuthorOrReadOnly]
+    permission_classes = [IsAuthenticated & AllowAuthorOrReadOnlyLike]
 
     def create(self, request, *args, **kwargs):
         try:

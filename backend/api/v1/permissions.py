@@ -68,7 +68,18 @@ class AllowAuthorOrReadOnly(permissions.BasePermission):
         )
 
 
+class AllowAuthorOrReadOnlyLike(permissions.BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        return (
+            request.method in permissions.SAFE_METHODS
+            and request.user.is_authenticated
+            or request.user.is_authenticated and request.user == obj.employee
+        )
+
 # зачем он? есть же стандартный?
+
+
 class IsNotAuthenticated(permissions.BasePermission):
 
     def has_permission(self, request, view):
