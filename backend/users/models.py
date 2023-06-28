@@ -131,6 +131,7 @@ class MentalState(models.Model):
     class Meta:
         verbose_name = 'Психологическое состояние'
         verbose_name_plural = 'Психологические состояния'
+        ordering = ['-level']
 
     def __str__(self):
         return self.name

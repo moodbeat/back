@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Entry, Event
+from .models import Category, Entry, Event, MeetingResult
 
 
 @admin.register(Category)
@@ -25,3 +25,9 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('created', 'name', 'author',
                     'start_time', 'end_time', 'for_all')
     readonly_fields = ('created',)
+
+
+@admin.register(MeetingResult)
+class MeetingResultAdmin(admin.ModelAdmin):
+    fields = ('date', 'organizer', 'employee', 'mental_state', 'comment')
+    list_display = ('date', 'organizer', 'employee', 'mental_state')

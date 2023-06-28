@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from users.models import Department
+from users.models import Department, MentalState
 
 from .validators import validate_event_data
 
@@ -165,3 +165,37 @@ class Event(models.Model):
 
     def clean(self):
         validate_event_data(self.start_time, self.end_time)
+
+
+class MeetingResult(models.Model):
+
+    organizer = models.ForeignKey(
+        User,
+        verbose_name='Организатор',
+        on_delete=models.CASCADE,
+        related_name='organized_meets'
+    )
+    employee = models.ForeignKey(
+        User,
+        verbose_name='Сотрудник',
+        on_delete=models.CASCADE,
+        related_name='meets'
+    )
+    date = models.DateField(
+        verbose_name='Дата встречи'
+    )
+    mental_state = models.ForeignKey(
+        MentalState,
+        verbose_name='Состояние',
+        related_name='meets',
+        on_delete=models.CASCADE
+    )
+    comment = models.TextField(
+        verbose_name='Комментарий',
+        max_length=400
+    )
+
+    class Meta:
+        verbose_name = 'Результат встречи'
+        verbose_name_plural = 'Результаты встреч'
+        ordering = ['-date']

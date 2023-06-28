@@ -16,6 +16,7 @@ User = get_user_model()
 
 
 class Condition(models.Model):
+
     employee = models.ForeignKey(
         User,
         verbose_name='Сотрудник',
@@ -49,6 +50,31 @@ class Condition(models.Model):
             'Состояние сотрудника '
             f'{self.employee}: {self.mood} ({self.date})'
         )
+
+
+class BurnoutTracker(models.Model):
+
+    employee = models.ForeignKey(
+        User,
+        verbose_name='Сотрудник',
+        related_name='burnout_track',
+        on_delete=models.CASCADE,
+    )
+    mental_state = models.ForeignKey(
+        MentalState,
+        verbose_name='Состояние',
+        related_name='burnout_track',
+        on_delete=models.CASCADE
+    )
+    date = models.DateTimeField(
+        verbose_name='Дата/время обновления состояния',
+        default=timezone.now
+    )
+
+    class Meta:
+        verbose_name = 'Трекер выгорания'
+        verbose_name_plural = 'Трекеры выгорания'
+        ordering = ('-date',)
 
 
 class LifeDirection(models.Model):
