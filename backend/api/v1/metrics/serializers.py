@@ -246,6 +246,12 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
         return CompletedSurveySerializer(instance, context=self.context).data
 
 
+class MentalStateReadSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MentalState
+        fields = '__all__'
+
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""
 

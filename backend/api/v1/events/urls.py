@@ -13,6 +13,11 @@ v10.register(
 )
 v10.register('entries', views.EntryViewSet, basename='entries')
 v10.register('events', views.EventViewSet, basename='events')
+v10.register(
+    'meeting_results',
+    views.MeetingResultViewSet,
+    basename='meeting_results'
+)
 
 urlpatterns = [
     path('', include(v10.urls)),

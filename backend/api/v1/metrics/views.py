@@ -15,11 +15,13 @@ from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         LifeBalanceCreateSerializer,
                                         LifeBalanceSerializer,
                                         LifeDirectionSerializer,
+                                        MentalStateReadSerializer,
                                         ShortSurveySerializer,
                                         SurveySerializer)
 from api.v1.permissions import HRAllPermission
 from metrics.models import (CompletedSurvey, Condition, LifeDirection, Survey,
                             UserLifeBalance)
+from users.models import MentalState
 
 from .filters import SurveyFilter
 
@@ -124,6 +126,13 @@ class CompletedSurveyViewSet(ModelViewSet):
         if self.request.method == 'GET':
             return CompletedSurveySerializer
         return CompletedSurveyCreateSerializer
+
+
+class MentalStateViewSet(ListAPIView):
+    queryset = MentalState.objects.all()
+    pagination_class = None
+    serializer_class = MentalStateReadSerializer
+    permission_classes = (IsAuthenticated,)
 
 # оставлю пока не дойду то эндпоинтов конструктора
 #     def perform_create(self, serializer):

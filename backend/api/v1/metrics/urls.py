@@ -21,4 +21,9 @@ urlpatterns = [
         views.LifeDirectionListView.as_view(),
         name='life_directions'
     ),
+    re_path(
+        r'^mental_states/?$',
+        views.MentalStateViewSet.as_view(),
+        name='mental_states'
+    ),
 ]

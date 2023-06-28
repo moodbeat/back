@@ -6,8 +6,9 @@ from sorl.thumbnail import get_thumbnail
 
 from api.v1.socials.serializers import LikeShortSerializer
 from api.v1.users.fields import Base64ImageField
-from api.v1.users.serializers import DepartmentSerializer, UserSerializer
-from events.models import Category, Entry, Event
+from api.v1.users.serializers import (DepartmentSerializer,
+                                      MentalStateSerializer, UserSerializer)
+from events.models import Category, Entry, Event, MeetingResult
 from events.validators import validate_event_data
 
 User = get_user_model()
@@ -27,7 +28,7 @@ class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id', 'first_name', 'last_name', 'avatar', 'avatar_full'
+            'id', 'first_name', 'last_name', 'email', 'avatar', 'avatar_full'
         )
 
     def get_avatar(self, obj):
@@ -111,3 +112,25 @@ class EventWriteSerializer(serializers.ModelSerializer):
         end_time = attrs.get('end_time')
         validate_event_data(start_time, end_time)
         return attrs
+
+
+class MeetingResultReadSerializer(serializers.ModelSerializer):
+
+    organizer = AuthorSerializer()
+    mental_state = MentalStateSerializer()
+    employee = AuthorSerializer()
+
+    class Meta:
+        model = MeetingResult
+        fields = '__all__'
+
+
+class MeetingResultWriteSerializer(serializers.ModelSerializer):
+
+    organizer = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = MeetingResult
+        fields = '__all__'
