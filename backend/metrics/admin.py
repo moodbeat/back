@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import (CompletedSurvey, Condition, LifeDirection, Question,
-                     Survey, SurveyType, UserLifeBalance, Variant)
+from .models import (BurnoutTracker, CompletedSurvey, Condition, LifeDirection,
+                     Question, Survey, SurveyType, UserLifeBalance, Variant)
 
 
 @admin.register(Condition)
@@ -24,6 +24,11 @@ class ConditionAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
         return queryset.select_related('employee',)
+
+
+@admin.register(BurnoutTracker)
+class BurnoutTrackerAdmin(admin.ModelAdmin):
+    list_display = ('date', 'employee', 'mental_state')
 
 
 @admin.register(LifeDirection)

@@ -13,6 +13,7 @@ v10.register(
     basename='surveys_results'
 )
 v10.register('surveys', views.SurveyViewSet, basename='surveys')
+v10.register('burnouts', views.BurnoutViewSet, basename='burnouts')
 
 urlpatterns = [
     path('', include(v10.urls)),

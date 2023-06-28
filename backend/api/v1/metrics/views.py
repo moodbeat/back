@@ -8,7 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from api.v1.metrics.filters import CompletedSurveyFilter, ConditionFilter
-from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
+from api.v1.metrics.serializers import (BurnoutSerializer,
+                                        CompletedSurveyCreateSerializer,
                                         CompletedSurveySerializer,
                                         ConditionReadSerializer,
                                         ConditionWriteSerializer,
@@ -19,8 +20,8 @@ from api.v1.metrics.serializers import (CompletedSurveyCreateSerializer,
                                         ShortSurveySerializer,
                                         SurveySerializer)
 from api.v1.permissions import HRAllPermission
-from metrics.models import (CompletedSurvey, Condition, LifeDirection, Survey,
-                            UserLifeBalance)
+from metrics.models import (BurnoutTracker, CompletedSurvey, Condition,
+                            LifeDirection, Survey, UserLifeBalance)
 from users.models import MentalState
 
 from .filters import SurveyFilter
@@ -57,6 +58,17 @@ class LifeDirectionListView(ListAPIView):
     serializer_class = LifeDirectionSerializer
     permission_classes = (IsAuthenticated,)
     pagination_class = None
+
+
+class BurnoutViewSet(ModelViewSet):
+    queryset = BurnoutTracker.objects.select_related(
+        'employee', 'mental_state'
+    ).all()
+    serializer_class = BurnoutSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('employee', 'mental_state')
+    http_method_names = ('get',)
+    permission_classes = (HRAllPermission,)
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(
