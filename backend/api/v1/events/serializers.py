@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 from sorl.thumbnail import get_thumbnail
@@ -62,12 +63,28 @@ class EntryReadSerializer(WithLikedSerializer):
 class EntryWriteSerializer(serializers.ModelSerializer):
 
     category = CategorySerializer
-    preview_image = Base64ImageField()
+    preview_image = Base64ImageField(required=False)
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Entry
         fields = '__all__'
+
+    def validate(self, data):
+        text = data.get('text', None)
+        url = data.get('url', None)
+
+        if not text and not url:
+            raise ValidationError(
+                'Запись обязательно должна содержать ссылку или текст.'
+            )
+
+        if text and url:
+            raise ValidationError(
+                'Введите что-то одно (текст или ссылку).'
+            )
+
+        return data
 
 
 class EventReadSerializer(WithLikedSerializer):

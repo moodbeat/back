@@ -36,8 +36,8 @@ class EntryViewSet(ModelViewSet):
     filterset_class = EntryFilter
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
-        IsAuthenticated & HRAllPermission & ChiefSafePermission
-        | EmployeeSafePermission
+        IsAuthenticated & AllowAuthorOrReadOnly & HRAllPermission
+        | ChiefSafePermission | EmployeeSafePermission
     ]
 
     def get_serializer_class(self):

@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
 
@@ -60,11 +61,25 @@ class Entry(models.Model):
     )
     preview_image = models.ImageField(
         verbose_name='Превью-изображение записи',
-        upload_to='entries/'
+        upload_to='entries/',
+        default='entries/entries_thumbnail.jpg'
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        max_length=150
+    )
+    url = models.URLField(
+        verbose_name='Ссылка',
+        max_length=500,
+        null=True,
+        blank=True
     )
     text = models.TextField(
         verbose_name='Текст',
-        validators=[MinLengthValidator(8)]
+        validators=[MinLengthValidator(8)],
+        max_length=2000,
+        null=True,
+        blank=True
     )
     created = models.DateTimeField(
         auto_now_add=True
@@ -77,6 +92,18 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.title
+
+    def clean(self):
+
+        if not self.text and not self.url:
+            raise ValidationError(
+                'Запись обязательно должна содержать ссылку или текст.'
+            )
+
+        if self.text and self.url:
+            raise ValidationError('Введите что-то одно (текст или ссылку).')
+
+        return super().clean()
 
 
 class Event(models.Model):
