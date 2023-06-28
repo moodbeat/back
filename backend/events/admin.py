@@ -12,8 +12,9 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Entry)
 class EntryAdmin(admin.ModelAdmin):
     fields = ('created', 'title', 'preview_image',
-              'author', 'category', 'text',)
-    list_display = ('created', 'title', 'preview_image', 'author')
+              'author', 'category', 'description', 'url', 'text',)
+    list_display = ('created', 'title', 'description',
+                    'preview_image', 'author')
     readonly_fields = ('created',)
 
 
