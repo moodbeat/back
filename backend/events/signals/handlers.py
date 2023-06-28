@@ -99,3 +99,9 @@ def add_mental_state_to_tracker(sender, instance, created, **kwargs):
             mental_state=instance.mental_state,
             date=instance.date
         )
+        # TODO временный костыль, подробности в пр
+        User.objects.filter(
+            id=instance.employee.id
+        ).update(
+            mental_state=instance.mental_state
+        )
