@@ -30,6 +30,12 @@ class ConditionAdmin(admin.ModelAdmin):
 class BurnoutTrackerAdmin(admin.ModelAdmin):
     list_display = ('date', 'employee', 'mental_state')
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(LifeDirection)
 class LifeDirectionAdmin(admin.ModelAdmin):

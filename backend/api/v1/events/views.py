@@ -1,5 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.utils.decorators import method_decorator
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
@@ -25,6 +28,9 @@ class CategoryViewSet(ModelViewSet):
     pagination_class = None
 
 
+@method_decorator(name='create', decorator=swagger_auto_schema(
+    responses={status.HTTP_201_CREATED: EntryWriteSerializer},
+))
 class EntryViewSet(ModelViewSet):
     # TODO оптимизировать запрос с prefetch на лайки рейквест юзера
     queryset = (
