@@ -263,6 +263,11 @@ class BurnoutSerializer(serializers.ModelSerializer):
         model = BurnoutTracker
         fields = '__all__'
 
+
+class MonthlyBurnoutSerializer(serializers.Serializer):
+    month = serializers.CharField()
+    percentage = serializers.FloatField()
+
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""
 

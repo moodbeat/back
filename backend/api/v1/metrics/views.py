@@ -1,10 +1,14 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Count
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
+from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from api.v1.metrics.filters import CompletedSurveyFilter, ConditionFilter
@@ -17,9 +21,11 @@ from api.v1.metrics.serializers import (BurnoutSerializer,
                                         LifeBalanceSerializer,
                                         LifeDirectionSerializer,
                                         MentalStateReadSerializer,
+                                        MonthlyBurnoutSerializer,
                                         ShortSurveySerializer,
                                         SurveySerializer)
-from api.v1.permissions import HRAllPermission
+from api.v1.permissions import (ChiefSafePermission, EmployeeSafePermission,
+                                HRAllPermission)
 from metrics.models import (BurnoutTracker, CompletedSurvey, Condition,
                             LifeDirection, Survey, UserLifeBalance)
 from users.models import MentalState
@@ -68,7 +74,89 @@ class BurnoutViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('employee', 'mental_state')
     http_method_names = ('get',)
-    permission_classes = (HRAllPermission,)
+    permission_classes = [
+        HRAllPermission | EmployeeSafePermission | ChiefSafePermission
+    ]
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated and self.request.user.is_hr:
+            return BurnoutTracker.objects.all()
+        return BurnoutTracker.objects.filter(employee=self.request.user.id)
+
+    def get_yearly_burnout_percentage(self, queryset):
+        now = timezone.now()
+        year_start = now.replace(month=1, day=1, hour=0)
+        year_end = now.replace(month=12, day=31, hour=23)
+        queryset = queryset.filter(date__range=(year_start, year_end))
+
+        burnout_percentages = {}
+        month_names = {
+            1: 'янв',
+            2: 'фев',
+            3: 'март',
+            4: 'апр',
+            5: 'май',
+            6: 'июнь',
+            7: 'июль',
+            8: 'авг',
+            9: 'сент',
+            10: 'окт',
+            11: 'ноя',
+            12: 'дек',
+        }
+
+        for month in range(1, 13):
+            filtered_queryset = queryset.filter(date__month=month)
+            count_by_level = (
+                filtered_queryset
+                .values('mental_state__level')
+                .annotate(count=Count('id'))
+            )
+            total_count = sum(item['count'] for item in count_by_level)
+            percentage = {
+                1: 0,
+                2: 50,
+                3: 100,
+            }
+            burnout_percentage = 0.0
+            if total_count > 0:
+                burnout_percentage = sum(
+                    percentage[item['mental_state__level']] * item['count']
+                    for item in count_by_level) / total_count
+            month_name = month_names[month]
+            burnout_percentages[month_name] = burnout_percentage
+
+        return burnout_percentages
+
+    @swagger_auto_schema(responses={
+        status.HTTP_200_OK: MonthlyBurnoutSerializer(many=True)
+    })
+    @action(
+        detail=False,
+        methods=['get'],
+        url_path='graph_data',
+        serializer_class=MonthlyBurnoutSerializer
+    )
+    def graph_data(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        if self.request.user.is_authenticated and self.request.user.is_hr:
+            burnout_data = self.get_yearly_burnout_percentage(queryset)
+        else:
+            filtered_queryset = queryset.filter(employee=self.request.user.id)
+            burnout_data = self.get_yearly_burnout_percentage(
+                filtered_queryset
+            )
+
+        serialized_data = []
+        for month, percentage in burnout_data.items():
+            serialized_data.append({
+                'month': month,
+                'percentage': percentage
+            })
+
+        serializer = self.get_serializer(serialized_data, many=True)
+        return Response(serializer.data)
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(

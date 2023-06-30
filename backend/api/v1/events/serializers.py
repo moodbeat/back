@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 from sorl.thumbnail import get_thumbnail
@@ -134,3 +135,11 @@ class MeetingResultWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = MeetingResult
         fields = '__all__'
+
+    def validate(self, data):
+        date = data.get('date')
+        if date > timezone.localtime().date():
+            raise serializers.ValidationError(
+                'Указанная дата не может быть больше текущей.'
+            )
+        return data
