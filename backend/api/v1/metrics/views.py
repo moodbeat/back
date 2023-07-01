@@ -80,16 +80,16 @@ class BurnoutViewSet(ModelViewSet):
 
     def get_queryset(self):
         if self.request.user.is_authenticated and self.request.user.is_hr:
-            return BurnoutTracker.objects.all()
-        return BurnoutTracker.objects.filter(employee=self.request.user.id)
+            return BurnoutTracker.objects.select_related(
+                'employee', 'mental_state').all()
+        return BurnoutTracker.objects.filter(
+            employee=self.request.user.id).select_related(
+            'employee', 'mental_state')
 
     def get_yearly_burnout_percentage(self, queryset):
         now = timezone.now()
-        year_start = now.replace(month=1, day=1, hour=0)
-        year_end = now.replace(month=12, day=31, hour=23)
-        queryset = queryset.filter(date__range=(year_start, year_end))
+        queryset = queryset.filter(date__year=(now.year))
 
-        burnout_percentages = {}
         month_names = {
             1: 'янв',
             2: 'фев',
@@ -104,6 +104,8 @@ class BurnoutViewSet(ModelViewSet):
             11: 'ноя',
             12: 'дек',
         }
+
+        serialized_data = []
 
         for month in range(1, 13):
             filtered_queryset = queryset.filter(date__month=month)
@@ -124,9 +126,12 @@ class BurnoutViewSet(ModelViewSet):
                     percentage[item['mental_state__level']] * item['count']
                     for item in count_by_level) / total_count
             month_name = month_names[month]
-            burnout_percentages[month_name] = burnout_percentage
+            serialized_data.append({
+                'month': month_name,
+                'percentage': burnout_percentage
+            })
 
-        return burnout_percentages
+        return serialized_data
 
     @swagger_auto_schema(responses={
         status.HTTP_200_OK: MonthlyBurnoutSerializer(many=True)
@@ -148,15 +153,7 @@ class BurnoutViewSet(ModelViewSet):
                 filtered_queryset
             )
 
-        serialized_data = []
-        for month, percentage in burnout_data.items():
-            serialized_data.append({
-                'month': month,
-                'percentage': percentage
-            })
-
-        serializer = self.get_serializer(serialized_data, many=True)
-        return Response(serializer.data)
+        return Response(self.get_serializer(burnout_data, many=True).data)
 
 
 @method_decorator(name='create', decorator=swagger_auto_schema(

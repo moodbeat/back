@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
+from django.utils import timezone
 
 from users.models import Department, MentalState
 
@@ -194,6 +195,13 @@ class MeetingResult(models.Model):
         verbose_name='Комментарий',
         max_length=400
     )
+
+    def clean(self):
+        if self.date > timezone.localtime().date():
+            raise ValidationError(
+                'Указанная дата не может быть больше текущей.'
+            )
+        return super().clean()
 
     class Meta:
         verbose_name = 'Результат встречи'

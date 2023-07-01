@@ -4571,186 +4571,6 @@
   }
 },
 {
-  "model": "metrics.burnouttracker",
-  "pk": 1,
-  "fields": {
-    "employee": 4,
-    "mental_state": 1,
-    "date": "2023-03-10T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 2,
-  "fields": {
-    "employee": 4,
-    "mental_state": 2,
-    "date": "2023-04-17T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 3,
-  "fields": {
-    "employee": 4,
-    "mental_state": 3,
-    "date": "2023-05-22T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 4,
-  "fields": {
-    "employee": 4,
-    "mental_state": 1,
-    "date": "2023-06-18T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 5,
-  "fields": {
-    "employee": 6,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 6,
-  "fields": {
-    "employee": 17,
-    "mental_state": 2,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 7,
-  "fields": {
-    "employee": 21,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 8,
-  "fields": {
-    "employee": 12,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 9,
-  "fields": {
-    "employee": 3,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 10,
-  "fields": {
-    "employee": 13,
-    "mental_state": 3,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 11,
-  "fields": {
-    "employee": 18,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 12,
-  "fields": {
-    "employee": 20,
-    "mental_state": 2,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 13,
-  "fields": {
-    "employee": 23,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 14,
-  "fields": {
-    "employee": 7,
-    "mental_state": 2,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 15,
-  "fields": {
-    "employee": 19,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 16,
-  "fields": {
-    "employee": 10,
-    "mental_state": 3,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 17,
-  "fields": {
-    "employee": 5,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 18,
-  "fields": {
-    "employee": 22,
-    "mental_state": 2,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 19,
-  "fields": {
-    "employee": 14,
-    "mental_state": 1,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
-  "model": "metrics.burnouttracker",
-  "pk": 20,
-  "fields": {
-    "employee": 15,
-    "mental_state": 2,
-    "date": "2023-06-29T21:00:00Z"
-  }
-},
-{
   "model": "metrics.lifedirection",
   "pk": 1,
   "fields": {
@@ -5644,6 +5464,226 @@
     "end_time": "2023-08-01T12:20:00Z",
     "departments": [],
     "employees": []
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 3,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-03-11",
+    "mental_state": 1,
+    "comment": "По результатам встречи сотрудник проявлял интерес к работе и с огнем в глазах рассказывал как он рад наконец работать в нашей компании."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 4,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-04-18",
+    "mental_state": 2,
+    "comment": "Сотрудник явно был не в настроении, выявлены симптомы раздраженности и утомления. Кажется он начал подозревать куда он попал."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 5,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-05-23",
+    "mental_state": 3,
+    "comment": "Сотрудник нервно ходил по кабинету из стороны в сторону, его руки дрожали, а с лица стекал пот. Он все нервно повторял \"они придут за мной, придут за мной\". Позже он сделал сальто и ушиб голову. Вызвали санитаров."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 6,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-06-19",
+    "mental_state": 1,
+    "comment": "После небольшого отдыха в учреждении, сотрудник явно стал спокойнее, на лице постоянная улыбка и желание дальше работать."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 7,
+  "fields": {
+    "organizer": 2,
+    "employee": 6,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 8,
+  "fields": {
+    "organizer": 2,
+    "employee": 17,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 9,
+  "fields": {
+    "organizer": 2,
+    "employee": 21,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 10,
+  "fields": {
+    "organizer": 2,
+    "employee": 12,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 11,
+  "fields": {
+    "organizer": 2,
+    "employee": 3,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 12,
+  "fields": {
+    "organizer": 2,
+    "employee": 13,
+    "date": "2023-06-30",
+    "mental_state": 3,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 13,
+  "fields": {
+    "organizer": 2,
+    "employee": 18,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 14,
+  "fields": {
+    "organizer": 2,
+    "employee": 20,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 15,
+  "fields": {
+    "organizer": 2,
+    "employee": 23,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 16,
+  "fields": {
+    "organizer": 2,
+    "employee": 7,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 17,
+  "fields": {
+    "organizer": 2,
+    "employee": 19,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 18,
+  "fields": {
+    "organizer": 2,
+    "employee": 10,
+    "date": "2023-06-30",
+    "mental_state": 3,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 19,
+  "fields": {
+    "organizer": 2,
+    "employee": 5,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 20,
+  "fields": {
+    "organizer": 2,
+    "employee": 22,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 21,
+  "fields": {
+    "organizer": 2,
+    "employee": 14,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 22,
+  "fields": {
+    "organizer": 2,
+    "employee": 15,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
   }
 },
 {
