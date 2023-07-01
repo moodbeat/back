@@ -74,7 +74,8 @@ class CustomUserAdmin(UserAdmin):
         (('Служебная информация'), {'fields': (
             'department', 'position', 'role', 'phone'
         )}),
-        (('Прочее'), {'fields': ('avatar_full', 'hobbies', 'mental_state')}),
+        (('Прочее'), {'fields': ('avatar_full', 'hobbies', 'about',
+                                 'mental_state')}),
         (('Роли и права'), {
             'fields': ('is_active', 'is_staff', 'is_superuser'),
         }),
@@ -89,7 +90,7 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
     list_display = ('email', 'first_name', 'last_name',
-                    'role', 'position')
+                    'role', 'position', 'avatar_full')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
 
