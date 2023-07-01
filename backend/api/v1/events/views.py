@@ -3,6 +3,7 @@ from django.utils.decorators import method_decorator
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
@@ -39,7 +40,8 @@ class EntryViewSet(ModelViewSet):
         .prefetch_related('category', 'likes')
         .all()
     )
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ('title', 'description',)
     filterset_class = EntryFilter
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
@@ -61,7 +63,8 @@ class EventViewSet(ModelViewSet):
         .prefetch_related('likes')
         .all()
     )
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ('name', 'text',)
     filterset_class = EventFilter
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
