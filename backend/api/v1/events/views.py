@@ -7,9 +7,8 @@ from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefPostPermission,
-                                ChiefSafePermission, EmployeeSafePermission,
-                                HRAllPermission)
+from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefSafePermission,
+                                EmployeeSafePermission, HRAllPermission)
 from events.models import Category, Entry, Event, MeetingResult
 
 from .filters import EntryFilter, EventFilter
@@ -60,7 +59,7 @@ class EventViewSet(ModelViewSet):
     queryset = (
         Event.objects
         .select_related('author')
-        .prefetch_related('likes')
+        .prefetch_related('likes', 'employees', 'departments')
         .all()
     )
     filter_backends = (DjangoFilterBackend, SearchFilter)
@@ -69,7 +68,7 @@ class EventViewSet(ModelViewSet):
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
         IsAuthenticated & AllowAuthorOrReadOnly & HRAllPermission
-        | ChiefPostPermission | EmployeeSafePermission
+        | ChiefSafePermission | EmployeeSafePermission
     ]
 
     def get_serializer_class(self):

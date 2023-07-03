@@ -143,7 +143,7 @@ class Event(models.Model):
     )
     text = models.TextField(
         verbose_name='Текст',
-        max_length=128,
+        max_length=130,
         validators=[MinLengthValidator(8)]
     )
     created = models.DateTimeField(
