@@ -159,7 +159,7 @@ class Event(models.Model):
     class Meta:
         verbose_name = 'Событие'
         verbose_name_plural = 'События'
-        ordering = ['-created']
+        ordering = ['start_time']
 
     def __str__(self):
         return self.name
