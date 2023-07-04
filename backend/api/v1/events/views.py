@@ -3,12 +3,12 @@ from django.utils.decorators import method_decorator
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefPostPermission,
-                                ChiefSafePermission, EmployeeSafePermission,
-                                HRAllPermission)
+from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefSafePermission,
+                                EmployeeSafePermission, HRAllPermission)
 from events.models import Category, Entry, Event, MeetingResult
 
 from .filters import EntryFilter, EventFilter
@@ -39,7 +39,8 @@ class EntryViewSet(ModelViewSet):
         .prefetch_related('category', 'likes')
         .all()
     )
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ('title', 'description',)
     filterset_class = EntryFilter
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
@@ -58,15 +59,16 @@ class EventViewSet(ModelViewSet):
     queryset = (
         Event.objects
         .select_related('author')
-        .prefetch_related('likes')
+        .prefetch_related('likes', 'employees', 'departments')
         .all()
     )
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ('name', 'text',)
     filterset_class = EventFilter
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
         IsAuthenticated & AllowAuthorOrReadOnly & HRAllPermission
-        | ChiefPostPermission | EmployeeSafePermission
+        | ChiefSafePermission | EmployeeSafePermission
     ]
 
     def get_serializer_class(self):
