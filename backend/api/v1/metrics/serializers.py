@@ -6,8 +6,9 @@ from django.utils import timezone
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 
-from metrics.models import (CompletedSurvey, Condition, LifeDirection,
-                            Question, Survey, UserLifeBalance, Variant)
+from metrics.models import (BurnoutTracker, CompletedSurvey, Condition,
+                            LifeDirection, Question, Survey, UserLifeBalance,
+                            Variant)
 from metrics.validators import validate_completed_survey
 from users.models import MentalState
 
@@ -130,7 +131,7 @@ class UserShortSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name',)
+        fields = ('id', 'first_name', 'last_name', 'email')
 
 
 class ShortSurveySerializer(serializers.ModelSerializer):
@@ -245,6 +246,27 @@ class CompletedSurveyCreateSerializer(serializers.ModelSerializer):
         """После создания сериализуется через `CompletedSurveySerializer`."""
         return CompletedSurveySerializer(instance, context=self.context).data
 
+
+class MentalStateReadSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MentalState
+        fields = '__all__'
+
+
+class BurnoutSerializer(serializers.ModelSerializer):
+
+    employee = UserShortSerializer()
+    mental_state = MentalStateReadSerializer()
+
+    class Meta:
+        model = BurnoutTracker
+        fields = '__all__'
+
+
+class MonthlyBurnoutSerializer(serializers.Serializer):
+    month = serializers.CharField()
+    percentage = serializers.FloatField()
 
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""

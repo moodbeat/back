@@ -3,9 +3,10 @@ from django.db.models import Q
 from django.db.models.signals import m2m_changed, post_delete, post_save
 from django.dispatch import receiver
 
+from metrics.models import BurnoutTracker
 from notifications.models import Notification
 
-from ..models import Event
+from ..models import Event, MeetingResult
 
 User = get_user_model()
 
@@ -84,3 +85,23 @@ def create_notification_for_event_by_employees(
                 Q(id__in=pk_set) & Q(is_active=True)
             )
         ])
+
+
+@receiver(post_save, sender=MeetingResult)
+def add_mental_state_to_tracker(sender, instance, created, **kwargs):
+    """Вызывается после сохранения объекта `MeetingResult`.
+
+    По итогам проведенной встречи обновляет трекер выгорания.
+    """
+    if created:
+        BurnoutTracker.objects.create(
+            employee=instance.employee,
+            mental_state=instance.mental_state,
+            date=instance.date
+        )
+        # TODO временный костыль, подробности в пр
+        User.objects.filter(
+            id=instance.employee.id
+        ).update(
+            mental_state=instance.mental_state
+        )

@@ -15,6 +15,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from api.v1.permissions import (AllReadOnlyPermissions, ChiefSafePermission,
                                 HRAllPermission)
+from spare_kits import invite_service
 from users.documents import HobbyDocument
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
                           Position)
@@ -28,8 +29,6 @@ from .serializers import (DepartmentSerializer, HobbySerializer,
                           RegisterSerializer, SendInviteSerializer,
                           UserSelfUpdateSerializer, UserSerializer,
                           UserUpdateSerializer, VerifyInviteSerializer)
-from .utils import (encode_data, invite_code_param, send_invite_code,
-                    send_reset_code, verify_code)
 
 User = get_user_model()
 
@@ -130,21 +129,24 @@ class SendInviteView(APIView):
 
         if InviteCode.objects.filter(email__iexact=email).exists():
             encoded_uuid = self.create_invite_code(email, retry=True)
-            send_invite_code(email=email, code=encoded_uuid, again=True)
+            invite_service.send_invite_code(
+                email=email, code=encoded_uuid, again=True
+            )
             data = {'detail': 'Ссылка отправлена повторно',
                     'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
             return Response(data, status=status.HTTP_200_OK)
 
         encoded_uuid = self.create_invite_code(email)
-        send_invite_code(email=email, code=encoded_uuid)
+        invite_service.send_invite_code(email=email, code=encoded_uuid)
         data = {'detail': 'Ссылка для регистрации отправлена на email',
                 'invite_code': encoded_uuid}  # пока оставлю агрыавлыьалвва
         return Response(data, status=status.HTTP_200_OK)
 
     def create_invite_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
-        encoded_uuid = encode_data(
-            settings.RESET_INVITE_SECRET_KEY, str(uuid_code))
+        encoded_uuid = invite_service.encode_data(
+            settings.RESET_INVITE_SECRET_KEY, str(uuid_code)
+        )
         user = self.request.user
         if retry:
             InviteCode.objects.filter(
@@ -177,8 +179,9 @@ class RegisterView(APIView):
             )
 
         invite_code = serializer.validated_data.pop('invite_code')
-        decode_uuid = verify_code(
-            settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode)
+        decode_uuid = invite_service.verify_code(
+            settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode
+        )
         invite_code = InviteCode.objects.get(code=decode_uuid)
 
         email = invite_code.email
@@ -217,7 +220,9 @@ class VerifyInviteView(APIView):
             )
 
         invite_code = serializer.validated_data.get('invite_code')
-        verify_code(settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode)
+        invite_service.verify_code(
+            settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode
+        )
         data = {'detail': 'Ключ-приглашение прошел проверку'}
         return Response(data, status=status.HTTP_200_OK)
 
@@ -249,24 +254,27 @@ class PasswordResetView(APIView):
 
         if PasswordResetCode.objects.filter(email__iexact=email).exists():
             encoded_uuid = self.create_reset_code(email, retry=True)
-            send_reset_code(email=email, code=encoded_uuid, again=True)
+            invite_service.send_reset_code(
+                email=email, code=encoded_uuid, again=True
+            )
             data = {'detail': 'Ссылка отправлена повторно',
                     'reset_code': encoded_uuid}  # тоже пока оставлю
             return Response(data, status=status.HTTP_200_OK)
 
         encoded_uuid = self.create_reset_code(email)
-        send_reset_code(email=email, code=encoded_uuid)
+        invite_service.send_reset_code(email=email, code=encoded_uuid)
         data = {'detail': 'Ссылка на смену пароля отправлена на email',
                 'reset_code': encoded_uuid}  # тоже пока оставлю
         return Response(data, status=status.HTTP_200_OK)
 
     def create_reset_code(self, email: str, retry: bool = False) -> str:
         uuid_code = uuid.uuid4()
-        encoded_uuid = encode_data(
+        encoded_uuid = invite_service.encode_data(
             settings.RESET_INVITE_SECRET_KEY, str(uuid_code))
         if retry:
             PasswordResetCode.objects.filter(
-                email__iexact=email).update(code=uuid_code)
+                email__iexact=email
+            ).update(code=uuid_code)
             return encoded_uuid
         PasswordResetCode.objects.create(email=email, code=uuid_code)
         return encoded_uuid
@@ -294,8 +302,9 @@ class PasswordResetConfirmView(APIView):
             )
 
         reset_code = serializer.validated_data.pop('reset_code')
-        decode_uuid = verify_code(
-            settings.RESET_INVITE_SECRET_KEY, reset_code, PasswordResetCode)
+        decode_uuid = invite_service.verify_code(
+            settings.RESET_INVITE_SECRET_KEY, reset_code, PasswordResetCode
+        )
         reset_code = PasswordResetCode.objects.get(code=decode_uuid)
 
         email = reset_code.email
@@ -350,7 +359,7 @@ class DepartmentViewSet(ModelViewSet):
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [HRAllPermission | AllReadOnlyPermissions]
 
-    @swagger_auto_schema(manual_parameters=[invite_code_param])
+    @swagger_auto_schema(manual_parameters=[invite_service.invite_code_param])
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
@@ -363,7 +372,7 @@ class PositionViewSet(ModelViewSet):
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [HRAllPermission | AllReadOnlyPermissions]
 
-    @swagger_auto_schema(manual_parameters=[invite_code_param])
+    @swagger_auto_schema(manual_parameters=[invite_service.invite_code_param])
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
@@ -375,5 +384,10 @@ class HobbyViewSet(ModelViewSet):
     filterset_fields = ('id', 'name',)
     search_document = HobbyDocument
     search_fields = ('name',)
-    http_method_names = ('get',)
-    permission_classes = [AllowAny]
+    http_method_names = ('get', 'post')
+    permission_classes = (IsAuthenticated,)
+
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = (AllowAny,)
+        return super().get_permissions()

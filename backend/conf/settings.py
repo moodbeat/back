@@ -21,6 +21,8 @@ DEV_SERVICES = os.getenv('DEV_SERVICES', False) == 'True'
 
 DEBUG = os.getenv('DJANGO_DEBUG', False) == 'True'
 
+SELF_HOST = os.getenv('SELF_HOST')
+
 ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS', default='*')]
 
 INTERNAL_IPS = ['127.0.0.1']
@@ -53,7 +55,8 @@ INSTALLED_APPS = [
     'socials.apps.SocialsConfig',
     'events.apps.EventsConfig',
     'metrics.apps.MetricsConfig',
-    'notifications.apps.NotificationsConfig'
+    'notifications.apps.NotificationsConfig',
+    'spare_kits.apps.SpareKitsConfig',
 ]
 
 MIDDLEWARE = [
@@ -70,10 +73,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'conf.urls'
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -287,6 +292,7 @@ if DEV_SERVICES:
 
 CELERY_TIMEZONE = 'Europe/Moscow'
 CELERY_TASK_SERIALIZER = 'pickle'
+CELERY_ACCEPT_CONTENT = ('pickle',)
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER', 'redis://redis:6379')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT', 'redis://redis:6379')
 CELERY_BEAT_MAX_LOOP_INTERVAL = 20

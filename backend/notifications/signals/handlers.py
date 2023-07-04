@@ -3,6 +3,8 @@ from channels.layers import get_channel_layer
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
+from spare_kits import notification_email_service as email_service
+
 from ..models import Notification
 
 
@@ -24,15 +26,21 @@ def get_data_for_websocket(sender, instance, **kwargs):
     """
     channel_layer = get_channel_layer()
     group_name = 'user_%s' % instance.user.id
-    notifications = instance.user.notifications.filter(is_viewed=False).values(
-        'id', 'incident_type', 'incident_id',
+    notifications = list(
+        instance.user.notifications.filter(is_viewed=False).values(
+            'id', 'incident_type', 'incident_id',
+        )
+    )
+    email_service.send_notification_on_email(
+        instance.user,
+        notifications[-1]['incident_type']
     )
     async_to_sync(channel_layer.group_send)(
         group_name,
         {
             'type': 'notification',
             'message': {
-                'notifications': list(notifications)
+                'notifications': notifications
             }
         }
     )

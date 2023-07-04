@@ -592,16 +592,6 @@
   "model": "users.mentalstate",
   "pk": 2,
   "fields": {
-    "name": "в группе риска",
-    "description": "",
-    "message": "Вы находитесь в активной стадии эмоционального выгорания. Пожалуйста, обратитесь за помощью к своему руководителю или психотерапевту.",
-    "level": 3
-  }
-},
-{
-  "model": "users.mentalstate",
-  "pk": 3,
-  "fields": {
     "name": "тревожное",
     "description": "",
     "message": "У вас есть признаки профессионального выгорания. Пожалуйста, обсудите их с руководителем и воспользуйтесь нашими рекомендациями.",
@@ -609,11 +599,21 @@
   }
 },
 {
+  "model": "users.mentalstate",
+  "pk": 3,
+  "fields": {
+    "name": "в группе риска",
+    "description": "",
+    "message": "Вы находитесь в активной стадии эмоционального выгорания. Пожалуйста, обратитесь за помощью к своему руководителю или психотерапевту.",
+    "level": 3
+  }
+},
+{
   "model": "users.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$GzZjsdyyWiokndMnnXIhwt$lVtu0hvAh+cN44J6dwod1b5QpSmEYpV8ItMaNeajUpw=",
-    "last_login": "2023-06-20T17:46:54.853Z",
+    "last_login": "2023-07-03T04:12:51.022Z",
     "is_superuser": true,
     "email": "admin@admin.admin",
     "first_name": "Админ",
@@ -623,12 +623,12 @@
     "position": null,
     "mental_state": null,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male1.jpg",
     "about": null,
     "phone": null,
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2023-05-18T23:23:58.163Z",
+    "date_joined": "2023-05-18T23:23:58Z",
     "groups": [],
     "user_permissions": [],
     "hobbies": []
@@ -647,10 +647,10 @@
     "patronymic": null,
     "department": 4,
     "position": 20,
-    "mental_state": 2,
+    "mental_state": 1,
     "role": "hr",
-    "avatar_full": "users/avatars/temp_YC0mLPL.png",
-    "about": null,
+    "avatar_full": "users/avatars/female8.jpg",
+    "about": "Моя цель - создание и поддержание благоприятной рабочей среды для всех сотрудников! :)",
     "phone": "+79039994856",
     "is_staff": false,
     "is_active": true,
@@ -680,9 +680,9 @@
     "patronymic": null,
     "department": 2,
     "position": 4,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "chief",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male4.jpg",
     "about": null,
     "phone": "+79175584400",
     "is_staff": false,
@@ -715,10 +715,10 @@
     "patronymic": null,
     "department": 1,
     "position": 1,
-    "mental_state": 2,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
-    "about": null,
+    "avatar_full": "users/avatars/male9.jpg",
+    "about": "Погружен с головую в работу(",
     "phone": "+79384449473",
     "is_staff": false,
     "is_active": true,
@@ -748,9 +748,9 @@
     "patronymic": null,
     "department": 3,
     "position": 15,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female9.jpg",
     "about": null,
     "phone": "+79164484446",
     "is_staff": false,
@@ -780,9 +780,9 @@
     "patronymic": null,
     "department": 3,
     "position": 14,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "chief",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male2.jpg",
     "about": null,
     "phone": "+79164484447",
     "is_staff": false,
@@ -806,9 +806,9 @@
     "patronymic": null,
     "department": 1,
     "position": 11,
-    "mental_state": null,
+    "mental_state": 2,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female7.jpg",
     "about": null,
     "phone": null,
     "is_staff": false,
@@ -841,7 +841,7 @@
     "position": 30,
     "mental_state": null,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male7.jpg",
     "about": null,
     "phone": "+79164484449",
     "is_staff": false,
@@ -874,7 +874,7 @@
     "position": 5,
     "mental_state": null,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female4.jpg",
     "about": null,
     "phone": "+79164484450",
     "is_staff": false,
@@ -900,15 +900,15 @@
     "password": "pbkdf2_sha256$600000$7sLf9lByAs0fKSM6rCgPC8$ytCp8KlZ4pSlj/9oJnxq7GSXf5Wxh0tyrpG5yZP9EQE=",
     "last_login": null,
     "is_superuser": false,
-    "email": "alexey.ivanov@example.com",
+    "email": "katerina.petrova@example.com",
     "first_name": "Катерина",
     "last_name": "Петрова",
     "patronymic": null,
     "department": 4,
     "position": 19,
-    "mental_state": null,
+    "mental_state": 3,
     "role": "hr",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female2.jpg",
     "about": null,
     "phone": "+79164484452",
     "is_staff": false,
@@ -938,7 +938,7 @@
     "position": 1,
     "mental_state": null,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male12.jpg",
     "about": null,
     "phone": "+79164484453",
     "is_staff": false,
@@ -966,9 +966,9 @@
     "patronymic": null,
     "department": 3,
     "position": 15,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female3.jpg",
     "about": null,
     "phone": "+79164484454",
     "is_staff": false,
@@ -996,9 +996,9 @@
     "patronymic": null,
     "department": 5,
     "position": 24,
-    "mental_state": null,
+    "mental_state": 3,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male6.jpg",
     "about": null,
     "phone": null,
     "is_staff": false,
@@ -1022,9 +1022,9 @@
     "patronymic": null,
     "department": 6,
     "position": 27,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female11.jpg",
     "about": null,
     "phone": null,
     "is_staff": false,
@@ -1054,9 +1054,9 @@
     "patronymic": null,
     "department": 1,
     "position": 10,
-    "mental_state": null,
+    "mental_state": 2,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female12.jpg",
     "about": null,
     "phone": "+79164484458",
     "is_staff": false,
@@ -1088,7 +1088,7 @@
     "position": 25,
     "mental_state": null,
     "role": "chief",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male13.jpg",
     "about": null,
     "phone": "+79164484459",
     "is_staff": false,
@@ -1121,9 +1121,9 @@
     "patronymic": null,
     "department": 3,
     "position": 15,
-    "mental_state": null,
+    "mental_state": 2,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female1.jpg",
     "about": null,
     "phone": "+79164484461",
     "is_staff": false,
@@ -1152,9 +1152,9 @@
     "patronymic": null,
     "department": 5,
     "position": 2,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male8.jpg",
     "about": null,
     "phone": "+79164484462",
     "is_staff": false,
@@ -1182,9 +1182,9 @@
     "patronymic": null,
     "department": 2,
     "position": 8,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male11.jpg",
     "about": null,
     "phone": "+79164484464",
     "is_staff": false,
@@ -1211,9 +1211,9 @@
     "patronymic": null,
     "department": 7,
     "position": 30,
-    "mental_state": null,
+    "mental_state": 2,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female5.jpg",
     "about": null,
     "phone": null,
     "is_staff": false,
@@ -1237,9 +1237,9 @@
     "patronymic": null,
     "department": 2,
     "position": 7,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male3.jpg",
     "about": null,
     "phone": "+79164484469",
     "is_staff": false,
@@ -1270,9 +1270,9 @@
     "patronymic": null,
     "department": 3,
     "position": 15,
-    "mental_state": null,
+    "mental_state": 2,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female10.jpg",
     "about": null,
     "phone": "+79164484470",
     "is_staff": false,
@@ -1301,9 +1301,9 @@
     "patronymic": null,
     "department": 1,
     "position": 1,
-    "mental_state": null,
+    "mental_state": 1,
     "role": "employee",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/female6.jpg",
     "about": null,
     "phone": null,
     "is_staff": false,
@@ -1334,7 +1334,7 @@
     "position": 3,
     "mental_state": null,
     "role": "chief",
-    "avatar_full": "",
+    "avatar_full": "users/avatars/male10.jpg",
     "about": null,
     "phone": "+79164484474",
     "is_staff": false,
@@ -1357,7 +1357,7 @@
     "employee": 2,
     "mood": 4,
     "note": null,
-    "date": "2023-05-31T09:05:22.638Z"
+    "date": "2023-05-31T21:00:00Z"
   }
 },
 {
@@ -4571,6 +4571,666 @@
   }
 },
 {
+  "model": "metrics.condition",
+  "pk": 324,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-01T02:59:53Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 325,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-02T03:00:18Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 326,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-03T03:00:38Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 327,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-04T03:00:54Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 328,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-05T03:01:11Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 329,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-06T03:01:27Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 330,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-06-07T03:01:44Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 334,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-08T03:03:54Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 335,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-09T03:04:07Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 336,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-10T03:04:22Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 337,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-11T03:04:37Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 338,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-12T03:04:54Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 339,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-13T03:05:09Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 340,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-14T03:06:03Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 341,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-15T03:06:19Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 343,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-16T03:07:16Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 344,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-17T03:07:28Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 345,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-18T03:07:41Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 346,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-19T03:08:09Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 347,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-20T03:08:34Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 348,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-21T03:08:48Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 349,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-22T03:09:06Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 350,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-23T03:09:24Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 351,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-24T03:09:37Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 352,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-25T03:09:47Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 354,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-26T03:10:24Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 355,
+  "fields": {
+    "employee": 2,
+    "mood": 2,
+    "note": null,
+    "date": "2023-06-27T03:10:43Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 356,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-28T03:11:01Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 357,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-29T03:11:16Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 358,
+  "fields": {
+    "employee": 2,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-30T03:11:31Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 359,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-07-01T03:11:51Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 360,
+  "fields": {
+    "employee": 2,
+    "mood": 5,
+    "note": null,
+    "date": "2023-07-02T03:12:05Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 361,
+  "fields": {
+    "employee": 2,
+    "mood": 4,
+    "note": null,
+    "date": "2023-07-03T03:12:15Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 424,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-01T02:59:53Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 425,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-02T03:00:18Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 426,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-03T03:00:38Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 427,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-04T03:00:54Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 428,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-05T03:01:11Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 429,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-06T03:01:27Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 430,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-06-07T03:01:44Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 434,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-08T03:03:54Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 435,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-09T03:04:07Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 436,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-10T03:04:22Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 437,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-11T03:04:37Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 438,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-12T03:04:54Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 439,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-13T03:05:09Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 440,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-14T03:06:03Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 441,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-15T03:06:19Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 443,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-16T03:07:16Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 444,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-17T03:07:28Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 445,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-18T03:07:41Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 446,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-19T03:08:09Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 447,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-20T03:08:34Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 448,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-21T03:08:48Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 449,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-22T03:09:06Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 450,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-23T03:09:24Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 451,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-24T03:09:37Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 452,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-25T03:09:47Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 454,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-26T03:10:24Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 455,
+  "fields": {
+    "employee": 4,
+    "mood": 2,
+    "note": null,
+    "date": "2023-06-27T03:10:43Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 456,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-06-28T03:11:01Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 457,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-06-29T03:11:16Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 458,
+  "fields": {
+    "employee": 4,
+    "mood": 3,
+    "note": null,
+    "date": "2023-06-30T03:11:31Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 459,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-07-01T03:11:51Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 460,
+  "fields": {
+    "employee": 4,
+    "mood": 5,
+    "note": null,
+    "date": "2023-07-02T03:12:05Z"
+  }
+},
+{
+  "model": "metrics.condition",
+  "pk": 461,
+  "fields": {
+    "employee": 4,
+    "mood": 4,
+    "note": null,
+    "date": "2023-07-03T03:12:15Z"
+  }
+},
+{
   "model": "metrics.lifedirection",
   "pk": 1,
   "fields": {
@@ -4669,7 +5329,7 @@
     "title": "Экспресс-оценка выгорания",
     "type": 1,
     "description": "Экспресс оценка выгорания содержит 10 вопросов. На вопросы необходимо отвечать \"да\" или \"нет\".",
-    "text": "Тут типа текст после прохождения опроса, сделаю какой надо",
+    "text": "1. Определение краткосрочных и долгосрочных целей в трудовой деятельности.\r\n2. Отстаивание своих границ, отказ от дополнительной нагрузки.\r\n3. Соблюдение режима дня, сон не менее 8 часов, регулярное питание.\r\n4. Использование 10-15 минутных перерывов в работе, для снятия психоэмоционального напряжения.\r\n5. Самоконтроль своего состояния, отслеживание чувств и эмоций.\r\n6. Регулярные посильные физические нагрузки, прогулки на свежем воздухе.\r\n7. Переключение. Занятия делом, не связанным с профессиональной деятельностью (хобби, кино, развлечения)",
     "frequency": 0,
     "min_range": 11,
     "max_range": 69,
@@ -4687,7 +5347,7 @@
     "title": "Опросник профессионального выгорания Маслач",
     "type": 2,
     "description": "Вам предлагается 22 утверждения о чувствах и переживаниях, связанных с работой. Пожалуйста, прочитайте внимательно каждое утверждение и решите, чувствуете ли вы себя таким образом на вашей работе. Если у вас никогда не было такого чувства, выбирайте ответ \"никогда\". Если у вас было такое чувство, укажите, как часто вы его ощущали в течение последних месяцев.",
-    "text": "Тут типа текст после прохождения опроса, сделаю какой надо",
+    "text": "- Эмоциональное истощение проявляется в хроническом эмоциональном и физическом утомлении, равнодушии, холодности по отношению к окружающим с признаками депрессии и раздражительности.\r\n- Личностное отдаление проявляется в уменьшении количества контактов с окружающими, повышении раздражительности и нетерпимости в ситуациях общения, негативизме по отношению к другим людям.\r\n- Редукция личных достижений отражает степень удовлетворенности человека собой как личностью и как профессионалом. Высокое значение этого показателя отражает тенденцию к негативной оценке своей компетентности и продуктивности и, как следствие, - снижение профессиональной мотивации, нарастание негативизма, тенденцию к сняти. с себя ответственности, к изоляции от окружающих.\r\n\r\n## Рекомендации\r\n\r\n1. Обучайтесь преодолению конфликтов и эффективному общению.\r\n2. Обучайтесь саморегуляции с копинг-стратегиями (повышение стрессоустойчивости).\r\n3. Уделяйте особое внимание качеству отдыха и нахождению баланса между работой и отдыхом.\r\n4. Эффективно и экологично расходуйте свои ресурсы.\r\n5. Заботьтесь о себе и о своем психическом здоровье.",
     "frequency": 0,
     "min_range": 33,
     "max_range": 66,
@@ -5107,6 +5767,1170 @@
   }
 },
 {
+  "model": "metrics.completedsurvey",
+  "pk": 1,
+  "fields": {
+    "employee": 2,
+    "survey": 2,
+    "mental_state": 1,
+    "summary": {
+      "graphs": [
+        {
+          "size": "big",
+          "color": "blue",
+          "title": "Значение индекса системного выгорания",
+          "value": 0.11,
+          "max_value": 1,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "низкое",
+          "color": "green",
+          "title": "Эмоциональное истощение",
+          "value": 6,
+          "max_value": 54,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "низкое",
+          "color": "green",
+          "title": "Личностное отдаление",
+          "value": 3,
+          "max_value": 30,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "низкая",
+          "color": "green",
+          "title": "Редукция личных достижений",
+          "value": 43,
+          "max_value": 48,
+          "min_value": 0
+        }
+      ]
+    },
+    "results": [
+      {
+        "question_id": 11,
+        "variant_value": 1
+      },
+      {
+        "question_id": 12,
+        "variant_value": 0
+      },
+      {
+        "question_id": 13,
+        "variant_value": 0
+      },
+      {
+        "question_id": 14,
+        "variant_value": 6
+      },
+      {
+        "question_id": 15,
+        "variant_value": 0
+      },
+      {
+        "question_id": 16,
+        "variant_value": 5
+      },
+      {
+        "question_id": 17,
+        "variant_value": 4
+      },
+      {
+        "question_id": 18,
+        "variant_value": 0
+      },
+      {
+        "question_id": 19,
+        "variant_value": 5
+      },
+      {
+        "question_id": 20,
+        "variant_value": 1
+      },
+      {
+        "question_id": 21,
+        "variant_value": 1
+      },
+      {
+        "question_id": 22,
+        "variant_value": 6
+      },
+      {
+        "question_id": 23,
+        "variant_value": 1
+      },
+      {
+        "question_id": 24,
+        "variant_value": 2
+      },
+      {
+        "question_id": 25,
+        "variant_value": 0
+      },
+      {
+        "question_id": 26,
+        "variant_value": 1
+      },
+      {
+        "question_id": 27,
+        "variant_value": 5
+      },
+      {
+        "question_id": 28,
+        "variant_value": 6
+      },
+      {
+        "question_id": 29,
+        "variant_value": 6
+      },
+      {
+        "question_id": 30,
+        "variant_value": 0
+      },
+      {
+        "question_id": 31,
+        "variant_value": 5
+      },
+      {
+        "question_id": 32,
+        "variant_value": 1
+      }
+    ],
+    "completion_date": "2023-02-04",
+    "next_attempt_date": "2023-03-03"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 2,
+  "fields": {
+    "employee": 2,
+    "survey": 1,
+    "mental_state": 1,
+    "summary": null,
+    "results": [
+      {
+        "question_id": 1,
+        "variant_value": 0
+      },
+      {
+        "question_id": 2,
+        "variant_value": 0
+      },
+      {
+        "question_id": 3,
+        "variant_value": 0
+      },
+      {
+        "question_id": 4,
+        "variant_value": 0
+      },
+      {
+        "question_id": 5,
+        "variant_value": 0
+      },
+      {
+        "question_id": 7,
+        "variant_value": 0
+      },
+      {
+        "question_id": 8,
+        "variant_value": 0
+      },
+      {
+        "question_id": 9,
+        "variant_value": 0
+      },
+      {
+        "question_id": 10,
+        "variant_value": 0
+      },
+      {
+        "question_id": 6,
+        "variant_value": 0
+      }
+    ],
+    "completion_date": "2023-03-21",
+    "next_attempt_date": "2023-04-21"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 3,
+  "fields": {
+    "employee": 2,
+    "survey": 2,
+    "mental_state": 3,
+    "summary": {
+      "graphs": [
+        {
+          "size": "big",
+          "color": "blue",
+          "title": "Значение индекса системного выгорания",
+          "value": 0.55,
+          "max_value": 1,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокое",
+          "color": "red",
+          "title": "Эмоциональное истощение",
+          "value": 32,
+          "max_value": 54,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокое",
+          "color": "red",
+          "title": "Личностное отдаление",
+          "value": 18,
+          "max_value": 30,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокая",
+          "color": "red",
+          "title": "Редукция личных достижений",
+          "value": 26,
+          "max_value": 48,
+          "min_value": 0
+        }
+      ]
+    },
+    "results": [
+      {
+        "question_id": 11,
+        "variant_value": 3
+      },
+      {
+        "question_id": 12,
+        "variant_value": 3
+      },
+      {
+        "question_id": 13,
+        "variant_value": 2
+      },
+      {
+        "question_id": 14,
+        "variant_value": 4
+      },
+      {
+        "question_id": 15,
+        "variant_value": 3
+      },
+      {
+        "question_id": 16,
+        "variant_value": 3
+      },
+      {
+        "question_id": 17,
+        "variant_value": 4
+      },
+      {
+        "question_id": 18,
+        "variant_value": 2
+      },
+      {
+        "question_id": 19,
+        "variant_value": 4
+      },
+      {
+        "question_id": 20,
+        "variant_value": 4
+      },
+      {
+        "question_id": 21,
+        "variant_value": 3
+      },
+      {
+        "question_id": 22,
+        "variant_value": 2
+      },
+      {
+        "question_id": 23,
+        "variant_value": 4
+      },
+      {
+        "question_id": 24,
+        "variant_value": 5
+      },
+      {
+        "question_id": 25,
+        "variant_value": 4
+      },
+      {
+        "question_id": 26,
+        "variant_value": 6
+      },
+      {
+        "question_id": 27,
+        "variant_value": 2
+      },
+      {
+        "question_id": 28,
+        "variant_value": 3
+      },
+      {
+        "question_id": 29,
+        "variant_value": 3
+      },
+      {
+        "question_id": 30,
+        "variant_value": 4
+      },
+      {
+        "question_id": 31,
+        "variant_value": 4
+      },
+      {
+        "question_id": 32,
+        "variant_value": 4
+      }
+    ],
+    "completion_date": "2023-04-15",
+    "next_attempt_date": "2023-05-15"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 4,
+  "fields": {
+    "employee": 2,
+    "survey": 2,
+    "mental_state": 3,
+    "summary": {
+      "graphs": [
+        {
+          "size": "big",
+          "color": "blue",
+          "title": "Значение индекса системного выгорания",
+          "value": 0.52,
+          "max_value": 1,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "среднее",
+          "color": "yellow",
+          "title": "Эмоциональное истощение",
+          "value": 23,
+          "max_value": 54,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокое",
+          "color": "red",
+          "title": "Личностное отдаление",
+          "value": 18,
+          "max_value": 30,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокая",
+          "color": "red",
+          "title": "Редукция личных достижений",
+          "value": 23,
+          "max_value": 48,
+          "min_value": 0
+        }
+      ]
+    },
+    "results": [
+      {
+        "question_id": 11,
+        "variant_value": 1
+      },
+      {
+        "question_id": 12,
+        "variant_value": 2
+      },
+      {
+        "question_id": 13,
+        "variant_value": 5
+      },
+      {
+        "question_id": 14,
+        "variant_value": 3
+      },
+      {
+        "question_id": 15,
+        "variant_value": 1
+      },
+      {
+        "question_id": 16,
+        "variant_value": 5
+      },
+      {
+        "question_id": 17,
+        "variant_value": 1
+      },
+      {
+        "question_id": 18,
+        "variant_value": 1
+      },
+      {
+        "question_id": 19,
+        "variant_value": 4
+      },
+      {
+        "question_id": 20,
+        "variant_value": 5
+      },
+      {
+        "question_id": 21,
+        "variant_value": 3
+      },
+      {
+        "question_id": 22,
+        "variant_value": 1
+      },
+      {
+        "question_id": 23,
+        "variant_value": 4
+      },
+      {
+        "question_id": 24,
+        "variant_value": 5
+      },
+      {
+        "question_id": 25,
+        "variant_value": 5
+      },
+      {
+        "question_id": 26,
+        "variant_value": 2
+      },
+      {
+        "question_id": 27,
+        "variant_value": 2
+      },
+      {
+        "question_id": 28,
+        "variant_value": 5
+      },
+      {
+        "question_id": 29,
+        "variant_value": 6
+      },
+      {
+        "question_id": 30,
+        "variant_value": 2
+      },
+      {
+        "question_id": 31,
+        "variant_value": 1
+      },
+      {
+        "question_id": 32,
+        "variant_value": 4
+      }
+    ],
+    "completion_date": "2023-05-19",
+    "next_attempt_date": "2023-06-19"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 5,
+  "fields": {
+    "employee": 2,
+    "survey": 1,
+    "mental_state": 2,
+    "summary": null,
+    "results": [
+      {
+        "question_id": 2,
+        "variant_value": 0
+      },
+      {
+        "question_id": 1,
+        "variant_value": 1
+      },
+      {
+        "question_id": 3,
+        "variant_value": 1
+      },
+      {
+        "question_id": 4,
+        "variant_value": 0
+      },
+      {
+        "question_id": 5,
+        "variant_value": 0
+      },
+      {
+        "question_id": 6,
+        "variant_value": 0
+      },
+      {
+        "question_id": 7,
+        "variant_value": 0
+      },
+      {
+        "question_id": 8,
+        "variant_value": 0
+      },
+      {
+        "question_id": 9,
+        "variant_value": 0
+      },
+      {
+        "question_id": 10,
+        "variant_value": 0
+      }
+    ],
+    "completion_date": "2023-06-02",
+    "next_attempt_date": "2023-06-02"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 6,
+  "fields": {
+    "employee": 2,
+    "survey": 1,
+    "mental_state": 1,
+    "summary": null,
+    "results": [
+      {
+        "question_id": 1,
+        "variant_value": 0
+      },
+      {
+        "question_id": 2,
+        "variant_value": 0
+      },
+      {
+        "question_id": 3,
+        "variant_value": 0
+      },
+      {
+        "question_id": 4,
+        "variant_value": 0
+      },
+      {
+        "question_id": 5,
+        "variant_value": 0
+      },
+      {
+        "question_id": 6,
+        "variant_value": 0
+      },
+      {
+        "question_id": 7,
+        "variant_value": 0
+      },
+      {
+        "question_id": 8,
+        "variant_value": 0
+      },
+      {
+        "question_id": 9,
+        "variant_value": 0
+      },
+      {
+        "question_id": 10,
+        "variant_value": 0
+      }
+    ],
+    "completion_date": "2023-07-01",
+    "next_attempt_date": "2023-07-01"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 7,
+  "fields": {
+    "employee": 4,
+    "survey": 2,
+    "mental_state": 1,
+    "summary": {
+      "graphs": [
+        {
+          "size": "big",
+          "color": "blue",
+          "title": "Значение индекса системного выгорания",
+          "value": 0.11,
+          "max_value": 1,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "низкое",
+          "color": "green",
+          "title": "Эмоциональное истощение",
+          "value": 6,
+          "max_value": 54,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "низкое",
+          "color": "green",
+          "title": "Личностное отдаление",
+          "value": 3,
+          "max_value": 30,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "низкая",
+          "color": "green",
+          "title": "Редукция личных достижений",
+          "value": 43,
+          "max_value": 48,
+          "min_value": 0
+        }
+      ]
+    },
+    "results": [
+      {
+        "question_id": 11,
+        "variant_value": 1
+      },
+      {
+        "question_id": 12,
+        "variant_value": 0
+      },
+      {
+        "question_id": 13,
+        "variant_value": 0
+      },
+      {
+        "question_id": 14,
+        "variant_value": 6
+      },
+      {
+        "question_id": 15,
+        "variant_value": 0
+      },
+      {
+        "question_id": 16,
+        "variant_value": 5
+      },
+      {
+        "question_id": 17,
+        "variant_value": 4
+      },
+      {
+        "question_id": 18,
+        "variant_value": 0
+      },
+      {
+        "question_id": 19,
+        "variant_value": 5
+      },
+      {
+        "question_id": 20,
+        "variant_value": 1
+      },
+      {
+        "question_id": 21,
+        "variant_value": 1
+      },
+      {
+        "question_id": 22,
+        "variant_value": 6
+      },
+      {
+        "question_id": 23,
+        "variant_value": 1
+      },
+      {
+        "question_id": 24,
+        "variant_value": 2
+      },
+      {
+        "question_id": 25,
+        "variant_value": 0
+      },
+      {
+        "question_id": 26,
+        "variant_value": 1
+      },
+      {
+        "question_id": 27,
+        "variant_value": 5
+      },
+      {
+        "question_id": 28,
+        "variant_value": 6
+      },
+      {
+        "question_id": 29,
+        "variant_value": 6
+      },
+      {
+        "question_id": 30,
+        "variant_value": 0
+      },
+      {
+        "question_id": 31,
+        "variant_value": 5
+      },
+      {
+        "question_id": 32,
+        "variant_value": 1
+      }
+    ],
+    "completion_date": "2023-02-04",
+    "next_attempt_date": "2023-03-03"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 8,
+  "fields": {
+    "employee": 4,
+    "survey": 1,
+    "mental_state": 1,
+    "summary": null,
+    "results": [
+      {
+        "question_id": 1,
+        "variant_value": 0
+      },
+      {
+        "question_id": 2,
+        "variant_value": 0
+      },
+      {
+        "question_id": 3,
+        "variant_value": 0
+      },
+      {
+        "question_id": 4,
+        "variant_value": 0
+      },
+      {
+        "question_id": 5,
+        "variant_value": 0
+      },
+      {
+        "question_id": 7,
+        "variant_value": 0
+      },
+      {
+        "question_id": 8,
+        "variant_value": 0
+      },
+      {
+        "question_id": 9,
+        "variant_value": 0
+      },
+      {
+        "question_id": 10,
+        "variant_value": 0
+      },
+      {
+        "question_id": 6,
+        "variant_value": 0
+      }
+    ],
+    "completion_date": "2023-03-21",
+    "next_attempt_date": "2023-04-21"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 9,
+  "fields": {
+    "employee": 4,
+    "survey": 2,
+    "mental_state": 3,
+    "summary": {
+      "graphs": [
+        {
+          "size": "big",
+          "color": "blue",
+          "title": "Значение индекса системного выгорания",
+          "value": 0.55,
+          "max_value": 1,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокое",
+          "color": "red",
+          "title": "Эмоциональное истощение",
+          "value": 32,
+          "max_value": 54,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокое",
+          "color": "red",
+          "title": "Личностное отдаление",
+          "value": 18,
+          "max_value": 30,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокая",
+          "color": "red",
+          "title": "Редукция личных достижений",
+          "value": 26,
+          "max_value": 48,
+          "min_value": 0
+        }
+      ]
+    },
+    "results": [
+      {
+        "question_id": 11,
+        "variant_value": 3
+      },
+      {
+        "question_id": 12,
+        "variant_value": 3
+      },
+      {
+        "question_id": 13,
+        "variant_value": 2
+      },
+      {
+        "question_id": 14,
+        "variant_value": 4
+      },
+      {
+        "question_id": 15,
+        "variant_value": 3
+      },
+      {
+        "question_id": 16,
+        "variant_value": 3
+      },
+      {
+        "question_id": 17,
+        "variant_value": 4
+      },
+      {
+        "question_id": 18,
+        "variant_value": 2
+      },
+      {
+        "question_id": 19,
+        "variant_value": 4
+      },
+      {
+        "question_id": 20,
+        "variant_value": 4
+      },
+      {
+        "question_id": 21,
+        "variant_value": 3
+      },
+      {
+        "question_id": 22,
+        "variant_value": 2
+      },
+      {
+        "question_id": 23,
+        "variant_value": 4
+      },
+      {
+        "question_id": 24,
+        "variant_value": 5
+      },
+      {
+        "question_id": 25,
+        "variant_value": 4
+      },
+      {
+        "question_id": 26,
+        "variant_value": 6
+      },
+      {
+        "question_id": 27,
+        "variant_value": 2
+      },
+      {
+        "question_id": 28,
+        "variant_value": 3
+      },
+      {
+        "question_id": 29,
+        "variant_value": 3
+      },
+      {
+        "question_id": 30,
+        "variant_value": 4
+      },
+      {
+        "question_id": 31,
+        "variant_value": 4
+      },
+      {
+        "question_id": 32,
+        "variant_value": 4
+      }
+    ],
+    "completion_date": "2023-04-15",
+    "next_attempt_date": "2023-05-15"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 10,
+  "fields": {
+    "employee": 4,
+    "survey": 2,
+    "mental_state": 3,
+    "summary": {
+      "graphs": [
+        {
+          "size": "big",
+          "color": "blue",
+          "title": "Значение индекса системного выгорания",
+          "value": 0.52,
+          "max_value": 1,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "среднее",
+          "color": "yellow",
+          "title": "Эмоциональное истощение",
+          "value": 23,
+          "max_value": 54,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокое",
+          "color": "red",
+          "title": "Личностное отдаление",
+          "value": 18,
+          "max_value": 30,
+          "min_value": 0
+        },
+        {
+          "size": "medium",
+          "text": "высокая",
+          "color": "red",
+          "title": "Редукция личных достижений",
+          "value": 23,
+          "max_value": 48,
+          "min_value": 0
+        }
+      ]
+    },
+    "results": [
+      {
+        "question_id": 11,
+        "variant_value": 1
+      },
+      {
+        "question_id": 12,
+        "variant_value": 2
+      },
+      {
+        "question_id": 13,
+        "variant_value": 5
+      },
+      {
+        "question_id": 14,
+        "variant_value": 3
+      },
+      {
+        "question_id": 15,
+        "variant_value": 1
+      },
+      {
+        "question_id": 16,
+        "variant_value": 5
+      },
+      {
+        "question_id": 17,
+        "variant_value": 1
+      },
+      {
+        "question_id": 18,
+        "variant_value": 1
+      },
+      {
+        "question_id": 19,
+        "variant_value": 4
+      },
+      {
+        "question_id": 20,
+        "variant_value": 5
+      },
+      {
+        "question_id": 21,
+        "variant_value": 3
+      },
+      {
+        "question_id": 22,
+        "variant_value": 1
+      },
+      {
+        "question_id": 23,
+        "variant_value": 4
+      },
+      {
+        "question_id": 24,
+        "variant_value": 5
+      },
+      {
+        "question_id": 25,
+        "variant_value": 5
+      },
+      {
+        "question_id": 26,
+        "variant_value": 2
+      },
+      {
+        "question_id": 27,
+        "variant_value": 2
+      },
+      {
+        "question_id": 28,
+        "variant_value": 5
+      },
+      {
+        "question_id": 29,
+        "variant_value": 6
+      },
+      {
+        "question_id": 30,
+        "variant_value": 2
+      },
+      {
+        "question_id": 31,
+        "variant_value": 1
+      },
+      {
+        "question_id": 32,
+        "variant_value": 4
+      }
+    ],
+    "completion_date": "2023-05-19",
+    "next_attempt_date": "2023-06-19"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 11,
+  "fields": {
+    "employee": 4,
+    "survey": 1,
+    "mental_state": 2,
+    "summary": null,
+    "results": [
+      {
+        "question_id": 2,
+        "variant_value": 0
+      },
+      {
+        "question_id": 1,
+        "variant_value": 1
+      },
+      {
+        "question_id": 3,
+        "variant_value": 1
+      },
+      {
+        "question_id": 4,
+        "variant_value": 0
+      },
+      {
+        "question_id": 5,
+        "variant_value": 0
+      },
+      {
+        "question_id": 6,
+        "variant_value": 0
+      },
+      {
+        "question_id": 7,
+        "variant_value": 0
+      },
+      {
+        "question_id": 8,
+        "variant_value": 0
+      },
+      {
+        "question_id": 9,
+        "variant_value": 0
+      },
+      {
+        "question_id": 10,
+        "variant_value": 0
+      }
+    ],
+    "completion_date": "2023-06-02",
+    "next_attempt_date": "2023-06-02"
+  }
+},
+{
+  "model": "metrics.completedsurvey",
+  "pk": 12,
+  "fields": {
+    "employee": 4,
+    "survey": 1,
+    "mental_state": 1,
+    "summary": null,
+    "results": [
+      {
+        "question_id": 1,
+        "variant_value": 0
+      },
+      {
+        "question_id": 2,
+        "variant_value": 0
+      },
+      {
+        "question_id": 3,
+        "variant_value": 0
+      },
+      {
+        "question_id": 4,
+        "variant_value": 0
+      },
+      {
+        "question_id": 5,
+        "variant_value": 0
+      },
+      {
+        "question_id": 6,
+        "variant_value": 0
+      },
+      {
+        "question_id": 7,
+        "variant_value": 0
+      },
+      {
+        "question_id": 8,
+        "variant_value": 0
+      },
+      {
+        "question_id": 9,
+        "variant_value": 0
+      },
+      {
+        "question_id": 10,
+        "variant_value": 0
+      }
+    ],
+    "completion_date": "2023-07-01",
+    "next_attempt_date": "2023-07-01"
+  }
+},
+{
   "model": "events.category",
   "pk": 1,
   "fields": {
@@ -5164,11 +6988,13 @@
   "model": "events.entry",
   "pk": 1,
   "fields": {
-    "title": "Тестовая новость",
+    "title": "Наша компания стала главным поставщиком печенек для офисов во вселенной",
     "author": 1,
-    "preview_image": "entries/alesia-kazantceva-VWcPlbHglYc-unsplash.jpg",
-    "text": "В целом, конечно, существующая теория однозначно фиксирует необходимость экономической целесообразности принимаемых решений. А также реплицированные с зарубежных источников, современные исследования своевременно верифицированы.\r\n\r\nВот вам яркий пример современных тенденций — дальнейшее развитие различных форм деятельности говорит о возможностях форм воздействия. Господа, убеждённость некоторых оппонентов влечет за собой процесс внедрения и модернизации своевременного выполнения сверхзадачи. Приятно, граждане, наблюдать, как многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть своевременно верифицированы. Имеется спорная точка зрения, гласящая примерно следующее: некоторые особенности внутренней политики представлены в исключительно положительном свете. И нет сомнений, что интерактивные прототипы представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть представлены в исключительно положительном свете.\r\n\r\nПриятно, граждане, наблюдать, как диаграммы связей заблокированы в рамках своих собственных рациональных ограничений. В частности, курс на социально-ориентированный национальный проект требует определения и уточнения кластеризации усилий. Задача организации, в особенности же выбранный нами инновационный путь способствует повышению качества стандартных подходов. Также как укрепление и развитие внутренней структуры однозначно фиксирует необходимость поэтапного и последовательного развития общества. Господа, базовый вектор развития способствует подготовке и реализации переосмысления внешнеэкономических политик. Кстати, явные признаки победы институционализации набирают популярность среди определенных слоев населения, а значит, должны быть преданы социально-демократической анафеме.\r\n\r\nИмеется спорная точка зрения, гласящая примерно следующее: представители современных социальных резервов будут функционально разнесены на независимые элементы. Господа, понимание сути ресурсосберегающих технологий представляет собой интересный эксперимент проверки стандартных подходов. Также как граница обучения кадров позволяет выполнить важные задания по разработке стандартных подходов. С учётом сложившейся международной обстановки, внедрение современных методик влечет за собой процесс внедрения и модернизации вывода текущих активов. Принимая во внимание показатели успешности, новая модель организационной деятельности однозначно фиксирует необходимость системы массового участия. С другой стороны, укрепление и развитие внутренней структуры позволяет выполнить важные задания по разработке распределения внутренних резервов и ресурсов.\r\n\r\nВот вам яркий пример современных тенденций — современная методология разработки прекрасно подходит для реализации дальнейших направлений развития. Кстати, действия представителей оппозиции, инициированные исключительно синтетически, подвергнуты целой серии независимых исследований.\r\n\r\nТаким образом, начало повседневной работы по формированию позиции предоставляет широкие возможности для новых принципов формирования материально-технической и кадровой базы. С учётом сложившейся международной обстановки, реализация намеченных плановых заданий не даёт нам иного выбора, кроме определения новых принципов формирования материально-технической и кадровой базы.",
-    "created": "2023-05-31T09:57:37.211Z",
+    "preview_image": "entries/christina-branco-7P-wc2Z2Ujs-unsplash.jpg",
+    "description": "Мы сделали это! Наша компания Х завоевала мировое господство в сфере печенек для офисов",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-30T09:57:37.211Z",
     "category": [
       1
     ]
@@ -5178,10 +7004,12 @@
   "model": "events.entry",
   "pk": 2,
   "fields": {
-    "title": "Тестовая статья",
+    "title": "Антистрессовые танцы на рабочем месте",
     "author": 1,
-    "preview_image": "entries/redd-f-5U_28ojjgms-unsplash.jpg",
-    "text": "Не следует, однако, забывать, что постоянное информационно-пропагандистское обеспечение нашей деятельности однозначно определяет каждого участника как способного принимать собственные решения касаемо новых принципов формирования материально-технической и кадровой базы. Учитывая ключевые сценарии поведения, социально-экономическое развитие, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для системы обучения кадров, соответствующей насущным потребностям. Лишь непосредственные участники технического прогресса, вне зависимости от их уровня, должны быть подвергнуты целой серии независимых исследований. Разнообразный и богатый опыт говорит нам, что сложившаяся структура организации требует от нас анализа экономической целесообразности принимаемых решений.\r\n\r\nЛишь активно развивающиеся страны третьего мира лишь добавляют фракционных разногласий и ассоциативно распределены по отраслям. Как принято считать, ключевые особенности структуры проекта и по сей день остаются уделом либералов, которые жаждут быть обнародованы. Учитывая ключевые сценарии поведения, укрепление и развитие внутренней структуры прекрасно подходит для реализации новых предложений. Современные технологии достигли такого уровня, что новая модель организационной деятельности выявляет срочную потребность новых принципов формирования материально-технической и кадровой базы. Для современного мира существующая теория не даёт нам иного выбора, кроме определения приоретизации разума над эмоциями. И нет сомнений, что тщательные исследования конкурентов смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности.\r\n\r\nВ своём стремлении повысить качество жизни, они забывают, что существующая теория предопределяет высокую востребованность инновационных методов управления процессами. Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий однозначно фиксирует необходимость форм воздействия.\r\n\r\nМы вынуждены отталкиваться от того, что постоянный количественный рост и сфера нашей активности представляет собой интересный эксперимент проверки дальнейших направлений развития. Прежде всего, постоянный количественный рост и сфера нашей активности играет определяющее значение для экономической целесообразности принимаемых решений!\r\n\r\nСложно сказать, почему непосредственные участники технического прогресса указаны как претенденты на роль ключевых факторов. Задача организации, в особенности же убеждённость некоторых оппонентов не даёт нам иного выбора, кроме определения позиций, занимаемых участниками в отношении поставленных задач. В рамках спецификации современных стандартов, активно развивающиеся страны третьего мира заблокированы в рамках своих собственных рациональных ограничений. А также тщательные исследования конкурентов неоднозначны и будут подвергнуты целой серии независимых исследований. В рамках спецификации современных стандартов, реплицированные с зарубежных источников, современные исследования будут представлены в исключительно положительном свете. Но реализация намеченных плановых заданий не даёт нам иного выбора, кроме определения кластеризации усилий.\r\n\r\nБанальные, но неопровержимые выводы, а также некоторые особенности внутренней политики будут превращены в посмешище, хотя само их существование приносит несомненную пользу обществу. В своём стремлении повысить качество жизни, они забывают, что перспективное планирование обеспечивает актуальность как самодостаточных, так и внешне зависимых концептуальных решений. Банальные, но неопровержимые выводы, а также тщательные исследования конкурентов неоднозначны и будут объективно рассмотрены соответствующими инстанциями!",
+    "preview_image": "entries/drew-dizzy-graham-PVyhz0wmHdo-unsplash.jpg",
+    "description": "Откройте тайну танцевального оружия против выгорания! Узнайте, как эпические танцы между принтерами и переговорками помогают сохранить психологическое",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
     "created": "2023-05-31T09:58:09.986Z",
     "category": [
       2,
@@ -5193,11 +7021,13 @@
   "model": "events.entry",
   "pk": 3,
   "fields": {
-    "title": "Тестовая новость 2",
+    "title": "Открытие тренингов \"Искусство караоке на конференц-звонке\"",
     "author": 2,
-    "preview_image": "entries/samantha-gades-BlIhVfXbi9s-unsplash.jpg",
-    "text": "Приятно, граждане, наблюдать, как некоторые особенности внутренней политики, вне зависимости от их уровня, должны быть указаны как претенденты на роль ключевых факторов. Для современного мира укрепление и развитие внутренней структуры позволяет выполнить важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач. В рамках спецификации современных стандартов, стремящиеся вытеснить традиционное производство, нанотехнологии заблокированы в рамках своих собственных рациональных ограничений. С другой стороны, консультация с широким активом не оставляет шанса для переосмысления внешнеэкономических политик.\r\n\r\nБезусловно, синтетическое тестирование требует определения и уточнения экономической целесообразности принимаемых решений. В частности, начало повседневной работы по формированию позиции прекрасно подходит для реализации укрепления моральных ценностей. Мы вынуждены отталкиваться от того, что сложившаяся структура организации, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для системы обучения кадров, соответствующей насущным потребностям.\r\n\r\nНаше дело не так однозначно, как может показаться: перспективное планирование является качественно новой ступенью экономической целесообразности принимаемых решений. И нет сомнений, что активно развивающиеся страны третьего мира, превозмогая сложившуюся непростую экономическую ситуацию, своевременно верифицированы.\r\n\r\nПредварительные выводы неутешительны: внедрение современных методик однозначно определяет каждого участника как способного принимать собственные решения касаемо стандартных подходов. Не следует, однако, забывать, что постоянный количественный рост и сфера нашей активности говорит о возможностях экспериментов, поражающих по своей масштабности и грандиозности. В целом, конечно, сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании экономической целесообразности принимаемых решений. Современные технологии достигли такого уровня, что постоянное информационно-пропагандистское обеспечение нашей деятельности создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса экспериментов, поражающих по своей масштабности и грандиозности. Как принято считать, тщательные исследования конкурентов формируют глобальную экономическую сеть и при этом — своевременно верифицированы. Вот вам яркий пример современных тенденций — убеждённость некоторых оппонентов предоставляет широкие возможности для своевременного выполнения сверхзадачи.\r\n\r\nПринимая во внимание показатели успешности, дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки прогресса профессионального сообщества. Являясь всего лишь частью общей картины, тщательные исследования конкурентов являются только методом политического участия и указаны как претенденты на роль ключевых факторов. Имеется спорная точка зрения, гласящая примерно следующее: независимые государства лишь добавляют фракционных разногласий и своевременно верифицированы. Каждый из нас понимает очевидную вещь: высокотехнологичная концепция общественного уклада позволяет оценить значение прогресса профессионального сообщества. А ещё некоторые особенности внутренней политики могут быть обнародованы. Банальные, но неопровержимые выводы, а также элементы политического процесса будут объединены в целые кластеры себе подобных.\r\n\r\nУчитывая ключевые сценарии поведения, высококачественный прототип будущего проекта обеспечивает актуальность существующих финансовых и административных условий. В рамках спецификации современных стандартов, независимые государства объединены в целые кластеры себе подобных. Равным образом, реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании прогресса профессионального сообщества. С другой стороны, внедрение современных методик является качественно новой ступенью благоприятных перспектив.",
-    "created": "2023-05-31T09:58:29.884Z",
+    "preview_image": "entries/israel-palacio-Y20JJ_ddy9M-unsplash.jpg",
+    "description": "Ваше время на конференц-звонки стало слишком скучным? Мы знаем, как поднять настроение! Присоединяйтесь к нашим тренингам по караоке на созвонах",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-11T09:58:29.884Z",
     "category": [
       1
     ]
@@ -5207,11 +7037,13 @@
   "model": "events.entry",
   "pk": 4,
   "fields": {
-    "title": "Тестовый видосик",
+    "title": "Добавь щепотку сумасшествия в свой офисный режим",
     "author": 2,
-    "preview_image": "entries/alesia-kazantceva-VWcPlbHglYc-unsplash_sX2vfv0.jpg",
-    "text": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "created": "2023-05-31T09:59:11.350Z",
+    "preview_image": "entries/alesia-kazantceva-VWcPlbHglYc-unsplash_YL7weUg.jpg",
+    "description": "Раскройте секреты нашей формулы против выгорания и научитесь добавлять щепотку сумасшествия в свою офисную рутину",
+    "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "text": "",
+    "created": "2023-06-02T09:59:11.350Z",
     "category": [
       3
     ]
@@ -5221,11 +7053,13 @@
   "model": "events.entry",
   "pk": 5,
   "fields": {
-    "title": "Еще тестовый видос",
+    "title": "Превращаем скучный рабочий день в эпическую игру",
     "author": 2,
-    "preview_image": "entries/samantha-gades-BlIhVfXbi9s-unsplash_JzZERgU.jpg",
-    "text": "https://www.youtube.com/watch?v=djV11Xbc914",
-    "created": "2023-05-31T09:59:47.982Z",
+    "preview_image": "entries/john-schnobrich-2FPjlAyMQTA-unsplash.jpg",
+    "description": "Отправляйтесь в офисные приключения, где скучный рабочий день превращается в эпическую игру",
+    "url": "https://www.youtube.com/watch?v=djV11Xbc914",
+    "text": "",
+    "created": "2023-06-23T09:59:47.982Z",
     "category": [
       3,
       6
@@ -5236,11 +7070,13 @@
   "model": "events.entry",
   "pk": 6,
   "fields": {
-    "title": "Тестовый видос 3",
+    "title": "Как найти счастье в горшке с растением",
     "author": 2,
-    "preview_image": "entries/ian-dooley-DJ7bWa-Gwks-unsplash.jpg",
-    "text": "https://www.youtube.com/watch?v=2wwCG56iVPw",
-    "created": "2023-05-31T10:00:21.737Z",
+    "preview_image": "entries/adeolu-eletu-hUU9dtVUg8U-unsplash.jpg",
+    "description": "Раскройте секреты нашей офисной флоры и узнайте, как горшок с растением на рабочем столе может стать источником счастья и победы над выгоранием",
+    "url": "https://www.youtube.com/watch?v=2wwCG56iVPw",
+    "text": "",
+    "created": "2023-06-17T10:00:21.737Z",
     "category": [
       3
     ]
@@ -5250,14 +7086,16 @@
   "model": "events.entry",
   "pk": 7,
   "fields": {
-    "title": "Тестовая статья 2",
+    "title": "Хобби-тренировка в поисках внутреннего счастья",
     "author": 2,
     "preview_image": "entries/marvin-meyer-SYTO3xs06fU-unsplash.jpg",
-    "text": "Приятно, граждане, наблюдать, как некоторые особенности внутренней политики, вне зависимости от их уровня, должны быть указаны как претенденты на роль ключевых факторов. Для современного мира укрепление и развитие внутренней структуры позволяет выполнить важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач. В рамках спецификации современных стандартов, стремящиеся вытеснить традиционное производство, нанотехнологии заблокированы в рамках своих собственных рациональных ограничений. С другой стороны, консультация с широким активом не оставляет шанса для переосмысления внешнеэкономических политик.\r\n\r\nБезусловно, синтетическое тестирование требует определения и уточнения экономической целесообразности принимаемых решений. В частности, начало повседневной работы по формированию позиции прекрасно подходит для реализации укрепления моральных ценностей. Мы вынуждены отталкиваться от того, что сложившаяся структура организации, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для системы обучения кадров, соответствующей насущным потребностям.\r\n\r\nНаше дело не так однозначно, как может показаться: перспективное планирование является качественно новой ступенью экономической целесообразности принимаемых решений. И нет сомнений, что активно развивающиеся страны третьего мира, превозмогая сложившуюся непростую экономическую ситуацию, своевременно верифицированы.\r\n\r\nПредварительные выводы неутешительны: внедрение современных методик однозначно определяет каждого участника как способного принимать собственные решения касаемо стандартных подходов. Не следует, однако, забывать, что постоянный количественный рост и сфера нашей активности говорит о возможностях экспериментов, поражающих по своей масштабности и грандиозности. В целом, конечно, сложившаяся структура организации обеспечивает широкому кругу (специалистов) участие в формировании экономической целесообразности принимаемых решений. Современные технологии достигли такого уровня, что постоянное информационно-пропагандистское обеспечение нашей деятельности создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса экспериментов, поражающих по своей масштабности и грандиозности. Как принято считать, тщательные исследования конкурентов формируют глобальную экономическую сеть и при этом — своевременно верифицированы. Вот вам яркий пример современных тенденций — убеждённость некоторых оппонентов предоставляет широкие возможности для своевременного выполнения сверхзадачи.\r\n\r\nПринимая во внимание показатели успешности, дальнейшее развитие различных форм деятельности представляет собой интересный эксперимент проверки прогресса профессионального сообщества. Являясь всего лишь частью общей картины, тщательные исследования конкурентов являются только методом политического участия и указаны как претенденты на роль ключевых факторов. Имеется спорная точка зрения, гласящая примерно следующее: независимые государства лишь добавляют фракционных разногласий и своевременно верифицированы. Каждый из нас понимает очевидную вещь: высокотехнологичная концепция общественного уклада позволяет оценить значение прогресса профессионального сообщества. А ещё некоторые особенности внутренней политики могут быть обнародованы. Банальные, но неопровержимые выводы, а также элементы политического процесса будут объединены в целые кластеры себе подобных.\r\n\r\nУчитывая ключевые сценарии поведения, высококачественный прототип будущего проекта обеспечивает актуальность существующих финансовых и административных условий. В рамках спецификации современных стандартов, независимые государства объединены в целые кластеры себе подобных. Равным образом, реализация намеченных плановых заданий обеспечивает широкому кругу (специалистов) участие в формировании прогресса профессионального сообщества. С другой стороны, внедрение современных методик является качественно новой ступенью благоприятных перспектив.",
-    "created": "2023-05-31T10:00:55.388Z",
+    "description": "Прыжки на батуте и стрельба из пузырькового пистолета - наше секретное оружие в борьбе с выгоранием. Готовы вступить в тренировке?",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-16T10:00:55.388Z",
     "category": [
-      5,
-      2
+      2,
+      5
     ]
   }
 },
@@ -5265,11 +7103,13 @@
   "model": "events.entry",
   "pk": 8,
   "fields": {
-    "title": "Тестовая статья 3",
+    "title": "Как обезвредить своего врага №1 - бумажную работу",
     "author": 2,
-    "preview_image": "entries/marissa-grootes-flRm0z3MEoA-unsplash.jpg",
-    "text": "Картельные сговоры не допускают ситуации, при которой диаграммы связей будут описаны максимально подробно. Сложно сказать, почему сделанные на базе интернет-аналитики выводы неоднозначны и будут объявлены нарушающими общечеловеческие нормы этики и морали. Мы вынуждены отталкиваться от того, что укрепление и развитие внутренней структуры однозначно определяет каждого участника как способного принимать собственные решения касаемо анализа существующих паттернов поведения. Банальные, но неопровержимые выводы, а также независимые государства призывают нас к новым свершениям, которые, в свою очередь, должны быть объявлены нарушающими общечеловеческие нормы этики и морали.\r\n\r\nСложно сказать, почему сделанные на базе интернет-аналитики выводы набирают популярность среди определенных слоев населения, а значит, должны быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Имеется спорная точка зрения, гласящая примерно следующее: интерактивные прототипы будут смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Имеется спорная точка зрения, гласящая примерно следующее: интерактивные прототипы, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут ассоциативно распределены по отраслям. Повседневная практика показывает, что высококачественный прототип будущего проекта однозначно фиксирует необходимость распределения внутренних резервов и ресурсов.\r\n\r\nКак уже неоднократно упомянуто, базовые сценарии поведения пользователей ассоциативно распределены по отраслям. Таким образом, разбавленное изрядной долей эмпатии, рациональное мышление требует определения и уточнения вывода текущих активов. Таким образом, глубокий уровень погружения позволяет выполнить важные задания по разработке системы массового участия. Разнообразный и богатый опыт говорит нам, что начало повседневной работы по формированию позиции требует определения и уточнения переосмысления внешнеэкономических политик. Приятно, граждане, наблюдать, как активно развивающиеся страны третьего мира разоблачены.\r\n\r\nА ещё предприниматели в сети интернет могут быть преданы социально-демократической анафеме! Задача организации, в особенности же современная методология разработки позволяет оценить значение благоприятных перспектив. Следует отметить, что базовый вектор развития обеспечивает актуальность новых принципов формирования материально-технической и кадровой базы. А также сделанные на базе интернет-аналитики выводы в равной степени предоставлены сами себе!\r\n\r\nОднозначно, активно развивающиеся страны третьего мира преданы социально-демократической анафеме. Кстати, базовые сценарии поведения пользователей будут представлены в исключительно положительном свете. С другой стороны, высококачественный прототип будущего проекта влечет за собой процесс внедрения и модернизации переосмысления внешнеэкономических политик.\r\n\r\nСледует отметить, что высокотехнологичная концепция общественного уклада, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для приоретизации разума над эмоциями. Как уже неоднократно упомянуто, явные признаки победы институционализации освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, представлены в исключительно положительном свете.",
-    "created": "2023-05-31T10:01:16.745Z",
+    "preview_image": "entries/brandi-redd-aJTiW00qqtI-unsplash.jpg",
+    "description": "Узнайте, как наши супергерои справляются с бумажными злодеями и преодолевают барьеры выгорания",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-08T10:01:16.745Z",
     "category": [
       2
     ]
@@ -5279,11 +7119,13 @@
   "model": "events.entry",
   "pk": 9,
   "fields": {
-    "title": "Тестовая новость 3",
+    "title": "Объявлен набор в команду \"Сила бумаги\"",
     "author": 2,
-    "preview_image": "entries/christin-hume-Hcfwew744z4-unsplash.jpg",
-    "text": "Лишь предприниматели в сети интернет описаны максимально подробно. Для современного мира убеждённость некоторых оппонентов однозначно определяет каждого участника как способного принимать собственные решения касаемо переосмысления внешнеэкономических политик. Картельные сговоры не допускают ситуации, при которой диаграммы связей и по сей день остаются уделом либералов, которые жаждут быть ограничены исключительно образом мышления. Как принято считать, ключевые особенности структуры проекта представлены в исключительно положительном свете. Однозначно, действия представителей оппозиции формируют глобальную экономическую сеть и при этом — ассоциативно распределены по отраслям. Разнообразный и богатый опыт говорит нам, что новая модель организационной деятельности играет важную роль в формировании распределения внутренних резервов и ресурсов.\r\n\r\nИдейные соображения высшего порядка, а также постоянное информационно-пропагандистское обеспечение нашей деятельности требует определения и уточнения системы обучения кадров, соответствующей насущным потребностям. Прежде всего, новая модель организационной деятельности выявляет срочную потребность существующих финансовых и административных условий. Прежде всего, синтетическое тестирование играет определяющее значение для дальнейших направлений развития. Также как дальнейшее развитие различных форм деятельности создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса дальнейших направлений развития.\r\n\r\nВ целом, конечно, начало повседневной работы по формированию позиции обеспечивает актуальность системы массового участия. Вот вам яркий пример современных тенденций — дальнейшее развитие различных форм деятельности способствует повышению качества благоприятных перспектив. И нет сомнений, что диаграммы связей призывают нас к новым свершениям, которые, в свою очередь, должны быть преданы социально-демократической анафеме. Идейные соображения высшего порядка, а также выбранный нами инновационный путь создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса дальнейших направлений развития.\r\n\r\nПротивоположная точка зрения подразумевает, что предприниматели в сети интернет объединены в целые кластеры себе подобных. Задача организации, в особенности же высокое качество позиционных исследований создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса прогресса профессионального сообщества. Внезапно, непосредственные участники технического прогресса, вне зависимости от их уровня, должны быть объединены в целые кластеры себе подобных. В целом, конечно, современная методология разработки не даёт нам иного выбора, кроме определения экспериментов, поражающих по своей масштабности и грандиозности. Являясь всего лишь частью общей картины, интерактивные прототипы могут быть ассоциативно распределены по отраслям. Задача организации, в особенности же реализация намеченных плановых заданий предоставляет широкие возможности для инновационных методов управления процессами.\r\n\r\nКартельные сговоры не допускают ситуации, при которой явные признаки победы институционализации представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть представлены в исключительно положительном свете. Но понимание сути ресурсосберегающих технологий требует от нас анализа переосмысления внешнеэкономических политик! Кстати, диаграммы связей заблокированы в рамках своих собственных рациональных ограничений. Каждый из нас понимает очевидную вещь: реализация намеченных плановых заданий является качественно новой ступенью вывода текущих активов. Задача организации, в особенности же дальнейшее развитие различных форм деятельности говорит о возможностях системы обучения кадров, соответствующей насущным потребностям.\r\n\r\nЯсность нашей позиции очевидна: сложившаяся структура организации является качественно новой ступенью позиций, занимаемых участниками в отношении поставленных задач. В частности, семантический разбор внешних противодействий способствует подготовке и реализации экспериментов, поражающих по своей масштабности и грандиозности! И нет сомнений, что акционеры крупнейших компаний, превозмогая сложившуюся непростую экономическую ситуацию, указаны как претенденты на роль ключевых факторов. Принимая во внимание показатели успешности, глубокий уровень погружения играет определяющее значение для укрепления моральных ценностей.",
-    "created": "2023-05-31T10:01:44.055Z",
+    "preview_image": "entries/nick-morrison-FHnnjk1Yj7Y-unsplash.jpg",
+    "description": "Присоединяйтесь к нашей команде \"Сила Бумаги\", где ваше оружие – крепкий кофе и непобедимые навыки справляться с бумажной работой",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-14T10:01:44.055Z",
     "category": [
       1
     ]
@@ -5293,11 +7135,13 @@
   "model": "events.entry",
   "pk": 10,
   "fields": {
-    "title": "Тестовая новость 4",
+    "title": "Офисная йога для героев",
     "author": 2,
-    "preview_image": "entries/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg",
-    "text": "Значимость этих проблем настолько очевидна, что убеждённость некоторых оппонентов однозначно фиксирует необходимость форм воздействия. Лишь предприниматели в сети интернет призывают нас к новым свершениям, которые, в свою очередь, должны быть указаны как претенденты на роль ключевых факторов.\r\n\r\nПротивоположная точка зрения подразумевает, что сделанные на базе интернет-аналитики выводы освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Как уже неоднократно упомянуто, ключевые особенности структуры проекта освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, в равной степени предоставлены сами себе. Есть над чем задуматься: акционеры крупнейших компаний, инициированные исключительно синтетически, подвергнуты целой серии независимых исследований. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности подвергнуты целой серии независимых исследований. В своём стремлении улучшить пользовательский опыт мы упускаем, что интерактивные прототипы, которые представляют собой яркий пример континентально-европейского типа политической культуры, будут функционально разнесены на независимые элементы. Банальные, но неопровержимые выводы, а также реплицированные с зарубежных источников, современные исследования могут быть объединены в целые кластеры себе подобных.\r\n\r\nСледует отметить, что постоянный количественный рост и сфера нашей активности напрямую зависит от направлений прогрессивного развития. Но повышение уровня гражданского сознания требует анализа анализа существующих паттернов поведения. Приятно, граждане, наблюдать, как действия представителей оппозиции неоднозначны и будут ассоциативно распределены по отраслям. Предварительные выводы неутешительны: семантический разбор внешних противодействий в значительной степени обусловливает важность существующих финансовых и административных условий.\r\n\r\nКартельные сговоры не допускают ситуации, при которой независимые государства призваны к ответу. Также как граница обучения кадров способствует повышению качества позиций, занимаемых участниками в отношении поставленных задач!\r\n\r\nБанальные, но неопровержимые выводы, а также реплицированные с зарубежных источников, современные исследования формируют глобальную экономическую сеть и при этом — подвергнуты целой серии независимых исследований. И нет сомнений, что интерактивные прототипы могут быть призваны к ответу. В целом, конечно, глубокий уровень погружения требует определения и уточнения поэтапного и последовательного развития общества. Господа, существующая теория создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса своевременного выполнения сверхзадачи.\r\n\r\nИмеется спорная точка зрения, гласящая примерно следующее: акционеры крупнейших компаний объявлены нарушающими общечеловеческие нормы этики и морали. Однозначно, многие известные личности лишь добавляют фракционных разногласий и объективно рассмотрены соответствующими инстанциями. Но существующая теория, в своём классическом представлении, допускает внедрение новых принципов формирования материально-технической и кадровой базы. А ещё диаграммы связей объявлены нарушающими общечеловеческие нормы этики и морали. Лишь активно развивающиеся страны третьего мира подвергнуты целой серии независимых исследований.",
-    "created": "2023-05-31T10:02:05.830Z",
+    "preview_image": "entries/chelsea-gates-n8L1VYaypcw-unsplash.jpg",
+    "description": "Превратите свой офис в зону спокойствия и гармонии с помощью офисной йоги. Узнайте, как выполнять позу \"Улыбающийся босс\" и побеждайте выгорание",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-07-01T10:02:05.830Z",
     "category": [
       1
     ]
@@ -5307,11 +7151,13 @@
   "model": "events.entry",
   "pk": 11,
   "fields": {
-    "title": "Тестовая статья 4",
+    "title": "Шпионские ходы против выгорания",
     "author": 2,
-    "preview_image": "entries/olena-sergienko-dIMJWLx1YbE-unsplash.jpg",
-    "text": "В частности, понимание сути ресурсосберегающих технологий создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса новых предложений. Внезапно, многие известные личности формируют глобальную экономическую сеть и при этом — объявлены нарушающими общечеловеческие нормы этики и морали. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное планирование способствует подготовке и реализации кластеризации усилий.\r\n\r\nВот вам яркий пример современных тенденций — высококачественный прототип будущего проекта, в своём классическом представлении, допускает внедрение новых принципов формирования материально-технической и кадровой базы. Идейные соображения высшего порядка, а также реализация намеченных плановых заданий способствует повышению качества своевременного выполнения сверхзадачи.\r\n\r\nБезусловно, понимание сути ресурсосберегающих технологий требует анализа кластеризации усилий. Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции способствует повышению качества приоретизации разума над эмоциями. Но тщательные исследования конкурентов своевременно верифицированы. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности будут объединены в целые кластеры себе подобных.\r\n\r\nВысокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: укрепление и развитие внутренней структуры не оставляет шанса для модели развития. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции предоставляет широкие возможности для как самодостаточных, так и внешне зависимых концептуальных решений.\r\n\r\nОднозначно, активно развивающиеся страны третьего мира являются только методом политического участия и объявлены нарушающими общечеловеческие нормы этики и морали. Равным образом, консультация с широким активом однозначно определяет каждого участника как способного принимать собственные решения касаемо распределения внутренних резервов и ресурсов. Сложно сказать, почему сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую ситуацию, обнародованы. Не следует, однако, забывать, что консультация с широким активом является качественно новой ступенью благоприятных перспектив. Банальные, но неопровержимые выводы, а также непосредственные участники технического прогресса представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть указаны как претенденты на роль ключевых факторов. Для современного мира синтетическое тестирование однозначно определяет каждого участника как способного принимать собственные решения касаемо экономической целесообразности принимаемых решений.\r\n\r\nТакже как синтетическое тестирование позволяет выполнить важные задания по разработке поэтапного и последовательного развития общества! Разнообразный и богатый опыт говорит нам, что дальнейшее развитие различных форм деятельности играет определяющее значение для экспериментов, поражающих по своей масштабности и грандиозности. Ясность нашей позиции очевидна: начало повседневной работы по формированию позиции выявляет срочную потребность соответствующих условий активизации. Но элементы политического процесса, инициированные исключительно синтетически, объективно рассмотрены соответствующими инстанциями. Вот вам яркий пример современных тенденций — высококачественный прототип будущего проекта обеспечивает широкому кругу (специалистов) участие в формировании системы массового участия. Как принято считать, многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть ограничены исключительно образом мышления.",
-    "created": "2023-05-31T10:02:27.217Z",
+    "preview_image": "entries/olena-sergienko-dIMJWLx1YbE-unsplash_wgEanOV.jpg",
+    "description": "Освойте техники шпионской маскировки и переживите бессмысленные совещания, притворяясь занятым гениальным писателем",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-05-16T10:02:27.217Z",
     "category": [
       2
     ]
@@ -5321,11 +7167,13 @@
   "model": "events.entry",
   "pk": 12,
   "fields": {
-    "title": "Тестовая статья 5",
+    "title": "Как пережить вечность ожидания в очереди за кофе",
     "author": 2,
-    "preview_image": "entries/alex-kotliarskyi-QBpZGqEMsKg-unsplash_2zIcgKG.jpg",
-    "text": "В частности, понимание сути ресурсосберегающих технологий создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса новых предложений. Внезапно, многие известные личности формируют глобальную экономическую сеть и при этом — объявлены нарушающими общечеловеческие нормы этики и морали. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: перспективное планирование способствует подготовке и реализации кластеризации усилий.\r\n\r\nВот вам яркий пример современных тенденций — высококачественный прототип будущего проекта, в своём классическом представлении, допускает внедрение новых принципов формирования материально-технической и кадровой базы. Идейные соображения высшего порядка, а также реализация намеченных плановых заданий способствует повышению качества своевременного выполнения сверхзадачи.\r\n\r\nБезусловно, понимание сути ресурсосберегающих технологий требует анализа кластеризации усилий. Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции способствует повышению качества приоретизации разума над эмоциями. Но тщательные исследования конкурентов своевременно верифицированы. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности будут объединены в целые кластеры себе подобных.\r\n\r\nВысокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: укрепление и развитие внутренней структуры не оставляет шанса для модели развития. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции предоставляет широкие возможности для как самодостаточных, так и внешне зависимых концептуальных решений.\r\n\r\nОднозначно, активно развивающиеся страны третьего мира являются только методом политического участия и объявлены нарушающими общечеловеческие нормы этики и морали. Равным образом, консультация с широким активом однозначно определяет каждого участника как способного принимать собственные решения касаемо распределения внутренних резервов и ресурсов. Сложно сказать, почему сторонники тоталитаризма в науке, превозмогая сложившуюся непростую экономическую ситуацию, обнародованы. Не следует, однако, забывать, что консультация с широким активом является качественно новой ступенью благоприятных перспектив. Банальные, но неопровержимые выводы, а также непосредственные участники технического прогресса представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть указаны как претенденты на роль ключевых факторов. Для современного мира синтетическое тестирование однозначно определяет каждого участника как способного принимать собственные решения касаемо экономической целесообразности принимаемых решений.\r\n\r\nТакже как синтетическое тестирование позволяет выполнить важные задания по разработке поэтапного и последовательного развития общества! Разнообразный и богатый опыт говорит нам, что дальнейшее развитие различных форм деятельности играет определяющее значение для экспериментов, поражающих по своей масштабности и грандиозности. Ясность нашей позиции очевидна: начало повседневной работы по формированию позиции выявляет срочную потребность соответствующих условий активизации. Но элементы политического процесса, инициированные исключительно синтетически, объективно рассмотрены соответствующими инстанциями. Вот вам яркий пример современных тенденций — высококачественный прототип будущего проекта обеспечивает широкому кругу (специалистов) участие в формировании системы массового участия. Как принято считать, многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть ограничены исключительно образом мышления.",
-    "created": "2023-05-31T10:02:58.478Z",
+    "preview_image": "entries/general-bytes-Mb_KxKr5ZMU-unsplash.jpg",
+    "description": "Путешествуйте во времени и сразитесь с выгоранием, находясь в борьбе с бесконечной очередью за кофе. Узнайте, как использовать свою суперсилу терпения",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-18T10:02:58.478Z",
     "category": [
       2
     ]
@@ -5335,11 +7183,13 @@
   "model": "events.entry",
   "pk": 13,
   "fields": {
-    "title": "Тестовая новость 5",
+    "title": "Преображение кофейных автоматов",
     "author": 2,
-    "preview_image": "entries/olena-sergienko-dIMJWLx1YbE-unsplash_CbYdQYC.jpg",
-    "text": "Наше дело не так однозначно, как может показаться: новая модель организационной деятельности, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для поэтапного и последовательного развития общества. С другой стороны, высокотехнологичная концепция общественного уклада, а также свежий взгляд на привычные вещи — безусловно открывает новые горизонты для переосмысления внешнеэкономических политик. Сложно сказать, почему базовые сценарии поведения пользователей, инициированные исключительно синтетически, объявлены нарушающими общечеловеческие нормы этики и морали.\r\n\r\nНе следует, однако, забывать, что современная методология разработки не оставляет шанса для инновационных методов управления процессами. Лишь сделанные на базе интернет-аналитики выводы будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Задача организации, в особенности же повышение уровня гражданского сознания в значительной степени обусловливает важность стандартных подходов. Идейные соображения высшего порядка, а также существующая теория однозначно фиксирует необходимость поставленных обществом задач. Господа, синтетическое тестирование однозначно определяет каждого участника как способного принимать собственные решения касаемо системы массового участия.\r\n\r\nЗадача организации, в особенности же реализация намеченных плановых заданий напрямую зависит от новых предложений. Разнообразный и богатый опыт говорит нам, что выбранный нами инновационный путь не даёт нам иного выбора, кроме определения стандартных подходов.\r\n\r\nНаше дело не так однозначно, как может показаться: синтетическое тестирование играет определяющее значение для распределения внутренних резервов и ресурсов. Повседневная практика показывает, что высококачественный прототип будущего проекта представляет собой интересный эксперимент проверки первоочередных требований. Для современного мира глубокий уровень погружения прекрасно подходит для реализации прогресса профессионального сообщества. Ясность нашей позиции очевидна: понимание сути ресурсосберегающих технологий, в своём классическом представлении, допускает внедрение дальнейших направлений развития.\r\n\r\nИдейные соображения высшего порядка, а также начало повседневной работы по формированию позиции предполагает независимые способы реализации позиций, занимаемых участниками в отношении поставленных задач. Значимость этих проблем настолько очевидна, что перспективное планирование представляет собой интересный эксперимент проверки вывода текущих активов. И нет сомнений, что акционеры крупнейших компаний представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть преданы социально-демократической анафеме. Следует отметить, что существующая теория требует от нас анализа кластеризации усилий. Равным образом, граница обучения кадров является качественно новой ступенью вывода текущих активов. И нет сомнений, что ключевые особенности структуры проекта указаны как претенденты на роль ключевых факторов.\r\n\r\nНо многие известные личности подвергнуты целой серии независимых исследований. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: сложившаяся структура организации требует от нас анализа как самодостаточных, так и внешне зависимых концептуальных решений. Как уже неоднократно упомянуто, акционеры крупнейших компаний могут быть своевременно верифицированы. В своём стремлении улучшить пользовательский опыт мы упускаем, что многие известные личности призывают нас к новым свершениям, которые, в свою очередь, должны быть описаны максимально подробно. Принимая во внимание показатели успешности, высококачественный прототип будущего проекта не оставляет шанса для поставленных обществом задач.",
-    "created": "2023-05-31T10:03:14.526Z",
+    "preview_image": "entries/isaac-matthew-B6oNA5ACILY-unsplash.jpg",
+    "description": "Мы смогли уловить суть самого времени! Теперь наши кофейные автоматы обладают удивительной способностью создавать временные порталы",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-03T10:03:14.526Z",
     "category": [
       1
     ]
@@ -5349,14 +7199,34 @@
   "model": "events.entry",
   "pk": 14,
   "fields": {
-    "title": "Тестовая статья 6",
+    "title": "Как обладать силой копировальной машины",
     "author": 2,
-    "preview_image": "entries/alesia-kazantceva-VWcPlbHglYc-unsplash_5qbPFly.jpg",
-    "text": "В своём стремлении улучшить пользовательский опыт мы упускаем, что сторонники тоталитаризма в науке лишь добавляют фракционных разногласий и в равной степени предоставлены сами себе. С другой стороны, семантический разбор внешних противодействий говорит о возможностях распределения внутренних резервов и ресурсов. Учитывая ключевые сценарии поведения, дальнейшее развитие различных форм деятельности требует анализа экспериментов, поражающих по своей масштабности и грандиозности.\r\n\r\nБезусловно, выбранный нами инновационный путь влечет за собой процесс внедрения и модернизации направлений прогрессивного развития. Ясность нашей позиции очевидна: постоянное информационно-пропагандистское обеспечение нашей деятельности прекрасно подходит для реализации стандартных подходов. Есть над чем задуматься: диаграммы связей в равной степени предоставлены сами себе! Задача организации, в особенности же базовый вектор развития требует от нас анализа прогресса профессионального сообщества. В своём стремлении улучшить пользовательский опыт мы упускаем, что стремящиеся вытеснить традиционное производство, нанотехнологии будут превращены в посмешище, хотя само их существование приносит несомненную пользу обществу.\r\n\r\nВнезапно, действия представителей оппозиции и по сей день остаются уделом либералов, которые жаждут быть ассоциативно распределены по отраслям. Прежде всего, семантический разбор внешних противодействий выявляет срочную потребность стандартных подходов. Но сделанные на базе интернет-аналитики выводы лишь добавляют фракционных разногласий и смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Являясь всего лишь частью общей картины, тщательные исследования конкурентов неоднозначны и будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. А ещё предприниматели в сети интернет смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности. Есть над чем задуматься: многие известные личности набирают популярность среди определенных слоев населения, а значит, должны быть разоблачены.\r\n\r\nЯвляясь всего лишь частью общей картины, независимые государства объединены в целые кластеры себе подобных. С другой стороны, экономическая повестка сегодняшнего дня однозначно определяет каждого участника как способного принимать собственные решения касаемо направлений прогрессивного развития. Высокий уровень вовлечения представителей целевой аудитории является четким доказательством простого факта: постоянный количественный рост и сфера нашей активности способствует подготовке и реализации поэтапного и последовательного развития общества! Повседневная практика показывает, что существующая теория позволяет выполнить важные задания по разработке новых предложений. С другой стороны, высокотехнологичная концепция общественного уклада обеспечивает актуальность первоочередных требований.\r\n\r\nПринимая во внимание показатели успешности, сложившаяся структура организации предполагает независимые способы реализации системы обучения кадров, соответствующей насущным потребностям. Картельные сговоры не допускают ситуации, при которой реплицированные с зарубежных источников, современные исследования и по сей день остаются уделом либералов, которые жаждут быть ассоциативно распределены по отраслям. Сложно сказать, почему непосредственные участники технического прогресса обнародованы! И нет сомнений, что непосредственные участники технического прогресса представляют собой не что иное, как квинтэссенцию победы маркетинга над разумом и должны быть обнародованы. Противоположная точка зрения подразумевает, что элементы политического процесса освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, представлены в исключительно положительном свете. Повседневная практика показывает, что высокотехнологичная концепция общественного уклада создаёт предпосылки для прогресса профессионального сообщества.\r\n\r\nКак уже неоднократно упомянуто, интерактивные прототипы формируют глобальную экономическую сеть и при этом — представлены в исключительно положительном свете. В рамках спецификации современных стандартов, многие известные личности подвергнуты целой серии независимых исследований. Предварительные выводы неутешительны: повышение уровня гражданского сознания говорит о возможностях системы обучения кадров, соответствующей насущным потребностям. Вот вам яркий пример современных тенденций — социально-экономическое развитие способствует подготовке и реализации стандартных подходов.",
-    "created": "2023-05-31T10:03:33.299Z",
+    "preview_image": "entries/nastuh-abootalebi-ZtC4_rPCRXA-unsplash.jpg",
+    "description": "Раскройте секреты суперспособности - управления копировальной машиной! Узнайте, как она может стать вашим союзником в борьбе с выгоранием",
+    "url": null,
+    "text": "Компания Х объявляет о нескольких важных событиях, происходящих внутри организации. В рамках стратегического развития и улучшения рабочей среды для сотрудников, руководство компании приняло ряд инициатив.\r\n\r\nВ первом анонсе сообщается о введении новой программы по обучению сотрудников. Компания Х признает, что инвестирование в развитие своих сотрудников – это ключевой фактор успеха. Поэтому была разработана специальная обучающая программа, которая позволит сотрудникам развивать свои профессиональные навыки и повышать свою эффективность в работе.\r\n\r\nВторое важное объявление связано с запуском нового проекта внутренней коммуникации. Компания Х понимает, что эффективное взаимодействие и обмен информацией между сотрудниками – это основа успешной работы. Поэтому была создана платформа, которая облегчит коммуникацию, обмен знаниями и сотрудничество между различными отделами и командами внутри компании.\r\n\r\nТретье объявление касается проведения внутреннего конкурса на лучшую идею. Компания Х призывает сотрудников выносить свои предложения и идеи, которые могут способствовать улучшению работы компании и ее продуктов. Лучшие идеи будут вознаграждены, а их авторы получат возможность реализовать свои проекты под руководством экспертов компании.\r\n\r\nЧетвертое объявление связано с расширением команды компании Х. В связи с ростом бизнеса и увеличением объема работ, компания принимает на работу новых специалистов в различные отделы. Руководство компании приглашает всех желающих присоединиться к их дружной команде и внести свой вклад в развитие организации.\r\n\r\nПятое и последнее объявление касается организации корпоративного мероприятия. Компания Х планирует провести тематическую вечеринку для своих сотрудников, чтобы отметить достижения и укрепить командный дух. Мероприятие будет включать в себя различные развлекательные активности, конкурсы и угощения.",
+    "created": "2023-06-25T10:03:33.299Z",
     "category": [
       2,
       4
+    ]
+  }
+},
+{
+  "model": "events.entry",
+  "pk": 15,
+  "fields": {
+    "title": "Как справиться с выгоранием, надев маску креативности",
+    "author": 3,
+    "preview_image": "entries/entries_thumbnail.jpg",
+    "description": "Встречайте наших офисных супергероев, которые справляются с выгоранием, надевая маску креативности",
+    "url": "https://yasno.live/",
+    "text": "",
+    "created": "2023-06-22T13:06:09.445Z",
+    "category": [
+      2,
+      4,
+      5
     ]
   }
 },
@@ -5418,6 +7288,226 @@
     "end_time": "2023-08-01T12:20:00Z",
     "departments": [],
     "employees": []
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 3,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-03-11",
+    "mental_state": 1,
+    "comment": "По результатам встречи сотрудник проявлял интерес к работе и с огнем в глазах рассказывал как он рад наконец работать в нашей компании."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 4,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-04-18",
+    "mental_state": 2,
+    "comment": "Сотрудник явно был не в настроении, выявлены симптомы раздраженности и утомления. Кажется он начал подозревать куда он попал."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 5,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-05-23",
+    "mental_state": 3,
+    "comment": "Сотрудник нервно ходил по кабинету из стороны в сторону, его руки дрожали, а с лица стекал пот. Он все нервно повторял \"они придут за мной, придут за мной\". Позже он сделал сальто и ушиб голову. Вызвали санитаров."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 6,
+  "fields": {
+    "organizer": 2,
+    "employee": 4,
+    "date": "2023-06-19",
+    "mental_state": 1,
+    "comment": "После небольшого отдыха в учреждении, сотрудник явно стал спокойнее, на лице постоянная улыбка и желание дальше работать."
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 7,
+  "fields": {
+    "organizer": 2,
+    "employee": 6,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 8,
+  "fields": {
+    "organizer": 2,
+    "employee": 17,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 9,
+  "fields": {
+    "organizer": 2,
+    "employee": 21,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 10,
+  "fields": {
+    "organizer": 2,
+    "employee": 12,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 11,
+  "fields": {
+    "organizer": 2,
+    "employee": 3,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 12,
+  "fields": {
+    "organizer": 2,
+    "employee": 13,
+    "date": "2023-06-30",
+    "mental_state": 3,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 13,
+  "fields": {
+    "organizer": 2,
+    "employee": 18,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 14,
+  "fields": {
+    "organizer": 2,
+    "employee": 20,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 15,
+  "fields": {
+    "organizer": 2,
+    "employee": 23,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 16,
+  "fields": {
+    "organizer": 2,
+    "employee": 7,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 17,
+  "fields": {
+    "organizer": 2,
+    "employee": 19,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 18,
+  "fields": {
+    "organizer": 2,
+    "employee": 10,
+    "date": "2023-06-30",
+    "mental_state": 3,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 19,
+  "fields": {
+    "organizer": 2,
+    "employee": 5,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 20,
+  "fields": {
+    "organizer": 2,
+    "employee": 22,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 21,
+  "fields": {
+    "organizer": 2,
+    "employee": 14,
+    "date": "2023-06-30",
+    "mental_state": 1,
+    "comment": "Описание результата встречи"
+  }
+},
+{
+  "model": "events.meetingresult",
+  "pk": 22,
+  "fields": {
+    "organizer": 2,
+    "employee": 15,
+    "date": "2023-06-30",
+    "mental_state": 2,
+    "comment": "Описание результата встречи"
   }
 },
 {

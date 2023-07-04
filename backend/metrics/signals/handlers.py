@@ -6,7 +6,7 @@ from django.db.models.signals import (m2m_changed, post_delete, post_save,
                                       pre_save)
 from django.dispatch import receiver
 
-from metrics.models import CompletedSurvey, Survey
+from metrics.models import BurnoutTracker, CompletedSurvey, Survey
 from metrics.result_calcs import MBICalculate, YesNoCalculate
 from notifications.models import Notification
 
@@ -35,6 +35,20 @@ def calc_results_for_survey(sender, instance, **kwargs):
     if instance.survey.frequency:
         instance.next_attempt_date = date.today() + timedelta(
             days=instance.survey.frequency
+        )
+
+
+@receiver(post_save, sender=CompletedSurvey)
+def add_mental_state_to_tracker(sender, instance, created, **kwargs):
+    """Вызывается после сохранения объекта `CompletedSurvey`.
+
+    По итогам теста обновляет трекер выгорания.
+    """
+    if created:
+        BurnoutTracker.objects.create(
+            employee=instance.employee,
+            mental_state=instance.mental_state,
+            date=instance.completion_date
         )
 
 

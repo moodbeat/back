@@ -6,9 +6,8 @@ from elasticsearch_dsl.query import Match, Prefix, Wildcard
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import BaseFilterBackend
 
+from spare_kits import invite_service
 from users.models import InviteCode
-
-from .utils import verify_code
 
 
 class InviteCodeFilter(BaseFilterBackend):
@@ -23,7 +22,7 @@ class InviteCodeFilter(BaseFilterBackend):
                 'действующий ключ-приглашение'
             )
         if invite_code is not None:
-            verify_code(
+            invite_service.verify_code(
                 settings.RESET_INVITE_SECRET_KEY, invite_code, InviteCode
             )
         return queryset

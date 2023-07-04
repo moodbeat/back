@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
+from django.utils import timezone
 
-from users.models import Department
+from users.models import Department, MentalState
 
 from .validators import validate_event_data
 
@@ -60,11 +62,25 @@ class Entry(models.Model):
     )
     preview_image = models.ImageField(
         verbose_name='Превью-изображение записи',
-        upload_to='entries/'
+        upload_to='entries/',
+        default='entries/entries_thumbnail.jpg'
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        max_length=150
+    )
+    url = models.URLField(
+        verbose_name='Ссылка',
+        max_length=500,
+        null=True,
+        blank=True
     )
     text = models.TextField(
         verbose_name='Текст',
-        validators=[MinLengthValidator(8)]
+        validators=[MinLengthValidator(8)],
+        max_length=2000,
+        null=True,
+        blank=True
     )
     created = models.DateTimeField(
         auto_now_add=True
@@ -77,6 +93,18 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.title
+
+    def clean(self):
+
+        if not self.text and not self.url:
+            raise ValidationError(
+                'Запись обязательно должна содержать ссылку или текст.'
+            )
+
+        if self.text and self.url:
+            raise ValidationError('Введите что-то одно (текст или ссылку).')
+
+        return super().clean()
 
 
 class Event(models.Model):
@@ -115,7 +143,7 @@ class Event(models.Model):
     )
     text = models.TextField(
         verbose_name='Текст',
-        max_length=128,
+        max_length=130,
         validators=[MinLengthValidator(8)]
     )
     created = models.DateTimeField(
@@ -131,10 +159,51 @@ class Event(models.Model):
     class Meta:
         verbose_name = 'Событие'
         verbose_name_plural = 'События'
-        ordering = ['-created']
+        ordering = ['start_time']
 
     def __str__(self):
         return self.name
 
     def clean(self):
         validate_event_data(self.start_time, self.end_time)
+
+
+class MeetingResult(models.Model):
+
+    organizer = models.ForeignKey(
+        User,
+        verbose_name='Организатор',
+        on_delete=models.CASCADE,
+        related_name='organized_meets'
+    )
+    employee = models.ForeignKey(
+        User,
+        verbose_name='Сотрудник',
+        on_delete=models.CASCADE,
+        related_name='meets'
+    )
+    date = models.DateField(
+        verbose_name='Дата встречи'
+    )
+    mental_state = models.ForeignKey(
+        MentalState,
+        verbose_name='Состояние',
+        related_name='meets',
+        on_delete=models.CASCADE
+    )
+    comment = models.TextField(
+        verbose_name='Комментарий',
+        max_length=400
+    )
+
+    def clean(self):
+        if self.date > timezone.localtime().date():
+            raise ValidationError(
+                'Указанная дата не может быть больше текущей.'
+            )
+        return super().clean()
+
+    class Meta:
+        verbose_name = 'Результат встречи'
+        verbose_name_plural = 'Результаты встреч'
+        ordering = ['-date']
