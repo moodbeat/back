@@ -61,6 +61,8 @@ class EntryReadSerializer(WithLikedSerializer):
         model = Entry
         fields = '__all__'
 
+# issue test
+
 
 class EntryWriteSerializer(serializers.ModelSerializer):
 
