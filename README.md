@@ -36,6 +36,8 @@
 
 [![Django][Django-badge]][Django-url]
 [![Postgres][Postgres-badge]][Postgres-url]
+[![Redis][Redis-badge]][Redis-url]
+[![Celery][Celery-badge]][Celery-url]
 [![Elasticsearch][Elasticsearch-badge]][Elasticsearch-url]
 [![Nginx][Nginx-badge]][Nginx-url]
 
@@ -142,6 +144,12 @@ SELF_HOST=https://example.com
 
 [Django-url]: https://www.djangoproject.com/
 [Django-badge]: https://img.shields.io/badge/Django-4.2-green?style=for-the-badge&logo=django&logoColor=white
+
+[Redis-url]: https://redis.io/
+[Redis-badge]: https://img.shields.io/badge/Redis-7.0-red?style=for-the-badge&logo=redis&logoColor=white
+
+[Celery-url]: https://docs.celeryq.dev/en/stable/
+[Celery-badge]: https://img.shields.io/badge/Celery-5.3.1-green?style=for-the-badge&logo=celery&logoColor=white
 
 [Elasticsearch-url]: https://www.elastic.co/elasticsearch/
 [Elasticsearch-badge]: https://img.shields.io/badge/Elasticsearch-8.8.0-red?style=for-the-badge&logo=elasticsearch&logoColor=white
