@@ -57,14 +57,14 @@ urlpatterns = [
         name='token_refresh'
     ),
     re_path(
-        r'^auth/jwt/delete/?$',
+        r'^auth/jwt/cookie/?$',
         views.CookieTokenDeleteView.as_view(),
         name='token_delete'
     ),
     re_path(
         r'^auth/jwt/verify/?$',
         views.CookieTokenVerifyView.as_view(),
-        name='token_delete'
+        name='token_verify'
     ),
     path('', include(v10.urls)),
 ]

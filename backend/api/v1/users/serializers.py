@@ -281,5 +281,5 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
         if attrs['refresh']:
             return super().validate(attrs)
         raise InvalidToken(
-            'No valid token found in cookie \'refresh_token\''
+            'Refresh токен недействителен, либо не обнаружен в cookies'
         )

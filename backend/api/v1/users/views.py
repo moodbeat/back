@@ -467,10 +467,10 @@ class CookieTokenDeleteView(APIView):
 
     @swagger_auto_schema(
         responses={
-            205: openapi.Response('Токен успешно удален из cookies')
+            204: openapi.Response('Refresh токен успешно удален из cookies')
         },
     )
-    def post(self, request):
-        response = HttpResponse(status=status.HTTP_205_RESET_CONTENT)
+    def delete(self, request):
+        response = HttpResponse(status=status.HTTP_204_NO_CONTENT)
         response.delete_cookie('refresh_token')
         return response
