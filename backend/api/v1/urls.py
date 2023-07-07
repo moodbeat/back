@@ -26,7 +26,6 @@ urlpatterns = [
     path('metrics/', include(urls_metrics)),
     path('', include(urls_events)),
     path('services/', include(urls_services)),
-    path('auth/', include('djoser.urls.jwt')),
     re_path(
         r'^swagger(?P<format>\.json|\.yaml)$',
         schema_view.without_ui(cache_timeout=0),
