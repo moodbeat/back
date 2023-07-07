@@ -112,6 +112,10 @@ DJANGO_SECRET_KEY=https://djecrety.ir/
 DJANGO_RESET_INVITE_SECRET_KEY=change
 DJANGO_DEBUG=False
 
+# время жизни refresh и access токенов
+REFRESH_TOKEN_LIFETIME_DAYS=14
+ACCESS_TOKEN_LIFETIME_MINUTES=30
+
 # Переменные Redis
 REDIS_HOST=redis
 REDIS_PORT=6379
@@ -143,19 +147,19 @@ SELF_HOST=https://example.com
 <!-- MARKDOWN LINKS & BADGES -->
 
 [Django-url]: https://www.djangoproject.com/
-[Django-badge]: https://img.shields.io/badge/Django-4.2-green?style=for-the-badge&logo=django&logoColor=white
+[Django-badge]: https://img.shields.io/badge/Django-4.2-44b78b?style=for-the-badge&logo=django&logoColor=white
 
 [Redis-url]: https://redis.io/
-[Redis-badge]: https://img.shields.io/badge/Redis-7.0-red?style=for-the-badge&logo=redis&logoColor=white
+[Redis-badge]: https://img.shields.io/badge/Redis-7.0-d5362c?style=for-the-badge&logo=redis&logoColor=white
 
 [Celery-url]: https://docs.celeryq.dev/en/stable/
-[Celery-badge]: https://img.shields.io/badge/Celery-5.3.1-green?style=for-the-badge&logo=celery&logoColor=white
+[Celery-badge]: https://img.shields.io/badge/Celery-5.3.1-a0c24f?style=for-the-badge&logo=celery&logoColor=white
 
 [Elasticsearch-url]: https://www.elastic.co/elasticsearch/
-[Elasticsearch-badge]: https://img.shields.io/badge/Elasticsearch-8.8.0-red?style=for-the-badge&logo=elasticsearch&logoColor=white
+[Elasticsearch-badge]: https://img.shields.io/badge/Elasticsearch-8.8.0-101c3f?style=for-the-badge&logo=elasticsearch&logoColor=white
 
 [Postgres-url]: https://www.postgresql.org/
-[Postgres-badge]: https://img.shields.io/badge/Postgres-15.1-blueviolet?style=for-the-badge&logo=postgresql&logoColor=white
+[Postgres-badge]: https://img.shields.io/badge/Postgres-15.1-336791?style=for-the-badge&logo=postgresql&logoColor=white
 
 [Nginx-url]: https://nginx.org
-[Nginx-badge]: https://img.shields.io/badge/NGINX-1.21.3-orange?style=for-the-badge&logo=nginx&logoColor=white
+[Nginx-badge]: https://img.shields.io/badge/NGINX-1.21.3-419b45?style=for-the-badge&logo=nginx&logoColor=white
