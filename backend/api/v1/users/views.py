@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
@@ -12,6 +13,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView, TokenVerifyView)
 
 from api.v1.permissions import (AllReadOnlyPermissions, ChiefSafePermission,
                                 HRAllPermission)
@@ -22,8 +25,8 @@ from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
 
 from .filters import (DepartmentInviteCodeFilter, ElasticSearchFilter,
                       PositionInviteCodeFilter)
-from .serializers import (DepartmentSerializer, HobbySerializer,
-                          PasswordChangeSerializer,
+from .serializers import (CookieTokenRefreshSerializer, DepartmentSerializer,
+                          HobbySerializer, PasswordChangeSerializer,
                           PasswordResetConfirmSerializer,
                           PasswordResetSerializer, PositionSerializer,
                           RegisterSerializer, SendInviteSerializer,
@@ -391,3 +394,40 @@ class HobbyViewSet(ModelViewSet):
         if self.request.method == 'GET':
             self.permission_classes = (AllowAny,)
         return super().get_permissions()
+
+
+class CookieTokenObtainPairView(TokenObtainPairView):
+
+    def finalize_response(self, request, response, *args, **kwargs):
+        if response.data.get('refresh'):
+            cookie_max_age = 3600 * 24 * settings.REFRESH_TOKEN_LIFETIME_DAYS
+            response.set_cookie(
+                'refresh_token',
+                response.data['refresh'],
+                max_age=cookie_max_age,
+                httponly=True
+            )
+            del response.data['refresh']
+        return super().finalize_response(request, response, *args, **kwargs)
+
+
+class CookieTokenRefreshView(TokenRefreshView):
+    serializer_class = CookieTokenRefreshSerializer
+
+
+class CookieTokenVerifyView(TokenVerifyView):
+    serializer_class = CookieTokenRefreshSerializer
+
+    def finalize_response(self, request, response, *args, **kwargs):
+        if response.data.get('access'):
+            del response.data['access']
+        return super().finalize_response(request, response, *args, **kwargs)
+
+
+class CookieTokenDeleteView(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        response = HttpResponse(status=status.HTTP_205_RESET_CONTENT)
+        response.delete_cookie('refresh_token')
+        return response
