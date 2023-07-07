@@ -398,6 +398,23 @@ class HobbyViewSet(ModelViewSet):
 
 class CookieTokenObtainPairView(TokenObtainPairView):
 
+    @swagger_auto_schema(
+        responses={
+            201: openapi.Response(
+                schema=CookieTokenRefreshSerializer,
+                description=(
+                    'Вместе с access токеном в ответе, '
+                    'в cookies передается refresh токен'
+                )
+            ),
+            401: openapi.Response(
+                'Не найдено активной учетной записи с указанными данными'
+            ),
+        }
+    )
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
     def finalize_response(self, request, response, *args, **kwargs):
         if response.data.get('refresh'):
             cookie_max_age = 3600 * 24 * settings.REFRESH_TOKEN_LIFETIME_DAYS
@@ -414,9 +431,30 @@ class CookieTokenObtainPairView(TokenObtainPairView):
 class CookieTokenRefreshView(TokenRefreshView):
     serializer_class = CookieTokenRefreshSerializer
 
+    @swagger_auto_schema(
+        responses={
+            401: openapi.Response(
+                'Refresh токен недействителен, либо не обнаружен в cookies'
+            ),
+        }
+    )
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
 
 class CookieTokenVerifyView(TokenVerifyView):
     serializer_class = CookieTokenRefreshSerializer
+
+    @swagger_auto_schema(
+        responses={
+            200: openapi.Response('Токен успешно подтвержден'),
+            401: openapi.Response(
+                'Refresh токен недействителен, либо не обнаружен в cookies'
+            ),
+        },
+    )
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
     def finalize_response(self, request, response, *args, **kwargs):
         if response.data.get('access'):
@@ -427,6 +465,11 @@ class CookieTokenVerifyView(TokenVerifyView):
 class CookieTokenDeleteView(APIView):
     permission_classes = (AllowAny,)
 
+    @swagger_auto_schema(
+        responses={
+            205: openapi.Response('Токен успешно удален из cookies')
+        },
+    )
     def post(self, request):
         response = HttpResponse(status=status.HTTP_205_RESET_CONTENT)
         response.delete_cookie('refresh_token')
