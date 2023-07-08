@@ -4,6 +4,10 @@ WORKDIR /app
 
 COPY . /app/
 
-RUN pip3 install -r ./requirements.txt --no-cache-dir
+COPY pyproject.toml poetry.lock ./
 
-RUN chmod +x /app/entrypoint.sh
+RUN pip3 install poetry
+
+RUN poetry config virtualenvs.create false
+
+RUN poetry install
