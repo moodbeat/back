@@ -126,6 +126,9 @@ EMAIL_HOST=smtp.yourserver.com
 EMAIL_HOST_USER=your@djangoapp.com
 EMAIL_HOST_PASSWORD=yourpassword
 
+# Переменная адреса проекта, куда будет приходить приглашение на регистрацию
+SELF_HOST=https://example.com
+
 # Переменные Elasticsearch
 ELASTIC_HOST=elasticsearch
 ELASTIC_PORT=9200
@@ -140,8 +143,9 @@ NOTIFICATIONS_AGE_DELETE=30
 CELERY_BROKER=redis://redis:6379
 CELERY_RESULT=redis://redis:6379
 
-# Переменная DNS-адреса проекта
-SELF_HOST=https://example.com
+# Переменные бота
+TELEGRAM_TOKEN=@BotFather
+BASE_ENDPOINT=https://example.com/api/v1/
 ```
 
 <!-- MARKDOWN LINKS & BADGES -->

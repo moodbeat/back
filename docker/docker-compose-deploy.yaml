@@ -85,6 +85,15 @@ services:
     depends_on:
       - web
 
+  bot:
+    container_name: em-bot
+    build: ../bot
+    restart: always
+    env_file:
+      - ./.env
+    depends_on:
+      - nginx
+
 volumes:
   static:
   media:
