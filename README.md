@@ -148,6 +148,75 @@ TELEGRAM_TOKEN=@BotFather
 BASE_ENDPOINT=https://example.com/api/v1/
 ```
 
+### Запуск проекта в dev режиме
+
+Для начала работы с проектом вам необходимо:
+- иметь установленный менеджер зависимостей [Poetry](https://python-poetry.org/);
+- [postgresql](https://www.postgresql.org/) 15+ версии;
+- локально развернутые [elasticsearch](https://www.elastic.co/elasticsearch/) и [redis](https://redis.io/). Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
+
+После того как выполнены условия выше, скопируйте [example.env](docker/example.env) в [backend/conf](backend/conf/), переименуйте файл в **.env** и отредактируйте, особое внимание уделив указанным ниже строкам:
+
+```dotenv
+# имя бд, пользователя и пароль меняем в соответствии с создаными у себя в базе
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+DB_HOST=localhost
+DB_PORT=5432
+
+DJANGO_DEBUG=True
+
+# если поднимали воспользовавшись приложенным docke-compose конфигом
+REDIS_HOST=localhost
+REDIS_PORT=6379
+ELASTIC_HOST=localhost
+ELASTIC_PORT=9200
+CELERY_BROKER=redis://localhost:6379
+CELERY_RESULT=redis://localhost:6379
+
+# если нужны логи (хранятся в backend/logs)
+DEV_SERVICES=True
+
+```
+
+Далее перейдите в [/backend](backend) и выполните установку пакетов с зависимостями:
+```bash
+poetry install
+```
+
+Активируйте виртуальное окружение с установленными зависимостями:
+```bash
+poetry shell
+```
+
+Если потребности в постоянно активном виртуальном окружении не возникает, работайте с приложением по примеру ниже:
+```bash
+poetry run python manage.py runserver
+```
+
+После того как зависимости установлены и активированно виртуальное окружение, выполните миграции:
+```bash
+python manage.py migrate
+```
+
+По желанию можно загрузить в базу уже [предустановленные](backend/fixtures/test_data.json) данные и выполнить индексацию для elastisearch:
+```bash
+python manage.py loaddata fixtures/test_data.json
+python manage.py search_index -f --rebuild
+```
+Важно отметить, что проводить индексацию необходимо лишь при заливке данных в обход приложения. При добавлении новых данных из приложения, индексация добавленного производится автоматически.
+
+В приложенных к проекту [тестовых данных](backend/fixtures/test_data.json) уже есть учетная запись суперпользователя, с email **admin@admin.admin** и паролем **DM94nghHSsl**, однако если вы не загружали тестовые данные необходимо создать учетную запись суперпользователя:
+```bash
+python manage.py createsuperuser
+```
+
+После чего проект готов к работе по адресу указанному после запуска локального сервера:
+```bash
+python manage.py runserver
+```
 <!-- MARKDOWN LINKS & BADGES -->
 
 [Django-url]: https://www.djangoproject.com/
