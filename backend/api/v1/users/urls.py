@@ -46,25 +46,5 @@ urlpatterns = [
         views.PasswordChangeView.as_view(),
         name='password_change'
     ),
-    re_path(
-        r'^auth/jwt/create/?$',
-        views.CookieTokenObtainPairView.as_view(),
-        name='token_obtain_pair'
-    ),
-    re_path(
-        r'^auth/jwt/refresh/?$',
-        views.CookieTokenRefreshView.as_view(),
-        name='token_refresh'
-    ),
-    re_path(
-        r'^auth/jwt/cookie/?$',
-        views.CookieTokenDeleteView.as_view(),
-        name='token_delete'
-    ),
-    re_path(
-        r'^auth/jwt/verify/?$',
-        views.CookieTokenVerifyView.as_view(),
-        name='token_verify'
-    ),
     path('', include(v10.urls)),
 ]
