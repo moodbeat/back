@@ -2,9 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
-from rest_framework_simplejwt.exceptions import InvalidToken
-from rest_framework_simplejwt.serializers import (TokenObtainPairSerializer,
-                                                  TokenRefreshSerializer)
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from sorl.thumbnail import get_thumbnail
 
 from api.v1.metrics.serializers import ConditionReadSerializer
@@ -271,15 +269,3 @@ class CustomTokenObtainSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         attrs["email"] = attrs.get("email").lower()
         return super(CustomTokenObtainSerializer, self).validate(attrs)
-
-
-class CookieTokenRefreshSerializer(TokenRefreshSerializer):
-    refresh = None
-
-    def validate(self, attrs):
-        attrs['refresh'] = self.context['request'].COOKIES.get('refresh_token')
-        if attrs['refresh']:
-            return super().validate(attrs)
-        raise InvalidToken(
-            'Refresh токен недействителен, либо не обнаружен в cookies'
-        )
