@@ -1,6 +1,9 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
+from django.forms.models import BaseInlineFormSet
 
-from .models import (BurnoutTracker, CompletedSurvey, Condition, LifeDirection,
+from .models import (ActivityRate, ActivityTracker, ActivityType,
+                     BurnoutTracker, CompletedSurvey, Condition, LifeDirection,
                      Question, Survey, SurveyType, UserLifeBalance, Variant)
 
 
@@ -162,3 +165,52 @@ class CompletedSurvey(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+
+@admin.register(ActivityType)
+class ActivityTypeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'key', 'description',)
+    ordering = ('key',)
+
+
+class ActivityRateFormSet(BaseInlineFormSet):
+
+    def get_queryset(self):
+        activity_types = ActivityType.objects.all()
+        self.max_num = activity_types.count()
+        return activity_types
+
+    # https://stackoverflow.com/questions/4735920/
+    def clean(self):
+        super(ActivityRateFormSet, self).clean()
+
+        percent = 0
+        activity_types = set()
+
+        for form in self.forms:
+            if not hasattr(form, 'cleaned_data'):
+                continue
+            data = form.cleaned_data
+            percent += data.get('percentage', 0)
+
+            activity_type = data.get('type')
+            if activity_type in activity_types:
+                raise ValidationError('Элементы должны быть уникальными.')
+            activity_types.add(activity_type)
+
+        if percent != 100:
+            raise ValidationError('Суммарный процент должен быть равен 100%.')
+
+
+class ActivityRateInline(admin.TabularInline):
+    model = ActivityRate
+    formset = ActivityRateFormSet
+    extra = 0
+    can_delete = False
+
+
+@admin.register(ActivityTracker)
+class ActivityTrackerAdmin(admin.ModelAdmin):
+    list_display = ('date', 'employee',)
+    ordering = ('-date',)
+    inlines = [ActivityRateInline]

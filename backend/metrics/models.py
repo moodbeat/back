@@ -461,15 +461,6 @@ class ActivityTracker(models.Model):
         verbose_name_plural = 'Трекеры деятельности'
         ordering = ('-date',)
 
-    def clean(self):
-        percentages = self.activity_rates.values_list('percentage', flat=True)
-        total_percentage = sum(percentages)
-
-        if total_percentage != 100:
-            raise ValidationError('Суммарный процент должен быть равен 100%.')
-
-        super().clean()
-
 
 class ActivityRate(models.Model):
     """Оценка конкретной деятельности."""
