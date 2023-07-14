@@ -14,6 +14,7 @@ v10.register(
 )
 v10.register('surveys', views.SurveyViewSet, basename='surveys')
 v10.register('burnouts', views.BurnoutViewSet, basename='burnouts')
+v10.register('activities', views.ActivityViewSet, basename='activities')
 
 urlpatterns = [
     path('', include(v10.urls)),
@@ -26,5 +27,10 @@ urlpatterns = [
         r'^mental_states/?$',
         views.MentalStateViewSet.as_view(),
         name='mental_states'
+    ),
+    re_path(
+        r'^activity_types/?$',
+        views.ActivityTypeListView.as_view(),
+        name='activity_types'
     ),
 ]

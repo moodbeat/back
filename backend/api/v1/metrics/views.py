@@ -12,7 +12,10 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from api.v1.metrics.filters import CompletedSurveyFilter, ConditionFilter
-from api.v1.metrics.serializers import (BurnoutSerializer,
+from api.v1.metrics.serializers import (ActivityTrackerCreateSerializer,
+                                        ActivityTrackerSerializer,
+                                        ActivityTypeSerializer,
+                                        BurnoutSerializer,
                                         CompletedSurveyCreateSerializer,
                                         CompletedSurveySerializer,
                                         ConditionReadSerializer,
@@ -26,11 +29,12 @@ from api.v1.metrics.serializers import (BurnoutSerializer,
                                         SurveySerializer)
 from api.v1.permissions import (ChiefSafePermission, EmployeeSafePermission,
                                 HRAllPermission)
-from metrics.models import (BurnoutTracker, CompletedSurvey, Condition,
-                            LifeDirection, Survey, UserLifeBalance)
+from metrics.models import (ActivityTracker, ActivityType, BurnoutTracker,
+                            CompletedSurvey, Condition, LifeDirection, Survey,
+                            UserLifeBalance)
 from users.models import MentalState
 
-from .filters import SurveyFilter
+from .filters import ActivityFilter, SurveyFilter
 
 User = get_user_model()
 
@@ -230,6 +234,44 @@ class MentalStateViewSet(ListAPIView):
     pagination_class = None
     serializer_class = MentalStateReadSerializer
     permission_classes = (IsAuthenticated,)
+
+
+class ActivityTypeListView(ListAPIView):
+    queryset = ActivityType.objects.all()
+    serializer_class = ActivityTypeSerializer
+    permission_classes = (IsAuthenticated,)
+    pagination_class = None
+
+
+@method_decorator(name='create', decorator=swagger_auto_schema(
+    responses={status.HTTP_201_CREATED: ActivityTrackerSerializer},
+))
+class ActivityViewSet(ModelViewSet):
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = ActivityFilter
+    http_method_names = ('get', 'post',)
+    permission_classes = (IsAuthenticated,)
+    filterset_fields = ('employee',)
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return ActivityTrackerSerializer
+        return ActivityTrackerCreateSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated and self.request.user.is_hr:
+            return (
+                ActivityTracker.objects
+                .select_related('employee')
+                .prefetch_related('activity_rates')
+                .all()
+            )
+        return (
+            ActivityTracker.objects
+            .filter(employee=self.request.user.id)
+            .select_related('employee')
+            .prefetch_related('activity_rates')
+        )
 
 # оставлю пока не дойду то эндпоинтов конструктора
 #     def perform_create(self, serializer):
