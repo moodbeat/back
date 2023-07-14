@@ -6,7 +6,8 @@ from django.utils import timezone
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 
-from metrics.models import (BurnoutTracker, CompletedSurvey, Condition,
+from metrics.models import (ActivityRate, ActivityTracker, ActivityType,
+                            BurnoutTracker, CompletedSurvey, Condition,
                             LifeDirection, Question, Survey, UserLifeBalance,
                             Variant)
 from metrics.validators import validate_completed_survey
@@ -267,6 +268,83 @@ class BurnoutSerializer(serializers.ModelSerializer):
 class MonthlyBurnoutSerializer(serializers.Serializer):
     month = serializers.CharField()
     percentage = serializers.FloatField()
+
+
+class ActivityTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ActivityType
+        fields = '__all__'
+
+
+class ActivityRateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ActivityRate
+        fields = ['type', 'percentage']
+
+
+class ActivityTrackerSerializer(serializers.ModelSerializer):
+
+    employee = UserShortSerializer()
+    activity_rates = ActivityRateSerializer(many=True)
+
+    class Meta:
+        model = ActivityTracker
+        fields = '__all__'
+
+
+class ActivityTrackerCreateSerializer(serializers.ModelSerializer):
+
+    employee = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(),
+    )
+    activity_rates = ActivityRateSerializer(many=True)
+
+    class Meta:
+        model = ActivityTracker
+        fields = '__all__'
+
+    def validate(self, data):
+        activity_rates_data = self.initial_data.get('activity_rates', [])
+
+        activity_type_ids = list(
+            ActivityType.objects.values_list('id', flat=True)
+        )
+        provided_type_ids = [
+            rate_data.get('type') for rate_data in activity_rates_data
+        ]
+
+        if sorted(activity_type_ids) != sorted(provided_type_ids):
+            raise serializers.ValidationError(
+                'Необходимо указать все существующие, не повторяющиеся '
+                'типы активностей.'
+            )
+
+        total_percentage = sum(
+            rate_data.get('percentage', 0) for rate_data in activity_rates_data
+        )
+        if total_percentage != 100:
+            raise serializers.ValidationError(
+                'Сумма процентов должна быть равна 100.'
+            )
+
+        return data
+
+    def create(self, validated_data):
+        activity_rates_data = validated_data.pop('activity_rates')
+        activity_tracker = ActivityTracker.objects.create(**validated_data)
+
+        activity_rates = [
+            ActivityRate(tracker=activity_tracker, **rate_data)
+            for rate_data in activity_rates_data
+        ]
+        ActivityRate.objects.bulk_create(activity_rates)
+
+        return activity_tracker
+
+    def to_representation(self, instance):
+        return ActivityTrackerSerializer(instance, context=self.context).data
 
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""

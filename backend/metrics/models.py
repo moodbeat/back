@@ -37,7 +37,7 @@ class Condition(models.Model):
     )
     date = models.DateTimeField(
         verbose_name=_('Дата/время добавления показателей'),
-        default=timezone.now
+        default=timezone.localtime
     )
 
     class Meta:
@@ -68,7 +68,7 @@ class BurnoutTracker(models.Model):
     )
     date = models.DateTimeField(
         verbose_name='Дата/время обновления состояния',
-        default=timezone.now
+        default=timezone.localtime
     )
 
     class Meta:
@@ -111,6 +111,7 @@ class LifeDirection(models.Model):
 class UserLifeBalance(models.Model):
     """Оценка/установка баланса."""
 
+    # TODO переделать по типу трекера деятельности сотрудников
     employee = models.ForeignKey(
         User,
         verbose_name='Сотрудник',
@@ -119,7 +120,7 @@ class UserLifeBalance(models.Model):
     )
     date = models.DateTimeField(
         verbose_name='Дата/время добавления показателей',
-        default=timezone.now
+        default=timezone.localtime
     )
     set_priority = models.BooleanField(
         verbose_name='Задать новые приоритеты.',
@@ -229,7 +230,7 @@ class Survey(models.Model):
     )
     creation_date = models.DateTimeField(
         verbose_name='Дата и время создания опроса',
-        default=timezone.now,
+        default=timezone.localtime,
     )
     is_active = models.BooleanField(
         verbose_name='Статус активности',
@@ -408,3 +409,82 @@ class CompletedSurvey(models.Model):
         self.mental_state = mental_state
         self.employee.mental_state = mental_state
         self.employee.save()
+
+
+class ActivityType(models.Model):
+    """Типы деятельности сотрудника за день."""
+
+    name = models.CharField(
+        verbose_name='Наименование',
+        max_length=64
+    )
+    description = models.TextField(
+        verbose_name='Краткое описание',
+        max_length=255,
+        blank=True,
+        null=True
+    )
+    key = models.IntegerField(
+        verbose_name='Ключ',
+        unique=True,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(9)
+        ]
+    )
+
+    class Meta:
+        ordering = ('key', 'id')
+        verbose_name = 'Тип деятельности'
+        verbose_name_plural = 'Типы деятельности'
+
+    def __str__(self):
+        return self.name
+
+
+class ActivityTracker(models.Model):
+    """Трекер пройденного дня сотрудника."""
+
+    employee = models.ForeignKey(
+        User,
+        verbose_name='Сотрудник',
+        related_name='activity_trackers',
+        on_delete=models.CASCADE,
+    )
+    date = models.DateTimeField(
+        verbose_name='Дата',
+        default=timezone.localtime
+    )
+
+    class Meta:
+        verbose_name = 'Трекер деятельности'
+        verbose_name_plural = 'Трекеры деятельности'
+        ordering = ('-date',)
+
+
+class ActivityRate(models.Model):
+    """Оценка конкретной деятельности."""
+
+    type = models.ForeignKey(
+        ActivityType,
+        verbose_name='Тип деятельности',
+        on_delete=models.CASCADE,
+    )
+    tracker = models.ForeignKey(
+        ActivityTracker,
+        verbose_name='Трекер',
+        related_name='activity_rates',
+        on_delete=models.CASCADE,
+    )
+    percentage = models.PositiveIntegerField(
+        verbose_name='Процент',
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(100)
+        ]
+    )
+
+    class Meta:
+        verbose_name = 'Оценка деятельности'
+        verbose_name_plural = 'Оценки деятельности'
+        unique_together = ('type', 'tracker')

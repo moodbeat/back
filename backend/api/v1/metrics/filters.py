@@ -2,7 +2,7 @@ from datetime import date
 
 from django_filters import rest_framework as filters
 
-from metrics.models import CompletedSurvey, Condition, Survey
+from metrics.models import ActivityTracker, CompletedSurvey, Condition, Survey
 
 
 class ConditionFilter(filters.FilterSet):
@@ -51,3 +51,18 @@ class CompletedSurveyFilter(filters.FilterSet):
         if value and self.request.user.is_authenticated:
             return queryset.filter(employee=self.request.user)
         return queryset
+
+
+class ActivityFilter(filters.FilterSet):
+    after_date = filters.DateFilter(method='filter_after_date')
+    before_date = filters.DateFilter(method='filter_before_date')
+
+    class Meta:
+        model = ActivityTracker
+        fields = ('employee',)
+
+    def filter_after_date(self, queryset, name, value):
+        return queryset.filter(date__gte=value)
+
+    def filter_before_date(self, queryset, name, value):
+        return queryset.filter(date__lte=value)
