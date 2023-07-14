@@ -613,7 +613,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$GzZjsdyyWiokndMnnXIhwt$lVtu0hvAh+cN44J6dwod1b5QpSmEYpV8ItMaNeajUpw=",
-    "last_login": "2023-07-03T04:12:51.022Z",
+    "last_login": "2023-07-14T04:11:14.923Z",
     "is_superuser": true,
     "email": "admin@admin.admin",
     "first_name": "Админ",
@@ -917,9 +917,9 @@
     "groups": [],
     "user_permissions": [],
     "hobbies": [
-      23,
+      7,
       14,
-      7
+      23
     ]
   }
 },
@@ -1282,8 +1282,8 @@
     "user_permissions": [],
     "hobbies": [
       17,
-      21,
       13,
+      21,
       6
     ]
   }
@@ -1312,8 +1312,8 @@
     "groups": [],
     "user_permissions": [],
     "hobbies": [
-      11,
       3,
+      11,
       12,
       7
     ]
@@ -6928,6 +6928,42 @@
     ],
     "completion_date": "2023-07-01",
     "next_attempt_date": "2023-07-01"
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 1,
+  "fields": {
+    "name": "Рутина",
+    "description": "",
+    "key": 1
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 2,
+  "fields": {
+    "name": "Обучение",
+    "description": "",
+    "key": 2
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 3,
+  "fields": {
+    "name": "Наставничество",
+    "description": "",
+    "key": 3
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 4,
+  "fields": {
+    "name": "Общение",
+    "description": "",
+    "key": 4
   }
 },
 {
