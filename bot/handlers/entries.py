@@ -4,19 +4,12 @@ from aiogram import Router
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message,
-    URLInputFile
-)
+from aiogram.types import (CallbackQuery, InlineKeyboardButton,
+                           InlineKeyboardMarkup, Message, URLInputFile)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-
 from config_reader import config
 from handlers.api_request import get_headers, make_get_request
 from middlewares.auth import AuthMiddleware
-
 
 router = Router()
 
@@ -38,7 +31,7 @@ async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
     )
 
     if response.get('count') == 0:
-        return await message.answer('На данный момент нет доступных событий.')
+        return await message.answer('На данный момент нет доступных статей.')
 
     keyboard = InlineKeyboardBuilder()
     for data in response.get('results'):
@@ -48,11 +41,16 @@ async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
                 callback_data=f'entries_{data.get("id")}'
             )
         )
-    msg_text = 'Список доступных событий:'
-    return (await message.answer(msg_text, reply_markup=keyboard.as_markup())
-            if isinstance(message, Message)
-            else message.message.answer(
-        msg_text, reply_markup=keyboard.as_markup()
+    keyboard.row(
+        InlineKeyboardButton(text='На главную', callback_data='back_start')
+    )
+    msg_text = 'Список доступных статей:'
+    return (
+        await message.answer(msg_text, reply_markup=keyboard.as_markup())
+        if isinstance(message, Message)
+        else message.message.answer(
+            msg_text,
+            reply_markup=keyboard.as_markup()
         )
     )
 
@@ -61,24 +59,31 @@ async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
 async def get_entry(callback: CallbackQuery, state: FSMContext):
     entry_id = int(callback.data.split('_')[1])
     headers = await get_headers(state)
+    entry_url = config.base_endpoint + f'entries/{entry_id}/'
     response = await make_get_request(
-        config.base_endpoint + f'entries/{entry_id}/',
+        url=entry_url,
         headers=headers
     )
-    # caption_text = f'{response.get("title")}'
+
     msg_text = (
-        f'{response.get("title")}\n'
+        f'*{response.get("title")}*\n\n'
         f'{response.get("text")}\n\n'
-        f'Автор: {response.get("author").get("first_name")} '
-        f'{response.get("author").get("last_name")}'
+        f'*Автор: {response.get("author").get("first_name")} '
+        f'{response.get("author").get("last_name")}*'
     )
+    if len(msg_text) > 1024:
+        msg_text = (
+            f'*{response.get("title")}*\n\n'
+            f'{response.get("text")[:600]}...\n'
+            f'[Полный текст статьи]({entry_url})\n\n'
+            f'*Автор: {response.get("author").get("first_name")} '
+            f'{response.get("author").get("last_name")}*'
+        )
+
     photo = URLInputFile(
         response.get('preview_image'),
         filename=f'entries_{entry_id}'
     )
-    # TODO обработка исключений на случай если текст статьи слишком длинный - TelegramBadRequest
-    # TODO обработка видео
-
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(text='Назад', callback_data='back_entries')]
@@ -88,8 +93,7 @@ async def get_entry(callback: CallbackQuery, state: FSMContext):
     await callback.message.delete()
     await callback.message.answer_photo(
         photo=photo,
-        # caption=caption_text,
         caption=msg_text,
+        parse_mode='Markdown',
         reply_markup=keyboard
     )
-    # await callback.message.answer(msg_text, reply_markup=keyboard)
