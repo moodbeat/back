@@ -5,18 +5,12 @@ from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message
-)
+from aiogram.types import (CallbackQuery, InlineKeyboardButton,
+                           InlineKeyboardMarkup, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-
 from config_reader import config
-from handlers.api_request import get_headers, make_get_request
 from middlewares.auth import AuthMiddleware
-
+from services.api_request import get_headers, make_get_request
 
 router = Router()
 
@@ -53,6 +47,9 @@ async def cmd_survey(message: Message | CallbackQuery, state: FSMContext):
                 callback_data=f'survey_{data.get("id")}'
             )
         )
+    keyboard.row(
+        InlineKeyboardButton(text='На главную', callback_data='back_start')
+    )
 
     msg_text = 'Список доступных опросов:'
     return (
@@ -98,17 +95,16 @@ async def get_survey(callback: CallbackQuery, state: FSMContext):
 
 
 def survey_keyboard(question_id):
-    keyboard = InlineKeyboardMarkup(
+    return InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(
-                text='Да', callback_data=f'yes_{question_id}')
-            ],
+                text='Да', callback_data=f'yes_{question_id}'
+            )],
             [InlineKeyboardButton(
-                text='Нет', callback_data=f'no_{question_id}')
-            ],
+                text='Нет', callback_data=f'no_{question_id}'
+            )],
         ]
     )
-    return keyboard
 
 
 @router.callback_query(Text(startswith='take_survey_'))
@@ -148,7 +144,6 @@ async def process_survey(callback: CallbackQuery, state: FSMContext):
             questions[current_question_id],
             reply_markup=survey_keyboard(current_question_id))
     else:
-        # TODO добавить сохранение данных в бд апишки
         await callback.message.delete()
-        await callback.message.answer('Вы завершили опрос!') # тут должен быть результат опроса
+        await callback.message.answer('Вы завершили опрос!')
         await state.clear()

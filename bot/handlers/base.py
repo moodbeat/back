@@ -3,8 +3,8 @@ from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 from config_reader import config
-from handlers.api_request import make_get_request
 from middlewares.auth import AuthMiddleware
+from services.api_request import get_headers, make_get_request
 
 router = Router()
 
@@ -16,8 +16,7 @@ router.message.middleware(AuthMiddleware())
 async def cmd_start(
     message: types.Message | types.CallbackQuery, state: FSMContext
 ):
-    state = await state.get_data()
-    headers = state.get('headers')
+    headers = await get_headers(state)
     response = await make_get_request(
         config.base_endpoint + 'users/current_user/',
         headers=headers
@@ -41,5 +40,6 @@ async def cmd_start(
 
     if isinstance(message, types.CallbackQuery):
         await message.message.delete()
+        await state.set_state(state=None)
     else:
         await message.answer(start_msg)
