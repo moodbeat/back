@@ -49,7 +49,8 @@ async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
         await message.answer(msg_text, reply_markup=keyboard.as_markup())
         if isinstance(message, Message)
         else message.message.answer(
-            msg_text, reply_markup=keyboard.as_markup()
+            msg_text,
+            reply_markup=keyboard.as_markup()
         )
     )
 

@@ -4,18 +4,12 @@ from aiogram import Router
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    Message
-)
+from aiogram.types import (CallbackQuery, InlineKeyboardButton,
+                           InlineKeyboardMarkup, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-
 from config_reader import config
 from handlers.api_request import format_date, get_headers, make_get_request
 from middlewares.auth import AuthMiddleware
-
 
 router = Router()
 
@@ -47,6 +41,9 @@ async def cmd_events(message: Message | CallbackQuery, state: FSMContext):
                 callback_data=f'events_{data.get("id")}'
             )
         )
+    keyboard.row(
+        InlineKeyboardButton(text='На главную', callback_data='back_start')
+    )
 
     msg_text = 'Список доступных мероприятий:'
     return (
@@ -69,13 +66,13 @@ async def get_entry(callback: CallbackQuery, state: FSMContext):
     )
 
     msg_text = (
-        f'{response.get("name")}\n'
-        f'{response.get("text")}\n'
-        f'Сроки проведения: '
+        f'*{response.get("name")}*\n\n'
+        f'{response.get("text")}\n\n'
+        f'*Сроки проведения: '
         f'{format_date(response.get("start_time"))} - '
-        f'{format_date(response.get("end_time"))}\n\n'
-        f'Автор: {response.get("author").get("first_name")} '
-        f'{response.get("author").get("last_name")}'
+        f'{format_date(response.get("end_time"))}*\n\n'
+        f'_Автор: {response.get("author").get("first_name")} '
+        f'{response.get("author").get("last_name")}_'
     )
 
     keyboard = InlineKeyboardMarkup(
@@ -85,4 +82,8 @@ async def get_entry(callback: CallbackQuery, state: FSMContext):
     )
 
     await callback.message.delete()
-    await callback.message.answer(msg_text, reply_markup=keyboard)
+    await callback.message.answer(
+        msg_text,
+        parse_mode='Markdown',
+        reply_markup=keyboard
+    )
