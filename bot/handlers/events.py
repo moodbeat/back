@@ -8,8 +8,8 @@ from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from config_reader import config
-from handlers.api_request import format_date, get_headers, make_get_request
 from middlewares.auth import AuthMiddleware
+from services.api_request import format_date, get_headers, make_get_request
 
 router = Router()
 
