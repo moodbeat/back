@@ -7,9 +7,9 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message, URLInputFile)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from config_reader import config
+
 from middlewares.auth import AuthMiddleware
-from services.api_request import get_headers, make_get_request
+from services.entry_service import get_entry_by_id, get_last_ten_entries
 
 router = Router()
 
@@ -23,28 +23,23 @@ async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
     if isinstance(message, CallbackQuery):
         await message.message.delete()
 
-    headers = await get_headers(state)
+    entries = await get_last_ten_entries(state)
 
-    response = await make_get_request(
-        config.base_endpoint + 'entries/',
-        headers=headers
-    )
-
-    if response.get('count') == 0:
+    if not entries:
         return await message.answer('На данный момент нет доступных статей.')
 
     keyboard = InlineKeyboardBuilder()
-    for data in response.get('results'):
+    for entry in entries:
         keyboard.row(
             InlineKeyboardButton(
-                text=data.get('title'),
-                callback_data=f'entries_{data.get("id")}'
+                text=entry.title,
+                callback_data=f'entries_{entry.id}'
             )
         )
     keyboard.row(
         InlineKeyboardButton(text='На главную', callback_data='back_start')
     )
-    msg_text = 'Список доступных статей:'
+    msg_text = 'Список 10 последних статей:'
     return (
         await message.answer(msg_text, reply_markup=keyboard.as_markup())
         if isinstance(message, Message)
@@ -58,30 +53,27 @@ async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
 @router.callback_query(Text(startswith='entries_'))
 async def get_entry(callback: CallbackQuery, state: FSMContext):
     entry_id = int(callback.data.split('_')[1])
-    headers = await get_headers(state)
-    entry_url = config.base_endpoint + f'entries/{entry_id}/'
-    response = await make_get_request(
-        url=entry_url,
-        headers=headers
-    )
+    entry = await get_entry_by_id(entry_id, state)
 
+    if entry.url:
+        body = entry.url
+    else:
+        body = entry.text
     msg_text = (
-        f'*{response.get("title")}*\n\n'
-        f'{response.get("text")}\n\n'
-        f'*Автор: {response.get("author").get("first_name")} '
-        f'{response.get("author").get("last_name")}*'
+        f'*{entry.title}*\n\n'
+        f'{body}\n\n'
+        f'*Автор: {entry.author.full_name}*'
     )
     if len(msg_text) > 1024:
         msg_text = (
-            f'*{response.get("title")}*\n\n'
-            f'{response.get("text")[:600]}...\n'
-            f'[Полный текст статьи]({entry_url})\n\n'
-            f'*Автор: {response.get("author").get("first_name")} '
-            f'{response.get("author").get("last_name")}*'
+            f'*{entry.title}*\n\n'
+            f'{body[:600]}...\n'
+            f'[Полный текст статьи]({entry.entry_url})\n\n'
+            f'*Автор: {entry.author.full_name}*'
         )
 
     photo = URLInputFile(
-        response.get('preview_image'),
+        entry.preview_image,
         filename=f'entries_{entry_id}'
     )
     keyboard = InlineKeyboardMarkup(

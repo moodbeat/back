@@ -8,9 +8,10 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+
 from config_reader import config
 from middlewares.auth import AuthMiddleware
-from services.api_request import get_headers, make_get_request
+from services.api.api_request import get_headers, make_get_request
 
 router = Router()
 
@@ -30,7 +31,7 @@ async def cmd_survey(message: Message | CallbackQuery, state: FSMContext):
 
     headers = await get_headers(state)
     response = await make_get_request(
-        config.base_endpoint + 'metrics/surveys/',
+        config.BASE_ENDPOINT + 'metrics/surveys/',
         headers=headers
     )
 
@@ -67,7 +68,7 @@ async def get_survey(callback: CallbackQuery, state: FSMContext):
     survey_id = int(callback.data.split('_')[1])
     headers = await get_headers(state)
     response = await make_get_request(
-        config.base_endpoint + f'metrics/surveys/{survey_id}/',
+        config.BASE_ENDPOINT + f'metrics/surveys/{survey_id}/',
         headers=headers
     )
 
@@ -113,7 +114,7 @@ async def take_survey(callback: CallbackQuery, state: FSMContext):
     survey_id = int(callback.data.split('_')[2])
     headers = await get_headers(state)
     response = await make_get_request(
-        config.base_endpoint + f'metrics/surveys/{survey_id}/',
+        config.BASE_ENDPOINT + f'metrics/surveys/{survey_id}/',
         headers=headers
     )
 

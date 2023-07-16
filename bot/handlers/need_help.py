@@ -7,11 +7,11 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, InlineKeyboardButton, Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from config_reader import config
+
 from middlewares.auth import AuthMiddleware
-from services.api_request import (get_headers, make_get_request,
-                                  make_post_request)
-from services.request_models import NeedHelpPostRequest
+from services.need_help_service import (get_help_types_by_specialist_id,
+                                        get_specialists, post_need_help_data)
+from services.user_service import get_current_user
 
 router = Router()
 
@@ -26,30 +26,23 @@ class HelpState(StatesGroup):
 
 @router.message(Command('need_help'))
 async def cmd_needhelp(message: Message, state: FSMContext):
-    headers = await get_headers(state)
-    response = await make_get_request(
-        config.base_endpoint + 'users/current_user/',
-        headers=headers
-    )
+    user = await get_current_user(state)
     msg_text = (
-        f'Привет, {response["first_name"]}!\n'
+        f'Привет, {user.first_name}!\n'
         'Выберите, кому хотите направить обращение.'
     )
-    response = await make_get_request(
-        config.base_endpoint + 'socials/specialists/',
-        headers=headers
-    )
+    specialists = await get_specialists(state)
 
     keyboard = InlineKeyboardBuilder()
-    for data in response:
+    for specialist in specialists:
         text = (
-            f'{data.get("role")}, '
-            f'{data.get("last_name")} {data.get("first_name")}'
+            f'{specialist.role}, '
+            f'{specialist.full_name}'
         )
         keyboard.row(
             InlineKeyboardButton(
                 text=text,
-                callback_data=f'recipient_{data.get("id")}'
+                callback_data=f'recipient_{specialist.id}'
             )
         )
     keyboard.row(
@@ -68,20 +61,16 @@ async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
     recipient_id = int(callback.data.split('_')[1])
     await state.update_data(recipient=recipient_id)
     await callback.message.delete()
-    headers = await get_headers(state)
-    response = await make_get_request(
-        f'{config.base_endpoint}socials/help_types/?user={recipient_id}',
-        headers=headers
-    )
 
-    msg_text = 'А теперь выберите тип обращения.'
+    help_types = await get_help_types_by_specialist_id(recipient_id, state)
+    msg_text = 'А теперь выберите тип обращения'
     keyboard = InlineKeyboardBuilder()
-    for data in response:
-        text = (data.get('title'))
+    for help_type in help_types:
+        text = help_type.title
         keyboard.row(
             InlineKeyboardButton(
                 text=text,
-                callback_data=f'type_{data.get("id")}'
+                callback_data=f'type_{help_type.id}'
             )
         )
     keyboard.row(
@@ -102,7 +91,7 @@ async def needhelp_type(callback: CallbackQuery, state: FSMContext):
     await state.update_data(type=type_id)
     await callback.message.delete()
 
-    msg_text = 'А теперь опишите проблему.'
+    msg_text = 'А теперь опишите проблему'
     keyboard = InlineKeyboardBuilder()
     keyboard.add(
         InlineKeyboardButton(text='На главную', callback_data='back_start')
@@ -118,12 +107,7 @@ async def needhelp_type(callback: CallbackQuery, state: FSMContext):
 async def needhelp_comment(message: Message, state: FSMContext):
     await state.update_data(comment=message.text)
     user_data = await state.get_data()
-    data = NeedHelpPostRequest(**user_data)
-    headers = await get_headers(state)
-    await make_post_request(
-        config.base_endpoint + 'socials/need_help/',
-        data=data.dict(),
-        headers=headers
-    )
-    await message.answer('Обращение сформировано и отправлено.')
+
+    await post_need_help_data(user_data, state)
+    await message.answer('Обращение сформировано и отправлено')
     await state.set_state(state=None)
