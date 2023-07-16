@@ -3,16 +3,18 @@ import logging
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.fsm.storage.memory import MemoryStorage
+
+from bot_commands import set_bot_commands
 from config_reader import config
-from handlers import auth, base, entries, events, need_help, surveys, users
-from handlers.bot_commands import set_bot_commands
+from handlers import (auth, base, conditions, entries, events, need_help,
+                      surveys)
 
 
 async def main():
     logging.basicConfig(level=logging.INFO)
     storage = MemoryStorage()
 
-    bot = Bot(token=config.telegram_token.get_secret_value())
+    bot = Bot(token=config.TELEGRAM_TOKEN.get_secret_value())
     dp = Dispatcher(storage=storage)
 
     @dp.errors()
@@ -35,7 +37,7 @@ async def main():
         events.router,
         need_help.router,
         surveys.router,
-        users.router,
+        conditions.router,
     )
 
     await set_bot_commands(bot)

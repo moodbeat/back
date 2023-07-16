@@ -7,9 +7,9 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from config_reader import config
+
 from middlewares.auth import AuthMiddleware
-from services.api_request import format_date, get_headers, make_get_request
+from services.event_service import get_event_by_id, get_events
 
 router = Router()
 
@@ -22,23 +22,19 @@ async def cmd_events(message: Message | CallbackQuery, state: FSMContext):
     if isinstance(message, CallbackQuery):
         await message.message.delete()
 
-    headers = await get_headers(state)
-    response = await make_get_request(
-        config.base_endpoint + 'events/',
-        headers=headers
-    )
+    events = await get_events(state)
 
-    if response.get('count') == 0:
+    if not events:
         return await message.answer(
             'На данный момент нет доступных мероприятий'
         )
 
     keyboard = InlineKeyboardBuilder()
-    for data in response.get('results'):
+    for event in events:
         keyboard.row(
             InlineKeyboardButton(
-                text=data.get('name'),
-                callback_data=f'events_{data.get("id")}'
+                text=event.name,
+                callback_data=f'events_{event.id}'
             )
         )
     keyboard.row(
@@ -57,22 +53,17 @@ async def cmd_events(message: Message | CallbackQuery, state: FSMContext):
 
 
 @router.callback_query(Text(startswith='events_'))
-async def get_entry(callback: CallbackQuery, state: FSMContext):
+async def get_event(callback: CallbackQuery, state: FSMContext):
     event_id = int(callback.data.split('_')[1])
-    headers = await get_headers(state)
-    response = await make_get_request(
-        config.base_endpoint + f'events/{event_id}/',
-        headers=headers
-    )
+    event = await get_event_by_id(event_id, state)
 
     msg_text = (
-        f'*{response.get("name")}*\n\n'
-        f'{response.get("text")}\n\n'
+        f'*{event.name}*\n\n'
+        f'{event.text}\n\n'
         f'*Сроки проведения: '
-        f'{format_date(response.get("start_time"))} - '
-        f'{format_date(response.get("end_time"))}*\n\n'
-        f'_Автор: {response.get("author").get("first_name")} '
-        f'{response.get("author").get("last_name")}_'
+        f'{event.start_time.strftime("%d.%m.%Y %H:%M")} - '
+        f'{event.end_time.strftime("%d.%m.%Y %H:%M")}*\n\n'
+        f'_Автор: {event.author.full_name}_'
     )
 
     keyboard = InlineKeyboardMarkup(

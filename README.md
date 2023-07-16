@@ -148,7 +148,10 @@ CELERY_RESULT=redis://redis:6379
 
 # Переменные бота
 TELEGRAM_TOKEN=@BotFather
-BASE_ENDPOINT=https://example.com/api/v1/
+BASE_ENDPOINT=https://example.com/api/v1/  # адрес для обращения со стороны бота к RestAPI проекта
+TIME_ZONE=Europe/Moscow  # часовой пояс - должен быть одинаков в настройках Джанго и настройках бота
+CONDITION_PERIOD_SEC=36000  # периодичность в секундах между оценкой своего состояния по 5-бальной шкале
+
 ```
 
 ### Запуск проекта в dev режиме
@@ -171,7 +174,7 @@ DB_PORT=5432
 
 DJANGO_DEBUG=True
 
-# если поднимали воспользовавшись приложенным docke-compose конфигом
+# если поднимали воспользовавшись приложенным docker-compose конфигом
 REDIS_HOST=localhost
 REDIS_PORT=6379
 ELASTIC_HOST=localhost

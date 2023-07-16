@@ -12,7 +12,6 @@ from config_reader import config
 from db.models import Auth
 from db.requests import add_auth_data, find_user, update_auth_data
 
-
 router = Router()
 
 
@@ -69,7 +68,7 @@ async def save_user_data(message: Message, state: FSMContext):
 
     try:
         response = requests.post(
-            config.base_endpoint + 'auth/jwt/create/', json=data
+            config.BASE_ENDPOINT + 'auth/jwt/create/', json=data
         )
         response.raise_for_status()
         tokens = response.json()
@@ -88,7 +87,7 @@ async def save_user_data(message: Message, state: FSMContext):
         else:
             await message.answer('Какие-то проблемы.')
 
-        return
+        return  # noqa
 
     data = {
         'telegram_id': telegram_id,
@@ -102,7 +101,7 @@ async def save_user_data(message: Message, state: FSMContext):
         return await message.answer('Добро пожаловать, снова.')
 
     await add_auth_data(**data)
-    await message.answer('Вы успешно авторизованы.')
+    await message.answer('Вы успешно авторизованы.')  # noqa
 
 
 @router.message(AuthState.password)
@@ -110,7 +109,7 @@ async def get_refresh_token(message: Message, user: Auth):
 
     try:
         token = requests.post(
-            config.base_endpoint + 'auth/jwt/refresh/',
+            config.BASE_ENDPOINT + 'auth/jwt/refresh/',
             json={'refresh': user.refresh_token}
         ).json()
     except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):

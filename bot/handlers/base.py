@@ -2,9 +2,9 @@ from aiogram import Router, types
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
-from config_reader import config
+
 from middlewares.auth import AuthMiddleware
-from services.api_request import get_headers, make_get_request
+from services.user_service import get_current_user
 
 router = Router()
 
@@ -16,26 +16,21 @@ router.message.middleware(AuthMiddleware())
 async def cmd_start(
     message: types.Message | types.CallbackQuery, state: FSMContext
 ):
-    headers = await get_headers(state)
-    response = await make_get_request(
-        config.base_endpoint + 'users/current_user/',
-        headers=headers
-    )
+    user = await get_current_user(state)
 
     start_msg = (
-        f'Приветствую Вас, '
-        f'{response.get("first_name", message.from_user.first_name)}.\n'
-        f'Я умею почти всё, что умеет сервис «Настроение сотрудника»: '
-        f'cо мной Вы можете проходить опросы, '
-        f'отмечать своё состояние в течение дня, '
-        f'читать полезные новости и статьи, '
-        f'получать уведомления о проходящих мероприятиях.\n\n'
-        f'Доступные команды:\n'
-        f'/entries - список статей\n'
-        f'/events - список актуальных мероприятий\n'
-        f'/mood - отметить своё состояние\n'
-        f'/survey - список опросов для прохождения\n'
-        f'/need_help - отправить запрос на личную встречу со специалистом'
+        f'Приветствую Вас, {user.first_name}.\n'
+        'Я умею почти всё, что умеет сервис «Настроение сотрудника»: '
+        'cо мной Вы можете проходить опросы, '
+        'отмечать своё состояние в течение дня, '
+        'читать полезные новости и статьи, '
+        'получать уведомления о проходящих мероприятиях.\n\n'
+        'Доступные команды:\n'
+        '/entries - список последних статей\n'
+        '/events - список актуальных мероприятий\n'
+        '/conditions - отметить своё состояние\n'
+        '/survey - список опросов для прохождения\n'
+        '/need_help - отправить запрос на личную встречу со специалистом'
     )
 
     if isinstance(message, types.CallbackQuery):
