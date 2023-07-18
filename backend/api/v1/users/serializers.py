@@ -31,7 +31,7 @@ class HobbySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Hobby
-        fields = '__all__'
+        fields = ['id', 'name']
 
 
 class MentalStateSerializer(serializers.ModelSerializer):
