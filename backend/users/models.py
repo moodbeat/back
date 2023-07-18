@@ -86,6 +86,18 @@ class Hobby(models.Model):
             alpha_space_dash_validator
         ]
     )
+    life_directions = models.ManyToManyField(
+        'metrics.LifeDirection',
+        verbose_name='Жизненные направления',
+        related_name='hobbies',
+        blank=True
+    )
+    activity_types = models.ManyToManyField(
+        'metrics.ActivityType',
+        verbose_name='Типы активностей',
+        related_name='hobbies',
+        blank=True
+    )
 
     class Meta:
         verbose_name = 'Интерес'
