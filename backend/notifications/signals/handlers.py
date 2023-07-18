@@ -4,11 +4,13 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
 from spare_kits import notification_email_service as email_service
+from spare_kits.wrappers import disable_for_loaddata
 
 from ..models import Notification
 
 
 @receiver([post_save, post_delete], sender=Notification)
+@disable_for_loaddata
 def get_data_for_websocket(sender, instance, **kwargs):
     """Вызывается при создании/удалении нового объекта модели `Notification`.
 
