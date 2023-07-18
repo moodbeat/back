@@ -180,7 +180,7 @@ SWAGGER_SETTINGS = {
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = os.getenv('TIME_ZONE', default='Europe/Moscow'),
 
 USE_I18N = True
 
@@ -293,7 +293,7 @@ if DEV_SERVICES:
 
 # ----------------------------------------------------------------
 
-CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_SERIALIZER = 'pickle'
 CELERY_ACCEPT_CONTENT = ('pickle',)
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER', 'redis://redis:6379')

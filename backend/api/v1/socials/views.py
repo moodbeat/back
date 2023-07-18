@@ -26,7 +26,7 @@ class HelpViewSet(APIView):
     permission_classes = (IsAuthenticated,)
 
     @swagger_auto_schema(
-        responses={status.HTTP_200_OK: HelpTypeSerializer},
+        responses={status.HTTP_200_OK: HelpTypeSerializer(many=True)},
         manual_parameters=[user_param]
     )
     def get(self, request):
@@ -60,7 +60,7 @@ class SpecialistsView(APIView):
     permission_classes = (IsAuthenticated,)
 
     @swagger_auto_schema(
-        responses={status.HTTP_200_OK: SpecialistsSerializer},
+        responses={status.HTTP_200_OK: SpecialistsSerializer(many=True)},
     )
     def get(self, request):
         user = self.request.user
