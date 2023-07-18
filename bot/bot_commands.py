@@ -9,7 +9,7 @@ async def set_bot_commands(bot: Bot):
             BotCommand(command='/start', description='Запустить бота'),
             BotCommand(command='/entries', description='Последние статьи'),
             BotCommand(command='/events', description='Доступные мероприятия'),
-            BotCommand(command='/mood', description='Состояние'),
+            BotCommand(command='/conditions', description='Оценка состояния'),
             BotCommand(command='/survey', description='Доступные опросы'),
             BotCommand(command='/need_help', description='Нужна помощь!'),
         ]

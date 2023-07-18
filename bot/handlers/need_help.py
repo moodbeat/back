@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from aiogram import Router
 from aiogram.filters import Text
 from aiogram.filters.command import Command
@@ -48,6 +46,7 @@ async def cmd_needhelp(message: Message, state: FSMContext):
     keyboard.row(
         InlineKeyboardButton(text='На главную', callback_data='back_start')
     )
+    await state.update_data(need_help=dict())
     await state.set_state(HelpState.recipient)
     await message.answer(
         msg_text,
@@ -59,7 +58,9 @@ async def cmd_needhelp(message: Message, state: FSMContext):
 @router.message(HelpState.recipient)
 async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
     recipient_id = int(callback.data.split('_')[1])
-    await state.update_data(recipient=recipient_id)
+    user_data = await state.get_data()
+    user_data['need_help'].update(recipient=recipient_id)
+    await state.set_data(user_data)
     await callback.message.delete()
 
     help_types = await get_help_types_by_specialist_id(recipient_id, state)
@@ -88,7 +89,9 @@ async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
 @router.message(HelpState.type)
 async def needhelp_type(callback: CallbackQuery, state: FSMContext):
     type_id = int(callback.data.split('_')[1])
-    await state.update_data(type=type_id)
+    user_data = await state.get_data()
+    user_data['need_help'].update(type=type_id)
+    await state.set_data(user_data)
     await callback.message.delete()
 
     msg_text = 'А теперь опишите проблему'
@@ -105,9 +108,9 @@ async def needhelp_type(callback: CallbackQuery, state: FSMContext):
 
 @router.message(HelpState.comment)
 async def needhelp_comment(message: Message, state: FSMContext):
-    await state.update_data(comment=message.text)
     user_data = await state.get_data()
+    user_data['need_help'].update(comment=message.text)
 
-    await post_need_help_data(user_data, state)
+    await post_need_help_data(user_data['need_help'], state)
     await message.answer('Обращение сформировано и отправлено')
     await state.set_state(state=None)

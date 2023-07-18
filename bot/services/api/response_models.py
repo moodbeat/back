@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 
 from pydantic import (BaseModel, EmailStr, HttpUrl, PositiveInt, conint,
                       validator)
@@ -20,6 +20,10 @@ class Author(User):
     @validator('full_name', always=True)
     def get_full_name(cls, v, values) -> str:  # noqa
         return f'{values["first_name"]} {values["last_name"]}'
+
+
+class Employee(Author):
+    pass
 
 
 class CurrentUserGetResponse(User):
@@ -74,3 +78,42 @@ class ConditionGetResponse(BaseModel):
 
 class UserConditionGetResponse(User):
     latest_condition: ConditionGetResponse
+
+
+class SurveyQuestion(BaseModel):
+    id: PositiveInt
+    text: str
+
+
+class SurveyVariant(BaseModel):
+    text: str
+    value: conint(ge=0) | None = None
+
+
+class ShortSurveyGetResponse(BaseModel):
+    id: PositiveInt
+    title: str
+
+
+class FullSurveyGetResponse(ShortSurveyGetResponse):
+    frequency: conint(ge=0)
+    questions_quantity: PositiveInt
+    description: str | None = str()
+    author: Author
+    questions: list[SurveyQuestion]
+    variants: list[SurveyVariant]
+
+
+class MentalState(BaseModel):
+    name: str
+    description: str | None = None
+    message: str
+    level: conint(gt=0, le=3)
+
+
+class SurveyResultsAfterPostResponse(BaseModel):
+    employee: Employee
+    survey: ShortSurveyGetResponse
+    mental_state: MentalState
+    completion_date: date
+    next_attempt_date: date

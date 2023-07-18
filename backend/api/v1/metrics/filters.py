@@ -33,11 +33,11 @@ class SurveyFilter(filters.FilterSet):
     @property
     def qs(self):
         parent = super().qs
-        exc_surey = Survey.objects.filter(
+        exc_survey = Survey.objects.filter(
             completedsurvey__employee=self.request.user,
             completedsurvey__next_attempt_date__gt=date.today(),
         ).values('id')
-        return parent.exclude(id__in=(exc_surey))
+        return parent.exclude(id__in=(exc_survey))
 
 
 class CompletedSurveyFilter(filters.FilterSet):

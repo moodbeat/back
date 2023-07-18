@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django_filters.rest_framework import DjangoFilterBackend
@@ -182,18 +182,29 @@ class LifeBalanceViewSet(ModelViewSet):
 
 @swagger_auto_schema(responses={status.HTTP_200_OK: SurveySerializer})
 class SurveyViewSet(ModelViewSet):
-    queryset = (
-        Survey.objects
-        .select_related('author', 'type')
-        .prefetch_related('department', 'questions')
-        .all()
-    )
     filter_backends = (DjangoFilterBackend,)
     filterset_class = SurveyFilter
     http_method_names = ('get',)
     permission_classes = (IsAuthenticated,)
     serializer_class = ShortSurveySerializer
     detail_serializer_class = SurveySerializer
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return None
+
+        queryset = (
+            Survey.objects
+            .filter(
+                Q(author=self.request.user)
+                | Q(for_all=True)
+                | Q(department=self.request.user.department)
+            )
+            .select_related('author', 'type')
+            .prefetch_related('department', 'questions')
+        )
+
+        return queryset.all()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
