@@ -392,7 +392,7 @@ class TelegramCode(models.Model):
     )
     created = models.DateTimeField(
         verbose_name='Время отправки кода',
-        auto_now_add=True
+        default=timezone.now
     )
 
     class Meta:

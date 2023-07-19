@@ -1,12 +1,14 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
+from django.utils import timezone
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from sorl.thumbnail import get_thumbnail
 
 from api.v1.metrics.serializers import ConditionReadSerializer
-from users.models import Department, Hobby, MentalState, Position
+from users.models import Department, Hobby, MentalState, Position, TelegramCode
 
 from .fields import Base64ImageField
 
@@ -269,3 +271,33 @@ class CustomTokenObtainSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         attrs["email"] = attrs.get("email").lower()
         return super(CustomTokenObtainSerializer, self).validate(attrs)
+
+
+class TelegramTokenSerializer(serializers.Serializer):
+
+    email = serializers.EmailField()
+    code = serializers.IntegerField()
+    telegram_id = serializers.IntegerField()
+
+    def validate(self, data):
+        email = data.get('email')
+        code = data.get('code')
+
+        user = User.objects.filter(email=email)
+        if not user.exists():
+            raise serializers.ValidationError(
+                'Пользователь с указанным email не найден.'
+            )
+
+        telegram_code = TelegramCode.objects.filter(email=email, code=code)
+        if not telegram_code.exists():
+            raise serializers.ValidationError('Недействительный код.')
+
+        difference = timezone.now() - telegram_code.first().created
+        time_expires = int(settings.BOT_INVITE_TIME_EXPIRES_MINUTES)
+        if difference > timezone.timedelta(minutes=time_expires):
+            raise serializers.ValidationError(
+                'Время действия кода истекло.'
+            )
+
+        return data
