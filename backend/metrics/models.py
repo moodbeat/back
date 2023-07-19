@@ -1,5 +1,6 @@
 from datetime import date
 
+from colorfield.fields import ColorField
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.validators import (MaxValueValidator, MinLengthValidator,
@@ -431,6 +432,11 @@ class ActivityType(models.Model):
             MinValueValidator(1),
             MaxValueValidator(9)
         ]
+    )
+    color = ColorField(
+        verbose_name='Цвет',
+        blank=True,
+        null=True
     )
 
     class Meta:

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'sorl.thumbnail',
     'django_cleanup.apps.CleanupConfig',
+    'colorfield',
 
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
