@@ -1,7 +1,7 @@
 from pydantic import BaseModel, PositiveInt, conint
 
 
-class NeedHelpPostRequest(BaseModel):
+class HotLinePostRequest(BaseModel):
     recipient: PositiveInt
     type: PositiveInt
     comment: str
@@ -14,7 +14,6 @@ class ConditionPostRequest(BaseModel):
 class SurveyResult(BaseModel):
     question_id: PositiveInt
     variant_value: conint(ge=0)
-#    variant_id: PositiveInt | None
 
 
 class SurveyResultPostRequest(BaseModel):

@@ -7,8 +7,8 @@ from aiogram.types import CallbackQuery, InlineKeyboardButton, Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from middlewares.auth import AuthMiddleware
-from services.need_help_service import (get_help_types_by_specialist_id,
-                                        get_specialists, post_need_help_data)
+from services.hot_line_service import (get_help_types_by_specialist_id,
+                                       get_specialists, post_hot_line_data)
 from services.user_service import get_current_user
 
 router = Router()
@@ -16,13 +16,13 @@ router = Router()
 router.message.middleware(AuthMiddleware())
 
 
-class HelpState(StatesGroup):
+class HotLineState(StatesGroup):
     recipient = State()
     type = State()
     comment = State()
 
 
-@router.message(Command('need_help'))
+@router.message(Command('hot_line'))
 async def cmd_needhelp(message: Message, state: FSMContext):
     user = await get_current_user(state)
     msg_text = (
@@ -46,8 +46,8 @@ async def cmd_needhelp(message: Message, state: FSMContext):
     keyboard.row(
         InlineKeyboardButton(text='На главную', callback_data='back_start')
     )
-    await state.update_data(need_help=dict())
-    await state.set_state(HelpState.recipient)
+    await state.update_data(hot_line=dict())
+    await state.set_state(HotLineState.recipient)
     await message.answer(
         msg_text,
         reply_markup=keyboard.as_markup()
@@ -55,11 +55,11 @@ async def cmd_needhelp(message: Message, state: FSMContext):
 
 
 @router.callback_query(Text(startswith='recipient_'))
-@router.message(HelpState.recipient)
+@router.message(HotLineState.recipient)
 async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
     recipient_id = int(callback.data.split('_')[1])
     user_data = await state.get_data()
-    user_data['need_help'].update(recipient=recipient_id)
+    user_data['hot_line'].update(recipient=recipient_id)
     await state.set_data(user_data)
     await callback.message.delete()
 
@@ -78,7 +78,7 @@ async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
         InlineKeyboardButton(text='На главную', callback_data='back_start')
     )
 
-    await state.set_state(HelpState.type)
+    await state.set_state(HotLineState.type)
     await callback.message.answer(
         msg_text,
         reply_markup=keyboard.as_markup()
@@ -86,11 +86,11 @@ async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
 
 
 @router.callback_query(Text(startswith='type_'))
-@router.message(HelpState.type)
+@router.message(HotLineState.type)
 async def needhelp_type(callback: CallbackQuery, state: FSMContext):
     type_id = int(callback.data.split('_')[1])
     user_data = await state.get_data()
-    user_data['need_help'].update(type=type_id)
+    user_data['hot_line'].update(type=type_id)
     await state.set_data(user_data)
     await callback.message.delete()
 
@@ -99,18 +99,18 @@ async def needhelp_type(callback: CallbackQuery, state: FSMContext):
     keyboard.add(
         InlineKeyboardButton(text='На главную', callback_data='back_start')
     )
-    await state.set_state(HelpState.comment)
+    await state.set_state(HotLineState.comment)
     await callback.message.answer(
         msg_text,
         reply_markup=keyboard.as_markup()
     )
 
 
-@router.message(HelpState.comment)
+@router.message(HotLineState.comment)
 async def needhelp_comment(message: Message, state: FSMContext):
     user_data = await state.get_data()
-    user_data['need_help'].update(comment=message.text)
+    user_data['hot_line'].update(comment=message.text)
 
-    await post_need_help_data(user_data['need_help'], state)
+    await post_hot_line_data(user_data['hot_line'], state)
     await message.answer('Обращение сформировано и отправлено')
     await state.set_state(state=None)

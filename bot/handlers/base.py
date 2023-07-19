@@ -30,7 +30,7 @@ async def cmd_start(
         '/events - список актуальных мероприятий\n'
         '/conditions - отметить своё состояние\n'
         '/survey - список опросов для прохождения\n'
-        '/need_help - отправить запрос на личную встречу со специалистом'
+        '/hot_line - отправить анонимное обращение руководству компании'
     )
 
     if isinstance(message, types.CallbackQuery):
