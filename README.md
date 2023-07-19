@@ -151,6 +151,7 @@ TELEGRAM_TOKEN=@BotFather
 BASE_ENDPOINT=https://example.com/api/v1/  # адрес для обращения со стороны бота к RestAPI проекта
 TIME_ZONE=Europe/Moscow  # часовой пояс - должен быть одинаков в настройках Джанго и настройках бота
 CONDITION_PERIOD_SEC=36000  # периодичность в секундах между оценкой своего состояния по 5-бальной шкале
+BOT_NAME=example_bot_name # имя пользователя бота
 
 ```
 

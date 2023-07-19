@@ -366,3 +366,49 @@ class PasswordResetCode(models.Model):
     def save(self, *args, **kwargs):
         self.email = self.email.lower()
         super().save(*args, **kwargs)
+
+
+class TelegramUser(models.Model):
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+    telegram_id = models.PositiveBigIntegerField()
+
+
+class TelegramCode(models.Model):
+
+    email = models.EmailField(
+        unique=True,
+        max_length=254
+    )
+    code = models.PositiveIntegerField(
+        verbose_name='Код',
+        validators=[
+            MinValueValidator(100000),
+            MaxValueValidator(999999)
+        ]
+    )
+    created = models.DateTimeField(
+        verbose_name='Время отправки кода',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Код авторизации в боте'
+        verbose_name_plural = 'Коды авторизации в боте'
+        ordering = ['-created']
+
+    def __str__(self):
+        return f'bot_invite_{self.pk} to {self.email}'
+
+    def expire_date(self):
+        return self.created + timezone.timedelta(
+            days=settings.BOT_INVITE_TIME_EXPIRES_MINUTES)
+
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        super().save(*args, **kwargs)
+
+    expire_date.short_description = 'Время прекращения действия кода'

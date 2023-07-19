@@ -181,7 +181,7 @@ SWAGGER_SETTINGS = {
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = os.getenv('TIME_ZONE', default='Europe/Moscow'),
+TIME_ZONE = os.getenv('TIME_ZONE', default='Europe/Moscow')
 
 USE_I18N = True
 
@@ -221,6 +221,10 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 # ----------------------------------------------------------------
 
 INVITE_TIME_EXPIRES_DAYS = 7
+
+BOT_INVITE_TIME_EXPIRES_MINUTES = 10
+
+BOT_NAME = os.getenv('BOT_NAME')
 
 CORS_ORIGIN_ALLOW_ALL = True
 

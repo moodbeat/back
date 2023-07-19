@@ -121,6 +121,28 @@ class InviteService(SecretCodeService, EmailService):
             html_message=html_message,
         )
 
+    def send_telegram_code(self, email: str, code: str, again: bool = False):
+        """Отправляет `email` c кодом для авторизации в боте."""
+        url = (
+            f'https://t.me/{settings.BOT_NAME}'
+        )
+        subject = 'Ваш код для авторизации в боте'
+        if again:
+            subject = 'Вам повторно отправлен код для авторизации в боте'
+        html_message = render_to_string(
+            'email/send_telegram_code.html',
+            {'url': url, 'code': code},
+        )
+        message = strip_tags(html_message)
+
+        self.send_email(
+            subject,
+            message,
+            formataddr(('MoodBeat', settings.EMAIL_HOST_USER)),
+            [email],
+            html_message=html_message,
+        )
+
 
 class NotificationEmailService(EmailService):
     host = settings.SELF_HOST
