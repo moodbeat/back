@@ -151,7 +151,10 @@ TELEGRAM_TOKEN=@BotFather
 BASE_ENDPOINT=https://example.com/api/v1/  # адрес для обращения со стороны бота к RestAPI проекта
 TIME_ZONE=Europe/Moscow  # часовой пояс - должен быть одинаков в настройках Джанго и настройках бота
 CONDITION_PERIOD_SEC=36000  # периодичность в секундах между оценкой своего состояния по 5-бальной шкале
-
+WEB_HOOK_MODE=False  # запуск бота в режиме webhook - True, в режиме polling - False
+WEB_HOOK_HOST=https://example.com  # домен с ssl, на котором развернут бот
+WEB_APP_PORT=5000  # порт на котором будет "слушать" бот в режиме webhook
+SECRET_TOKEN=secret  # секретный токен для аутентификации при использовании бота в режиме webhook
 ```
 
 ### Запуск проекта в dev режиме

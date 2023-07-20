@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from aiogram import Router
 from aiogram.filters import Text
 from aiogram.filters.command import Command
@@ -39,7 +37,7 @@ async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
     keyboard.row(
         InlineKeyboardButton(text='На главную', callback_data='back_start')
     )
-    msg_text = 'Список 10 последних статей:'
+    msg_text = 'Список последних статей:'
     return (
         await message.answer(msg_text, reply_markup=keyboard.as_markup())
         if isinstance(message, Message)

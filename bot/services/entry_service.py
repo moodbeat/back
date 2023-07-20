@@ -26,9 +26,9 @@ async def get_entry_by_id(
     state: FSMContext
 ) -> FullEntryGetResponse:
     headers = await get_headers(state)
-    url = config.BASE_ENDPOINT + f'entries/{entry_id}/'
+    entry_url = config.SELF_HOST + f'entries/{entry_id}/'
     data = await make_get_request(
-        url,
+        config.BASE_ENDPOINT + f'entries/{entry_id}/',
         headers=headers
     )
-    return FullEntryGetResponse(entry_url=url, **data)
+    return FullEntryGetResponse(entry_url=entry_url, **data)
