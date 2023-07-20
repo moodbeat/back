@@ -432,6 +432,7 @@ class TelegramTokenObtainPairView(APIView):
         else:
             TelegramUser.objects.create(user=user, telegram_id=telegram_id)
 
+        TelegramCode.objects.get(email=email).delete()
         data = {'refresh': str(refresh), 'access': access}
         return Response(data=data, status=status.HTTP_200_OK)
 

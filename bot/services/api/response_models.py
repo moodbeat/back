@@ -74,3 +74,8 @@ class ConditionGetResponse(BaseModel):
 
 class UserConditionGetResponse(User):
     latest_condition: ConditionGetResponse
+
+
+class AuthTokenPostResponse(BaseModel):
+    refresh: str
+    access: str

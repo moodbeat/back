@@ -4,7 +4,7 @@ from aiogram import BaseMiddleware
 from aiogram.types import Message
 
 from db.requests import find_user
-from handlers.auth import auth_email, get_refresh_token
+from handlers.auth import auth_email
 
 
 class AuthMiddleware(BaseMiddleware):
@@ -14,19 +14,17 @@ class AuthMiddleware(BaseMiddleware):
         event: Message,
         data: Dict[str, Any]
     ) -> Any:
-
         state = await data.get('state').get_data()
+
         if not state.get('headers'):
             user = await find_user(telegram_id=event.from_user.id)
 
             if user:
-                token = await get_refresh_token(event, user)
-
                 user_data = {
                     'user': user,
                     'headers':
                     {
-                        'Authorization': 'Bearer ' + f'{token.get("access")}'
+                        'Authorization': 'Bearer ' + f'{user.access_token}'
                     }
                 }
                 await data.get('state').update_data(data=user_data)
