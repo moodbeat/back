@@ -3,7 +3,7 @@ from aiogram.fsm.context import FSMContext
 from config_reader import config
 
 from .api.api_request import get_headers, make_get_request, make_post_request
-from .api.request_models import NeedHelpPostRequest
+from .api.request_models import HotLinePostRequest
 from .api.response_models import HelpSpecialistGetResponse, HelpTypeGetResponse
 
 
@@ -34,11 +34,11 @@ async def get_help_types_by_specialist_id(
     ]
 
 
-async def post_need_help_data(
+async def post_hot_line_data(
     user_data: dict,
     state: FSMContext
 ) -> None:
-    data = NeedHelpPostRequest(**user_data)
+    data = HotLinePostRequest(**user_data)
     headers = await get_headers(state)
     await make_post_request(
         config.BASE_ENDPOINT + 'socials/need_help/',

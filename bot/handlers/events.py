@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from aiogram import Router
 from aiogram.filters import Text
 from aiogram.filters.command import Command

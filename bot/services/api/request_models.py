@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr, PositiveInt, conint
 
 
-class NeedHelpPostRequest(BaseModel):
+class HotLinePostRequest(BaseModel):
     recipient: PositiveInt
     type: PositiveInt
     comment: str
@@ -24,3 +24,13 @@ class AuthTokenPostRequest(BaseModel):
 class AuthTokenRefreshRequest(BaseModel):
     email: EmailStr
     telegram_id: PositiveInt
+
+
+class SurveyResult(BaseModel):
+    question_id: PositiveInt
+    variant_value: conint(ge=0)
+
+
+class SurveyResultPostRequest(BaseModel):
+    survey: PositiveInt
+    results: list[SurveyResult]
