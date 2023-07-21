@@ -8,7 +8,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from sorl.thumbnail import get_thumbnail
 
 from api.v1.metrics.serializers import ConditionReadSerializer
-from users.models import Department, Hobby, MentalState, Position, TelegramCode
+from users.models import (Department, Hobby, MentalState, Position,
+                          TelegramCode, TelegramUser)
 
 from .fields import Base64ImageField
 
@@ -276,12 +277,13 @@ class CustomTokenObtainSerializer(TokenObtainPairSerializer):
 class TelegramTokenSerializer(serializers.Serializer):
 
     email = serializers.EmailField()
-    code = serializers.IntegerField()
+    code = serializers.IntegerField(required=False)
     telegram_id = serializers.IntegerField()
 
     def validate(self, data):
         email = data.get('email')
-        code = data.get('code')
+        telegram_id = data.get('telegram_id')
+        code = data.get('code', None)
 
         user = User.objects.filter(email=email)
         if not user.exists():
@@ -289,15 +291,26 @@ class TelegramTokenSerializer(serializers.Serializer):
                 'Пользователь с указанным email не найден.'
             )
 
-        telegram_code = TelegramCode.objects.filter(email=email, code=code)
-        if not telegram_code.exists():
-            raise serializers.ValidationError('Недействительный код.')
+        if code:
+            telegram_code = TelegramCode.objects.filter(email=email, code=code)
+            if not telegram_code.exists():
+                raise serializers.ValidationError('Недействительный код.')
 
-        difference = timezone.now() - telegram_code.first().created
-        time_expires = int(settings.BOT_INVITE_TIME_EXPIRES_MINUTES)
-        if difference > timezone.timedelta(minutes=time_expires):
-            raise serializers.ValidationError(
-                'Время действия кода истекло.'
+            difference = timezone.now() - telegram_code.first().created
+            time_expires = int(settings.BOT_INVITE_TIME_EXPIRES_MINUTES)
+            if difference > timezone.timedelta(minutes=time_expires):
+                raise serializers.ValidationError(
+                    'Время действия кода истекло.'
+                )
+        else:
+            user = TelegramUser.objects.filter(
+                user__email=email, telegram_id=telegram_id
             )
+            if not user.exists():
+                raise serializers.ValidationError(
+                    'Пользователь с указанными парой email/telegram_id не '
+                    'найден. Получите на email код для авторизации и '
+                    'попробуйте снова с использованием поля code.'
+                )
 
         return data

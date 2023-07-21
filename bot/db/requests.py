@@ -1,4 +1,4 @@
-from sqlalchemy import desc, select, update
+from sqlalchemy import delete, desc, select, update
 
 from .base import async_session_maker
 from .models import Auth
@@ -28,3 +28,10 @@ async def find_user(**kwargs):
         )
         result = await session.execute(query)
         return result.scalar_one_or_none()
+
+
+async def delete_user(id: int):
+    async with async_session_maker() as session:
+        query = delete(Auth).where(Auth.id == id)
+        await session.execute(query)
+        await session.commit()

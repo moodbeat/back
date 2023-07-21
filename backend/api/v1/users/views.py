@@ -421,18 +421,22 @@ class TelegramTokenObtainPairView(APIView):
             )
         email = serializer.validated_data.get('email')
         telegram_id = serializer.validated_data.get('telegram_id')
+        code = serializer.validated_data.get('code', None)
+
         user = User.objects.get(email=email)
         refresh = RefreshToken.for_user(user)
         access = str(refresh.access_token)
 
-        user_tg = TelegramUser.objects.filter(user=user)
-        if user_tg.exists():
-            TelegramUser.objects.filter(user=user).update(
-                telegram_id=telegram_id)
-        else:
-            TelegramUser.objects.create(user=user, telegram_id=telegram_id)
+        if code:
+            user_tg = TelegramUser.objects.filter(user=user)
+            if user_tg.exists():
+                TelegramUser.objects.filter(user=user).update(
+                    telegram_id=telegram_id)
+            else:
+                TelegramUser.objects.create(user=user, telegram_id=telegram_id)
 
-        TelegramCode.objects.get(email=email).delete()
+            TelegramCode.objects.get(email=email).delete()
+
         data = {'refresh': str(refresh), 'access': access}
         return Response(data=data, status=status.HTTP_200_OK)
 

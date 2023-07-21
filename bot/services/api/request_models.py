@@ -21,5 +21,6 @@ class AuthTokenPostRequest(BaseModel):
     telegram_id: PositiveInt
 
 
-class AuthTokenRefreshPostRequest(BaseModel):
-    refresh: str
+class AuthTokenRefreshRequest(BaseModel):
+    email: EmailStr
+    telegram_id: PositiveInt
