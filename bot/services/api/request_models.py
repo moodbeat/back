@@ -1,4 +1,4 @@
-from pydantic import BaseModel, PositiveInt, conint
+from pydantic import BaseModel, EmailStr, PositiveInt, conint
 
 
 class HotLinePostRequest(BaseModel):
@@ -9,6 +9,21 @@ class HotLinePostRequest(BaseModel):
 
 class ConditionPostRequest(BaseModel):
     mood: conint(ge=1, le=5)
+
+
+class AuthCodePostRequest(BaseModel):
+    email: EmailStr
+
+
+class AuthTokenPostRequest(BaseModel):
+    email: EmailStr
+    code: conint(ge=100000, le=999999)
+    telegram_id: PositiveInt
+
+
+class AuthTokenRefreshRequest(BaseModel):
+    email: EmailStr
+    telegram_id: PositiveInt
 
 
 class SurveyResult(BaseModel):

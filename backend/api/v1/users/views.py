@@ -1,8 +1,10 @@
+import random
 import uuid
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
@@ -12,13 +14,14 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from api.v1.permissions import (AllReadOnlyPermissions, ChiefSafePermission,
                                 HRAllPermission)
 from spare_kits import invite_service
 from users.documents import HobbyDocument
 from users.models import (Department, Hobby, InviteCode, PasswordResetCode,
-                          Position)
+                          Position, TelegramCode, TelegramUser)
 
 from .filters import (DepartmentInviteCodeFilter, ElasticSearchFilter,
                       PositionInviteCodeFilter)
@@ -27,8 +30,9 @@ from .serializers import (DepartmentSerializer, HobbySerializer,
                           PasswordResetConfirmSerializer,
                           PasswordResetSerializer, PositionSerializer,
                           RegisterSerializer, SendInviteSerializer,
-                          UserSelfUpdateSerializer, UserSerializer,
-                          UserUpdateSerializer, VerifyInviteSerializer)
+                          TelegramTokenSerializer, UserSelfUpdateSerializer,
+                          UserSerializer, UserUpdateSerializer,
+                          VerifyInviteSerializer)
 
 User = get_user_model()
 
@@ -348,6 +352,93 @@ class PasswordChangeView(APIView):
         user.save()
         data = {'detail': 'Пароль успешно изменен.'}
         return Response(data, status=status.HTTP_200_OK)
+
+
+class TelegramSendCodeView(APIView):
+    """Отправка на почту кода для авторизации в боте."""
+
+    permission_classes = (AllowAny,)
+
+    @swagger_auto_schema(
+        request_body=PasswordResetSerializer,
+        operation_id='users_telegram_send_code',
+        responses={
+            status.HTTP_200_OK:
+                'Код для авторизации в боте отправлен на email',
+            status.HTTP_400_BAD_REQUEST:
+                ('Некорректный запрос. Ошибка валидации данных '
+                 'или пользователь с таким email отсутствует')
+        }
+    )
+    def post(self, request):
+        serializer = PasswordResetSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+
+        email = serializer.validated_data.get('email')
+
+        if TelegramCode.objects.filter(email__iexact=email).exists():
+            telegram_code = self.create_telegram_code(email, retry=True)
+            invite_service.send_telegram_code(
+                email=email, code=telegram_code, again=True
+            )
+            data = {'detail': 'Код отправлен повторно',
+                    'telegram_code': telegram_code}
+            return Response(data, status=status.HTTP_200_OK)
+
+        telegram_code = self.create_telegram_code(email)
+        invite_service.send_telegram_code(email=email, code=telegram_code)
+        data = {'detail': 'Код для авторизации в боте отправлен на email',
+                'telegram_code': telegram_code}
+        return Response(data, status=status.HTTP_200_OK)
+
+    def create_telegram_code(self, email: str, retry: bool = False) -> int:
+        telegram_code = random.randint(100000, 999999)
+
+        if retry:
+            TelegramCode.objects.filter(
+                email__iexact=email
+            ).update(code=telegram_code, created=timezone.now())
+            return telegram_code
+
+        TelegramCode.objects.create(email=email, code=telegram_code)
+        return telegram_code
+
+
+class TelegramTokenObtainPairView(APIView):
+    permission_classes = (AllowAny,)
+
+    @swagger_auto_schema(request_body=TelegramTokenSerializer)
+    def post(self, request, *args, **kwargs):
+        serializer = TelegramTokenSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
+        email = serializer.validated_data.get('email')
+        telegram_id = serializer.validated_data.get('telegram_id')
+        code = serializer.validated_data.get('code', None)
+
+        user = User.objects.get(email=email)
+        refresh = RefreshToken.for_user(user)
+        access = str(refresh.access_token)
+
+        if code:
+            user_tg = TelegramUser.objects.filter(user=user)
+            if user_tg.exists():
+                TelegramUser.objects.filter(user=user).update(
+                    telegram_id=telegram_id)
+            else:
+                TelegramUser.objects.create(user=user, telegram_id=telegram_id)
+
+            TelegramCode.objects.get(email=email).delete()
+
+        data = {'refresh': str(refresh), 'access': access}
+        return Response(data=data, status=status.HTTP_200_OK)
 
 
 class DepartmentViewSet(ModelViewSet):
