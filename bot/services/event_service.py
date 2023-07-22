@@ -1,3 +1,5 @@
+from urllib.parse import urljoin
+
 from aiogram.fsm.context import FSMContext
 
 from config_reader import config
@@ -11,7 +13,7 @@ async def get_events(
 ) -> list[ShortEventGetResponse] | None:
     headers = await get_headers(state)
     data = await make_get_request(
-        config.BASE_ENDPOINT + 'events/',
+        urljoin(config.BASE_ENDPOINT, 'events/'),
         headers=headers
     )
     if data.get('count') == 0:
@@ -27,7 +29,7 @@ async def get_event_by_id(
 ) -> FullEventGetResponse:
     headers = await get_headers(state)
     data = await make_get_request(
-        config.BASE_ENDPOINT + f'events/{event_id}/',
+        urljoin(config.BASE_ENDPOINT, f'events/{event_id}/'),
         headers=headers
     )
     return FullEventGetResponse(**data)

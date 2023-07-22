@@ -1,3 +1,5 @@
+from urllib.parse import urljoin
+
 from aiogram.fsm.context import FSMContext
 
 from config_reader import config
@@ -15,7 +17,7 @@ async def get_last_ten_surveys(
 ) -> list[ShortSurveyGetResponse] | None:
     headers = await get_headers(state)
     data = await make_get_request(
-        config.BASE_ENDPOINT + 'metrics/surveys/?limit=10',
+        urljoin(config.BASE_ENDPOINT, 'metrics/surveys/?limit=10'),
         headers=headers
     )
     if data.get('count') == 0:
@@ -31,7 +33,7 @@ async def get_survey_by_id(
 ) -> FullSurveyGetResponse:
     headers = await get_headers(state)
     data = await make_get_request(
-        f'{config.BASE_ENDPOINT}metrics/surveys/{survey_id}/',
+        urljoin(config.BASE_ENDPOINT, f'metrics/surveys/{survey_id}/'),
         headers=headers
     )
     return FullSurveyGetResponse(**data)
@@ -44,7 +46,7 @@ async def post_survey_result_data_with_return_data(
     data = SurveyResultPostRequest(**user_data)
     headers = await get_headers(state)
     response = await make_post_request_with_return_data(
-        config.BASE_ENDPOINT + 'metrics/surveys/results/',
+        urljoin(config.BASE_ENDPOINT, 'metrics/surveys/results/'),
         data=data.dict(),
         headers=headers
     )

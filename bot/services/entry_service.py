@@ -1,3 +1,5 @@
+from urllib.parse import urljoin
+
 from aiogram.fsm.context import FSMContext
 
 from config_reader import config
@@ -11,7 +13,7 @@ async def get_last_ten_entries(
 ) -> list[ShortEntryGetResponse] | None:
     headers = await get_headers(state)
     data = await make_get_request(
-        config.BASE_ENDPOINT + 'entries/?limit=10',
+        urljoin(config.BASE_ENDPOINT, 'entries/?limit=10'),
         headers=headers
     )
     if data.get('count') == 0:
@@ -26,9 +28,9 @@ async def get_entry_by_id(
     state: FSMContext
 ) -> FullEntryGetResponse:
     headers = await get_headers(state)
-    entry_url = config.SELF_HOST + f'entries/{entry_id}/'
+    entry_url = urljoin(config.SELF_HOST, f'entries/{entry_id}/')
     data = await make_get_request(
-        config.BASE_ENDPOINT + f'entries/{entry_id}/',
+        urljoin(config.BASE_ENDPOINT, f'entries/{entry_id}/'),
         headers=headers
     )
     return FullEntryGetResponse(entry_url=entry_url, **data)
