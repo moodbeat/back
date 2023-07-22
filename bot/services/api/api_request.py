@@ -1,5 +1,3 @@
-from typing import Union
-
 from aiogram.fsm.context import FSMContext
 
 from config_reader import config
@@ -18,7 +16,7 @@ async def token_refresh_by_telegram(
 ) -> AuthTokenPostResponse:
     data = AuthTokenRefreshRequest(email=email, telegram_id=telegram_id)
     try:
-        return await make_post_request(
+        return await make_post_request_with_return_data(
             config.BASE_ENDPOINT + 'auth/jwt/telegram_create/',
             data=data.dict(),
             headers=None
@@ -29,7 +27,7 @@ async def token_refresh_by_telegram(
             await delete_user(id=user.id)
 
 
-async def refresh_token(url: str, headers: str) -> Union[None, dict]:
+async def refresh_token(url: str, headers: str) -> dict | None:
     session = await sessions_generator.asend(None)
     access_token = headers['Authorization'].split('Bearer ')[1]
     user = await find_user(access_token=access_token)
@@ -61,8 +59,8 @@ async def make_get_request(url: str, headers: dict) -> dict:
 async def make_post_request(
     url: str,
     data: dict,
-    headers: Union[None, dict]
-) -> Union[None, dict]:
+    headers: dict | None
+) -> None:
     session = await sessions_generator.asend(None)
     async with session.post(url, json=data, headers=headers) as response:
 
@@ -70,7 +68,7 @@ async def make_post_request(
             return await refresh_token(url, headers)
 
         response.raise_for_status()
-        return await response.json()
+        return None
 
 
 async def get_headers(state: FSMContext) -> dict:
@@ -83,5 +81,9 @@ async def make_post_request_with_return_data(
 ) -> None:
     session = await sessions_generator.asend(None)
     async with session.post(url, json=data, headers=headers) as response:
+
+        if response.status == 401:
+            return await refresh_token(url, headers)
+
         response.raise_for_status()
         return await response.json()
