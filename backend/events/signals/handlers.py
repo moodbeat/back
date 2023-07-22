@@ -5,7 +5,6 @@ from django.dispatch import receiver
 
 from metrics.models import BurnoutTracker
 from notifications.models import Notification
-from spare_kits.wrappers import disable_for_loaddata
 
 from ..models import Event, MeetingResult
 
@@ -89,7 +88,6 @@ def create_notification_for_event_by_employees(
 
 
 @receiver(post_save, sender=MeetingResult)
-@disable_for_loaddata
 def add_mental_state_to_tracker(sender, instance, created, **kwargs):
     """Вызывается после сохранения объекта `MeetingResult`.
 

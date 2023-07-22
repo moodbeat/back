@@ -80,6 +80,11 @@ class UserConditionGetResponse(User):
     latest_condition: ConditionGetResponse
 
 
+class AuthTokenPostResponse(BaseModel):
+    refresh: str
+    access: str
+
+
 class SurveyQuestion(BaseModel):
     id: PositiveInt
     text: str

@@ -5,7 +5,7 @@ description = "Bot for moodbeat project"
 authors = ["Moodbeat company"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 pre-commit = "3.3.2"
 aiogram = "3.0.0b7"
 SQLAlchemy = "2.0.15"
@@ -17,7 +17,6 @@ pytz = "^2023.3"
 
 
 [tool.poetry.group.dev.dependencies]
-django-debug-toolbar = "4.0.0"
 autopep8 = "2.0.2"
 flake8 = "6.0.0"
 isort = "^5.12.0"

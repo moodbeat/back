@@ -2,10 +2,7 @@
 
 <p>Здравствуйте,</p>
 <p>
-  у Вас новые уведомления в разделе <em><strong>{{ incident_type }}</strong></em>
-  проекта <strong>MoodBeat</strong>.
-
-  Нажмите на кнопку ниже для перехода на свой аккаунт.
+  Ваш код для авторизации в боте:
 </p>
 <table
   role="presentation"
@@ -20,8 +17,11 @@
         <table role="presentation" border="0" cellpadding="0" cellspacing="0">
           <tbody>
             <tr>
+              <h1>
+                {{ code }}
+              </h1>
               <td>
-                <a href="{{ url }}" target="_blank">Перейти к аккаунту</a>
+                <a href="{{ url }}" target="_blank">Перейти в наш бот</a>
               </td>
             </tr>
           </tbody>
