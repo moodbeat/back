@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 import requests
-from aiogram import Router
+from aiogram import Router, flags
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
@@ -21,6 +21,7 @@ class AuthState(StatesGroup):
 
 
 @router.message(Command('auth'))
+@flags.state_reset
 async def auth_email(message: Message, state: FSMContext):
     await message.answer(
         f'Приветсвую, {message.from_user.first_name}! '

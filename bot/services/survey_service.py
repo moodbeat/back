@@ -10,6 +10,7 @@ from .api.request_models import SurveyResultPostRequest
 from .api.response_models import (FullSurveyGetResponse,
                                   ShortSurveyGetResponse,
                                   SurveyResultsAfterPostResponse)
+from .storage_service import get_object_from_storage, save_object_in_storage
 
 
 async def get_last_ten_surveys(
@@ -51,3 +52,24 @@ async def post_survey_result_data_with_return_data(
         headers=headers
     )
     return SurveyResultsAfterPostResponse(**response)
+
+
+async def get_survey_from_storage(
+    state: FSMContext
+) -> FullSurveyGetResponse:
+    return await get_object_from_storage(
+        key='survey',
+        model=FullSurveyGetResponse,
+        state=state
+    )
+
+
+async def save_survey_in_storage(
+    obj: FullSurveyGetResponse,
+    state: FSMContext
+) -> None:
+    await save_object_in_storage(
+        key='survey',
+        obj=obj,
+        state=state
+    )

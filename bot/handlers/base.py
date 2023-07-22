@@ -1,4 +1,4 @@
-from aiogram import Router, types
+from aiogram import Router, flags, types
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
@@ -13,6 +13,7 @@ router.message.middleware(AuthMiddleware())
 
 @router.callback_query(Text(startswith='back_start'))
 @router.message(Command('start'))
+@flags.state_reset
 async def cmd_start(
     message: types.Message | types.CallbackQuery, state: FSMContext
 ):
@@ -35,6 +36,5 @@ async def cmd_start(
 
     if isinstance(message, types.CallbackQuery):
         await message.message.delete()
-        await state.set_state(state=None)
     else:
         await message.answer(start_msg)

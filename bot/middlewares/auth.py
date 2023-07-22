@@ -1,4 +1,4 @@
-from typing import Any, Awaitable, Callable, Dict
+from typing import Any, Awaitable, Callable
 
 from aiogram import BaseMiddleware
 from aiogram.types import Message
@@ -10,9 +10,9 @@ from handlers.auth import auth_email, get_refresh_token
 class AuthMiddleware(BaseMiddleware):
     async def __call__(
         self,
-        handler: Callable[[Message, Dict[str, Any]], Awaitable[Any]],
+        handler: Callable[[Message, dict[str, Any]], Awaitable[Any]],
         event: Message,
-        data: Dict[str, Any]
+        data: dict[str, Any]
     ) -> Any:
 
         state = await data.get('state').get_data()
@@ -23,13 +23,12 @@ class AuthMiddleware(BaseMiddleware):
                 token = await get_refresh_token(event, user)
 
                 user_data = {
-                    'user': user,
                     'headers':
                     {
                         'Authorization': 'Bearer ' + f'{token.get("access")}'
                     }
                 }
-                await data.get('state').update_data(data=user_data)
+                await data.get('state').update_data(user_data)
 
             else:
                 return await auth_email(event, data.get('state'))

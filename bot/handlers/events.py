@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Router, flags
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
@@ -16,6 +16,7 @@ router.message.middleware(AuthMiddleware())
 
 @router.callback_query(Text(startswith='back_events'))
 @router.message(Command('events'))
+@flags.state_reset
 async def cmd_events(message: Message | CallbackQuery, state: FSMContext):
     if isinstance(message, CallbackQuery):
         await message.message.delete()
@@ -43,7 +44,7 @@ async def cmd_events(message: Message | CallbackQuery, state: FSMContext):
     return (
         await message.answer(msg_text, reply_markup=keyboard.as_markup())
         if isinstance(message, Message)
-        else message.message.answer(
+        else await message.message.answer(
             msg_text,
             reply_markup=keyboard.as_markup()
         )

@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Router, flags
 from aiogram.filters import Text
 from aiogram.filters.callback_data import CallbackData
 from aiogram.filters.command import Command
@@ -11,7 +11,9 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from middlewares.auth import AuthMiddleware
 from services.local_datetime import get_local_datetime_now
 from services.survey_service import (get_last_ten_surveys, get_survey_by_id,
-                                     post_survey_result_data_with_return_data)
+                                     get_survey_from_storage,
+                                     post_survey_result_data_with_return_data,
+                                     save_survey_in_storage)
 
 router = Router()
 
@@ -30,10 +32,10 @@ class SurveyAnswersCallbackFactory(CallbackData, prefix='answer'):
 
 @router.callback_query(Text(startswith='back_survey'))
 @router.message(Command('survey'))
+@flags.state_reset
 async def cmd_survey(message: Message | CallbackQuery, state: FSMContext):
     if isinstance(message, CallbackQuery):
         await message.message.delete()
-        await state.set_state(state=None)
 
     surveys = await get_last_ten_surveys(state)
 
@@ -58,7 +60,7 @@ async def cmd_survey(message: Message | CallbackQuery, state: FSMContext):
     return (
         await message.answer(msg_text, reply_markup=keyboard.as_markup())
         if isinstance(message, Message)
-        else message.message.answer(
+        else await message.message.answer(
             msg_text,
             reply_markup=keyboard.as_markup()
         )
@@ -69,7 +71,7 @@ async def cmd_survey(message: Message | CallbackQuery, state: FSMContext):
 async def get_survey(callback: CallbackQuery, state: FSMContext):
     survey_id = int(callback.data.split('_')[1])
     survey = await get_survey_by_id(survey_id, state)
-    await state.update_data(survey=survey)
+    await save_survey_in_storage(obj=survey, state=state)
 
     msg_text = (
         f'*{survey.title}*\n\n'
@@ -120,8 +122,7 @@ def answers_keyboard(question_id, answers):
 
 @router.callback_query(Text(startswith='take_survey_'))
 async def take_survey(callback: CallbackQuery, state: FSMContext):
-    user_data = await state.get_data()
-    survey = user_data['survey']
+    survey = await get_survey_from_storage(state)
     survey_id = int(callback.data.split('_')[-1])
     if survey.id != survey_id:
         return await get_survey(callback, state)
@@ -155,12 +156,13 @@ async def process_survey(
         'question_id': callback_data.question_id,
         'variant_value': callback_data.answer_value
     })
-    survey = user_data['survey']
 
     user_data['questions_counter'] += 1
     questions_counter = user_data['questions_counter']
+    await state.set_data(user_data)
+    survey = await get_survey_from_storage(state)
+
     if questions_counter < survey.questions_quantity:
-        await state.set_data(user_data)
         return await callback.message.edit_text(
             survey.questions[questions_counter].text,
             reply_markup=answers_keyboard(
@@ -198,7 +200,7 @@ async def needhelp_comment(callback: CallbackQuery, state: FSMContext):
     user_data = await state.get_data()
     user_data.pop('questions_counter')
     data = {
-        'survey': user_data.pop('survey').id,
+        'survey': user_data.pop('survey')['id'],
         'results': user_data.pop('results')
     }
     await state.set_data(user_data)

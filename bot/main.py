@@ -10,6 +10,7 @@ from redis.asyncio.client import Redis
 from bot_commands import set_bot_commands
 from config_reader import config
 from handlers import auth, base, conditions, entries, events, hot_line, surveys
+from middlewares.state_control import StateResetMiddleware
 
 logging.basicConfig(level=logging.INFO)
 storage = RedisStorage(
@@ -34,7 +35,7 @@ async def telegram_webhook(request: Request) -> web.Response:
     return web.Response(text="ok")
 
 
-# @dp.errors()
+@dp.errors()
 async def errors_handler(err_event: types.ErrorEvent) -> bool:
     logging.error(
         f'Ошибка при обработке запроса {err_event.update.update_id}: '
@@ -66,6 +67,8 @@ async def on_startapp(app: web.Application | None = None) -> None:
         surveys.router,
         conditions.router,
     )
+    dp.message.middleware(StateResetMiddleware())
+    dp.callback_query.middleware(StateResetMiddleware())
     await set_bot_commands(bot)
 
 
