@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Router, flags
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
@@ -22,6 +22,7 @@ class HotLineState(StatesGroup):
     comment = State()
 
 
+@flags.state_reset
 @router.message(Command('hot_line'))
 async def cmd_needhelp(message: Message, state: FSMContext):
     user = await get_current_user(state)

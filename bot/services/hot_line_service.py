@@ -1,3 +1,5 @@
+from urllib.parse import urljoin
+
 from aiogram.fsm.context import FSMContext
 
 from config_reader import config
@@ -12,7 +14,7 @@ async def get_specialists(
 ) -> list[HelpSpecialistGetResponse]:
     headers = await get_headers(state)
     data = await make_get_request(
-        config.BASE_ENDPOINT + 'socials/specialists/',
+        urljoin(config.BASE_ENDPOINT, 'socials/specialists/'),
         headers=headers
     )
     return [
@@ -26,7 +28,10 @@ async def get_help_types_by_specialist_id(
 ) -> list[HelpTypeGetResponse]:
     headers = await get_headers(state)
     data = await make_get_request(
-        f'{config.BASE_ENDPOINT}socials/help_types/?user={specialist_id}',
+        urljoin(
+            config.BASE_ENDPOINT,
+            f'socials/help_types/?user={specialist_id}'
+        ),
         headers=headers
     )
     return [
@@ -41,7 +46,7 @@ async def post_hot_line_data(
     data = HotLinePostRequest(**user_data)
     headers = await get_headers(state)
     await make_post_request(
-        config.BASE_ENDPOINT + 'socials/need_help/',
+        urljoin(config.BASE_ENDPOINT, 'socials/need_help/'),
         data=data.dict(),
         headers=headers
     )

@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Router, flags
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
@@ -30,6 +30,7 @@ def mood_keyboard():
 
 
 @router.message(Command('conditions'))
+@flags.state_reset
 async def cmd_conditions(message: Message, state: FSMContext):
     user = await get_current_user_with_condition(state)
     keyboard = mood_keyboard()
