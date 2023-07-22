@@ -9,6 +9,7 @@ from .api.response_models import CurrentUserGetResponse
 
 
 async def get_current_user(state: FSMContext) -> CurrentUserGetResponse:
+    """Выполняет запрос к API и возвращает объект текущего пользователя."""
     headers = await get_headers(state)
     data = await make_get_request(
         urljoin(config.BASE_ENDPOINT, 'users/current_user/'),

@@ -11,6 +11,10 @@ from .api.response_models import FullEntryGetResponse, ShortEntryGetResponse
 async def get_last_ten_entries(
     state: FSMContext
 ) -> list[ShortEntryGetResponse] | None:
+    """Выполняет запрос к API и возвращает список 10 послеждних статей.
+
+    В случае отсутствия статей возвпращает None.
+    """
     headers = await get_headers(state)
     data = await make_get_request(
         urljoin(config.BASE_ENDPOINT, 'entries/?limit=10'),
@@ -27,6 +31,7 @@ async def get_entry_by_id(
     entry_id: int,
     state: FSMContext
 ) -> FullEntryGetResponse:
+    """Выполняет запрос к API и возвращает объект новости по id."""
     headers = await get_headers(state)
     entry_url = urljoin(config.SELF_HOST, f'entries/{entry_id}/')
     data = await make_get_request(

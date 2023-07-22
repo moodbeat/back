@@ -12,6 +12,10 @@ from .api.response_models import HelpSpecialistGetResponse, HelpTypeGetResponse
 async def get_specialists(
     state: FSMContext
 ) -> list[HelpSpecialistGetResponse]:
+    """Выполняет запрос к API.
+
+    Возвращает список специалистов для обращения.
+    """
     headers = await get_headers(state)
     data = await make_get_request(
         urljoin(config.BASE_ENDPOINT, 'socials/specialists/'),
@@ -26,6 +30,7 @@ async def get_help_types_by_specialist_id(
     specialist_id: int,
     state: FSMContext
 ) -> list[HelpTypeGetResponse]:
+    """Выполняет запрос к API и возвращает список возможных типов обращения."""
     headers = await get_headers(state)
     data = await make_get_request(
         urljoin(
@@ -43,6 +48,7 @@ async def post_hot_line_data(
     user_data: dict,
     state: FSMContext
 ) -> None:
+    """Выполняет POST-запрос к API и отправляет данные обращения."""
     data = HotLinePostRequest(**user_data)
     headers = await get_headers(state)
     await make_post_request(

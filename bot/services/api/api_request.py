@@ -78,7 +78,7 @@ async def get_headers(state: FSMContext) -> dict:
 
 async def make_post_request_with_return_data(
     url: str, data: dict, headers: dict
-) -> None:
+) -> dict:
     session = await sessions_generator.asend(None)
     async with session.post(url, json=data, headers=headers) as response:
 

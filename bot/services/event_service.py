@@ -11,6 +11,7 @@ from .api.response_models import FullEventGetResponse, ShortEventGetResponse
 async def get_events(
     state: FSMContext
 ) -> list[ShortEventGetResponse] | None:
+    """Выполняет запрос к API и возвращает список мероприятий."""
     headers = await get_headers(state)
     data = await make_get_request(
         urljoin(config.BASE_ENDPOINT, 'events/'),
@@ -27,6 +28,7 @@ async def get_event_by_id(
     event_id: int,
     state: FSMContext
 ) -> FullEventGetResponse:
+    """Выполняет запрос к API и возвращает объект запроса по id."""
     headers = await get_headers(state)
     data = await make_get_request(
         urljoin(config.BASE_ENDPOINT, f'events/{event_id}/'),

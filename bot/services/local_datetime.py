@@ -6,7 +6,7 @@ from config_reader import config
 def get_local_datetime_now() -> datetime:
     """Возвращает дату и время.
 
-    Для часового пояса, указанного в настройках.
+    Для часового пояса, указанного в настройках. Переменная `TIME_ZON`.
     """
     tz = config.get_timezone
     return datetime.now(tz)
