@@ -4,8 +4,7 @@ from aiogram.fsm.context import FSMContext
 
 from config_reader import config
 
-from .api.api_request import (make_get_request,
-                              make_post_request_with_return_data)
+from .api.api_request import make_get_request, make_post_request
 from .api.request_models import SurveyResultPostRequest
 from .api.response_models import (FullSurveyGetResponse,
                                   ShortSurveyGetResponse,
@@ -56,7 +55,7 @@ async def post_survey_result_data_with_return_data(
     """
     data = SurveyResultPostRequest(**user_data)
     headers = await get_headers_from_storage(state)
-    response = await make_post_request_with_return_data(
+    response = await make_post_request(
         urljoin(config.BASE_ENDPOINT, 'metrics/surveys/results/'),
         data=data.dict(),
         headers=headers.dict()

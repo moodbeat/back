@@ -9,7 +9,7 @@ from .storage_service import get_object_from_storage, save_object_in_storage
 async def get_headers_from_storage(state: FSMContext) -> HeadersRequest | None:
     """Возвращает объект `headers` из хранилища контекстных данных.
 
-    При отсутствии данных вовзращает None.
+    При отсутствии данных возвращает None.
     """
     return await get_object_from_storage(
         key='headers',

@@ -7,8 +7,7 @@ from aiohttp.client_exceptions import ClientResponseError
 
 from config_reader import config
 
-from .api.api_request import (make_post_request,
-                              make_post_request_with_return_data)
+from .api.api_request import make_post_request
 from .api.request_models import (AccessTokenRefreshRequest,
                                  AuthCodePostRequest, AuthTokensPostRequest,
                                  AuthTokensRefreshRequest)
@@ -35,7 +34,7 @@ async def post_token_create(
     Возвращает в ответ access- и refresh- токены.
     """
     data = AuthTokensPostRequest(**user_data)
-    result = await make_post_request_with_return_data(
+    result = await make_post_request(
         urljoin(config.BASE_ENDPOINT, 'auth/jwt/telegram_create/'),
         data=data.dict()
     )
@@ -47,7 +46,7 @@ async def update_all_tokens_by_telegram_id(
     telegram_id: int
 ) -> AuthTokensPostResponse:
     data = AuthTokensRefreshRequest(email=email, telegram_id=telegram_id)
-    result = await make_post_request_with_return_data(
+    result = await make_post_request(
         urljoin(config.BASE_ENDPOINT, 'auth/jwt/telegram_create/'),
         data=data.dict()
     )
@@ -58,7 +57,7 @@ async def update_access_token_by_refresh_token(
     refresh_token: str
 ) -> AccessTokenRefreshResponse:
     data = AccessTokenRefreshRequest(refresh=refresh_token)
-    result = await make_post_request_with_return_data(
+    result = await make_post_request(
         urljoin(config.BASE_ENDPOINT, 'auth/jwt/refresh/'),
         data=data.dict()
     )
