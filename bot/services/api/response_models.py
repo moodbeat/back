@@ -26,10 +26,6 @@ class Employee(Author):
     pass
 
 
-class CurrentUserGetResponse(User):
-    pass
-
-
 class ShortEntryGetResponse(BaseModel):
     id: PositiveInt
     title: str
@@ -80,8 +76,12 @@ class UserConditionGetResponse(User):
     latest_condition: ConditionGetResponse
 
 
-class AuthTokenPostResponse(BaseModel):
+class AuthTokensPostResponse(BaseModel):
     refresh: str
+    access: str
+
+
+class AccessTokenRefreshResponse(BaseModel):
     access: str
 
 
@@ -122,3 +122,8 @@ class SurveyResultsAfterPostResponse(BaseModel):
     mental_state: MentalState
     completion_date: date
     next_attempt_date: date
+
+
+class CurrentUserGetResponse(User, AuthTokensPostResponse):
+    refresh: str | None = None
+    access: str | None = None

@@ -6,7 +6,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, InlineKeyboardButton, Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from middlewares.auth import AuthMiddleware
+from middlewares import AuthMiddleware
 from services.hot_line_service import (get_help_types_by_specialist_id,
                                        get_specialists, post_hot_line_data)
 from services.user_service import get_current_user

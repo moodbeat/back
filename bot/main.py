@@ -1,18 +1,26 @@
 import asyncio
 import logging
+from http import HTTPStatus
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.fsm.storage.redis import RedisStorage
 from aiohttp import web
+from aiohttp.client_exceptions import ClientResponseError
 from aiohttp.web_request import Request
 from redis.asyncio.client import Redis
 
-from bot_commands import set_bot_commands
 from config_reader import config
 from handlers import auth, base, conditions, entries, events, hot_line, surveys
-from middlewares.state_control import StateResetMiddleware
+from middlewares import CheckResponseStatusMiddleware, StateResetMiddleware
+from utils.bot_commands import set_bot_commands
+from utils.local_datetime import timetz_converter
 
-logging.basicConfig(level=logging.INFO)
+logging.Formatter.converter = timetz_converter
+logging.basicConfig(
+    format='%(levelname)s %(name)s [%(asctime)s]: %(message)s',
+    level=logging.INFO,
+    datefmt='%d-%m-%Y %H:%M:%S',
+)
 storage = RedisStorage(
     redis=Redis(
         host=config.REDIS_HOST,
@@ -41,6 +49,11 @@ async def errors_handler(err_event: types.ErrorEvent) -> bool:
         f'Ошибка при обработке запроса {err_event.update.update_id}: '
         f'{err_event.exception}'
     )
+    if (
+        isinstance(err_event.exception, ClientResponseError)
+        and err_event.exception.status == HTTPStatus.UNAUTHORIZED
+    ):
+        return True
     text = 'Извините, что-то пошло не так!'
     if err_event.update.message:
         await err_event.update.message.answer(text)
@@ -67,6 +80,7 @@ async def on_startapp(app: web.Application | None = None) -> None:
         surveys.router,
         conditions.router,
     )
+    dp.message.middleware(CheckResponseStatusMiddleware())
     dp.message.middleware(StateResetMiddleware())
     dp.callback_query.middleware(StateResetMiddleware())
     await set_bot_commands(bot)

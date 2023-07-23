@@ -10,3 +10,7 @@ def get_local_datetime_now() -> datetime:
     """
     tz = config.get_timezone
     return datetime.now(tz)
+
+
+def timetz_converter(*args):
+    return get_local_datetime_now().timetuple()

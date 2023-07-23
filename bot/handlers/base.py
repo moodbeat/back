@@ -3,7 +3,7 @@ from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
 
-from middlewares.auth import AuthMiddleware
+from middlewares import AuthMiddleware
 from services.user_service import get_current_user
 
 router = Router()

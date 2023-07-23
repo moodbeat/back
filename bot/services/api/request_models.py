@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, PositiveInt, conint
+from pydantic import BaseModel, EmailStr, Field, PositiveInt, conint
 
 
 class HotLinePostRequest(BaseModel):
@@ -15,15 +15,17 @@ class AuthCodePostRequest(BaseModel):
     email: EmailStr
 
 
-class AuthTokenPostRequest(BaseModel):
+class AuthTokensRefreshRequest(BaseModel):
     email: EmailStr
+    telegram_id: PositiveInt
+
+
+class AuthTokensPostRequest(AuthTokensRefreshRequest):
     code: conint(ge=100000, le=999999)
-    telegram_id: PositiveInt
 
 
-class AuthTokenRefreshRequest(BaseModel):
-    email: EmailStr
-    telegram_id: PositiveInt
+class AccessTokenRefreshRequest(BaseModel):
+    refresh: str
 
 
 class SurveyResult(BaseModel):
@@ -34,3 +36,7 @@ class SurveyResult(BaseModel):
 class SurveyResultPostRequest(BaseModel):
     survey: PositiveInt
     results: list[SurveyResult]
+
+
+class HeadersRequest(BaseModel):
+    authorization: str = Field(alias='Authorization')

@@ -17,7 +17,11 @@ async def get_object_from_storage(
     key: str,
     model: Type[BaseModel],
     state: FSMContext
-) -> Type[BaseModel]:
-    """Возвращает запрошенный по ключу объект из хранилища данных."""
+) -> Type[BaseModel] | None:
+    """Возвращает запрошенный по ключу объект из хранилища данных.
+
+    При отсутствии данных возвращает None.
+    """
     user_data = await state.get_data()
-    return model(**user_data[key])
+    if user_data.get(key):  # noqa
+        return model(**user_data[key])

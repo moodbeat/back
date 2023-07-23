@@ -8,12 +8,12 @@ from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from middlewares.auth import AuthMiddleware
-from services.local_datetime import get_local_datetime_now
+from middlewares import AuthMiddleware
 from services.survey_service import (get_last_ten_surveys, get_survey_by_id,
                                      get_survey_from_storage,
                                      post_survey_result_data_with_return_data,
                                      save_survey_in_storage)
+from utils.local_datetime import get_local_datetime_now
 
 router = Router()
 

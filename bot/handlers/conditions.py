@@ -6,10 +6,10 @@ from aiogram.types import CallbackQuery, InlineKeyboardButton, Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from config_reader import config
-from middlewares.auth import AuthMiddleware
+from middlewares import AuthMiddleware
 from services.condition_service import (get_current_user_with_condition,
                                         post_condition_data)
-from services.local_datetime import get_local_datetime_now
+from utils.local_datetime import get_local_datetime_now
 
 router = Router()
 

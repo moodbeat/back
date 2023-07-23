@@ -4,6 +4,7 @@ import uuid
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg import openapi
@@ -421,9 +422,9 @@ class TelegramTokenObtainPairView(APIView):
             )
         email = serializer.validated_data.get('email')
         telegram_id = serializer.validated_data.get('telegram_id')
-        code = serializer.validated_data.get('code', None)
+        code = serializer.validated_data.get('code')
 
-        user = User.objects.get(email=email)
+        user = get_object_or_404(User, email=email)
         refresh = RefreshToken.for_user(user)
         access = str(refresh.access_token)
 
