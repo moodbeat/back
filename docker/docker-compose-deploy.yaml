@@ -83,7 +83,7 @@ services:
       - static:/var/html/static/
       - media:/var/html/media/
     depends_on:
-      - web
+      - bot
 
   bot:
     container_name: em-bot
@@ -92,7 +92,7 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - nginx
+      - web
 
 volumes:
   static:

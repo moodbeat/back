@@ -103,7 +103,6 @@ if __name__ == '__main__':
     if config.WEB_HOOK_MODE:
         web.run_app(
             app_constructor(),
-            host='localhost',
             port=config.WEB_APP_PORT
         )
     else:
