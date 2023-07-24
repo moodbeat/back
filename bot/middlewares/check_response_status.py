@@ -29,6 +29,7 @@ class CheckResponseStatusMiddleware(BaseMiddleware):
         except ClientResponseError as e:
             if e.status == HTTPStatus.UNAUTHORIZED:
                 state: FSMContext = data.get('state')
+                await state.update_data(headers=None)
                 await update_jwt_tokens(event.from_user.id, state)
                 return await handler(event, data)
             raise

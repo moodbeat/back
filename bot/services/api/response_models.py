@@ -73,7 +73,7 @@ class ConditionGetResponse(BaseModel):
 
 
 class UserConditionGetResponse(User):
-    latest_condition: ConditionGetResponse
+    latest_condition: ConditionGetResponse | None
 
 
 class AuthTokensPostResponse(BaseModel):

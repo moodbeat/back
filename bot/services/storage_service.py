@@ -10,7 +10,7 @@ async def save_object_in_storage(
     state: FSMContext
 ) -> None:
     """Сохраняет полученный объект в хранилище контекстных данных."""
-    await state.update_data({key: obj.dict()})
+    await state.update_data({key: obj.dict(by_alias=True)})
 
 
 async def get_object_from_storage(

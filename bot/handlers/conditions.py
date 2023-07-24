@@ -14,6 +14,7 @@ from utils.local_datetime import get_local_datetime_now
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 def mood_keyboard():

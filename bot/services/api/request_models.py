@@ -40,3 +40,6 @@ class SurveyResultPostRequest(BaseModel):
 
 class HeadersRequest(BaseModel):
     authorization: str = Field(alias='Authorization')
+
+    class Config:
+        allow_population_by_field_name = True

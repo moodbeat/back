@@ -24,7 +24,7 @@ class AuthMiddleware(BaseMiddleware):
             user = await get_current_user_from_storage(state)
 
             if user:
-                headers = {'Authorization': 'Bearer ' + {user.access}}
+                headers = {'Authorization': 'Bearer ' + user.access}
                 await save_headers_in_storage(headers, state)
             else:
                 return await cmd_auth(event, state)

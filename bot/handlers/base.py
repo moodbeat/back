@@ -9,6 +9,7 @@ from services.user_service import get_current_user
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 @router.callback_query(Text(startswith='back_start'))

@@ -12,6 +12,7 @@ from services.event_service import get_event_by_id, get_events
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 @router.callback_query(Text(startswith='back_events'))

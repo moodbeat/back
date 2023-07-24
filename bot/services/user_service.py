@@ -60,8 +60,9 @@ async def update_tokens_of_current_user_in_storage(
     """
     current_user = await get_current_user_from_storage(state)
     if current_user:
+        data = current_user.dict() | tokens_data.dict()
         update_user = CurrentUserGetResponse(
-            current_user.dict() | tokens_data.dict()
+            **data
         )
         await save_current_user_in_storage(update_user, state)
         return True

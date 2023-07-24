@@ -18,6 +18,7 @@ from utils.local_datetime import get_local_datetime_now
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 class SurveyState(StatesGroup):
@@ -125,7 +126,8 @@ async def take_survey(callback: CallbackQuery, state: FSMContext):
     survey = await get_survey_from_storage(state)
     survey_id = int(callback.data.split('_')[-1])
     if survey.id != survey_id:
-        return await get_survey(callback, state)
+        await get_survey(callback, state)
+        return
 
     await state.set_state(SurveyState.process)
     questions_counter = 0
@@ -135,7 +137,7 @@ async def take_survey(callback: CallbackQuery, state: FSMContext):
     })
 
     await callback.message.delete()
-    await callback.message.answer(  # noqa
+    await callback.message.answer(
         survey.questions[questions_counter].text,
         reply_markup=answers_keyboard(
             survey.questions[questions_counter].id,
@@ -144,8 +146,9 @@ async def take_survey(callback: CallbackQuery, state: FSMContext):
     )
 
 
-@router.callback_query(SurveyAnswersCallbackFactory.filter())
-@router.message(SurveyState.process)
+@router.callback_query(
+    SurveyState.process, SurveyAnswersCallbackFactory.filter()
+)
 async def process_survey(
     callback: CallbackQuery,
     state: FSMContext,
@@ -163,13 +166,14 @@ async def process_survey(
     survey = await get_survey_from_storage(state)
 
     if questions_counter < survey.questions_quantity:
-        return await callback.message.edit_text(
+        await callback.message.edit_text(
             survey.questions[questions_counter].text,
             reply_markup=answers_keyboard(
                 survey.questions[questions_counter].id,
                 survey.variants
             )
         )
+        return
     await state.set_state(SurveyState.results)
     await callback.message.delete()
     keyboard = InlineKeyboardMarkup(
@@ -185,7 +189,7 @@ async def process_survey(
             ]
         ]
     )
-    await callback.message.answer(  # noqa
+    await callback.message.answer(
         text=(
             'Опрос завершен!\nХотите отправить результаты?\n'
             'Или вернуться к выбору теста?'
@@ -194,8 +198,7 @@ async def process_survey(
     )
 
 
-@router.callback_query(Text(startswith='post_results'))
-@router.message(SurveyState.results)
+@router.callback_query(SurveyState.results, Text(startswith='post_results'))
 async def needhelp_comment(callback: CallbackQuery, state: FSMContext):
     user_data = await state.get_data()
     user_data.pop('questions_counter')

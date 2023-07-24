@@ -12,6 +12,7 @@ from services.entry_service import get_entry_by_id, get_last_ten_entries
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 @router.callback_query(Text(startswith='back_entries'))

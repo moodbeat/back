@@ -1,11 +1,9 @@
 import asyncio
 import logging
-from http import HTTPStatus
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.fsm.storage.redis import RedisStorage
 from aiohttp import web
-from aiohttp.client_exceptions import ClientResponseError
 from aiohttp.web_request import Request
 from redis.asyncio.client import Redis
 
@@ -34,7 +32,7 @@ dp = Dispatcher(storage=storage)
 
 async def telegram_webhook(request: Request) -> web.Response:
     secret_token = request.headers.get('X-Telegram-Bot-Api-Secret-Token')
-    if secret_token != config.SECRET_TOKEN:
+    if secret_token != config.SECRET_TOKEN.get_secret_value():
         raise web.HTTPUnauthorized('Недействителен секретный токен!')
 
     data = await request.json()
@@ -49,11 +47,6 @@ async def errors_handler(err_event: types.ErrorEvent) -> bool:
         f'Ошибка при обработке запроса {err_event.update.update_id}: '
         f'{err_event.exception}'
     )
-    if (
-        isinstance(err_event.exception, ClientResponseError)
-        and err_event.exception.status == HTTPStatus.UNAUTHORIZED
-    ):
-        return True
     text = 'Извините, что-то пошло не так!'
     if err_event.update.message:
         await err_event.update.message.answer(text)
@@ -69,7 +62,7 @@ async def on_startapp(app: web.Application | None = None) -> None:
     if config.WEB_HOOK_MODE:
         await bot.set_webhook(
             url=config.get_web_hook_url,
-            secret_token=config.SECRET_TOKEN
+            secret_token=config.SECRET_TOKEN.get_secret_value()
         )
     dp.include_routers(
         auth.router,
@@ -82,6 +75,7 @@ async def on_startapp(app: web.Application | None = None) -> None:
     )
     dp.message.middleware(CheckResponseStatusMiddleware())
     dp.message.middleware(StateResetMiddleware())
+    dp.callback_query.middleware(CheckResponseStatusMiddleware())
     dp.callback_query.middleware(StateResetMiddleware())
     await set_bot_commands(bot)
 
