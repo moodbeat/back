@@ -7,12 +7,18 @@ from aiohttp import web
 from aiohttp.web_request import Request
 from redis.asyncio.client import Redis
 
-from bot_commands import set_bot_commands
 from config_reader import config
 from handlers import auth, base, conditions, entries, events, hot_line, surveys
-from middlewares.state_control import StateResetMiddleware
+from middlewares import CheckResponseStatusMiddleware, StateResetMiddleware
+from utils.bot_commands import set_bot_commands
+from utils.local_datetime import timetz_converter
 
-logging.basicConfig(level=logging.INFO)
+logging.Formatter.converter = timetz_converter
+logging.basicConfig(
+    format='%(levelname)s %(name)s [%(asctime)s]: %(message)s',
+    level=logging.INFO,
+    datefmt='%d-%m-%Y %H:%M:%S',
+)
 storage = RedisStorage(
     redis=Redis(
         host=config.REDIS_HOST,
@@ -26,7 +32,7 @@ dp = Dispatcher(storage=storage)
 
 async def telegram_webhook(request: Request) -> web.Response:
     secret_token = request.headers.get('X-Telegram-Bot-Api-Secret-Token')
-    if secret_token != config.SECRET_TOKEN:
+    if secret_token != config.SECRET_TOKEN.get_secret_value():
         raise web.HTTPUnauthorized('Недействителен секретный токен!')
 
     data = await request.json()
@@ -56,7 +62,7 @@ async def on_startapp(app: web.Application | None = None) -> None:
     if config.WEB_HOOK_MODE:
         await bot.set_webhook(
             url=config.get_web_hook_url,
-            secret_token=config.SECRET_TOKEN
+            secret_token=config.SECRET_TOKEN.get_secret_value()
         )
     dp.include_routers(
         auth.router,
@@ -67,7 +73,9 @@ async def on_startapp(app: web.Application | None = None) -> None:
         surveys.router,
         conditions.router,
     )
+    dp.message.middleware(CheckResponseStatusMiddleware())
     dp.message.middleware(StateResetMiddleware())
+    dp.callback_query.middleware(CheckResponseStatusMiddleware())
     dp.callback_query.middleware(StateResetMiddleware())
     await set_bot_commands(bot)
 
@@ -95,7 +103,6 @@ if __name__ == '__main__':
     if config.WEB_HOOK_MODE:
         web.run_app(
             app_constructor(),
-            host='localhost',
             port=config.WEB_APP_PORT
         )
     else:

@@ -6,7 +6,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import CallbackQuery, InlineKeyboardButton, Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from middlewares.auth import AuthMiddleware
+from middlewares import AuthMiddleware
 from services.hot_line_service import (get_help_types_by_specialist_id,
                                        get_specialists, post_hot_line_data)
 from services.user_service import get_current_user
@@ -14,6 +14,7 @@ from services.user_service import get_current_user
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 class HotLineState(StatesGroup):
@@ -55,8 +56,7 @@ async def cmd_needhelp(message: Message, state: FSMContext):
     )
 
 
-@router.callback_query(Text(startswith='recipient_'))
-@router.message(HotLineState.recipient)
+@router.callback_query(HotLineState.recipient, Text(startswith='recipient_'))
 async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
     recipient_id = int(callback.data.split('_')[1])
     user_data = await state.get_data()
@@ -86,8 +86,7 @@ async def needhelp_recipient(callback: CallbackQuery, state: FSMContext):
     )
 
 
-@router.callback_query(Text(startswith='type_'))
-@router.message(HotLineState.type)
+@router.callback_query(HotLineState.type, Text(startswith='type_'))
 async def needhelp_type(callback: CallbackQuery, state: FSMContext):
     type_id = int(callback.data.split('_')[1])
     user_data = await state.get_data()

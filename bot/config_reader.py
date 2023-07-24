@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     SELF_HOST: HttpUrl
     TIME_ZONE: str
     CONDITION_PERIOD_SEC: int
-    SECRET_TOKEN: str
+    SECRET_TOKEN: SecretStr
     WEB_HOOK_MODE: bool
     WEB_HOOK_HOST: HttpUrl
     WEB_APP_PORT: int
@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     REDIS_PORT: int
 
     @property
-    def get_web_hook_url(self) -> HttpUrl:
+    def get_web_hook_url(self) -> str:
         return urljoin(self.WEB_HOOK_HOST, 'telegram_webhook/')
 
     @property

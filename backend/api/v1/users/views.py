@@ -421,7 +421,7 @@ class TelegramTokenObtainPairView(APIView):
             )
         email = serializer.validated_data.get('email')
         telegram_id = serializer.validated_data.get('telegram_id')
-        code = serializer.validated_data.get('code', None)
+        code = serializer.validated_data.get('code')
 
         user = User.objects.get(email=email)
         refresh = RefreshToken.for_user(user)

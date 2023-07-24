@@ -1,10 +1,13 @@
 from typing import Any, Awaitable, Callable
 
 from aiogram import BaseMiddleware
+from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
-from db.requests import find_user
-from handlers.auth import auth_email
+from handlers.auth import cmd_auth
+from services.api_service import (get_headers_from_storage,
+                                  save_headers_in_storage)
+from services.user_service import get_current_user_from_storage
 
 
 class AuthMiddleware(BaseMiddleware):
@@ -14,21 +17,16 @@ class AuthMiddleware(BaseMiddleware):
         event: Message,
         data: dict[str, Any]
     ) -> Any:
-        state = await data.get('state').get_data()
+        state: FSMContext = data.get('state')
+        headers = await get_headers_from_storage(state)
 
-        if not state.get('headers'):
-            user = await find_user(telegram_id=event.from_user.id)
+        if not headers:
+            user = await get_current_user_from_storage(state)
 
             if user:
-                user_data = {
-                    'headers':
-                    {
-                        'Authorization': 'Bearer ' + f'{user.access_token}'
-                    }
-                }
-                await data.get('state').update_data(user_data)
-
+                headers = {'Authorization': 'Bearer ' + user.access}
+                await save_headers_in_storage(headers, state)
             else:
-                return await auth_email(event, data.get('state'))
+                return await cmd_auth(event, state)
 
         return await handler(event, data)

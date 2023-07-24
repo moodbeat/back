@@ -6,12 +6,13 @@ from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message, URLInputFile)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from middlewares.auth import AuthMiddleware
+from middlewares import AuthMiddleware
 from services.entry_service import get_entry_by_id, get_last_ten_entries
 
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 @router.callback_query(Text(startswith='back_entries'))

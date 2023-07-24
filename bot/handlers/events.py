@@ -6,12 +6,13 @@ from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-from middlewares.auth import AuthMiddleware
+from middlewares import AuthMiddleware
 from services.event_service import get_event_by_id, get_events
 
 router = Router()
 
 router.message.middleware(AuthMiddleware())
+router.callback_query.middleware(AuthMiddleware())
 
 
 @router.callback_query(Text(startswith='back_events'))

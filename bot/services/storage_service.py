@@ -9,13 +9,19 @@ async def save_object_in_storage(
     obj: Type[BaseModel],
     state: FSMContext
 ) -> None:
-    await state.update_data({key: obj.dict()})
+    """Сохраняет полученный объект в хранилище контекстных данных."""
+    await state.update_data({key: obj.dict(by_alias=True)})
 
 
 async def get_object_from_storage(
     key: str,
     model: Type[BaseModel],
     state: FSMContext
-) -> Type[BaseModel]:
+) -> Type[BaseModel] | None:
+    """Возвращает запрошенный по ключу объект из хранилища данных.
+
+    При отсутствии данных возвращает None.
+    """
     user_data = await state.get_data()
-    return model(**user_data[key])
+    if user_data.get(key):  # noqa
+        return model(**user_data[key])
