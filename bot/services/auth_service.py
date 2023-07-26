@@ -4,8 +4,10 @@ from urllib.parse import urljoin
 
 from aiogram.fsm.context import FSMContext
 from aiohttp.client_exceptions import ClientResponseError
+from email_validator import EmailNotValidError, validate_email
 
 from config_reader import config
+from utils.exceptions import InvalidUserEmailError, UserNotFoundError
 
 from .api.api_request import make_post_request
 from .api.request_models import (AccessTokenRefreshRequest,
@@ -20,10 +22,15 @@ from .user_service import (get_current_user_from_storage,
 async def post_auth_code(email: str) -> None:
     """Выполняет POST-запрос к API с электронной почтой пользователя."""
     data = AuthCodePostRequest(email=email)
-    await make_post_request(
-        urljoin(config.BASE_ENDPOINT, 'users/send_telegram_code/'),
-        data=data.dict()
-    )
+    try:
+        await make_post_request(
+            urljoin(config.BASE_ENDPOINT, 'users/send_telegram_code/'),
+            data=data.dict()
+        )
+    except ClientResponseError as e:
+        if e.status == HTTPStatus.NOT_FOUND:
+            raise UserNotFoundError
+        raise
 
 
 async def post_token_create(
@@ -88,3 +95,13 @@ async def update_jwt_tokens(telegram_id: int, state: FSMContext) -> None:
         await update_tokens_of_current_user_in_storage(
             response, state
         )
+
+
+def check_and_normalize_user_email(email: str) -> str:
+    """Проверяет валидность электронной почты, отправленной пользователем."""
+    try:
+        valid_email = validate_email(email, check_deliverability=False)
+        email = valid_email.normalized
+    except EmailNotValidError:
+        raise InvalidUserEmailError
+    return email

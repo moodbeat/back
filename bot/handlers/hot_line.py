@@ -1,4 +1,4 @@
-from aiogram import Router, flags
+from aiogram import F, Router, flags
 from aiogram.filters import Text
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
@@ -7,7 +7,8 @@ from aiogram.types import CallbackQuery, InlineKeyboardButton, Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from middlewares import AuthMiddleware
-from services.hot_line_service import (get_help_types_by_specialist_id,
+from services.hot_line_service import (check_hot_line_message,
+                                       get_help_types_by_specialist_id,
                                        get_specialists, post_hot_line_data)
 from services.user_service import get_current_user
 
@@ -94,7 +95,8 @@ async def needhelp_type(callback: CallbackQuery, state: FSMContext):
     await state.set_data(user_data)
     await callback.message.delete()
 
-    msg_text = 'А теперь опишите проблему'
+    msg_text = ('А теперь отправьте своё обращение\n\n'
+                '_сообщение должно быть от 4 до 496 знаков_')
     keyboard = InlineKeyboardBuilder()
     keyboard.add(
         InlineKeyboardButton(text='На главную', callback_data='back_start')
@@ -102,14 +104,17 @@ async def needhelp_type(callback: CallbackQuery, state: FSMContext):
     await state.set_state(HotLineState.comment)
     await callback.message.answer(
         msg_text,
-        reply_markup=keyboard.as_markup()
+        reply_markup=keyboard.as_markup(),
+        parse_mode='Markdown',
     )
 
 
-@router.message(HotLineState.comment)
+@router.message(HotLineState.comment, F.text)
 async def needhelp_comment(message: Message, state: FSMContext):
+    comment = check_hot_line_message(message.text)
+
     user_data = await state.get_data()
-    user_data['hot_line'].update(comment=message.text)
+    user_data['hot_line'].update(comment=comment)
 
     await post_hot_line_data(user_data['hot_line'], state)
     await message.answer('Обращение сформировано и отправлено')
