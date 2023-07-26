@@ -166,5 +166,28 @@ class NotificationEmailService(EmailService):
         )
 
 
+class ContactMessageEmailService(EmailService):
+    contact_email = settings.CONTACT_EMAIL
+
+    def send_contact_message_on_email(self, name, email, comment):
+        """Отправляет пользователю `email` с сообщением из контактной формы."""
+        contact_email = self.contact_email
+        subject = 'Обратная связь'
+        html_message = render_to_string(
+            'email/send_contact_form.html',
+            {'name': name, 'email': email, 'comment': comment},
+        )
+        message = strip_tags(html_message)
+
+        self.send_email(
+            subject,
+            message,
+            formataddr(('MoodBeat', settings.EMAIL_HOST_USER)),
+            [contact_email],
+            html_message=html_message,
+        )
+
+
+contact_message_service = ContactMessageEmailService()
 invite_service = InviteService()
 notification_email_service = NotificationEmailService()

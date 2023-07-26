@@ -218,6 +218,8 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
+CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')
+
 # ----------------------------------------------------------------
 
 INVITE_TIME_EXPIRES_DAYS = 7
