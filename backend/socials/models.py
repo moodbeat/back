@@ -176,3 +176,30 @@ class Like(models.Model):
             raise ValidationError('Выберите что-то одно.')
 
         return super().clean()
+
+
+class ContactForm(models.Model):
+
+    name = models.CharField(
+        verbose_name='Имя',
+        max_length=64,
+        validators=[MinLengthValidator(2)]
+    )
+    email = models.EmailField(
+        verbose_name='Email для связи'
+    )
+    comment = models.TextField(
+        verbose_name='Комментарий',
+        max_length=500,
+        blank=True,
+        null=True
+    )
+    date = models.DateTimeField(
+        verbose_name='Дата и время',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Сообщение с лэндинга'
+        verbose_name_plural = 'Сообщения с лэндинга'
+        ordering = ['-date']

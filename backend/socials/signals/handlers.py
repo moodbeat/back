@@ -1,9 +1,11 @@
+from django.conf import settings
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
 from notifications.models import Notification
+from spare_kits import contact_message_service as contact_service
 
-from ..models import NeedHelp
+from ..models import ContactForm, NeedHelp
 
 
 @receiver(post_save, sender=NeedHelp)
@@ -33,3 +35,18 @@ def delete_notifications_after_obj_help_type_delete(
         incident_id=instance.id,
         incident_type=Notification.IncidentType.HELP
     ).delete()
+
+
+@receiver(post_save, sender=ContactForm)
+def send_message_from_contact_from(sender, instance, created, **kwargs):
+    """Вызывается после сохранения объекта `ContactForm`.
+
+    Идет проверка на существование CONTACT_EMAIL в .env, если email, куда будет
+    приходить сообщение из контактной формы существует, то идет отправка.
+    """
+    if created and settings.CONTACT_EMAIL:
+        contact_service.send_contact_message_on_email(
+            instance.name,
+            instance.email,
+            instance.comment
+        )

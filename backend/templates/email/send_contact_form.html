@@ -1,0 +1,11 @@
+{% extends 'email/base.html' %} {% block content %}
+
+<p>Новое сообщение из формы обратной связи: </p>
+<br>
+<p><strong>Email для связи: </strong>{{ email }}</p>
+<p><strong>Имя: </strong>{{ name }}</p>
+{% if comment %}
+  <p><strong>Комментарий: </strong>{{ comment }}</p>
+{% endif %}
+
+{% endblock %}

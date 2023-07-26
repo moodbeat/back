@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from sorl.thumbnail import get_thumbnail
 
-from socials.models import HelpType, Like, NeedHelp, Status
+from socials.models import ContactForm, HelpType, Like, NeedHelp, Status
 
 User = get_user_model()
 
@@ -105,3 +105,10 @@ class LikeShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = ('id', 'created')
+
+
+class ContactFormSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ContactForm
+        fields = '__all__'

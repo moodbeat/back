@@ -9,8 +9,9 @@ from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefSafePermission,
-                                EmployeeSafePermission, HRAllPermission)
+from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefPostPermission,
+                                ChiefSafePermission, EmployeeSafePermission,
+                                HRAllPermission)
 from events.models import Category, Entry, Event, MeetingResult
 
 from .filters import EntryFilter, EventFilter
@@ -63,7 +64,7 @@ class EventViewSet(ModelViewSet):
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
         IsAuthenticated & AllowAuthorOrReadOnly & HRAllPermission
-        | ChiefSafePermission | EmployeeSafePermission
+        | ChiefPostPermission | ChiefSafePermission | EmployeeSafePermission
     ]
 
     def get_serializer_class(self):
