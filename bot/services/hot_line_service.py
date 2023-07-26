@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 from aiogram.fsm.context import FSMContext
 
 from config_reader import config
+from utils.exceptions import InvalidHotLineMessageError
 
 from .api.api_request import make_get_request, make_post_request
 from .api.request_models import HotLinePostRequest
@@ -57,3 +58,10 @@ async def post_hot_line_data(
         data=data.dict(),
         headers=headers.dict()
     )
+
+
+def check_hot_line_message(message: str) -> str:
+    """Проверяет валидность текста обращения пользователя."""
+    if 3 < len(message) < 497:
+        return message
+    raise InvalidHotLineMessageError

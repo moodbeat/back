@@ -11,6 +11,7 @@ from config_reader import config
 from handlers import auth, base, conditions, entries, events, hot_line, surveys
 from middlewares import CheckResponseStatusMiddleware, StateResetMiddleware
 from utils.bot_commands import set_bot_commands
+from utils.exc_handler import errors_handler
 from utils.local_datetime import timetz_converter
 
 logging.Formatter.converter = timetz_converter
@@ -41,20 +42,6 @@ async def telegram_webhook(request: Request) -> web.Response:
     return web.Response(text="ok")
 
 
-@dp.errors()
-async def errors_handler(err_event: types.ErrorEvent) -> bool:
-    logging.error(
-        f'Ошибка при обработке запроса {err_event.update.update_id}: '
-        f'{err_event.exception}'
-    )
-    text = 'Извините, что-то пошло не так!'
-    if err_event.update.message:
-        await err_event.update.message.answer(text)
-    elif err_event.update.callback_query:
-        await err_event.update.callback_query.message.answer(text)
-    return True
-
-
 @dp.startup()
 async def on_startapp(app: web.Application | None = None) -> None:
     logging.info('Старт приложения!')
@@ -64,6 +51,7 @@ async def on_startapp(app: web.Application | None = None) -> None:
             url=config.get_web_hook_url,
             secret_token=config.SECRET_TOKEN.get_secret_value()
         )
+    dp.errors.register(errors_handler)
     dp.include_routers(
         auth.router,
         base.router,
@@ -73,9 +61,8 @@ async def on_startapp(app: web.Application | None = None) -> None:
         surveys.router,
         conditions.router,
     )
-    dp.message.middleware(CheckResponseStatusMiddleware())
+    dp.update.middleware(CheckResponseStatusMiddleware())
     dp.message.middleware(StateResetMiddleware())
-    dp.callback_query.middleware(CheckResponseStatusMiddleware())
     dp.callback_query.middleware(StateResetMiddleware())
     await set_bot_commands(bot)
 

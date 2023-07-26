@@ -1,17 +1,18 @@
-from aiogram import Router, flags
+from aiogram import F, Router, flags
 from aiogram.filters import Command, Text
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import (CallbackQuery, InlineKeyboardButton,
                            InlineKeyboardMarkup, Message)
-from email_validator import EmailNotValidError, validate_email
 
 from services.api.response_models import AuthTokensPostResponse
 from services.api_service import save_headers_in_storage
-from services.auth_service import post_auth_code, post_token_create
+from services.auth_service import (check_and_normalize_user_email,
+                                   post_auth_code, post_token_create)
 from services.user_service import (get_current_user,
                                    save_current_user_in_storage,
                                    update_tokens_of_current_user_in_storage)
+from utils.filters import HasUserEmailFilter
 
 router = Router()
 
@@ -49,20 +50,9 @@ async def cmd_auth(message: Message | CallbackQuery, state: FSMContext):
     await state.set_state(AuthState.email)
 
 
-@router.message(AuthState.email)
-async def auth_email(message: Message, state: FSMContext):
-    email = message.text
-
-    try:
-        valid_email = validate_email(email, check_deliverability=False)
-        email = valid_email.normalized
-    except EmailNotValidError:
-        await message.answer(
-            'Введён некорректный адрес электронной почты.\n\n'
-            'Попробуйте снова.',
-            reply_markup=keyboard
-        )
-        return
+@router.message(AuthState.email, HasUserEmailFilter())
+async def auth_email(message: Message, state: FSMContext, user_email: str):
+    email = check_and_normalize_user_email(user_email)
 
     await state.update_data(email=email)
     await post_auth_code(email)
@@ -74,25 +64,35 @@ async def auth_email(message: Message, state: FSMContext):
     )
 
 
-@router.message(AuthState.code)
+@router.message(AuthState.email)
+async def auth_email_invalid(message: Message):
+    await message.answer(
+        ('Некорректный ввод!\n'
+         'Введите свой адрес электронной почты, '
+         'который зарегистрирован в нашем сервисе'),
+        reply_markup=keyboard
+    )
+
+
+@router.message(AuthState.code, F.text.regexp(r'^[1-9]{1}[0-9]{5}$'))
 async def auth_code(message: Message, state: FSMContext):
     data = await state.get_data()
     await state.clear()
-
-    try:
-        code = int(message.text)
-    except ValueError:
-        await message.answer(
-            'Код должен быть целым числом. Повторите ввод',
-            reply_markup=keyboard
-        )
-        return
-
-    data['code'] = code
+    data['code'] = message.text
     data['telegram_id'] = message.from_user.id
 
     tokens = await post_token_create(data)
     await save_or_update_user_in_storage(message, tokens, state)
+
+
+@router.message(AuthState.code)
+async def auth_code_invalid(message: Message):
+    await message.answer(
+        ('Некорректный ввод!\n'
+         'Код должен быть целым шестизначным числом '
+         'от 100000 до 999999'),
+        reply_markup=keyboard
+    )
 
 
 async def save_or_update_user_in_storage(
