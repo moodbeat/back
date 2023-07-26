@@ -51,7 +51,7 @@ class UserViewSet(ModelViewSet):
             User.objects
             .filter(is_active=True, is_superuser=False)
             .select_related('position', 'department', 'mental_state')
-            .prefetch_related('condition_set', 'hobbies')
+            .prefetch_related('condition_set', 'hobbies', 'activity_trackers')
         )
 
     @swagger_auto_schema(request_body=UserUpdateSerializer)
@@ -366,8 +366,9 @@ class TelegramSendCodeView(APIView):
             status.HTTP_200_OK:
                 'Код для авторизации в боте отправлен на email',
             status.HTTP_400_BAD_REQUEST:
-                ('Некорректный запрос. Ошибка валидации данных '
-                 'или пользователь с таким email отсутствует')
+                ('Невалидный email адрес'),
+            status.HTTP_404_NOT_FOUND:
+                ('Пользователь с таким email отсутствует')
         }
     )
     def post(self, request):

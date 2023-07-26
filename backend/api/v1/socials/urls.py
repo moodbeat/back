@@ -26,4 +26,9 @@ urlpatterns = [
         views.NeedHelpView.as_view(),
         name='need_help'
     ),
+    re_path(
+        r'^contact_form/?$',
+        views.ContactFormView.as_view(),
+        name='contact_form'
+    ),
 ]
