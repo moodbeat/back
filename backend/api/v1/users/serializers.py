@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
@@ -185,10 +186,7 @@ class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
 
     def validate_email(self, value):
-        if not User.objects.filter(email__iexact=value).exists():
-            raise serializers.ValidationError(
-                'Пользователь с указанным email адресом отсутствует.'
-            )
+        get_object_or_404(User, email__iexact=value)
         return value
 
 
@@ -301,11 +299,7 @@ class TelegramTokenSerializer(serializers.Serializer):
         telegram_id = data.get('telegram_id')
         code = data.get('code', None)
 
-        user = User.objects.filter(email=email)
-        if not user.exists():
-            raise serializers.ValidationError(
-                'Пользователь с указанным email не найден.'
-            )
+        user = get_object_or_404(User, email=email)
 
         if code:
             telegram_code = TelegramCode.objects.filter(email=email, code=code)
