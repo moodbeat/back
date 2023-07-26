@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import HelpType, Like, NeedHelp, Status
+from .models import ContactForm, HelpType, Like, NeedHelp, Status
 
 
 @admin.register(HelpType)
@@ -28,3 +28,8 @@ class LikeAdmin(admin.ModelAdmin):
     fields = ('created', 'employee', 'event', 'entry',)
     list_display = ('created', 'employee', 'event', 'entry',)
     readonly_fields = ('created',)
+
+
+@admin.register(ContactForm)
+class ContactFormAdmin(admin.ModelAdmin):
+    list_display = ('date', 'name', 'email')

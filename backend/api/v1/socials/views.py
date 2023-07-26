@@ -4,18 +4,20 @@ from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from api.v1.permissions import (AllowAuthorOrReadOnlyLike, ChiefPostPermission,
                                 EmployeePostPermission, HRAllPermission)
-from socials.models import HelpType, Like, Status
+from socials.models import ContactForm, HelpType, Like, Status
 
-from .serializers import (HelpTypeSerializer, LikeSerializer,
-                          NeedHelpSerializer, SpecialistsSerializer,
-                          StatusAddSerializer, StatusSerializer)
+from .serializers import (ContactFormSerializer, HelpTypeSerializer,
+                          LikeSerializer, NeedHelpSerializer,
+                          SpecialistsSerializer, StatusAddSerializer,
+                          StatusSerializer)
 from .utils import user_param
 
 User = get_user_model()
@@ -124,3 +126,9 @@ class LikeViewSet(ModelViewSet):
                 {'error': 'Ошибка уникальности: Лайк уже существует.'},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class ContactFormView(CreateAPIView):
+    serializer_class = ContactFormSerializer
+    permission_classes = (AllowAny,)
+    queryset = ContactForm.objects.all()
