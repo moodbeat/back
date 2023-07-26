@@ -51,7 +51,7 @@ class UserViewSet(ModelViewSet):
             User.objects
             .filter(is_active=True, is_superuser=False)
             .select_related('position', 'department', 'mental_state')
-            .prefetch_related('condition_set', 'hobbies')
+            .prefetch_related('condition_set', 'hobbies', 'activity_trackers')
         )
 
     @swagger_auto_schema(request_body=UserUpdateSerializer)
