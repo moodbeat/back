@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.db.models import Count, Q
+from django.db.models import Avg, Count, F, IntegerField, Q
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django_filters.rest_framework import DjangoFilterBackend
@@ -11,8 +11,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.metrics.filters import CompletedSurveyFilter, ConditionFilter
-from api.v1.metrics.serializers import (ActivityTrackerCreateSerializer,
+from api.v1.metrics.filters import (ActivityAverageFilter,
+                                    CompletedSurveyFilter, ConditionFilter)
+from api.v1.metrics.serializers import (ActivityAverageSerializer,
+                                        ActivityTrackerCreateSerializer,
                                         ActivityTrackerSerializer,
                                         ActivityTypeSerializer,
                                         BurnoutSerializer,
@@ -29,9 +31,9 @@ from api.v1.metrics.serializers import (ActivityTrackerCreateSerializer,
                                         SurveySerializer)
 from api.v1.permissions import (ChiefSafePermission, EmployeeSafePermission,
                                 HRAllPermission)
-from metrics.models import (ActivityTracker, ActivityType, BurnoutTracker,
-                            CompletedSurvey, Condition, LifeDirection, Survey,
-                            UserLifeBalance)
+from metrics.models import (ActivityRate, ActivityTracker, ActivityType,
+                            BurnoutTracker, CompletedSurvey, Condition,
+                            LifeDirection, Survey, UserLifeBalance)
 from users.models import MentalState
 
 from .filters import ActivityFilter, SurveyFilter
@@ -283,6 +285,35 @@ class ActivityViewSet(ModelViewSet):
             .select_related('employee')
             .prefetch_related('activity_rates')
         )
+
+
+class ActivityAveragePercentageViewSet(ModelViewSet):
+    queryset = ActivityRate.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = ActivityAverageFilter
+    serializer_class = ActivityAverageSerializer
+    permission_classes = (IsAuthenticated,)
+    http_method_names = ('get',)
+    pagination_class = None
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        average_percentages = (
+            queryset
+            .values(type_name=F('type__name'))
+            .annotate(average_percentage=(Avg(
+                'percentage', output_field=IntegerField()
+            )))
+            .order_by('type__key', 'type__id')
+        )
+
+        return Response(average_percentages, status=status.HTTP_200_OK)
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated and self.request.user.is_hr:
+            return self.queryset
+        return self.queryset.filter(tracker__employee=self.request.user.id)
 
 # оставлю пока не дойду то эндпоинтов конструктора
 #     def perform_create(self, serializer):

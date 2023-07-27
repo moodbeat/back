@@ -346,6 +346,12 @@ class ActivityTrackerCreateSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return ActivityTrackerSerializer(instance, context=self.context).data
 
+
+class ActivityAverageSerializer(serializers.Serializer):
+
+    type_name = serializers.CharField()
+    average_percentage = serializers.IntegerField()
+
 # class SurveyCreateSerializer(serializers.ModelSerializer):
 #     """Сериализатор для создания опроса."""
 

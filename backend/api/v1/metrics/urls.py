@@ -14,6 +14,11 @@ v10.register(
 )
 v10.register('surveys', views.SurveyViewSet, basename='surveys')
 v10.register('burnouts', views.BurnoutViewSet, basename='burnouts')
+v10.register(
+    'activities/average',
+    views.ActivityAveragePercentageViewSet,
+    basename='activities_average'
+)
 v10.register('activities', views.ActivityViewSet, basename='activities')
 
 urlpatterns = [
