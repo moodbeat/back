@@ -287,13 +287,12 @@ class ActivityViewSet(ModelViewSet):
         )
 
 
-class ActivityAveragePercentageViewSet(ModelViewSet):
+class ActivityAveragePercentageListView(ListAPIView):
     queryset = ActivityRate.objects.all()
     filter_backends = (DjangoFilterBackend,)
     filterset_class = ActivityAverageFilter
     serializer_class = ActivityAverageSerializer
     permission_classes = (IsAuthenticated,)
-    http_method_names = ('get',)
     pagination_class = None
 
     def list(self, request, *args, **kwargs):
