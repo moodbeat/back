@@ -9,11 +9,11 @@ from aiohttp.client_exceptions import ClientResponseError
 from services.auth_service import update_jwt_tokens
 
 
-class CheckResponseStatusMiddleware(BaseMiddleware):
-    """Контролирует статус ответов API.
+class CheckAccessTokenStatusMiddleware(BaseMiddleware):
+    """Контролирует статус токена доступа по ответу API.
 
-    Данное иннер-мидлвайр задействует логику обновления токена/токенов
-    в случае истечения срока их действия.
+    Задействует логику обновления токена/токенов в случае истечения
+    срока их действия.
     """
 
     async def __call__(
