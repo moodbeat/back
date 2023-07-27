@@ -152,7 +152,7 @@ class NotificationEmailService(EmailService):
         url = self.host
         subject = 'Новые уведомления'
         html_message = render_to_string(
-            'email/send_invitation_link.html',
+            'email/send_new_notifications.html',
             {'incident_type': incident_type, 'url': url},
         )
         message = strip_tags(html_message)
