@@ -61,8 +61,7 @@ async def on_startapp(app: web.Application | None = None) -> None:
         surveys.router,
         conditions.router,
     )
-    dp.message.middleware(CheckResponseStatusMiddleware())
-    dp.callback_query.middleware(CheckResponseStatusMiddleware())
+    dp.update.middleware(CheckResponseStatusMiddleware())
     dp.message.middleware(StateResetMiddleware())
     dp.callback_query.middleware(StateResetMiddleware())
     await set_bot_commands(bot)

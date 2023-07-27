@@ -29,7 +29,8 @@ class CheckResponseStatusMiddleware(BaseMiddleware):
         except ClientResponseError as e:
             if e.status == HTTPStatus.UNAUTHORIZED:
                 state: FSMContext = data.get('state')
+                telegram_id: int = data.get('event_from_user').id
                 await state.update_data(headers=None)
-                await update_jwt_tokens(event.from_user.id, state)
+                await update_jwt_tokens(telegram_id, state)
                 return await handler(event, data)
             raise
