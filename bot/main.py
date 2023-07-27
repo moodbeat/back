@@ -9,7 +9,7 @@ from redis.asyncio.client import Redis
 
 from config_reader import config
 from handlers import auth, base, conditions, entries, events, hot_line, surveys
-from middlewares import CheckResponseStatusMiddleware, StateResetMiddleware
+from middlewares import CheckAccessTokenStatusMiddleware, StateResetMiddleware
 from utils.bot_commands import set_bot_commands
 from utils.exc_handler import errors_handler
 from utils.local_datetime import timetz_converter
@@ -61,7 +61,7 @@ async def on_startapp(app: web.Application | None = None) -> None:
         surveys.router,
         conditions.router,
     )
-    dp.update.middleware(CheckResponseStatusMiddleware())
+    dp.update.middleware(CheckAccessTokenStatusMiddleware())
     dp.message.middleware(StateResetMiddleware())
     dp.callback_query.middleware(StateResetMiddleware())
     await set_bot_commands(bot)

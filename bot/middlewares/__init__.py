@@ -1,3 +1,3 @@
 from .auth import AuthMiddleware  # noqa
-from .check_response_status import CheckResponseStatusMiddleware  # noqa
+from .check_tokens_status import CheckAccessTokenStatusMiddleware  # noqa
 from .state_control import StateResetMiddleware  # noqa
