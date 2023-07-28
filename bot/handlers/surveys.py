@@ -33,6 +33,7 @@ class SurveyAnswersCallbackFactory(CallbackData, prefix='answer'):
 
 @router.callback_query(Text(startswith='back_survey'))
 @router.message(Command('survey'))
+@router.message(Text('Опросы'))
 @flags.state_reset
 async def cmd_survey(message: Message | CallbackQuery, state: FSMContext):
     if isinstance(message, CallbackQuery):
@@ -77,11 +78,11 @@ async def get_survey(callback: CallbackQuery, state: FSMContext):
     msg_text = (
         f'*{survey.title}*\n\n'
         f'{survey.description}\n\n'
-        f'*Автор: {survey.author.full_name}*'
+        f'*Автор: {survey.author.full_name}*\n'
         f'Количество вопросов: {survey.questions_quantity}\n'
     )
     if survey.frequency:
-        msg_text += f'Периодичность прохождения (в днях): {survey.frequency}\n'
+        msg_text += f'Периодичность прохождения (в днях): {survey.frequency}'
 
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[

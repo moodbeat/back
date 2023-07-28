@@ -1,3 +1,4 @@
+import uuid
 from datetime import tzinfo
 from functools import lru_cache
 from urllib.parse import urljoin
@@ -12,12 +13,12 @@ class Settings(BaseSettings):
     SELF_HOST: HttpUrl
     TIME_ZONE: str
     CONDITION_PERIOD_SEC: int
-    SECRET_TOKEN: SecretStr
     WEB_HOOK_MODE: bool
     WEB_HOOK_HOST: HttpUrl
     WEB_APP_PORT: int
     REDIS_HOST: str
     REDIS_PORT: int
+    SECRET_TOKEN: SecretStr = str(uuid.uuid4())
 
     @property
     def get_web_hook_url(self) -> str:

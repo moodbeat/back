@@ -17,6 +17,7 @@ router.callback_query.middleware(AuthMiddleware())
 
 @router.callback_query(Text(startswith='back_entries'))
 @router.message(Command('entries'))
+@router.message(Text('Статьи'))
 @flags.state_reset
 async def cmd_entries(message: Message | CallbackQuery, state: FSMContext):
     if isinstance(message, CallbackQuery):

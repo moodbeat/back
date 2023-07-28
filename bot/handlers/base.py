@@ -5,6 +5,7 @@ from aiogram.fsm.context import FSMContext
 
 from middlewares import AuthMiddleware
 from services.user_service import get_current_user
+from utils.menu_keyboard import create_menu_keyboard
 
 router = Router()
 
@@ -38,4 +39,7 @@ async def cmd_start(
     if isinstance(message, types.CallbackQuery):
         await message.message.delete()
     else:
-        await message.answer(start_msg)
+        await message.answer(
+            start_msg,
+            reply_markup=create_menu_keyboard()
+        )
