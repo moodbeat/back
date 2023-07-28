@@ -175,11 +175,6 @@ class ActivityTypeAdmin(admin.ModelAdmin):
 
 class ActivityRateFormSet(BaseInlineFormSet):
 
-    def get_queryset(self):
-        activity_types = ActivityType.objects.all()
-        self.max_num = activity_types.count()
-        return activity_types
-
     # https://stackoverflow.com/questions/4735920/
     def clean(self):
         super(ActivityRateFormSet, self).clean()

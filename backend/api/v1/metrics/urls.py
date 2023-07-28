@@ -17,7 +17,11 @@ v10.register('burnouts', views.BurnoutViewSet, basename='burnouts')
 v10.register('activities', views.ActivityViewSet, basename='activities')
 
 urlpatterns = [
-    path('', include(v10.urls)),
+    re_path(
+        r'^activities/average/?$',
+        views.ActivityAveragePercentageListView.as_view(),
+        name='activities_average'
+    ),
     re_path(
         r'^life_directions/?$',
         views.LifeDirectionListView.as_view(),
@@ -33,4 +37,5 @@ urlpatterns = [
         views.ActivityTypeListView.as_view(),
         name='activity_types'
     ),
+    path('', include(v10.urls)),
 ]
