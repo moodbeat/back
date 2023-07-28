@@ -1,6 +1,6 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-from django.db.models.signals import post_save, pre_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
 from spare_kits import notification_email_service as email_service
@@ -48,9 +48,9 @@ def get_data_for_websocket_post_save(sender, instance, created, **kwargs):
     )
 
 
-@receiver(pre_delete, sender=Notification)
+@receiver(post_delete, sender=Notification)
 @disable_for_loaddata
-def get_data_for_websocket_pre_delete(sender, instance, **kwargs):
+def get_data_for_websocket_post_delete(sender, instance, **kwargs):
     """Вызывается при удалении объекта модели `Notification`.
 
     Отправляются обновленные данные пользователю в вебсокет.
