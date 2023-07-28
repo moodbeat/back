@@ -77,10 +77,11 @@ async def get_survey(callback: CallbackQuery, state: FSMContext):
     msg_text = (
         f'*{survey.title}*\n\n'
         f'{survey.description}\n\n'
-        f'Периодичность прохождения (в днях): {survey.frequency}\n'
-        f'Количество вопросов: {survey.questions_quantity}\n'
         f'*Автор: {survey.author.full_name}*'
+        f'Количество вопросов: {survey.questions_quantity}\n'
     )
+    if survey.frequency:
+        msg_text += f'Периодичность прохождения (в днях): {survey.frequency}\n'
 
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
