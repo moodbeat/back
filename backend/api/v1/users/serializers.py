@@ -5,8 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
-from rest_framework_simplejwt.serializers import (TokenObtainPairSerializer,
-                                                  TokenRefreshSerializer)
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from sorl.thumbnail import get_thumbnail
 
 from api.v1.metrics.serializers import ConditionReadSerializer
@@ -325,11 +324,3 @@ class TelegramTokenSerializer(serializers.Serializer):
                 )
 
         return data
-
-
-class CustomTokenRefreshSerializer(TokenRefreshSerializer):
-
-    def validate(self, attrs):
-        refresh = self.token_class(attrs['refresh'])
-        get_object_or_404(User, id=refresh.access_token['user_id'])
-        super().validate(attrs)
