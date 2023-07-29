@@ -166,6 +166,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=REFRESH_TOKEN_LIFETIME_DAYS),
     'AUTH_HEADER_TYPES': ('Bearer',),
     'TOKEN_OBTAIN_SERIALIZER': 'api.v1.users.serializers.CustomTokenObtainSerializer',
+    'TOKEN_REFRESH_SERIALIZER': 'api.v1.users.serializers.CustomTokenRefreshSerializer',
 }
 
 SWAGGER_SETTINGS = {
