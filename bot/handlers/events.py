@@ -17,6 +17,7 @@ router.callback_query.middleware(AuthMiddleware())
 
 @router.callback_query(Text(startswith='back_events'))
 @router.message(Command('events'))
+@router.message(Text('Мероприятия'))
 @flags.state_reset
 async def cmd_events(message: Message | CallbackQuery, state: FSMContext):
     if isinstance(message, CallbackQuery):

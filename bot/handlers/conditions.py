@@ -31,6 +31,7 @@ def mood_keyboard():
 
 
 @router.message(Command('conditions'))
+@router.message(Text('Состояние'))
 @flags.state_reset
 async def cmd_conditions(message: Message, state: FSMContext):
     user = await get_current_user_with_condition(state)

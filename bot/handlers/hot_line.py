@@ -26,6 +26,7 @@ class HotLineState(StatesGroup):
 
 @flags.state_reset
 @router.message(Command('hot_line'))
+@router.message(Text('Анонимные обращения'))
 async def cmd_needhelp(message: Message, state: FSMContext):
     user = await get_current_user(state)
     msg_text = (

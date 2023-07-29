@@ -68,8 +68,8 @@ async def auth_email(message: Message, state: FSMContext, user_email: str):
 async def auth_email_invalid(message: Message):
     await message.answer(
         ('Некорректный ввод!\n'
-         'Введите свой адрес электронной почты, '
-         'который зарегистрирован в нашем сервисе'),
+         'Введите адрес электронной почты, '
+         'который вы использовали при регистрации в нашем сервисе'),
         reply_markup=keyboard
     )
 

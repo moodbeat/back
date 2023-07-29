@@ -165,7 +165,6 @@ BOT_INVITE_TIME_EXPIRES_MINUTES=10 # время действия кода отп
 WEB_HOOK_MODE=False  # запуск бота в режиме webhook - True, в режиме polling - False
 WEB_HOOK_HOST=https://example.com  # домен с ssl, на котором развернут бот
 WEB_APP_PORT=5000  # порт на котором будет "слушать" бот в режиме webhook
-SECRET_TOKEN=secret  # секретный токен для аутентификации при использовании бота в режиме webhook
 ```
 
 ### Запуск проекта в dev режиме
