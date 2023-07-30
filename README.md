@@ -95,13 +95,13 @@
 Пользователь с правами администратора (при использовании тестовой базы данных):
 
 + логин
-```
-admin@admin.admin
-```
+  ```
+  admin@admin.admin
+  ```
 + пароль
-```
-DM94nghHSsl
-```
+  ```
+  DM94nghHSsl
+  ```
 
 Также по адресу http://localhost/api/v1/swagger/ доступна полная документация API.
 
@@ -198,6 +198,7 @@ Ngrok — инструмент, который позволяет создава
   > является примером и должен быть заменен.
 
   ```dotenv
+  TELEGRAM_TOKEN=@BotFather
   SELF_HOST=https://1234-56-78-9.eu.ngrok.io
   WEB_HOOK_HOST=https://1234-56-78-9.eu.ngrok.io
   BASE_ENDPOINT=https://1234-56-78-9.eu.ngrok.io/api/v1/  # отметьте, что здесь дополнительно указывается принадлежность к API и его версия `api/v1/`
@@ -205,26 +206,28 @@ Ngrok — инструмент, который позволяет создава
 
 ### Запуск проекта в dev режиме
 
+  > **Warning**:
+  > При развертывании на ОС Windows в WSL2 одновременно и бэкенда и бота
+  > установку и запуск завивисимостей `poetry` производить также в терминалах WSL2.
+
 Для начала работы с проектом вам необходимо:
 - должен быть запущен Ngrok в соответствии с [Использование Ngrok](#использование-ngrok)
 - иметь установленный менеджер зависимостей [Poetry](https://python-poetry.org/);
 - в директории [docker/](docker/) переименовать файл `.env.example` в `.env` в соответствии с [Переименовать `.env.example` в `.env`](#установка) и задать переменные окружения, особое внимание уделив указанным ниже строкам:
 
 ```dotenv
-DJANGO_DEBUG=True
+DJANGO_DEBUG=False  # Чтобы подтянулась статика
 
-# если поднимали воспользовавшись приложенным docker-compose конфигом
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
+# если поднимали сервис воспользовавшись приложенным docker-compose конфигом
 DB_HOST=localhost
 DB_PORT=5432
 
 REDIS_HOST=localhost
 REDIS_PORT=6379
+
 ELASTIC_HOST=localhost
 ELASTIC_PORT=9200
+
 CELERY_BROKER=redis://localhost:6379/1
 CELERY_RESULT=redis://localhost:6379/2
 
@@ -239,6 +242,10 @@ DEV_SERVICES=True
 
 - локально развернуть [nginx](https://nginx.org/), [elasticsearch](https://www.elastic.co/elasticsearch/), [postgresql](https://www.postgresql.org/) и [redis](https://redis.io/). Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
 
+  ```shell
+  sudo docker compose -f docker-compose-dev.yaml up -d
+  ```
+
 После того как выполнены условия выше, скопируйте [.env](docker/.env) в [backend/conf](backend/conf/) и [bot](bot/).
 
 Далее необходимо последовательно выполнить установку зависимостей в директориях [/backend](backend) и [/bot](bot):
@@ -246,15 +253,15 @@ DEV_SERVICES=True
 cd backend/ && poetry install && cd ../bot/ && poetry install
 ```
 
-В отдельных терминалах активируйте виртуальные окружения бэкенда и бота с установленными зависимостями:
+Запустите два отдельных терминала и активируйте виртуальные окружения бэкенда и бота с установленными зависимостями:
 
-- терминал 1:
+- терминал 1 (бэкенд):
   ```bash
-  cd backend && poetry shell
+  cd back/backend/ && poetry shell
   ```
-- терминал 2:
+- терминал 2 (бот):
   ```bash
-  cd bot && poetry shell
+  cd back/bot/ && poetry shell
   ```
 
 Если потребности в постоянно активном виртуальном окружении не возникает, работайте с приложением по примеру ниже:
@@ -271,18 +278,18 @@ python manage.py migrate
 ```bash
 python manage.py loaddata fixtures/test_data.json && python manage.py search_index -f --rebuild
 ```
-  > **Warning**:
+  > **Note**:
   > Обратите внимание, что проводить индексацию необходимо лишь при заливке данных в обход приложения.
   > При добавлении новых данных из приложения, индексация добавленного производится автоматически.
 
-В приложенных к проекту [тестовых данных](backend/fixtures/test_data.json) уже есть учетная запись суперпользователя, с email **admin@admin.admin** и паролем **DM94nghHSsl**, однако если вы не загружали тестовые данные необходимо создать учетную запись суперпользователя:
+В приложенных к проекту [тестовых данных](backend/fixtures/test_data.json) уже есть учетная запись суперпользователя [логин и пароль](#использование), однако если вы не загружали тестовые данные необходимо создать учетную запись суперпользователя:
 ```bash
 python manage.py createsuperuser
 ```
 
-Запустите бэкенд проект командой ниже. Он будет готов к работе по адресу указанному в терминале после запуска локального сервера:
+Запустите бэкенд проект командой ниже. Спецификация API будет доступна по [адресу](http://localhost:80/api/v1/swagger/) :
 ```bash
-python manage.py runserver
+daphne --bind 0.0.0.0 -p 8000 conf.asgi:application
 ```
 
 Из терминала бота для его запуска выполните следующую команду:
