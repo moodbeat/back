@@ -23,6 +23,9 @@
         <li><a href="#переменные-окружения-env">Переменные окружения (.env)</a></li>
       </ul>
       <ul>
+        <li><a href="#использование-ngrok">Использование Ngrok</a></li>
+      </ul>
+      <ul>
         <li><a href="#запуск-проекта-в-dev-режиме">Запуск проекта в dev режиме</a></li>
       </ul>
     </li>
@@ -53,35 +56,35 @@
 
 1. Клонировать репозиторий и перейти в директорию для развертывания.
 
-    ```shell
-    git clone git@github.com:moodbeat/back.git
-    ```
-    ```shell
-    cd back/docker/
-    ```
+  ```shell
+  git clone git@github.com:moodbeat/back.git
+  ```
+  ```shell
+  cd back/docker/
+  ```
 
 2. Переименовать `.env.example` в `.env` и задать переменные окружения.
-    > **Warning**:
-    > Если не указаны значения для почтового сервера и DNS-адрес проекта
-    > приложение работать полноценно не будет.
+  > **Warning**:
+  > Если не указаны значения для почтового сервера и DNS-адрес проекта
+  > приложение работать полноценно не будет.
 
 ### Запуск
 
 1. Выполнить запуск контейнеров Docker.
 
-    ```shell
-    sudo docker compose -f docker-compose-deploy.yaml up -d
-    ```
+  ```shell
+  sudo docker compose -f docker-compose-deploy.yaml up -d
+  ```
 
 2. Наполнить базу данных тестовыми записями.
 
-    ```shell
-    sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py loaddata fixtures/test_data.json
-    ```
+  ```shell
+  sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py loaddata fixtures/test_data.json
+  ```
 3. Выполнить индексацию для elastisearch.
-    ```bash
-    sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py search_index -f --rebuild
-    ```
+  ```bash
+  sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py search_index -f --rebuild
+  ```
 
 ## Использование
 
@@ -149,8 +152,8 @@ SENTRY_DSN=https://sentry.io/welcome/
 # Переменные Celery
 NOTIFICATIONS_AGE_DELETE=30
 
-CELERY_BROKER=redis://redis:6379
-CELERY_RESULT=redis://redis:6379
+CELERY_BROKER=redis://redis:6379/1
+CELERY_RESULT=redis://redis:6379/2
 
 # email для писем из контактной формы
 CONTACT_EMAIL=mail@example.com
@@ -167,14 +170,44 @@ WEB_HOOK_HOST=https://example.com  # домен с ssl, на котором ра
 WEB_APP_PORT=5000  # порт на котором будет "слушать" бот в режиме webhook
 ```
 
+### Использование Ngrok
+
+Этот раздел будет полезен при запуске проекта в dev-режиме, если у вас нет доменного имени с установленным SSL-сертификатом.
+
+Ngrok — инструмент, который позволяет создавать временный общедоступный адрес (туннель) для вашего локального сервера,
+находящимся за NAT или брандмауэром.
+
+Подробнее: https://ngrok.com/
+
+1. Установить Ngrok, следуя официальным инструкциям.
+
+  https://ngrok.com/download
+
+2. Запустить туннель.
+
+  ```shell
+  ngrok http 80
+  ```
+
+3. Задать значение переменным окружения (.env).
+  В процессе разработки при локальном развертывании контейнеров `Docker` необходимо указать предоставленный `ngrok` туннель для данных переменных окружения.
+
+  > **Warning**:
+  > Обратите внимание, что указанный ниже адрес туннеля `https://1234-56-78-9.eu.ngrok.io`
+  > является примером и должен быть заменен.
+
+  ```dotenv
+  SELF_HOST=https://1234-56-78-9.eu.ngrok.io
+  WEB_HOOK_HOST=https://1234-56-78-9.eu.ngrok.io
+  BASE_ENDPOINT=https://1234-56-78-9.eu.ngrok.io/api/v1/  # отметьте, что здесь дополнительно указывается принадлежность к API и его версия `api/v1/`
+  ```
+
 ### Запуск проекта в dev режиме
 
 Для начала работы с проектом вам необходимо:
+- должен быть запущен Ngrok в соответствии с [Использование Ngrok](#использование-ngrok)
 - иметь установленный менеджер зависимостей [Poetry](https://python-poetry.org/);
-- [postgresql](https://www.postgresql.org/) 15+ версии;
-- локально развернутые [elasticsearch](https://www.elastic.co/elasticsearch/) и [redis](https://redis.io/). Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
-
-После того как выполнены условия выше, скопируйте [example.env](docker/example.env) в [backend/conf](backend/conf/), переименуйте файл в **.env** и отредактируйте, особое внимание уделив указанным ниже строкам:
+- в директории [docker/](docker/) переименовать файл `.env.example` в `.env` в соответствии с [Переименовать `.env.example` в `.env`](#установка) и задать переменные окружения, особое внимание уделив указанным ниже строкам:
 
 ```dotenv
 # имя бд, пользователя и пароль меняем в соответствии с создаными у себя в базе
@@ -192,20 +225,46 @@ REDIS_HOST=localhost
 REDIS_PORT=6379
 ELASTIC_HOST=localhost
 ELASTIC_PORT=9200
-CELERY_BROKER=redis://localhost:6379
-CELERY_RESULT=redis://localhost:6379
+CELERY_BROKER=redis://localhost:6379/1
+CELERY_RESULT=redis://localhost:6379/2
+
+# при запуске бота и использовании Ngrok
+SELF_HOST=https://1234-56-78-9.eu.ngrok.io
+WEB_HOOK_HOST=https://1234-56-78-9.eu.ngrok.io
+BASE_ENDPOINT=https://1234-56-78-9.eu.ngrok.io/api/v1/
 
 # если нужны логи (хранятся в backend/logs)
 DEV_SERVICES=True
-
 ```
 
-Далее перейдите в [/backend](backend) и выполните установку пакетов с зависимостями:
+- локально развернуть [nginx](https://nginx.org/), [elasticsearch](https://www.elastic.co/elasticsearch/), [postgresql](https://www.postgresql.org/) и [redis](https://redis.io/). Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
+
+После того как выполнены условия выше, скопируйте [.env](docker/.env) в [backend/conf](backend/conf/) и [bot](bot/).
+
+Далее последовательно перейдите в директории [/backend](backend) и [/bot](bot) и выполните установку пакетов с зависимостями:
+```bash
+cd backend
+```
+```bash
+poetry install
+```
+```bash
+cd bot
+```
 ```bash
 poetry install
 ```
 
-Активируйте виртуальное окружение с установленными зависимостями:
+В отдельных терминалах последовательно находясь в директориях [/backend](backend) и [/bot](bot) активируйте виртуальные окружения бэкенда и бота приложения с установленными зависимостями:
+```bash
+cd backend
+```
+```bash
+poetry shell
+```
+```bash
+cd bot
+```
 ```bash
 poetry shell
 ```
@@ -215,7 +274,7 @@ poetry shell
 poetry run python manage.py runserver
 ```
 
-После того как зависимости установлены и активированно виртуальное окружение, выполните миграции:
+После того как зависимости установлены и активированно виртуальное окружение, выполните миграции из терминала бэкенда приложения:
 ```bash
 python manage.py migrate
 ```
@@ -232,10 +291,16 @@ python manage.py search_index -f --rebuild
 python manage.py createsuperuser
 ```
 
-После чего проект готов к работе по адресу указанному после запуска локального сервера:
+Запустите бэкенд проект командой ниже, после чего он будет готов к работе по адресу указанному в терминале после запуска локального сервера:
 ```bash
 python manage.py runserver
 ```
+
+Из терминала бота для запуска выполните следующую команду:
+```bash
+python main.py
+```
+
 <!-- MARKDOWN LINKS & BADGES -->
 
 [Django-url]: https://www.djangoproject.com/
