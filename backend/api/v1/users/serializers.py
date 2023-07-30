@@ -3,8 +3,10 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from drf_yasg.utils import swagger_serializer_method
 from rest_framework import serializers
+from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.serializers import (TokenObtainPairSerializer,
                                                   TokenRefreshSerializer)
 from sorl.thumbnail import get_thumbnail
@@ -331,5 +333,7 @@ class CustomTokenRefreshSerializer(TokenRefreshSerializer):
 
     def validate(self, attrs):
         refresh = self.token_class(attrs['refresh'])
-        get_object_or_404(User, id=refresh.access_token['user_id'])
-        super().validate(attrs)
+        token_owner = User.objects.filter(id=refresh.access_token['user_id'])
+        if not token_owner.exists():
+            raise TokenError(_('This user does not exist'))
+        return super().validate(attrs)

@@ -79,22 +79,20 @@ async def update_jwt_tokens(telegram_id: int, state: FSMContext) -> None:
             user.refresh
         )
     except ClientResponseError as e:
-        if e.status == HTTPStatus.UNAUTHORIZED:
-            try:
-                response = await update_all_tokens_by_telegram_id(
-                    user.email, telegram_id
-                )
-            except ClientResponseError as e:
-                if e.status == HTTPStatus.NOT_FOUND:
-                    await state.clear()
-            else:
-                await update_tokens_of_current_user_in_storage(
-                    response, state
-                )
-    else:
-        await update_tokens_of_current_user_in_storage(
-            response, state
-        )
+        if e.status != HTTPStatus.UNAUTHORIZED:
+            raise
+        try:
+            response = await update_all_tokens_by_telegram_id(
+                user.email, telegram_id
+            )
+        except ClientResponseError as e:
+            if e.status != HTTPStatus.NOT_FOUND:
+                raise
+            await state.clear()
+        else:
+            await update_tokens_of_current_user_in_storage(
+                response, state
+            )
 
 
 def check_and_normalize_user_email(email: str) -> str:
