@@ -269,8 +269,7 @@ python manage.py migrate
 
 По желанию можно загрузить в базу уже [предустановленные](backend/fixtures/test_data.json) данные и выполнить индексацию для elastisearch:
 ```bash
-python manage.py loaddata fixtures/test_data.json
-python manage.py search_index -f --rebuild
+python manage.py loaddata fixtures/test_data.json && python manage.py search_index -f --rebuild
 ```
   > **Warning**:
   > Обратите внимание, что проводить индексацию необходимо лишь при заливке данных в обход приложения.
