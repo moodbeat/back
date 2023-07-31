@@ -14,9 +14,14 @@ v10.register(
 )
 v10.register('surveys', views.SurveyViewSet, basename='surveys')
 v10.register('burnouts', views.BurnoutViewSet, basename='burnouts')
+v10.register('activities', views.ActivityViewSet, basename='activities')
 
 urlpatterns = [
-    path('', include(v10.urls)),
+    re_path(
+        r'^activities/average/?$',
+        views.ActivityAveragePercentageListView.as_view(),
+        name='activities_average'
+    ),
     re_path(
         r'^life_directions/?$',
         views.LifeDirectionListView.as_view(),
@@ -27,4 +32,10 @@ urlpatterns = [
         views.MentalStateViewSet.as_view(),
         name='mental_states'
     ),
+    re_path(
+        r'^activity_types/?$',
+        views.ActivityTypeListView.as_view(),
+        name='activity_types'
+    ),
+    path('', include(v10.urls)),
 ]

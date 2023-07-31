@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "moodbeat-bot"
+version = "0.1.0"
+description = "Bot for moodbeat project"
+authors = ["Moodbeat company"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aiogram = "3.0.0b7"
+python-dotenv = "1.0.0"
+pytz = "^2023.3"
+redis = "^4.6.0"
+email-validator = "^2.0.0.post2"
+
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "2.0.2"
+flake8 = "6.0.0"
+isort = "^5.12.0"
+pre-commit = "^3.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

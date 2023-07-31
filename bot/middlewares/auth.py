@@ -1,37 +1,32 @@
-from typing import Any, Awaitable, Callable, Dict
+from typing import Any, Awaitable, Callable
 
 from aiogram import BaseMiddleware
+from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
-from db.requests import find_user
-from handlers.auth import auth_email, get_refresh_token
+from handlers.auth import cmd_auth
+from services.api_service import (get_headers_from_storage,
+                                  save_headers_in_storage)
+from services.user_service import get_current_user_from_storage
 
 
 class AuthMiddleware(BaseMiddleware):
     async def __call__(
         self,
-        handler: Callable[[Message, Dict[str, Any]], Awaitable[Any]],
+        handler: Callable[[Message, dict[str, Any]], Awaitable[Any]],
         event: Message,
-        data: Dict[str, Any]
+        data: dict[str, Any]
     ) -> Any:
+        state: FSMContext = data.get('state')
+        headers = await get_headers_from_storage(state)
 
-        state = await data.get('state').get_data()
-        if not state.get('headers'):
-            user = await find_user(telegram_id=event.from_user.id)
+        if not headers:
+            user = await get_current_user_from_storage(state)
 
             if user:
-                token = await get_refresh_token(event, user)
-
-                user_data = {
-                    'user': user,
-                    'headers':
-                    {
-                        'Authorization': 'Bearer ' + f'{token.get("access")}'
-                    }
-                }
-                await data.get('state').update_data(data=user_data)
-
+                headers = {'Authorization': 'Bearer ' + user.access}
+                await save_headers_in_storage(headers, state)
             else:
-                return await auth_email(event, data.get('state'))
+                return await cmd_auth(event, state)
 
         return await handler(event, data)

@@ -407,175 +407,298 @@
   "model": "users.hobby",
   "pk": 1,
   "fields": {
-    "name": "Фотография"
+    "name": "Фотография",
+    "life_directions": [
+      2
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 2,
   "fields": {
-    "name": "Путешествия"
+    "name": "Путешествия",
+    "life_directions": [
+      2,
+      5
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 3,
   "fields": {
-    "name": "Танцы"
+    "name": "Танцы",
+    "life_directions": [
+      1,
+      5,
+      8
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 4,
   "fields": {
-    "name": "Йога и медитация"
+    "name": "Йога и медитация",
+    "life_directions": [
+      7,
+      8
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 5,
   "fields": {
-    "name": "Изучение иностранных языков"
+    "name": "Изучение иностранных языков",
+    "life_directions": [
+      2,
+      6
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 6,
   "fields": {
-    "name": "Астрономия и космос"
+    "name": "Астрономия и космос",
+    "life_directions": [
+      4,
+      6
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 7,
   "fields": {
-    "name": "Фильмы и сериалы"
+    "name": "Фильмы и сериалы",
+    "life_directions": [
+      2
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 8,
   "fields": {
-    "name": "Музыка"
+    "name": "Музыка",
+    "life_directions": [
+      5
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 9,
   "fields": {
-    "name": "Садоводство"
+    "name": "Садоводство",
+    "life_directions": [
+      2,
+      3
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 10,
   "fields": {
-    "name": "Рисование"
+    "name": "Рисование",
+    "life_directions": [
+      5,
+      7
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 11,
   "fields": {
-    "name": "Вязание"
+    "name": "Вязание",
+    "life_directions": [
+      6,
+      7
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 12,
   "fields": {
-    "name": "Фитнес"
+    "name": "Фитнес",
+    "life_directions": [
+      6,
+      8
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 13,
   "fields": {
-    "name": "Лыжи"
+    "name": "Лыжи",
+    "life_directions": [
+      2,
+      8
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 14,
   "fields": {
-    "name": "Брейк-данс"
+    "name": "Брейк-данс",
+    "life_directions": [
+      2,
+      8
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 15,
   "fields": {
-    "name": "Блоггинг"
+    "name": "Блоггинг",
+    "life_directions": [
+      2,
+      3,
+      5
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 16,
   "fields": {
-    "name": "Моделизм"
+    "name": "Моделизм",
+    "life_directions": [
+      2,
+      3
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 17,
   "fields": {
-    "name": "Волонтёрство"
+    "name": "Волонтёрство",
+    "life_directions": [
+      3
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 18,
   "fields": {
-    "name": "Сноубординг"
+    "name": "Сноубординг",
+    "life_directions": [
+      2,
+      5,
+      8
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 19,
   "fields": {
-    "name": "Покер"
+    "name": "Покер",
+    "life_directions": [
+      2,
+      4
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 20,
   "fields": {
-    "name": "Рыбалка"
+    "name": "Рыбалка",
+    "life_directions": [
+      2,
+      7
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 21,
   "fields": {
-    "name": "Пение"
+    "name": "Пение",
+    "life_directions": [
+      2,
+      5,
+      7
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 22,
   "fields": {
-    "name": "Шахматы"
+    "name": "Шахматы",
+    "life_directions": [
+      6
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 23,
   "fields": {
-    "name": "Карвинг"
+    "name": "Карвинг",
+    "life_directions": [
+      6
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 24,
   "fields": {
-    "name": "Астрология"
+    "name": "Астрология",
+    "life_directions": [
+      2,
+      7
+    ],
+    "activity_types": []
   }
 },
 {
   "model": "users.hobby",
   "pk": 25,
   "fields": {
-    "name": "Волейбол"
+    "name": "Волейбол",
+    "life_directions": [
+      6,
+      8
+    ],
+    "activity_types": []
   }
 },
 {
@@ -613,7 +736,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$600000$GzZjsdyyWiokndMnnXIhwt$lVtu0hvAh+cN44J6dwod1b5QpSmEYpV8ItMaNeajUpw=",
-    "last_login": "2023-07-03T04:12:51.022Z",
+    "last_login": "2023-07-18T16:54:39.312Z",
     "is_superuser": true,
     "email": "admin@admin.admin",
     "first_name": "Админ",
@@ -6928,6 +7051,46 @@
     ],
     "completion_date": "2023-07-01",
     "next_attempt_date": "2023-07-01"
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 1,
+  "fields": {
+    "name": "Рутина",
+    "description": "",
+    "key": 1,
+    "color": "#4B239B"
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 2,
+  "fields": {
+    "name": "Обучение",
+    "description": "",
+    "key": 2,
+    "color": "#8831DD"
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 3,
+  "fields": {
+    "name": "Наставничество",
+    "description": "",
+    "key": 3,
+    "color": "#98C865"
+  }
+},
+{
+  "model": "metrics.activitytype",
+  "pk": 4,
+  "fields": {
+    "name": "Общение",
+    "description": "",
+    "key": 4,
+    "color": "#01B551"
   }
 },
 {

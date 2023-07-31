@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Q
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_yasg.utils import swagger_auto_schema
@@ -7,8 +9,9 @@ from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefSafePermission,
-                                EmployeeSafePermission, HRAllPermission)
+from api.v1.permissions import (AllowAuthorOrReadOnly, ChiefPostPermission,
+                                ChiefSafePermission, EmployeeSafePermission,
+                                HRAllPermission)
 from events.models import Category, Entry, Event, MeetingResult
 
 from .filters import EntryFilter, EventFilter
@@ -55,26 +58,41 @@ class EntryViewSet(ModelViewSet):
 
 
 class EventViewSet(ModelViewSet):
-    # TODO оптимизировать запрос с prefetch на лайки рейквест юзера
-    queryset = (
-        Event.objects
-        .select_related('author')
-        .prefetch_related('likes', 'employees', 'departments')
-        .all()
-    )
     filter_backends = (DjangoFilterBackend, SearchFilter)
     search_fields = ('name', 'text',)
     filterset_class = EventFilter
     http_method_names = ('get', 'post', 'patch', 'delete')
     permission_classes = [
         IsAuthenticated & AllowAuthorOrReadOnly & HRAllPermission
-        | ChiefSafePermission | EmployeeSafePermission
+        | ChiefPostPermission | ChiefSafePermission | EmployeeSafePermission
     ]
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return EventReadSerializer
         return EventWriteSerializer
+
+    def get_queryset(self):
+        # for drf yasg :(
+        if not self.request.user.is_authenticated:
+            return None
+
+        queryset = (
+            Event.objects
+            .filter(
+                Q(author=self.request.user)
+                | Q(for_all=True)
+                | Q(employees=self.request.user)
+                | Q(departments=self.request.user.department)
+            )
+            .select_related('author')
+            .prefetch_related('likes', 'employees', 'departments')
+        )
+
+        if 'past' not in self.request.query_params:
+            queryset = queryset.filter(end_time__gte=timezone.localtime())
+
+        return queryset.all()
 
 
 class MeetingResultViewSet(ModelViewSet):

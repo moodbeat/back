@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'sorl.thumbnail',
     'django_cleanup.apps.CleanupConfig',
+    'colorfield',
 
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
@@ -157,11 +158,15 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 }
 
+REFRESH_TOKEN_LIFETIME_DAYS = int(os.getenv('REFRESH_TOKEN_LIFETIME_DAYS'))
+ACCESS_TOKEN_LIFETIME_MINUTES = int(os.getenv('ACCESS_TOKEN_LIFETIME_MINUTES'))
+
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=ACCESS_TOKEN_LIFETIME_MINUTES),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=REFRESH_TOKEN_LIFETIME_DAYS),
     'AUTH_HEADER_TYPES': ('Bearer',),
     'TOKEN_OBTAIN_SERIALIZER': 'api.v1.users.serializers.CustomTokenObtainSerializer',
+    'TOKEN_REFRESH_SERIALIZER': 'api.v1.users.serializers.CustomTokenRefreshSerializer',
 }
 
 SWAGGER_SETTINGS = {
@@ -177,7 +182,7 @@ SWAGGER_SETTINGS = {
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = os.getenv('TIME_ZONE', default='Europe/Moscow')
 
 USE_I18N = True
 
@@ -214,9 +219,15 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
+CONTACT_EMAIL = os.getenv('CONTACT_EMAIL')
+
 # ----------------------------------------------------------------
 
 INVITE_TIME_EXPIRES_DAYS = 7
+
+BOT_INVITE_TIME_EXPIRES_MINUTES = os.getenv('BOT_INVITE_TIME_EXPIRES_MINUTES', 10)
+
+BOT_NAME = os.getenv('BOT_NAME')
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -290,11 +301,11 @@ if DEV_SERVICES:
 
 # ----------------------------------------------------------------
 
-CELERY_TIMEZONE = 'Europe/Moscow'
+CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_SERIALIZER = 'pickle'
 CELERY_ACCEPT_CONTENT = ('pickle',)
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER', 'redis://redis:6379')
-CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT', 'redis://redis:6379')
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER', 'redis://redis:6379/1')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT', 'redis://redis:6379/2')
 CELERY_BEAT_MAX_LOOP_INTERVAL = 20
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_BEAT_SCHEDULE = {

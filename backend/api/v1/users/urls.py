@@ -46,5 +46,15 @@ urlpatterns = [
         views.PasswordChangeView.as_view(),
         name='password_change'
     ),
+    re_path(
+        r'^users/send_telegram_code/?$',
+        views.TelegramSendCodeView.as_view(),
+        name='send_telegram_code'
+    ),
+    re_path(
+        r'^auth/jwt/telegram_create/?$',
+        views.TelegramTokenObtainPairView.as_view(),
+        name='jwt_telegram_create'
+    ),
     path('', include(v10.urls)),
 ]

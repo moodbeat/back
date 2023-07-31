@@ -83,6 +83,15 @@ services:
       - static:/var/html/static/
       - media:/var/html/media/
     depends_on:
+      - bot
+
+  bot:
+    container_name: em-bot
+    build: ../bot
+    restart: always
+    env_file:
+      - ./.env
+    depends_on:
       - web
 
 volumes:

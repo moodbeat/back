@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "moodbeat-back"
+version = "0.1.0"
+description = "API for moodbeat project"
+authors = ["Moodbeat company"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "4.2.1"
+djangorestframework = "3.14.0"
+daphne = "4.0.0"
+celery = "5.3.1"
+redis = "4.5.4"
+channels = "4.0.0"
+channels-redis = "4.1.0"
+elasticsearch = "7.17.9"
+elasticsearch-dsl = "7.4.1"
+elastic-transport = "8.4.0"
+djangorestframework-simplejwt = "5.2.2"
+django-elasticsearch-dsl = "7.3"
+django-elasticsearch-dsl-drf = "0.22.5"
+django-filter = "23.2"
+django-celery-beat = "2.5.0"
+django-phonenumber-field = "7.1.0"
+django-cleanup = "7.0.0"
+django-cors-headers = "3.14.0"
+drf-yasg = "1.21.5"
+djoser = "2.2.0"
+sorl-thumbnail = "12.9.0"
+pillow = "9.5.0"
+sentry-sdk = "1.25.1"
+python-dotenv = "1.0.0"
+psycopg2-binary = "2.9.5"
+phonenumbers = "8.13.11"
+django-colorfield = "^0.9.0"
+
+
+[tool.poetry.group.dev.dependencies]
+django-debug-toolbar = "4.0.0"
+autopep8 = "2.0.2"
+flake8 = "6.0.0"
+isort = "^5.12.0"
+pre-commit = "3.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

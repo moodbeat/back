@@ -121,6 +121,28 @@ class InviteService(SecretCodeService, EmailService):
             html_message=html_message,
         )
 
+    def send_telegram_code(self, email: str, code: str, again: bool = False):
+        """Отправляет `email` c кодом для авторизации в боте."""
+        url = (
+            f'https://t.me/{settings.BOT_NAME}'
+        )
+        subject = 'Ваш код для авторизации в боте'
+        if again:
+            subject = 'Вам повторно отправлен код для авторизации в боте'
+        html_message = render_to_string(
+            'email/send_telegram_code.html',
+            {'url': url, 'code': code},
+        )
+        message = strip_tags(html_message)
+
+        self.send_email(
+            subject,
+            message,
+            formataddr(('MoodBeat', settings.EMAIL_HOST_USER)),
+            [email],
+            html_message=html_message,
+        )
+
 
 class NotificationEmailService(EmailService):
     host = settings.SELF_HOST
@@ -130,7 +152,7 @@ class NotificationEmailService(EmailService):
         url = self.host
         subject = 'Новые уведомления'
         html_message = render_to_string(
-            'email/send_invitation_link.html',
+            'email/send_new_notifications.html',
             {'incident_type': incident_type, 'url': url},
         )
         message = strip_tags(html_message)
@@ -144,5 +166,28 @@ class NotificationEmailService(EmailService):
         )
 
 
+class ContactMessageEmailService(EmailService):
+    contact_email = settings.CONTACT_EMAIL
+
+    def send_contact_message_on_email(self, name, email, comment):
+        """Отправляет пользователю `email` с сообщением из контактной формы."""
+        contact_email = self.contact_email
+        subject = 'Обратная связь'
+        html_message = render_to_string(
+            'email/send_contact_form.html',
+            {'name': name, 'email': email, 'comment': comment},
+        )
+        message = strip_tags(html_message)
+
+        self.send_email(
+            subject,
+            message,
+            formataddr(('MoodBeat', settings.EMAIL_HOST_USER)),
+            [contact_email],
+            html_message=html_message,
+        )
+
+
+contact_message_service = ContactMessageEmailService()
 invite_service = InviteService()
 notification_email_service = NotificationEmailService()
