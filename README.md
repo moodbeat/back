@@ -207,76 +207,39 @@ Ngrok — инструмент, который позволяет создава
 ### Запуск проекта в dev режиме
 
   > **Warning**:
-  > При развертывании на ОС Windows в WSL2 одновременно и бэкенда и бота
-  > установку и запуск завивисимостей `poetry` производить также в терминалах WSL2.
+  > До начала работы с проектом в режиме разработки:
+  > - должен быть запущен Ngrok в соответствии с [Использование Ngrok](#использование-ngrok)
+  > - в директории [docker/](docker/) переименовать файл `.env.example` в `.env` в соответствии с
+  > [Переименовать `.env.example` в `.env`](#установка) и задать переменные окружения, особое внимание
+  > уделив указанным ниже строкам
+  > ```dotenv
+  > # включение режима отладки
+  > DJANGO_DEBUG=True
+  >
+  > # при запуске бота и использовании Ngrok
+  > SELF_HOST=https://1234-56-78-9.eu.ngrok.io
+  > WEB_HOOK_HOST=https://1234-56-78-9.eu.ngrok.io
+  > BASE_ENDPOINT=https://1234-56-78-9.eu.ngrok.io/api/v1/
+  >
+  > # если нужны логи (хранятся в backend/logs)
+  > DEV_SERVICES=True
+  > ```
 
-Для начала работы с проектом вам необходимо:
-- должен быть запущен Ngrok в соответствии с [Использование Ngrok](#использование-ngrok)
-- иметь установленный менеджер зависимостей [Poetry](https://python-poetry.org/);
-- в директории [docker/](docker/) переименовать файл `.env.example` в `.env` в соответствии с [Переименовать `.env.example` в `.env`](#установка) и задать переменные окружения, особое внимание уделив указанным ниже строкам:
+Локально разверните [nginx](https://nginx.org/), [elasticsearch](https://www.elastic.co/elasticsearch/), [postgresql](https://www.postgresql.org/) и [redis](https://redis.io/) и контейнеры с бэкендом и ботом. Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
 
-```dotenv
-DJANGO_DEBUG=False  # Чтобы подтянулась статика
-
-# если поднимали сервис воспользовавшись приложенным docker-compose конфигом
-DB_HOST=localhost
-DB_PORT=5432
-
-REDIS_HOST=localhost
-REDIS_PORT=6379
-
-ELASTIC_HOST=localhost
-ELASTIC_PORT=9200
-
-CELERY_BROKER=redis://localhost:6379/1
-CELERY_RESULT=redis://localhost:6379/2
-
-# при запуске бота и использовании Ngrok
-SELF_HOST=https://1234-56-78-9.eu.ngrok.io
-WEB_HOOK_HOST=https://1234-56-78-9.eu.ngrok.io
-BASE_ENDPOINT=https://1234-56-78-9.eu.ngrok.io/api/v1/
-
-# если нужны логи (хранятся в backend/logs)
-DEV_SERVICES=True
+Из директории [docker](docker) выполните команду:
+```shell
+sudo docker compose -f docker-compose-dev.yaml up -d --build
 ```
 
-- локально развернуть [nginx](https://nginx.org/), [elasticsearch](https://www.elastic.co/elasticsearch/), [postgresql](https://www.postgresql.org/) и [redis](https://redis.io/). Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
-
-  ```shell
-  sudo docker compose -f docker-compose-dev.yaml up -d
-  ```
-
-После того как выполнены условия выше, скопируйте [.env](docker/.env) в [backend/conf](backend/conf/) и [bot](bot/).
-
-Далее необходимо последовательно выполнить установку зависимостей в директориях [/backend](backend) и [/bot](bot):
+При первоначальном развертывании выполните миграции базы данных:
 ```bash
-cd backend/ && poetry install && cd ../bot/ && poetry install
-```
-
-Запустите два отдельных терминала и активируйте виртуальные окружения бэкенда и бота с установленными зависимостями:
-
-- терминал 1 (бэкенд):
-  ```bash
-  cd back/backend/ && poetry shell
-  ```
-- терминал 2 (бот):
-  ```bash
-  cd back/bot/ && poetry shell
-  ```
-
-Если потребности в постоянно активном виртуальном окружении не возникает, работайте с приложением по примеру ниже:
-```bash
-poetry run python manage.py runserver
-```
-
-После того как зависимости установлены и активированно виртуальное окружение, выполните миграции из терминала бэкенда приложения:
-```bash
-python manage.py migrate
+sudo docker compose -f docker-compose-dev.yaml exec web python manage.py migrate
 ```
 
 По желанию можно загрузить в базу уже [предустановленные](backend/fixtures/test_data.json) данные и выполнить индексацию для elastisearch:
 ```bash
-python manage.py loaddata fixtures/test_data.json && python manage.py search_index -f --rebuild
+sudo docker compose -f docker-compose-dev.yaml exec web python manage.py loaddata fixtures/test_data.json && sudo docker compose -f docker-compose-dev.yaml exec web python manage.py search_index -f --rebuild
 ```
   > **Note**:
   > Обратите внимание, что проводить индексацию необходимо лишь при заливке данных в обход приложения.
@@ -284,17 +247,7 @@ python manage.py loaddata fixtures/test_data.json && python manage.py search_ind
 
 В приложенных к проекту [тестовых данных](backend/fixtures/test_data.json) уже есть учетная запись суперпользователя [логин и пароль](#использование), однако если вы не загружали тестовые данные необходимо создать учетную запись суперпользователя:
 ```bash
-python manage.py createsuperuser
-```
-
-Запустите бэкенд проект командой ниже. Спецификация API будет доступна по [адресу](http://localhost:80/api/v1/swagger/) :
-```bash
-daphne --bind 0.0.0.0 -p 8000 conf.asgi:application
-```
-
-Из терминала бота для его запуска выполните следующую команду:
-```bash
-python main.py
+sudo docker compose -f docker-compose-dev.yaml exec web python manage.py createsuperuser
 ```
 
 <!-- MARKDOWN LINKS & BADGES -->
