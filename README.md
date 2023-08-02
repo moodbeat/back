@@ -23,6 +23,9 @@
         <li><a href="#переменные-окружения-env">Переменные окружения (.env)</a></li>
       </ul>
       <ul>
+        <li><a href="#использование-ngrok">Использование Ngrok</a></li>
+      </ul>
+      <ul>
         <li><a href="#запуск-проекта-в-dev-режиме">Запуск проекта в dev режиме</a></li>
       </ul>
     </li>
@@ -53,35 +56,35 @@
 
 1. Клонировать репозиторий и перейти в директорию для развертывания.
 
-    ```shell
-    git clone git@github.com:moodbeat/back.git
-    ```
-    ```shell
-    cd back/docker/
-    ```
+  ```shell
+  git clone git@github.com:moodbeat/back.git
+  ```
+  ```shell
+  cd back/docker/
+  ```
 
 2. Переименовать `.env.example` в `.env` и задать переменные окружения.
-    > **Warning**:
-    > Если не указаны значения для почтового сервера и DNS-адрес проекта
-    > приложение работать полноценно не будет.
+  > **Warning**:
+  > Если не указаны значения для почтового сервера и DNS-адрес проекта
+  > приложение работать полноценно не будет.
 
 ### Запуск
 
 1. Выполнить запуск контейнеров Docker.
 
-    ```shell
-    sudo docker compose -f docker-compose-deploy.yaml up -d
-    ```
+  ```shell
+  sudo docker compose -f docker-compose-deploy.yaml up -d
+  ```
 
 2. Наполнить базу данных тестовыми записями.
 
-    ```shell
-    sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py loaddata fixtures/test_data.json
-    ```
+  ```shell
+  sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py loaddata fixtures/test_data.json
+  ```
 3. Выполнить индексацию для elastisearch.
-    ```bash
-    sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py search_index -f --rebuild
-    ```
+  ```bash
+  sudo docker compose -f docker-compose-deploy.yaml exec web python manage.py search_index -f --rebuild
+  ```
 
 ## Использование
 
@@ -92,13 +95,13 @@
 Пользователь с правами администратора (при использовании тестовой базы данных):
 
 + логин
-```
-admin@admin.admin
-```
+  ```
+  admin@admin.admin
+  ```
 + пароль
-```
-DM94nghHSsl
-```
+  ```
+  DM94nghHSsl
+  ```
 
 Также по адресу http://localhost/api/v1/swagger/ доступна полная документация API.
 
@@ -149,8 +152,8 @@ SENTRY_DSN=https://sentry.io/welcome/
 # Переменные Celery
 NOTIFICATIONS_AGE_DELETE=30
 
-CELERY_BROKER=redis://redis:6379
-CELERY_RESULT=redis://redis:6379
+CELERY_BROKER=redis://redis:6379/1
+CELERY_RESULT=redis://redis:6379/2
 
 # email для писем из контактной формы
 CONTACT_EMAIL=mail@example.com
@@ -167,75 +170,86 @@ WEB_HOOK_HOST=https://example.com  # домен с ssl, на котором ра
 WEB_APP_PORT=5000  # порт на котором будет "слушать" бот в режиме webhook
 ```
 
+### Использование Ngrok
+
+Этот раздел будет полезен при запуске проекта в dev-режиме, если у вас нет доменного имени с установленным SSL-сертификатом.
+
+Ngrok — инструмент, который позволяет создавать временный общедоступный адрес (туннель) для вашего локального сервера,
+находящимся за NAT или брандмауэром.
+
+Подробнее: https://ngrok.com/
+
+1. Установить Ngrok, следуя официальным инструкциям.
+
+  https://ngrok.com/download
+
+2. Запустить туннель.
+
+  ```shell
+  ngrok http 80
+  ```
+
+3. Задать значение переменным окружения (.env).
+
+  В процессе разработки при локальном развертывании контейнеров `Docker` необходимо указать предоставленный `ngrok` туннель для данных переменных окружения.
+
+  > **Warning**:
+  > Обратите внимание, что указанный ниже адрес туннеля `https://1234-56-78-9.eu.ngrok.io`
+  > является примером и должен быть заменен.
+
+  ```dotenv
+  TELEGRAM_TOKEN=@BotFather
+  SELF_HOST=https://1234-56-78-9.eu.ngrok.io
+  WEB_HOOK_HOST=https://1234-56-78-9.eu.ngrok.io
+  BASE_ENDPOINT=https://1234-56-78-9.eu.ngrok.io/api/v1/  # отметьте, что здесь дополнительно указывается принадлежность к API и его версия `api/v1/`
+  ```
+
 ### Запуск проекта в dev режиме
 
-Для начала работы с проектом вам необходимо:
-- иметь установленный менеджер зависимостей [Poetry](https://python-poetry.org/);
-- [postgresql](https://www.postgresql.org/) 15+ версии;
-- локально развернутые [elasticsearch](https://www.elastic.co/elasticsearch/) и [redis](https://redis.io/). Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
+  > **Warning**:
+  > До начала работы с проектом в режиме разработки:
+  > - должен быть запущен Ngrok в соответствии с [Использование Ngrok](#использование-ngrok)
+  > - в директории [docker/](docker/) переименовать файл `.env.example` в `.env` в соответствии с
+  > [Переименовать `.env.example` в `.env`](#установка) и задать переменные окружения, особое внимание
+  > уделив указанным ниже строкам
+  > ```dotenv
+  > # включение режима отладки
+  > DJANGO_DEBUG=True
+  >
+  > # при запуске бота и использовании Ngrok
+  > SELF_HOST=https://1234-56-78-9.eu.ngrok.io
+  > WEB_HOOK_HOST=https://1234-56-78-9.eu.ngrok.io
+  > BASE_ENDPOINT=https://1234-56-78-9.eu.ngrok.io/api/v1/
+  >
+  > # если нужны логи (хранятся в backend/logs)
+  > DEV_SERVICES=True
+  > ```
 
-После того как выполнены условия выше, скопируйте [example.env](docker/example.env) в [backend/conf](backend/conf/), переименуйте файл в **.env** и отредактируйте, особое внимание уделив указанным ниже строкам:
+Локально разверните [nginx](https://nginx.org/), [elasticsearch](https://www.elastic.co/elasticsearch/), [postgresql](https://www.postgresql.org/) и [redis](https://redis.io/) и контейнеры с бэкендом и ботом. Для удобства их развертывания воспользуйтесь приложенным [docker-compose](docker/docker-compose-dev.yaml).
 
-```dotenv
-# имя бд, пользователя и пароль меняем в соответствии с создаными у себя в базе
-DB_ENGINE=django.db.backends.postgresql
-DB_NAME=postgres
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-DB_HOST=localhost
-DB_PORT=5432
-
-DJANGO_DEBUG=True
-
-# если поднимали воспользовавшись приложенным docker-compose конфигом
-REDIS_HOST=localhost
-REDIS_PORT=6379
-ELASTIC_HOST=localhost
-ELASTIC_PORT=9200
-CELERY_BROKER=redis://localhost:6379
-CELERY_RESULT=redis://localhost:6379
-
-# если нужны логи (хранятся в backend/logs)
-DEV_SERVICES=True
-
+Из директории [docker](docker) выполните команду:
+```shell
+sudo docker compose -f docker-compose-dev.yaml up -d --build
 ```
 
-Далее перейдите в [/backend](backend) и выполните установку пакетов с зависимостями:
+При первоначальном развертывании выполните миграции базы данных:
 ```bash
-poetry install
-```
-
-Активируйте виртуальное окружение с установленными зависимостями:
-```bash
-poetry shell
-```
-
-Если потребности в постоянно активном виртуальном окружении не возникает, работайте с приложением по примеру ниже:
-```bash
-poetry run python manage.py runserver
-```
-
-После того как зависимости установлены и активированно виртуальное окружение, выполните миграции:
-```bash
-python manage.py migrate
+sudo docker compose -f docker-compose-dev.yaml exec web python manage.py migrate
 ```
 
 По желанию можно загрузить в базу уже [предустановленные](backend/fixtures/test_data.json) данные и выполнить индексацию для elastisearch:
 ```bash
-python manage.py loaddata fixtures/test_data.json
-python manage.py search_index -f --rebuild
+sudo docker compose -f docker-compose-dev.yaml exec web python manage.py loaddata fixtures/test_data.json && sudo docker compose -f docker-compose-dev.yaml exec web python manage.py search_index -f --rebuild
 ```
-Важно отметить, что проводить индексацию необходимо лишь при заливке данных в обход приложения. При добавлении новых данных из приложения, индексация добавленного производится автоматически.
+  > **Note**:
+  > Обратите внимание, что проводить индексацию необходимо лишь при заливке данных в обход приложения.
+  > При добавлении новых данных из приложения, индексация добавленного производится автоматически.
 
-В приложенных к проекту [тестовых данных](backend/fixtures/test_data.json) уже есть учетная запись суперпользователя, с email **admin@admin.admin** и паролем **DM94nghHSsl**, однако если вы не загружали тестовые данные необходимо создать учетную запись суперпользователя:
+В приложенных к проекту [тестовых данных](backend/fixtures/test_data.json) уже есть учетная запись суперпользователя [логин и пароль](#использование), однако если вы не загружали тестовые данные необходимо создать учетную запись суперпользователя:
 ```bash
-python manage.py createsuperuser
+sudo docker compose -f docker-compose-dev.yaml exec web python manage.py createsuperuser
 ```
 
-После чего проект готов к работе по адресу указанному после запуска локального сервера:
-```bash
-python manage.py runserver
-```
 <!-- MARKDOWN LINKS & BADGES -->
 
 [Django-url]: https://www.djangoproject.com/
